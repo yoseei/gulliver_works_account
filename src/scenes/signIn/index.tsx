@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useHistory } from "react-router-dom";
 import { ScriptSnapshot } from "typescript";
@@ -7,10 +7,15 @@ import styles from "./style.module.scss";
 import { SignInParams, useSignInPresenter } from "./useSignInPresenter";
 
 const SignInPage = () => {
+  const [isRevealPassword, setIsRevealPassword] = useState(false);
   const { register, handleSubmit } = useForm<SignInParams>();
   const { signIn } = useSignInPresenter();
   const { account } = useCurrentAccount();
   const history = useHistory();
+
+  const togglePassword = () => {
+    setIsRevealPassword((prevState) => !prevState);
+  };
 
   useEffect(() => {
     if (account) history.push("/");
@@ -38,11 +43,25 @@ const SignInPage = () => {
             <p>パスワード</p>
             <input
               className={styles.input}
-              name="account.password"
               placeholder="パスワードを入力"
               ref={register}
-              type="password"
+              type={isRevealPassword ? "text" : "password"}
+              // name="password"
+              name="account.password"
+              // type="password"
             />
+            {/*  spanタグにrole="presentation"をつけないと、onClickつけたらeslintの内容によっては怒られます。 */}
+            <span
+              onClick={togglePassword}
+              role="presentation"
+              className={styles.PasswordReveal}
+            >
+              {isRevealPassword ? (
+                <i className="fas fa-eye" />
+              ) : (
+                <i className="fas fa-eye-slash" />
+              )}
+            </span>
           </div>
           <div className={styles.loginButton_wrapper}>
             <button>ログイン</button>

@@ -33,6 +33,13 @@
         border: 1px solid rgb(224, 220, 220);
         border-radius: 5px;
         padding: 10px;
+        position: relative;
+      }
+      .PasswordReveal {
+        left: auto;
+        position: absolute;
+        right: 10px;
+        top: 10px;
       }
     }
     .loginButton_wrapper {
