@@ -1,0 +1,50 @@
+.root {
+  width: 100vw;
+  height: 100vh;
+  .profile_container {
+    width: 80%;
+    height: 80%;
+    background-color: gray;
+    margin: 0 auto;
+    margin-top: 50px;
+    .coverPhoto_wrapper {
+      background-color: aqua;
+      height: 200px;
+      position: relative;
+      width: 100%;
+      .edit_profile_wrapper {
+        border: 1px solid black;
+        border: 1px solid black;
+        border-radius: 5px;
+        bottom: 10px;
+        display: inline-block;
+        position: absolute;
+        right: 10px;
+      }
+    }
+    .basicInfo_container {
+      display: flex;
+      align-items: center;
+      .left_wrapper {
+      }
+      .right_wrapper {
+        .nameAge_wrapper {
+          display: flex;
+          align-items: center;
+        }
+        .address_wrapper {
+          .left_wrapper {
+            width: 100px;
+          }
+          display: flex;
+        }
+        .educationalBackground_wrapper {
+          .left_wrapper {
+            width: 100px;
+          }
+          display: flex;
+        }
+      }
+    }
+  }
+}

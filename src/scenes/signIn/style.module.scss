@@ -8,7 +8,7 @@
   }
   .login_container {
     margin-top: 90px;
-    width: 60%;
+    width: 50%;
     height: 50vh;
     text-align: center;
     .emailInput_wrapper {
@@ -45,10 +45,11 @@
     .loginButton_wrapper {
       background: limegreen;
       color: white;
+      cursor: pointer;
       font-weight: 500;
       font-size: 0.8rem;
-      margin: 20px 0 10px;
       padding: 10px 0;
+      margin: 20px 0 10px;
       width: 100%;
     }
     .passwordLink_wrapper {
@@ -63,11 +64,15 @@
       border: 1px solid rgb(102, 102, 102);
       border-radius: 5px;
       color: rgb(102, 102, 102);
+      cursor: pointer;
+
       font-weight: 500;
       font-size: 0.8rem;
       margin: 20px 0 10px;
       padding: 10px 0;
       width: 100%;
+      button {
+      }
     }
   }
 }
