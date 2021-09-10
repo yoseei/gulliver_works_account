@@ -1,5 +1,4 @@
 import React from "react";
-import { ScriptSnapshot } from "typescript";
 import styles from "./Profile.module.scss";
 import Modal from "@material-ui/core/Modal";
 
@@ -14,6 +13,7 @@ const Profile = () => {
     setOpen(false);
   };
 
+  // プロフィール編集モーダル
   const body = (
     <div className={styles.modalRoot}>
       <div className={styles.modalProfileContainer}>
@@ -39,34 +39,48 @@ const Profile = () => {
       </div>
     </div>
   );
+
   return (
     <div className={styles.root}>
       <div className={styles.profileContainer}>
         <div className={styles.coverPhotoWrapper}>
-          <div className={styles.editProfileWrapper}>
+          <div className={styles.topWrapper}>
+            <div className={styles.whiteBlock}></div>
+            <div className={styles.blackBlock}></div>
+            <div className={styles.whiteBlock}></div>
+            <div className={styles.blackBlock}></div>
+          </div>
+          <div className={styles.bottomWrapper}>
+            <div className={styles.blackBlock}></div>
+            <div className={styles.whiteBlock}></div>
+            <div className={styles.blackBlock}></div>
+            <div className={styles.whiteBlock}></div>
+          </div>
+          {/* <div className={styles.editProfileWrapper}>
             <p onClick={handleOpen}>プロフィールを編集</p>
+          </div> */}
+        </div>
+      </div>
+
+      <div className={styles.basicInfoContainer}>
+        <div className={styles.leftWrapper}>
+          <div className={styles.profilePhotoWrapper}>
+            <img src="" alt="写真" />
           </div>
         </div>
-        <div className={styles.basicInfoContainer}>
-          <div className={styles.leftWrapper}>
-            <div className={styles.profilePhotoWrapper}>
-              <img src="" alt="写真" />
-            </div>
+        <div className={styles.rightWrapper}>
+          <div className={styles.nameAgeWrapper}>
+            <h2>甲斐義隆(34)</h2>
           </div>
-          <div className={styles.rightWrapper}>
-            <div className={styles.nameAgeWrapper}>
-              <h2>甲斐義隆(34)</h2>
+          <div className={styles.addressWrapper}>
+            <div className={styles.leftWrapper}>
+              <p>住まい</p>
             </div>
-            <div className={styles.addressWrapper}>
-              <div className={styles.leftWrapper}>
-                <p>住まい</p>
-              </div>
-              <p>千葉県我孫子市</p>
-            </div>
-            <div className={styles.educationalBackgroundWrapper}>
-              <p className={styles.leftWrapper}>最終学歴</p>
-              <p>雄城台高等学校</p>
-            </div>
+            <p>千葉県我孫子市</p>
+          </div>
+          <div className={styles.educationalBackgroundWrapper}>
+            <p className={styles.leftWrapper}>最終学歴</p>
+            <p>雄城台高等学校</p>
           </div>
         </div>
       </div>
