@@ -9,12 +9,6 @@ const RecruitmentIndexPage = () => {
         <h1>すべての募集</h1>
       </div>
       <SideBar textA={"募集一覧"} textB={"マイページ"} />
-      {/* <div className={styles.recruitmentProfileContainer}>
-        <p className={styles.recruitmentLink}>募集一覧</p>
-        <p className={styles.profileLink}>
-          <Link to="/profile">マイページ</Link>
-        </p>
-      </div> */}
       <Link to="/signin">ログイン</Link>
     </div>
   );
