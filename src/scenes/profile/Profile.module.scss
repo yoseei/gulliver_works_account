@@ -10,21 +10,21 @@
       position: relative;
     }
     .basicInfoContainer {
-      display: flex;
       align-items: center;
-      .leftWrapper {
-        // .profilePhotoWrapper {
-        //   width: 100px;
-        //   height: 100px;
-        // }
-      }
+      display: flex;
+      gap: 10px;
+      position: absolute;
+      bottom: -41px;
+      left: 100px;
+      // .leftWrapper {
+      // }
       .rightWrapper {
         .nameAgeWrapper {
           display: flex;
           align-items: center;
         }
         .addressWrapper {
-          .left_wrapper {
+          .leftWrapper {
             width: 100px;
           }
           display: flex;

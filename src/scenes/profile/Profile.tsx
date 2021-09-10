@@ -49,44 +49,44 @@ const Profile = () => {
         <div className={styles.profileImageWrapper}>
           <ProfileImage />
           <EditButton onClick={handleOpen} text={"プロフィールを編集"} />
-        </div>
-      </div>
 
-      <div className={styles.basicInfoContainer}>
-        <div className={styles.leftWrapper}>
-          {/* <div className={styles.profilePhotoWrapper}> */}
-          <ProfileMainImage />
-        </div>
-        <div className={styles.rightWrapper}>
-          <div className={styles.nameAgeWrapper}>
-            <h2>甲斐義隆(34)</h2>
-          </div>
-          <div className={styles.addressWrapper}>
+          <div className={styles.basicInfoContainer}>
             <div className={styles.leftWrapper}>
-              <p>住まい</p>
+              <ProfileMainImage />
             </div>
-            <p>千葉県我孫子市</p>
-          </div>
-          <div className={styles.educationalBackgroundWrapper}>
-            <p className={styles.leftWrapper}>最終学歴</p>
-            <p>雄城台高等学校</p>
+            <div className={styles.rightWrapper}>
+              <div className={styles.nameAgeWrapper}>
+                <h2>甲斐義隆(34)</h2>
+              </div>
+              <div className={styles.addressWrapper}>
+                <div className={styles.leftWrapper}>
+                  <p>住まい</p>
+                </div>
+                <p>千葉県我孫子市</p>
+              </div>
+              <div className={styles.educationalBackgroundWrapper}>
+                <p className={styles.leftWrapper}>最終学歴</p>
+                <p>雄城台高等学校</p>
+              </div>
+            </div>
           </div>
         </div>
+
+        {open ? (
+          <>
+            <Modal
+              open={open}
+              onClose={handleClose}
+              // aria-labelledby="simple-modal-title"
+              // aria-describedby="simple-modal-description"
+            >
+              {body}
+            </Modal>
+          </>
+        ) : (
+          <></>
+        )}
       </div>
-      {open ? (
-        <>
-          <Modal
-            open={open}
-            onClose={handleClose}
-            // aria-labelledby="simple-modal-title"
-            // aria-describedby="simple-modal-description"
-          >
-            {body}
-          </Modal>
-        </>
-      ) : (
-        <></>
-      )}
     </div>
   );
 };
