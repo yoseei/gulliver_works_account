@@ -9,7 +9,7 @@ const App: FC = () => (
   <BrowserRouter>
     <div>
       <Route exact path="/" component={RecruitmentIndexPage} />
-      <Route path="/sign_in" component={SignInPage} />
+      <Route path="/signin" component={SignInPage} />
       <Route path="/profile" component={Profile}></Route>
     </div>
   </BrowserRouter>

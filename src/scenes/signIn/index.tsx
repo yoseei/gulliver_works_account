@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useHistory } from "react-router-dom";
-import { ScriptSnapshot } from "typescript";
+import { useHistory } from "react-router-dom";
 import { useCurrentAccount } from "../../hooks/useCurrentAccount";
 import styles from "./style.module.scss";
 import { SignInParams, useSignInPresenter } from "./useSignInPresenter";
@@ -31,10 +30,10 @@ const SignInPage = () => {
 
   return (
     <div className={styles.page}>
-      <div className={styles.login_container}>
+      <div className={styles.loginContainer}>
         <h1>求職者ログイン</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className={styles.emailInput_wrapper}>
+          <div className={styles.emailInputWrapper}>
             <p>メールアドレス</p>
             <input
               className={styles.input}
@@ -44,17 +43,14 @@ const SignInPage = () => {
               type="email"
             />
           </div>
-          <div className={styles.passwordInput_wrapper}>
+          <div className={styles.passwordInputWrapper}>
             <p>パスワード</p>
             <input
               className={styles.input}
               placeholder="パスワードを入力"
-              // ref={register}
               type={isRevealPassword ? "text" : "password"}
               ref={register({ required: true })}
-              // name="password"
               name="account.password"
-              // type="password"
             />
 
             <span
@@ -69,13 +65,14 @@ const SignInPage = () => {
               )}
             </span>
           </div>
-          <div className={styles.loginButton_wrapper}>
+          <div className={styles.loginButtonWrapper}>
             <input type="submit" value="ログイン" />
           </div>
-          <div className={styles.passwordLink_wrapper}>
+          <div className={styles.passwordLinkWrapper}>
             <a href="">パスワードを忘れた方はこちら</a>
+            {/* ToDoパスワード再設定ページへのリンクを貼る */}
           </div>
-          <div className={styles.signUp_wrapper}>
+          <div className={styles.signupWrapper}>
             <button>新規登録はこちら</button>
           </div>
           {/* <Link to="/">ホームへ</Link> */}

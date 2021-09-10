@@ -1,18 +1,18 @@
 .root {
   width: 100vw;
   height: 100vh;
-  .profile_container {
+  .profileContainer {
     width: 80%;
     height: 80%;
     background-color: gray;
     margin: 0 auto;
     margin-top: 50px;
-    .coverPhoto_wrapper {
+    .coverPhotoWrapper {
       background-color: aqua;
       height: 200px;
       position: relative;
       width: 100%;
-      .edit_profile_wrapper {
+      .editProfileWrapper {
         border: 1px solid black;
         border: 1px solid black;
         border-radius: 5px;
@@ -22,24 +22,24 @@
         right: 10px;
       }
     }
-    .basicInfo_container {
+    .basicInfoContainer {
       display: flex;
       align-items: center;
-      .left_wrapper {
-      }
-      .right_wrapper {
-        .nameAge_wrapper {
+      // .leftWrapper {
+      // }
+      .rightWrapper {
+        .nameAgeWrapper {
           display: flex;
           align-items: center;
         }
-        .address_wrapper {
+        .addressWrapper {
           .left_wrapper {
             width: 100px;
           }
           display: flex;
         }
-        .educationalBackground_wrapper {
-          .left_wrapper {
+        .educationalBackgroundWrapper {
+          .leftWrapper {
             width: 100px;
           }
           display: flex;

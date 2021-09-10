@@ -6,12 +6,12 @@
   h1 {
     margin-bottom: 50px;
   }
-  .login_container {
+  .loginContainer {
     margin-top: 90px;
     width: 50%;
     height: 50vh;
     text-align: center;
-    .emailInput_wrapper {
+    .emailInputWrapper {
       margin-top: 20px;
       p {
         text-align: left;
@@ -23,7 +23,7 @@
         border-radius: 5px;
       }
     }
-    .passwordInput_wrapper {
+    .passwordInputWrapper {
       margin-top: 20px;
       p {
         text-align: left;
@@ -42,7 +42,7 @@
         top: 10px;
       }
     }
-    .loginButton_wrapper {
+    .loginButtonWrapper {
       background: limegreen;
       color: white;
       cursor: pointer;
@@ -52,7 +52,7 @@
       margin: 20px 0 10px;
       width: 100%;
     }
-    .passwordLink_wrapper {
+    .passwordLinkWrapper {
       margin: 15px 0 30px;
       a {
         text-decoration: none;
@@ -60,7 +60,7 @@
         font-size: 0.7rem;
       }
     }
-    .signUp_wrapper {
+    .signupWrapper {
       border: 1px solid rgb(102, 102, 102);
       border-radius: 5px;
       color: rgb(102, 102, 102);
@@ -71,8 +71,8 @@
       margin: 20px 0 10px;
       padding: 10px 0;
       width: 100%;
-      button {
-      }
+      // button {
+      // }
     }
   }
 }
