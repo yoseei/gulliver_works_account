@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Profile.module.scss";
 import Modal from "@material-ui/core/Modal";
 import ProfileImage from "../../components/profileImage/ProfileImage";
+import ProfileMainImage from "../../components/profileMainImage/ProfileMainImage";
 import EditButton from "../../components/editButton/EditButton";
 
 const Profile = () => {
@@ -53,9 +54,8 @@ const Profile = () => {
 
       <div className={styles.basicInfoContainer}>
         <div className={styles.leftWrapper}>
-          <div className={styles.profilePhotoWrapper}>
-            <img src="" alt="写真" />
-          </div>
+          {/* <div className={styles.profilePhotoWrapper}> */}
+          <ProfileMainImage />
         </div>
         <div className={styles.rightWrapper}>
           <div className={styles.nameAgeWrapper}>

@@ -1,0 +1,68 @@
+.root {
+  height: 60px;
+  width: 60px;
+  .mainPhotoWrapper {
+    border-radius: 50%;
+    overflow: hidden;
+    .firstLineWrapper {
+      display: flex;
+      .whiteBlock {
+        background: white;
+        flex: 1;
+        height: 15px;
+        width: 100%;
+      }
+      .blackBlock {
+        background-color: black;
+        flex: 1;
+        height: 15px;
+        width: 100%;
+      }
+    }
+    .secondLineWrapper {
+      display: flex;
+      .whiteBlock {
+        background: white;
+        flex: 1;
+        height: 15px;
+        width: 100%;
+      }
+      .blackBlock {
+        background-color: black;
+        flex: 1;
+        height: 15px;
+        width: 100%;
+      }
+    }
+    .thirdLineWrapper {
+      display: flex;
+      .whiteBlock {
+        background: white;
+        flex: 1;
+        height: 15px;
+        width: 100%;
+      }
+      .blackBlock {
+        background-color: black;
+        flex: 1;
+        height: 15px;
+        width: 100%;
+      }
+    }
+    .fourthLineWrapper {
+      display: flex;
+      .whiteBlock {
+        background: white;
+        flex: 1;
+        height: 15px;
+        width: 100%;
+      }
+      .blackBlock {
+        background-color: black;
+        flex: 1;
+        height: 15px;
+        width: 100%;
+      }
+    }
+  }
+}

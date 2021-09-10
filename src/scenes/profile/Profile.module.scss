@@ -12,8 +12,12 @@
     .basicInfoContainer {
       display: flex;
       align-items: center;
-      // .leftWrapper {
-      // }
+      .leftWrapper {
+        // .profilePhotoWrapper {
+        //   width: 100px;
+        //   height: 100px;
+        // }
+      }
       .rightWrapper {
         .nameAgeWrapper {
           display: flex;
