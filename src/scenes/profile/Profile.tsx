@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Profile.module.scss";
 import Modal from "@material-ui/core/Modal";
+import ProfileImage from "../../components/profileImage/ProfileImage";
 
 const Profile = () => {
   const [open, setOpen] = React.useState(false);
@@ -43,23 +44,11 @@ const Profile = () => {
   return (
     <div className={styles.root}>
       <div className={styles.profileContainer}>
-        <div className={styles.coverPhotoWrapper}>
-          <div className={styles.topWrapper}>
-            <div className={styles.whiteBlock}></div>
-            <div className={styles.blackBlock}></div>
-            <div className={styles.whiteBlock}></div>
-            <div className={styles.blackBlock}></div>
-          </div>
-          <div className={styles.bottomWrapper}>
-            <div className={styles.blackBlock}></div>
-            <div className={styles.whiteBlock}></div>
-            <div className={styles.blackBlock}></div>
-            <div className={styles.whiteBlock}></div>
-          </div>
-          {/* <div className={styles.editProfileWrapper}>
+        <ProfileImage />
+
+        {/* <div className={styles.editProfileWrapper}>
             <p onClick={handleOpen}>プロフィールを編集</p>
           </div> */}
-        </div>
       </div>
 
       <div className={styles.basicInfoContainer}>
