@@ -5,6 +5,7 @@ import ProfileImage from "../../components/profileImage/ProfileImage";
 import ProfileMainImage from "../../components/profileMainImage/ProfileMainImage";
 import EditButton from "../../components/editButton/EditButton";
 import WorkHistoryTable from "../../components/workHistoryTable/WorkHistoryTable";
+import WorkHistoryButton from "../../components/workHistoryButton/WorkHistoryButton";
 
 const Profile = () => {
   const [open, setOpen] = React.useState(false);
@@ -91,18 +92,39 @@ const Profile = () => {
               大学でデザインを学んでいるうちに、これまでの部活動やサークル、課外活動は「ユーザーのためにチームで優れた体験価値を提供すること」に繋がっていると感じ、より深く学んでいきたいと考えています。
             </p>
           </div>
+
           <div className={styles.workHistoryWrapper}>
             <h1 className={styles.workHistoryTitle}>職歴</h1>
-            <WorkHistoryTable
-              workingPeriod={"2020-01 - 2021-07"}
-              companyName={"株式会社ドーエヌナー"}
-              directorName={"企画広報の係長"}
-              about={
-                "複数の新規事業の立ち上げからグロースまで担当。ヘルスケアとモバイルアプリの分野では新記録を残した。"
-              }
-              onClick={() => console.log("編集ボタンクリック！")}
-              buttonText={"編集する"}
-            />
+
+            <div className={styles.dnnWrapper}>
+              <WorkHistoryTable
+                workingPeriod={"2020-01 - 2021-07"}
+                companyName={"株式会社ドーエヌナー"}
+                directorName={"企画広報の係長"}
+                about={
+                  "複数の新規事業の立ち上げからグロースまで担当。ヘルスケアとモバイルアプリの分野では新記録を残した。"
+                }
+                onClick={() => console.log("編集ボタンクリック！")}
+                buttonText={"編集する"}
+              />
+            </div>
+
+            <div className={styles.cyberWrapper}>
+              <WorkHistoryTable
+                workingPeriod={"2020-01 - 2021-07"}
+                companyName={"株式会社サイバーエージェンス"}
+                directorName={"企画広報の係長"}
+                about={"大手広告のコンサルティングを担当。"}
+                onClick={() => console.log("編集ボタンクリック！")}
+                buttonText={"編集する"}
+              />
+            </div>
+            <div className={styles.buttonWrapper}>
+              <WorkHistoryButton
+                text={"職歴を追加する"}
+                onClick={() => console.log("クリック")}
+              />
+            </div>
           </div>
         </div>
 
