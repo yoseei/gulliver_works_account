@@ -4,7 +4,7 @@ import Modal from "@material-ui/core/Modal";
 import ProfileImage from "../../components/profileImage/ProfileImage";
 import ProfileMainImage from "../../components/profileMainImage/ProfileMainImage";
 import EditButton from "../../components/editButton/EditButton";
-import WorkHistoryTable from "../../components/workHistoryTable/WorkHistoryTable";
+import HistoryTable from "../../components/historyTable/HistoryTable";
 import WorkHistoryButton from "../../components/workHistoryButton/WorkHistoryButton";
 
 const Profile = () => {
@@ -97,7 +97,7 @@ const Profile = () => {
             <h1 className={styles.workHistoryTitle}>職歴</h1>
 
             <div className={styles.dnnWrapper}>
-              <WorkHistoryTable
+              <HistoryTable
                 workingPeriod={"2020-01 - 2021-07"}
                 companyName={"株式会社ドーエヌナー"}
                 directorName={"企画広報の係長"}
@@ -110,7 +110,7 @@ const Profile = () => {
             </div>
 
             <div className={styles.cyberWrapper}>
-              <WorkHistoryTable
+              <HistoryTable
                 workingPeriod={"2020-01 - 2021-07"}
                 companyName={"株式会社サイバーエージェンス"}
                 directorName={"企画広報の係長"}
@@ -122,6 +122,36 @@ const Profile = () => {
             <div className={styles.buttonWrapper}>
               <WorkHistoryButton
                 text={"職歴を追加する"}
+                onClick={() => console.log("クリック")}
+              />
+            </div>
+          </div>
+
+          <div className={styles.studyHistoryWrapper}>
+            <h1 className={styles.studyHistoryTitle}>学歴</h1>
+
+            <div className={styles.dnnWrapper}>
+              <HistoryTable
+                workingPeriod={"2020-01 - 2021-07"}
+                companyName={"虎ノ門大学大学院"}
+                directorName={"虎学部"}
+                onClick={() => console.log("編集ボタンクリック！")}
+                buttonText={"編集する"}
+              />
+            </div>
+
+            <div className={styles.cyberWrapper}>
+              <HistoryTable
+                workingPeriod={"2020-01 - 2021-07"}
+                companyName={"虎ノ門大学"}
+                directorName={"虎学部"}
+                onClick={() => console.log("編集ボタンクリック！")}
+                buttonText={"編集する"}
+              />
+            </div>
+            <div className={styles.buttonWrapper}>
+              <WorkHistoryButton
+                text={"学歴を追加する"}
                 onClick={() => console.log("クリック")}
               />
             </div>
