@@ -8,9 +8,7 @@ interface PropsTypes {
 const EditButton = (props: PropsTypes) => {
   return (
     <div className={styles.root}>
-      <div className={styles.editButtonWrapper}>
-        <p onClick={props.onClick}>{props.text}</p>
-      </div>
+      <p onClick={props.onClick}>{props.text}</p>
     </div>
   );
 };

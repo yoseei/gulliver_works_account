@@ -1,0 +1,29 @@
+.root {
+  width: 100%;
+  display: flex;
+  .leftWrapper {
+    padding-top: 5px;
+    width: 100px;
+    p {
+      font-size: 0.8rem;
+    }
+  }
+  .rightWrapper {
+    .companyNameWrapper {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      .leftPartWrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        .directorName {
+          color: #afafaf;
+        }
+      }
+    }
+    .aboutWrapper {
+      color: #7d7d7d;
+    }
+  }
+}

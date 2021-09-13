@@ -4,6 +4,7 @@ import Modal from "@material-ui/core/Modal";
 import ProfileImage from "../../components/profileImage/ProfileImage";
 import ProfileMainImage from "../../components/profileMainImage/ProfileMainImage";
 import EditButton from "../../components/editButton/EditButton";
+import WorkHistoryTable from "../../components/workHistoryTable/WorkHistoryTable";
 
 const Profile = () => {
   const [open, setOpen] = React.useState(false);
@@ -58,17 +59,17 @@ const Profile = () => {
             </div>
             <div className={styles.rightWrapper}>
               <div className={styles.nameAgeWrapper}>
-                <h2>甲斐義隆(34)</h2>
+                <h2>牧野暉弘(59)</h2>
               </div>
               <div className={styles.addressWrapper}>
                 <div className={styles.leftWrapper}>
                   <p>住まい</p>
                 </div>
-                <p>千葉県我孫子市</p>
+                <p>東京都</p>
               </div>
               <div className={styles.educationalBackgroundWrapper}>
                 <p className={styles.leftWrapper}>最終学歴</p>
-                <p>雄城台高等学校</p>
+                <p>青山学院大学大学院</p>
               </div>
             </div>
           </div>
@@ -85,31 +86,23 @@ const Profile = () => {
           </div>
           <div className={styles.mainWrapper}>
             <p>
-              【エンジニアを志した理由】
-              <br />
-              人の悩みや課題を解決、また、挑戦する人を応援したい、という思いからエンジニアを目指しています。
-              <br />
-              <br />
-              そのように考えるようになった理由は3つあります。
-              <br />
-              <br />
-              1.コロナ禍で苦しむ、お世話になっている同業者の手助けになりたいと思ったこと。
-              <br />
-              2.ますます発展していくIT業界で力を付けることが、少子高齢化などが課題となる日本おいて、多くの人の力になるために重要、かつ不可欠なスキルになると感じたこと。
-              <br />
-              3.今まで培ってきた”音楽”という経験値とITをかけ合わせて、自分のように夢や目標をもって頑張ろうとしている人を応援したいと思ったこと。
-              <br />
-              <br />
-              以上3つが、プログラミングを学習しようと思ったきっかけになります。
-              <br />
-              <br />
-              実際にプログラミングを学習してみると、思ったよりも難しく、苦しむ場面にも遭遇するのですが、それ以上にその困難を乗り越えた先の喜びや「もっと学びたい」という欲や感情が勝り、日に日にエンジニアになりたいという気持ちが強くなっています。
-              <br />
-              <br />
-              前職では、自分で考えて課題を解決し、またメンバーとも協力して、より良いものを作り上げていこう、と常に前向きな姿勢で仕事をしていました。
-              <br />
-              今後もその経験を活かして、より多くの人たちの課題や悩みを解決できる、便利で価値のあるサービスを提供していけるエンジニアになりたいです。
+              高校では、表現活動に挑戦したく、演劇部・美術部・放送部（映像制作）・軽音部の4つの部活に所属していました。作り上げるものは異なりましたが、「観てくれる人のために部員と共に試行錯誤を繰り返すこと」は全ての部活で共通していました。
+              大学入学時には体験型デジタルアートを通してものづくりを啓蒙するShibaLabというサークルに所属しました。「お客さんが楽しむインタラクティブアートってなんだろう」と常に疑問を持ちながら情報学部や電子工学部の学生と共に制作しました。
+              大学でデザインを学んでいるうちに、これまでの部活動やサークル、課外活動は「ユーザーのためにチームで優れた体験価値を提供すること」に繋がっていると感じ、より深く学んでいきたいと考えています。
             </p>
+          </div>
+          <div className={styles.workHistoryWrapper}>
+            <h1 className={styles.workHistoryTitle}>職歴</h1>
+            <WorkHistoryTable
+              workingPeriod={"2020-01 - 2021-07"}
+              companyName={"株式会社ドーエヌナー"}
+              directorName={"企画広報の係長"}
+              about={
+                "複数の新規事業の立ち上げからグロースまで担当。ヘルスケアとモバイルアプリの分野では新記録を残した。"
+              }
+              onClick={() => console.log("編集ボタンクリック！")}
+              buttonText={"編集する"}
+            />
           </div>
         </div>
 
