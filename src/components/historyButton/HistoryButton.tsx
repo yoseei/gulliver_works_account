@@ -1,11 +1,11 @@
 import React from "react";
-import styles from "./WorkHistoryButton.module.scss";
+import styles from "./HistoryButton.module.scss";
 
 interface PropsTypes {
   onClick: React.MouseEventHandler<HTMLParagraphElement> | undefined;
   text: string;
 }
-const WorkHistoryButton = (props: PropsTypes) => {
+const HistoryButton = (props: PropsTypes) => {
   return (
     <div className={styles.root}>
       <p onClick={props.onClick}>{props.text}</p>
@@ -13,4 +13,4 @@ const WorkHistoryButton = (props: PropsTypes) => {
   );
 };
 
-export default WorkHistoryButton;
+export default HistoryButton;

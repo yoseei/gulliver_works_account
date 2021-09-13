@@ -5,7 +5,7 @@ import ProfileImage from "../../components/profileImage/ProfileImage";
 import ProfileMainImage from "../../components/profileMainImage/ProfileMainImage";
 import EditButton from "../../components/editButton/EditButton";
 import HistoryTable from "../../components/historyTable/HistoryTable";
-import WorkHistoryButton from "../../components/workHistoryButton/WorkHistoryButton";
+import HistoryButton from "../../components/historyButton/HistoryButton";
 
 const Profile = () => {
   const [open, setOpen] = React.useState(false);
@@ -96,7 +96,7 @@ const Profile = () => {
           <div className={styles.workHistoryWrapper}>
             <h1 className={styles.workHistoryTitle}>職歴</h1>
 
-            <div className={styles.dnnWrapper}>
+            <div className={styles.companyWrapper}>
               <HistoryTable
                 workingPeriod={"2020-01 - 2021-07"}
                 companyName={"株式会社ドーエヌナー"}
@@ -109,7 +109,7 @@ const Profile = () => {
               />
             </div>
 
-            <div className={styles.cyberWrapper}>
+            <div className={styles.companyWrapper}>
               <HistoryTable
                 workingPeriod={"2020-01 - 2021-07"}
                 companyName={"株式会社サイバーエージェンス"}
@@ -120,7 +120,7 @@ const Profile = () => {
               />
             </div>
             <div className={styles.buttonWrapper}>
-              <WorkHistoryButton
+              <HistoryButton
                 text={"職歴を追加する"}
                 onClick={() => console.log("クリック")}
               />
@@ -130,7 +130,7 @@ const Profile = () => {
           <div className={styles.studyHistoryWrapper}>
             <h1 className={styles.studyHistoryTitle}>学歴</h1>
 
-            <div className={styles.dnnWrapper}>
+            <div className={styles.companyWrapper}>
               <HistoryTable
                 workingPeriod={"2020-01 - 2021-07"}
                 companyName={"虎ノ門大学大学院"}
@@ -140,7 +140,7 @@ const Profile = () => {
               />
             </div>
 
-            <div className={styles.cyberWrapper}>
+            <div className={styles.companyWrapper}>
               <HistoryTable
                 workingPeriod={"2020-01 - 2021-07"}
                 companyName={"虎ノ門大学"}
@@ -150,22 +150,18 @@ const Profile = () => {
               />
             </div>
             <div className={styles.buttonWrapper}>
-              <WorkHistoryButton
+              <HistoryButton
                 text={"学歴を追加する"}
                 onClick={() => console.log("クリック")}
               />
             </div>
           </div>
+          <div className={styles.bottomSpace}></div>
         </div>
 
         {open ? (
           <>
-            <Modal
-              open={open}
-              onClose={handleClose}
-              // aria-labelledby="simple-modal-title"
-              // aria-describedby="simple-modal-description"
-            >
+            <Modal open={open} onClose={handleClose}>
               {body}
             </Modal>
           </>

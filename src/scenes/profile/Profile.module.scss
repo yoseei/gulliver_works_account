@@ -20,7 +20,7 @@
       gap: 10px;
       position: absolute;
       bottom: -60px;
-      left: 160px;
+      left: 189px;
       // .leftWrapper {
       // }
       .rightWrapper {
@@ -57,10 +57,7 @@
       .workHistoryTitle {
         margin: 80px 0 30px;
       }
-      .dnnWrapper {
-        padding-bottom: 30px;
-      }
-      .cyberWrapper {
+      .companyWrapper {
         padding-bottom: 30px;
       }
       .buttonWrapper {
@@ -73,15 +70,35 @@
       .studyHistoryTitle {
         margin: 80px 0 30px;
       }
-      .dnnWrapper {
-        padding-bottom: 30px;
-      }
-      .cyberWrapper {
+      .companyWrapper {
         padding-bottom: 30px;
       }
       .buttonWrapper {
         color: #e5e5e5;
         text-align: center;
+      }
+    }
+  }
+  .bottomSpace {
+    height: 100px;
+    width: 100vw;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .root {
+    .profileContainer {
+      .basicInfoContainer {
+        left: 125px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1024px) {
+  .root {
+    .profileContainer {
+      .basicInfoContainer {
+        left: 27px;
       }
     }
   }
