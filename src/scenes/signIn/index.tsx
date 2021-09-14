@@ -66,7 +66,7 @@ const SignInPage = () => {
             </span>
           </div>
           <div className={styles.loginButtonWrapper}>
-            <input type="submit" value="ログイン" />
+            <button type="submit" value="ログイン" />
           </div>
           <div className={styles.passwordLinkWrapper}>
             <a href="">パスワードを忘れた方はこちら</a>
