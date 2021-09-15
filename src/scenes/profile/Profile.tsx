@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./Profile.module.scss";
 import Modal from "@material-ui/core/Modal";
 import ProfileImage from "../../components/profileImage/ProfileImage";
@@ -6,6 +6,7 @@ import ProfileMainImage from "../../components/profileMainImage/ProfileMainImage
 import EditButton from "../../components/editButton/EditButton";
 import HistoryTable from "../../components/historyTable/HistoryTable";
 import HistoryButton from "../../components/historyButton/HistoryButton";
+import axios from "axios";
 
 const Profile = () => {
   const [open, setOpen] = React.useState(false);
@@ -18,6 +19,14 @@ const Profile = () => {
     setOpen(false);
   };
 
+  useEffect(() => {
+    const init = async () => {
+      const env = process.env.REACT_APP_APPLICATION_API_HOST;
+      const res = await axios.get(env + "/prefectures");
+      console.log(res.data);
+    };
+    init();
+  }, []);
   // プロフィール編集モーダル
   const body = (
     <div className={styles.modalRoot}>
