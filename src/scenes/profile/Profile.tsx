@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Profile.module.scss";
 import Modal from "@material-ui/core/Modal";
 import ProfileImage from "../../components/profileImage/ProfileImage";
@@ -9,6 +9,20 @@ import HistoryButton from "../../components/historyButton/HistoryButton";
 import axios from "axios";
 
 const Profile = () => {
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+  const [academicName, setAcademicName] = useState("");
+  const [biography, setBiography] = useState("");
+  const [companyName, setCompanyName] = useState("");
+  const [position, setPosition] = useState("");
+  const [jobSummary, setJobSummary] = useState("");
+  const [workSinceDate, setWorkSinceDate] = useState("");
+  const [workUntilDate, setWorkUntilDate] = useState("");
+  const [academicSinceDate, setAcademicSinceDate] = useState("");
+  const [academicUntilDate, setAcademicUntilDate] = useState("");
+  const [schoolName, setSchoolName] = useState("");
+  const [faculty, setFaculty] = useState("");
+
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
@@ -19,11 +33,34 @@ const Profile = () => {
     setOpen(false);
   };
 
+  // const handleOpenModalEdit = () => {
+
+  // }
+
   useEffect(() => {
     const init = async () => {
       const env = process.env.REACT_APP_APPLICATION_API_HOST;
-      const res = await axios.get(env + "/prefectures");
+
+      const res = await axios.get(env + "/accounts");
       console.log(res.data);
+      const data = res.data;
+      const profile = res.data.profile;
+      const workHistories = res.data.work_histories[0];
+      const academicHistories = res.data.academic_histories[0];
+
+      setName(profile.last_name + profile.first_name);
+      setAddress(profile.address);
+      setAcademicName(data.academic_histories[0].name);
+      setBiography(profile.biography);
+      setCompanyName(workHistories.name);
+      setPosition(workHistories.position);
+      setJobSummary(workHistories.job_summary);
+      setWorkSinceDate(workHistories.since_date);
+      setWorkUntilDate(workHistories.until_date);
+      setAcademicSinceDate(academicHistories.since_date);
+      setAcademicUntilDate(academicHistories.until_date);
+      setSchoolName(academicHistories.name);
+      setFaculty(academicHistories.faculty);
     };
     init();
   }, []);
@@ -69,17 +106,17 @@ const Profile = () => {
             </div>
             <div className={styles.rightWrapper}>
               <div className={styles.nameAgeWrapper}>
-                <h2>牧野暉弘(59)</h2>
+                <h2>{name}(59)</h2>
               </div>
               <div className={styles.addressWrapper}>
                 <div className={styles.leftWrapper}>
                   <p>住まい</p>
                 </div>
-                <p>東京都</p>
+                <p>{address}</p>
               </div>
               <div className={styles.educationalBackgroundWrapper}>
                 <p className={styles.leftWrapper}>最終学歴</p>
-                <p>青山学院大学大学院</p>
+                <p>{academicName}</p>
               </div>
             </div>
           </div>
@@ -89,17 +126,13 @@ const Profile = () => {
             <h1>自己紹介</h1>
             <div className={styles.buttonWrapper}>
               <EditButton
-                onClick={() => console.log("自己紹介編集ボタンクリック！")}
+                onClick={() => console.log("編集くりっく！")}
                 text={"編集する"}
               />
             </div>
           </div>
           <div className={styles.mainWrapper}>
-            <p>
-              高校では、表現活動に挑戦したく、演劇部・美術部・放送部（映像制作）・軽音部の4つの部活に所属していました。作り上げるものは異なりましたが、「観てくれる人のために部員と共に試行錯誤を繰り返すこと」は全ての部活で共通していました。
-              大学入学時には体験型デジタルアートを通してものづくりを啓蒙するShibaLabというサークルに所属しました。「お客さんが楽しむインタラクティブアートってなんだろう」と常に疑問を持ちながら情報学部や電子工学部の学生と共に制作しました。
-              大学でデザインを学んでいるうちに、これまでの部活動やサークル、課外活動は「ユーザーのためにチームで優れた体験価値を提供すること」に繋がっていると感じ、より深く学んでいきたいと考えています。
-            </p>
+            <p>{biography}</p>
           </div>
 
           <div className={styles.workHistoryWrapper}>
@@ -107,18 +140,16 @@ const Profile = () => {
 
             <div className={styles.companyWrapper}>
               <HistoryTable
-                workingPeriod={"2020-01 - 2021-07"}
-                companyName={"株式会社ドーエヌナー"}
-                directorName={"企画広報の係長"}
-                about={
-                  "複数の新規事業の立ち上げからグロースまで担当。ヘルスケアとモバイルアプリの分野では新記録を残した。"
-                }
+                workingPeriod={`${workSinceDate} - ${workUntilDate}`}
+                companyName={companyName}
+                directorName={position}
+                about={jobSummary}
                 onClick={() => console.log("編集ボタンクリック！")}
                 buttonText={"編集する"}
               />
             </div>
 
-            <div className={styles.companyWrapper}>
+            {/* <div className={styles.companyWrapper}>
               <HistoryTable
                 workingPeriod={"2020-01 - 2021-07"}
                 companyName={"株式会社サイバーエージェンス"}
@@ -133,7 +164,7 @@ const Profile = () => {
                 text={"職歴を追加する"}
                 onClick={() => console.log("クリック")}
               />
-            </div>
+            </div> */}
           </div>
 
           <div className={styles.studyHistoryWrapper}>
@@ -141,15 +172,15 @@ const Profile = () => {
 
             <div className={styles.companyWrapper}>
               <HistoryTable
-                workingPeriod={"2020-01 - 2021-07"}
-                companyName={"虎ノ門大学大学院"}
-                directorName={"虎学部"}
+                workingPeriod={`${academicSinceDate} - ${academicUntilDate}`}
+                companyName={schoolName}
+                directorName={faculty}
                 onClick={() => console.log("編集ボタンクリック！")}
                 buttonText={"編集する"}
               />
             </div>
 
-            <div className={styles.companyWrapper}>
+            {/* <div className={styles.companyWrapper}>
               <HistoryTable
                 workingPeriod={"2020-01 - 2021-07"}
                 companyName={"虎ノ門大学"}
@@ -157,7 +188,7 @@ const Profile = () => {
                 onClick={() => console.log("編集ボタンクリック！")}
                 buttonText={"編集する"}
               />
-            </div>
+            </div> */}
             <div className={styles.buttonWrapper}>
               <HistoryButton
                 text={"学歴を追加する"}
