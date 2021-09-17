@@ -7,21 +7,108 @@ import EditButton from "../../components/editButton/EditButton";
 import HistoryTable from "../../components/historyTable/HistoryTable";
 import HistoryButton from "../../components/historyButton/HistoryButton";
 import axios from "axios";
+import { HttpClient } from "../../utilities/axiosInstance";
+
+type ProfileType = {
+  id: string;
+  firstName: string;
+  lastName: string;
+  firstNameKana: string;
+  lastNameKana: string;
+  gender: string;
+  phone: string;
+  postalCode: string;
+  address: string;
+  dateOfBirth: string;
+  biography: string;
+};
+
+type WorkHistories = {
+  id: string;
+  isEmployed: string;
+  occupation: {
+    id: string;
+    name: string;
+  };
+  industry: {
+    id: string;
+    name: string;
+  };
+  position: string;
+  annualIncome: number;
+  managementExperience: number;
+  jobSummary: string;
+  sinceDate: string;
+  untilDate: string;
+  name: string;
+};
+
+type AcademicHistories = {
+  id: string;
+  name: string;
+  faculty: string;
+  sinceDate: string;
+  untilDate: string;
+  type: string;
+};
 
 const Profile = () => {
-  const [name, setName] = useState("");
-  const [address, setAddress] = useState("");
-  const [academicName, setAcademicName] = useState("");
-  const [biography, setBiography] = useState("");
-  const [companyName, setCompanyName] = useState("");
-  const [position, setPosition] = useState("");
-  const [jobSummary, setJobSummary] = useState("");
-  const [workSinceDate, setWorkSinceDate] = useState("");
-  const [workUntilDate, setWorkUntilDate] = useState("");
-  const [academicSinceDate, setAcademicSinceDate] = useState("");
-  const [academicUntilDate, setAcademicUntilDate] = useState("");
-  const [schoolName, setSchoolName] = useState("");
-  const [faculty, setFaculty] = useState("");
+  const [profile, setProfile] = useState<ProfileType>({
+    id: "",
+    firstName: "",
+    lastName: "",
+    firstNameKana: "",
+    lastNameKana: "",
+    gender: "",
+    phone: "",
+    postalCode: "",
+    address: "",
+    dateOfBirth: "",
+    biography: "",
+  });
+  const [workHistories, setWorkHistories] = useState<WorkHistories>({
+    id: "",
+    isEmployed: "",
+    occupation: {
+      id: "",
+      name: "",
+    },
+    industry: {
+      id: "",
+      name: "",
+    },
+    position: "",
+    annualIncome: 0,
+    managementExperience: 0,
+    jobSummary: "",
+    sinceDate: "",
+    untilDate: "",
+    name: "",
+  });
+
+  const [academicHistories, setAcademicHistories] = useState<AcademicHistories>(
+    {
+      id: "",
+      name: "",
+      faculty: "",
+      sinceDate: "",
+      untilDate: "",
+      type: "",
+    }
+  );
+  // const [name, setName] = useState(""),
+  // const [address, setAddress] = useState("");
+  // const [academicName, setAcademicName] = useState("");
+  // const [biography, setBiography] = useState("");
+  // const [companyName, setCompanyName] = useState("");
+  // const [position, setPosition] = useState("");
+  // const [jobSummary, setJobSummary] = useState("");
+  // const [workSinceDate, setWorkSinceDate] = useState("");
+  // const [workUntilDate, setWorkUntilDate] = useState("");
+  // const [academicSinceDate, setAcademicSinceDate] = useState("");
+  // const [academicUntilDate, setAcademicUntilDate] = useState("");
+  // const [schoolName, setSchoolName] = useState("");
+  // const [faculty, setFaculty] = useState("");
 
   const [open, setOpen] = React.useState(false);
 
@@ -33,37 +120,25 @@ const Profile = () => {
     setOpen(false);
   };
 
-  // const handleOpenModalEdit = () => {
-
-  // }
-
   useEffect(() => {
-    const init = async () => {
-      const env = process.env.REACT_APP_APPLICATION_API_HOST;
-
-      const res = await axios.get(env + "/accounts");
+    const fetchAccounts = async () => {
+      const res = await HttpClient.request({
+        method: "GET",
+        url: "http://localhost:3000/accounts",
+      });
       console.log(res.data);
-      const data = res.data;
-      const profile = res.data.profile;
-      const workHistories = res.data.work_histories[0];
-      const academicHistories = res.data.academic_histories[0];
 
-      setName(profile.last_name + profile.first_name);
-      setAddress(profile.address);
-      setAcademicName(data.academic_histories[0].name);
-      setBiography(profile.biography);
-      setCompanyName(workHistories.name);
-      setPosition(workHistories.position);
-      setJobSummary(workHistories.job_summary);
-      setWorkSinceDate(workHistories.since_date);
-      setWorkUntilDate(workHistories.until_date);
-      setAcademicSinceDate(academicHistories.since_date);
-      setAcademicUntilDate(academicHistories.until_date);
-      setSchoolName(academicHistories.name);
-      setFaculty(academicHistories.faculty);
+      const profileData = res.data[0].profile;
+      const workHistoriesData = res.data[0].workHistories[0];
+      const academicHistoriesData = res.data[0].academicHistories[0];
+      setProfile(profileData);
+      setWorkHistories(workHistoriesData);
+      setAcademicHistories(academicHistoriesData);
     };
-    init();
+    fetchAccounts();
   }, []);
+  console.log(profile);
+
   // プロフィール編集モーダル
   const body = (
     <div className={styles.modalRoot}>
@@ -106,17 +181,17 @@ const Profile = () => {
             </div>
             <div className={styles.rightWrapper}>
               <div className={styles.nameAgeWrapper}>
-                <h2>{name}(59)</h2>
+                <h2>{profile.lastName + profile.firstName}(59)</h2>
               </div>
               <div className={styles.addressWrapper}>
                 <div className={styles.leftWrapper}>
                   <p>住まい</p>
                 </div>
-                <p>{address}</p>
+                <p>{profile.address}</p>
               </div>
               <div className={styles.educationalBackgroundWrapper}>
                 <p className={styles.leftWrapper}>最終学歴</p>
-                <p>{academicName}</p>
+                <p>{}</p>
               </div>
             </div>
           </div>
@@ -132,7 +207,7 @@ const Profile = () => {
             </div>
           </div>
           <div className={styles.mainWrapper}>
-            <p>{biography}</p>
+            <p>{profile.biography}</p>
           </div>
 
           <div className={styles.workHistoryWrapper}>
@@ -140,31 +215,14 @@ const Profile = () => {
 
             <div className={styles.companyWrapper}>
               <HistoryTable
-                workingPeriod={`${workSinceDate} - ${workUntilDate}`}
-                companyName={companyName}
-                directorName={position}
-                about={jobSummary}
+                workingPeriod={`${workHistories.sinceDate} - ${workHistories.untilDate}`}
+                companyName={workHistories.name}
+                directorName={workHistories.position}
+                about={workHistories.jobSummary}
                 onClick={() => console.log("編集ボタンクリック！")}
                 buttonText={"編集する"}
               />
             </div>
-
-            {/* <div className={styles.companyWrapper}>
-              <HistoryTable
-                workingPeriod={"2020-01 - 2021-07"}
-                companyName={"株式会社サイバーエージェンス"}
-                directorName={"企画広報の係長"}
-                about={"大手広告のコンサルティングを担当。"}
-                onClick={() => console.log("編集ボタンクリック！")}
-                buttonText={"編集する"}
-              />
-            </div>
-            <div className={styles.buttonWrapper}>
-              <HistoryButton
-                text={"職歴を追加する"}
-                onClick={() => console.log("クリック")}
-              />
-            </div> */}
           </div>
 
           <div className={styles.studyHistoryWrapper}>
@@ -172,23 +230,14 @@ const Profile = () => {
 
             <div className={styles.companyWrapper}>
               <HistoryTable
-                workingPeriod={`${academicSinceDate} - ${academicUntilDate}`}
-                companyName={schoolName}
-                directorName={faculty}
+                workingPeriod={`${academicHistories.sinceDate} - ${academicHistories.untilDate}`}
+                companyName={academicHistories.name}
+                directorName={academicHistories.faculty}
                 onClick={() => console.log("編集ボタンクリック！")}
                 buttonText={"編集する"}
               />
             </div>
 
-            {/* <div className={styles.companyWrapper}>
-              <HistoryTable
-                workingPeriod={"2020-01 - 2021-07"}
-                companyName={"虎ノ門大学"}
-                directorName={"虎学部"}
-                onClick={() => console.log("編集ボタンクリック！")}
-                buttonText={"編集する"}
-              />
-            </div> */}
             <div className={styles.buttonWrapper}>
               <HistoryButton
                 text={"学歴を追加する"}
