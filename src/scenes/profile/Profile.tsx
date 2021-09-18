@@ -3,9 +3,10 @@ import styles from "./Profile.module.scss";
 import Modal from "@material-ui/core/Modal";
 import ProfileImage from "../../components/profileImage/ProfileImage";
 import ProfileMainImage from "../../components/profileMainImage/ProfileMainImage";
-import EditButton from "../../components/editButton/EditButton";
+// import EditButton from "../../components/editButton/EditButton";
 import HistoryTable from "../../components/historyTable/HistoryTable";
-import HistoryButton from "../../components/historyButton/HistoryButton";
+// import HistoryButton from "../../components/historyButton/HistoryButton";
+import Button from "../../components/button/Button";
 import axios from "axios";
 import { HttpClient } from "../../utilities/axiosInstance";
 
@@ -124,13 +125,13 @@ const Profile = () => {
     const fetchAccounts = async () => {
       const res = await HttpClient.request({
         method: "GET",
-        url: "http://localhost:3000/accounts",
+        url: "http://localhost:3000/accounts/497f6eca-6276-4993-bfeb-53cbbbba6f08",
       });
-      console.log(res.data);
+      // console.log(res.data);
 
-      const profileData = res.data[0].profile;
-      const workHistoriesData = res.data[0].workHistories[0];
-      const academicHistoriesData = res.data[0].academicHistories[0];
+      const profileData = res.data.profile;
+      const workHistoriesData = res.data.workHistories[0];
+      const academicHistoriesData = res.data.academicHistories[0];
       setProfile(profileData);
       setWorkHistories(workHistoriesData);
       setAcademicHistories(academicHistoriesData);
@@ -172,7 +173,7 @@ const Profile = () => {
         <div className={styles.profileImageWrapper}>
           <ProfileImage />
           <div className={styles.buttonWrapper}>
-            <EditButton onClick={handleOpen} text={"プロフィールを編集"} />
+            <Button onClick={handleOpen} text={"プロフィールを編集"} />
           </div>
 
           <div className={styles.basicInfoContainer}>
@@ -200,7 +201,7 @@ const Profile = () => {
           <div className={styles.topWrapper}>
             <h1>自己紹介</h1>
             <div className={styles.buttonWrapper}>
-              <EditButton
+              <Button
                 onClick={() => console.log("編集くりっく！")}
                 text={"編集する"}
               />
@@ -223,6 +224,13 @@ const Profile = () => {
                 buttonText={"編集する"}
               />
             </div>
+
+            <div className={styles.buttonWrapper}>
+              <Button
+                text={"職歴を追加する"}
+                onClick={() => console.log("クリック")}
+              />
+            </div>
           </div>
 
           <div className={styles.studyHistoryWrapper}>
@@ -239,7 +247,7 @@ const Profile = () => {
             </div>
 
             <div className={styles.buttonWrapper}>
-              <HistoryButton
+              <Button
                 text={"学歴を追加する"}
                 onClick={() => console.log("クリック")}
               />
