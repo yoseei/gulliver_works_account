@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Profile.module.scss";
 import Modal from "@material-ui/core/Modal";
+
+import Button from "../../components/button/Button";
+import { HttpClient } from "../../utilities/axiosInstance";
+import HistoryTable from "../../components/historyTable/HistoryTable";
 import ProfileImage from "../../components/profileImage/ProfileImage";
 import ProfileMainImage from "../../components/profileMainImage/ProfileMainImage";
-// import EditButton from "../../components/editButton/EditButton";
-import HistoryTable from "../../components/historyTable/HistoryTable";
-// import HistoryButton from "../../components/historyButton/HistoryButton";
-import Button from "../../components/button/Button";
-import axios from "axios";
-import { HttpClient } from "../../utilities/axiosInstance";
 
 type ProfileType = {
   id: string;
@@ -97,19 +95,6 @@ const Profile = () => {
       type: "",
     }
   );
-  // const [name, setName] = useState(""),
-  // const [address, setAddress] = useState("");
-  // const [academicName, setAcademicName] = useState("");
-  // const [biography, setBiography] = useState("");
-  // const [companyName, setCompanyName] = useState("");
-  // const [position, setPosition] = useState("");
-  // const [jobSummary, setJobSummary] = useState("");
-  // const [workSinceDate, setWorkSinceDate] = useState("");
-  // const [workUntilDate, setWorkUntilDate] = useState("");
-  // const [academicSinceDate, setAcademicSinceDate] = useState("");
-  // const [academicUntilDate, setAcademicUntilDate] = useState("");
-  // const [schoolName, setSchoolName] = useState("");
-  // const [faculty, setFaculty] = useState("");
 
   const [open, setOpen] = React.useState(false);
 
@@ -216,12 +201,13 @@ const Profile = () => {
 
             <div className={styles.companyWrapper}>
               <HistoryTable
-                workingPeriod={`${workHistories.sinceDate} - ${workHistories.untilDate}`}
-                companyName={workHistories.name}
-                directorName={workHistories.position}
-                about={workHistories.jobSummary}
+                jobSummary={workHistories.jobSummary}
+                // buttonText={"編集する"}
+                name={workHistories.name}
+                position={workHistories.position}
                 onClick={() => console.log("編集ボタンクリック！")}
-                buttonText={"編集する"}
+                sinceDate={workHistories.sinceDate}
+                untilDate={workHistories.untilDate}
               />
             </div>
 
@@ -238,11 +224,11 @@ const Profile = () => {
 
             <div className={styles.companyWrapper}>
               <HistoryTable
-                workingPeriod={`${academicHistories.sinceDate} - ${academicHistories.untilDate}`}
-                companyName={academicHistories.name}
-                directorName={academicHistories.faculty}
+                sinceDate={academicHistories.sinceDate}
+                untilDate={academicHistories.untilDate}
+                name={academicHistories.name}
+                faculty={academicHistories.faculty}
                 onClick={() => console.log("編集ボタンクリック！")}
-                buttonText={"編集する"}
               />
             </div>
 

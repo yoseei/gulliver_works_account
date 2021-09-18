@@ -1,36 +1,66 @@
 import React from "react";
 import styles from "./HistoryTable.module.scss";
-import EditButton from "../editButton/EditButton";
-interface PropsTypes {
-  workHistoryTitle?: string;
-  workingPeriod: string;
-  companyName: string;
-  directorName: string;
-  about?: string;
+import Button from "../button/Button";
+// interface PropsTypes {
+//   about?: string;
+//   companyName: string;
+//   directorName: string;
+//   onClick: React.MouseEventHandler<HTMLParagraphElement> | undefined;
+//   workHistoryTitle?: string;
+//   workingPeriod: string;
+// }
+
+interface WorkHistories {
+  id?: string;
+  isEmployed?: string;
+  occupation?: {
+    id: string;
+    name: string;
+  };
+  industry?: {
+    id: string;
+    name: string;
+  };
+  position?: string;
+  annualIncome?: number;
+  managementExperience?: number;
+  jobSummary?: string;
+  sinceDate: string;
+  untilDate: string;
+  name: string;
+}
+interface AcademicHistories {
+  id?: string;
+  name: string;
+  faculty?: string;
+  sinceDate: string;
+  untilDate: string;
+  type?: string;
   onClick: React.MouseEventHandler<HTMLParagraphElement> | undefined;
-  buttonText: string;
 }
 
-const HistoryTable = (props: PropsTypes) => {
+type HistoriesType = WorkHistories & AcademicHistories;
+const HistoryTable = (props: HistoriesType) => {
   return (
     <div className={styles.root}>
-      {/* <h1 className={styles.workHistoryTitle}>{props.workHistoryTitle}</h1> */}
       <div className={styles.workHistoryWrapper}>
         <div className={styles.leftWrapper}>
-          <p>{props.workingPeriod}</p>
+          <p>
+            {props.sinceDate} - {props.untilDate}
+          </p>
         </div>
         <div className={styles.rightWrapper}>
           <div className={styles.companyNameWrapper}>
             <div className={styles.leftPartWrapper}>
-              <h3>{props.companyName}</h3>
-              <p className={styles.directorName}>{props.directorName}</p>
+              <h3>{props.name}</h3>
+              <p className={styles.directorName}>{props.position}</p>
             </div>
             <div className={styles.buttonWrapper}>
-              <EditButton onClick={props.onClick} text={props.buttonText} />
+              <Button onClick={props.onClick} text={"編集する"} />
             </div>
           </div>
           <div className={styles.aboutWrapper}>
-            <p>{props.about}</p>
+            <p>{props.jobSummary}</p>
           </div>
         </div>
       </div>
