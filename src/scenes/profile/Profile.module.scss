@@ -20,15 +20,17 @@
       gap: 10px;
       position: absolute;
       bottom: -60px;
-      left: 189px;
-      // .leftWrapper {
-      // }
+      left: 85px;
+
       .rightWrapper {
         .nameAgeWrapper {
           display: flex;
           align-items: center;
         }
         .addressWrapper {
+          margin-top: 20px;
+          margin-bottom: 10px;
+
           .leftWrapper {
             width: 100px;
           }
@@ -81,7 +83,7 @@
   }
   .bottomSpace {
     height: 100px;
-    width: 100vw;
+    width: 100%;
   }
 }
 

@@ -7,95 +7,15 @@ import { HttpClient } from "../../utilities/axiosInstance";
 import HistoryTable from "../../components/historyTable/HistoryTable";
 import ProfileImage from "../../components/profileImage/ProfileImage";
 import ProfileMainImage from "../../components/profileMainImage/ProfileMainImage";
-
-type ProfileType = {
-  id: string;
-  firstName: string;
-  lastName: string;
-  firstNameKana: string;
-  lastNameKana: string;
-  gender: string;
-  phone: string;
-  postalCode: string;
-  address: string;
-  dateOfBirth: string;
-  biography: string;
-};
-
-type WorkHistories = {
-  id: string;
-  isEmployed: string;
-  occupation: {
-    id: string;
-    name: string;
-  };
-  industry: {
-    id: string;
-    name: string;
-  };
-  position: string;
-  annualIncome: number;
-  managementExperience: number;
-  jobSummary: string;
-  sinceDate: string;
-  untilDate: string;
-  name: string;
-};
-
-type AcademicHistories = {
-  id: string;
-  name: string;
-  faculty: string;
-  sinceDate: string;
-  untilDate: string;
-  type: string;
-};
+import { ProfileType } from "../../data/profile/index";
+import { WorkHistories } from "../../data/workHistory/index";
+import { AcademicHistories } from "../../data/academicHistory/index";
 
 const Profile = () => {
-  const [profile, setProfile] = useState<ProfileType>({
-    id: "",
-    firstName: "",
-    lastName: "",
-    firstNameKana: "",
-    lastNameKana: "",
-    gender: "",
-    phone: "",
-    postalCode: "",
-    address: "",
-    dateOfBirth: "",
-    biography: "",
-  });
-  const [workHistories, setWorkHistories] = useState<WorkHistories>({
-    id: "",
-    isEmployed: "",
-    occupation: {
-      id: "",
-      name: "",
-    },
-    industry: {
-      id: "",
-      name: "",
-    },
-    position: "",
-    annualIncome: 0,
-    managementExperience: 0,
-    jobSummary: "",
-    sinceDate: "",
-    untilDate: "",
-    name: "",
-  });
-
-  const [academicHistories, setAcademicHistories] = useState<AcademicHistories>(
-    {
-      id: "",
-      name: "",
-      faculty: "",
-      sinceDate: "",
-      untilDate: "",
-      type: "",
-    }
-  );
-
+  const [profile, setProfile] = useState<ProfileType>();
+  const [workHistories, setWorkHistories] = useState<WorkHistories>();
+  const [academicHistories, setAcademicHistories] =
+    useState<AcademicHistories>();
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
@@ -123,7 +43,6 @@ const Profile = () => {
     };
     fetchAccounts();
   }, []);
-  console.log(profile);
 
   // プロフィール編集モーダル
   const body = (
@@ -167,13 +86,15 @@ const Profile = () => {
             </div>
             <div className={styles.rightWrapper}>
               <div className={styles.nameAgeWrapper}>
-                <h2>{profile.lastName + profile.firstName}(59)</h2>
+                <h2>
+                  {profile ? profile.lastName + profile.firstName : ""}(59)
+                </h2>
               </div>
               <div className={styles.addressWrapper}>
                 <div className={styles.leftWrapper}>
                   <p>住まい</p>
                 </div>
-                <p>{profile.address}</p>
+                <p>{profile?.address}</p>
               </div>
               <div className={styles.educationalBackgroundWrapper}>
                 <p className={styles.leftWrapper}>最終学歴</p>
@@ -193,7 +114,7 @@ const Profile = () => {
             </div>
           </div>
           <div className={styles.mainWrapper}>
-            <p>{profile.biography}</p>
+            <p>{profile?.biography}</p>
           </div>
 
           <div className={styles.workHistoryWrapper}>
@@ -201,13 +122,12 @@ const Profile = () => {
 
             <div className={styles.companyWrapper}>
               <HistoryTable
-                jobSummary={workHistories.jobSummary}
-                // buttonText={"編集する"}
-                name={workHistories.name}
-                position={workHistories.position}
+                jobSummary={workHistories?.jobSummary}
+                name={workHistories ? workHistories.name : ""}
+                position={workHistories ? workHistories.position : ""}
                 onClick={() => console.log("編集ボタンクリック！")}
-                sinceDate={workHistories.sinceDate}
-                untilDate={workHistories.untilDate}
+                sinceDate={workHistories ? workHistories.sinceDate : ""}
+                untilDate={workHistories ? workHistories.untilDate : ""}
               />
             </div>
 
@@ -224,10 +144,10 @@ const Profile = () => {
 
             <div className={styles.companyWrapper}>
               <HistoryTable
-                sinceDate={academicHistories.sinceDate}
-                untilDate={academicHistories.untilDate}
-                name={academicHistories.name}
-                faculty={academicHistories.faculty}
+                sinceDate={academicHistories ? academicHistories.sinceDate : ""}
+                untilDate={academicHistories ? academicHistories.untilDate : ""}
+                name={academicHistories ? academicHistories.name : ""}
+                faculty={academicHistories ? academicHistories.faculty : ""}
                 onClick={() => console.log("編集ボタンクリック！")}
               />
             </div>

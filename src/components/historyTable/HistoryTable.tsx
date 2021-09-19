@@ -1,14 +1,6 @@
 import React from "react";
 import styles from "./HistoryTable.module.scss";
 import Button from "../button/Button";
-// interface PropsTypes {
-//   about?: string;
-//   companyName: string;
-//   directorName: string;
-//   onClick: React.MouseEventHandler<HTMLParagraphElement> | undefined;
-//   workHistoryTitle?: string;
-//   workingPeriod: string;
-// }
 
 interface WorkHistories {
   id?: string;
