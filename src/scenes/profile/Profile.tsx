@@ -4,18 +4,18 @@ import Modal from "@material-ui/core/Modal";
 
 import Button from "../../components/button/Button";
 import { HttpClient } from "../../utilities/axiosInstance";
-import HistoryTable from "../../components/historyTable/HistoryTable";
 import ProfileImage from "../../components/profileImage/ProfileImage";
 import ProfileMainImage from "../../components/profileMainImage/ProfileMainImage";
 import { ProfileType } from "../../data/profile/index";
-import { WorkHistories } from "../../data/workHistory/index";
-import { AcademicHistories } from "../../data/academicHistory/index";
+import { WorkHistoryType } from "../../data/workHistory/index";
+import { AcademicHistoryType } from "../../data/academicHistory/index";
+import WorkHistoryTable from "../../components/workHistoryTable/WorkHistoryTable";
+import AcademicHistoryTable from "../../components/academicHistoryTable/AcademicHistoryTable";
 
 const Profile = () => {
   const [profile, setProfile] = useState<ProfileType>();
-  const [workHistories, setWorkHistories] = useState<WorkHistories>();
-  const [academicHistories, setAcademicHistories] =
-    useState<AcademicHistories>();
+  const [workHistory, setWorkHistory] = useState<WorkHistoryType>();
+  const [academicHistory, setAcademicHistory] = useState<AcademicHistoryType>();
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
@@ -35,14 +35,16 @@ const Profile = () => {
       // console.log(res.data);
 
       const profileData = res.data.profile;
-      const workHistoriesData = res.data.workHistories[0];
-      const academicHistoriesData = res.data.academicHistories[0];
+      const workHistoryData = res.data.workHistories[0];
+      const academicHistoryData = res.data.academicHistories[0];
       setProfile(profileData);
-      setWorkHistories(workHistoriesData);
-      setAcademicHistories(academicHistoriesData);
+      setWorkHistory(workHistoryData);
+      setAcademicHistory(academicHistoryData);
     };
     fetchAccounts();
   }, []);
+
+  console.log(academicHistory);
 
   // プロフィール編集モーダル
   const body = (
@@ -121,13 +123,21 @@ const Profile = () => {
             <h1 className={styles.workHistoryTitle}>職歴</h1>
 
             <div className={styles.companyWrapper}>
-              <HistoryTable
+              {/* <HistoryTable
                 jobSummary={workHistories?.jobSummary}
                 name={workHistories ? workHistories.name : ""}
                 position={workHistories ? workHistories.position : ""}
                 onClick={() => console.log("編集ボタンクリック！")}
                 sinceDate={workHistories ? workHistories.sinceDate : ""}
                 untilDate={workHistories ? workHistories.untilDate : ""}
+              /> */}
+              <WorkHistoryTable
+                sinceDate={workHistory ? workHistory.sinceDate : ""}
+                untilDate={workHistory ? workHistory.untilDate : ""}
+                name={workHistory ? workHistory.name : ""}
+                position={workHistory ? workHistory.position : ""}
+                jobSummary={workHistory ? workHistory.jobSummary : ""}
+                onClick={() => console.log("職歴編集クリック！")}
               />
             </div>
 
@@ -143,11 +153,11 @@ const Profile = () => {
             <h1 className={styles.studyHistoryTitle}>学歴</h1>
 
             <div className={styles.companyWrapper}>
-              <HistoryTable
-                sinceDate={academicHistories ? academicHistories.sinceDate : ""}
-                untilDate={academicHistories ? academicHistories.untilDate : ""}
-                name={academicHistories ? academicHistories.name : ""}
-                faculty={academicHistories ? academicHistories.faculty : ""}
+              <AcademicHistoryTable
+                sinceDate={academicHistory ? academicHistory.sinceDate : ""}
+                untilDate={academicHistory ? academicHistory.untilDate : ""}
+                name={academicHistory ? academicHistory.name : ""}
+                faculty={academicHistory ? academicHistory.faculty : ""}
                 onClick={() => console.log("編集ボタンクリック！")}
               />
             </div>
