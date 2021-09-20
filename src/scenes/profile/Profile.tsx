@@ -137,7 +137,7 @@ const Profile = () => {
                 // name={workHistory ? workHistory.name : ""}
                 // position={workHistory ? workHistory.position : ""}
                 // jobSummary={workHistory ? workHistory.jobSummary : ""}
-                workHistoryType={workHistory ? workHistory : undefined}
+                workHistoryType={workHistory}
                 onClick={() => console.log("職歴編集クリック！")}
               />
             </div>
