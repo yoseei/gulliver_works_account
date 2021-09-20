@@ -11,10 +11,10 @@ import { WorkHistoryType } from "../../data/workHistory/index";
 import { AcademicHistoryType } from "../../data/academicHistory/index";
 import WorkHistoryTable from "../../components/workHistoryTable/WorkHistoryTable";
 import AcademicHistoryTable from "../../components/academicHistoryTable/AcademicHistoryTable";
-
+import { WorkHistoryTypes } from "../../components/workHistoryTable/WorkHistoryTable";
 const Profile = () => {
   const [profile, setProfile] = useState<ProfileType>();
-  const [workHistory, setWorkHistory] = useState<WorkHistoryType>();
+  const [workHistory, setWorkHistory] = useState<WorkHistoryTypes>();
   const [academicHistory, setAcademicHistory] = useState<AcademicHistoryType>();
   const [open, setOpen] = React.useState(false);
 
@@ -44,7 +44,7 @@ const Profile = () => {
     fetchAccounts();
   }, []);
 
-  console.log(academicHistory);
+  console.log(workHistory);
 
   // プロフィール編集モーダル
   const body = (
@@ -132,11 +132,12 @@ const Profile = () => {
                 untilDate={workHistories ? workHistories.untilDate : ""}
               /> */}
               <WorkHistoryTable
-                sinceDate={workHistory ? workHistory.sinceDate : ""}
-                untilDate={workHistory ? workHistory.untilDate : ""}
-                name={workHistory ? workHistory.name : ""}
-                position={workHistory ? workHistory.position : ""}
-                jobSummary={workHistory ? workHistory.jobSummary : ""}
+                // sinceDate={workHistory ? workHistory.sinceDate : ""}
+                // untilDate={workHistory ? workHistory.untilDate : ""}
+                // name={workHistory ? workHistory.name : ""}
+                // position={workHistory ? workHistory.position : ""}
+                // jobSummary={workHistory ? workHistory.jobSummary : ""}
+                workHistoryType={workHistory ? workHistory : undefined}
                 onClick={() => console.log("職歴編集クリック！")}
               />
             </div>
@@ -154,10 +155,11 @@ const Profile = () => {
 
             <div className={styles.companyWrapper}>
               <AcademicHistoryTable
-                sinceDate={academicHistory ? academicHistory.sinceDate : ""}
-                untilDate={academicHistory ? academicHistory.untilDate : ""}
-                name={academicHistory ? academicHistory.name : ""}
-                faculty={academicHistory ? academicHistory.faculty : ""}
+                // sinceDate={academicHistory ? academicHistory.sinceDate : ""}
+                // untilDate={academicHistory ? academicHistory.untilDate : ""}
+                // name={academicHistory ? academicHistory.name : ""}
+                // faculty={academicHistory ? academicHistory.faculty : ""}
+                academicHistory={}
                 onClick={() => console.log("編集ボタンクリック！")}
               />
             </div>

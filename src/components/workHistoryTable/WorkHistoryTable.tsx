@@ -3,17 +3,12 @@ import styles from "./WorkHistoryTable.module.scss";
 import Button from "../button/Button";
 import { WorkHistoryType } from "../../data/workHistory/index";
 
-interface onClick {
+export type WorkHistoryTypes = {
+  workHistoryType: WorkHistoryType;
   onClick: React.MouseEventHandler<HTMLParagraphElement> | undefined;
-}
-
-type WorkHistoryTypes = WorkHistoryType & onClick;
+};
 const WorkHistoryTable: FC<WorkHistoryTypes> = ({
-  sinceDate,
-  untilDate,
-  name,
-  position,
-  jobSummary,
+  workHistoryType: { name, sinceDate, untilDate, position, jobSummary },
   onClick,
 }) => {
   return (
