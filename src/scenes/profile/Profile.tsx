@@ -14,7 +14,9 @@ import AcademicHistoryTable from "../../components/academicHistoryTable/Academic
 import { WorkHistoryTypes } from "../../components/workHistoryTable/WorkHistoryTable";
 const Profile = () => {
   const [profile, setProfile] = useState<ProfileType>();
-  const [workHistory, setWorkHistory] = useState<WorkHistoryTypes>();
+  const [workHistory, setWorkHistory] = useState<
+    WorkHistoryTypes | undefined
+  >();
   const [academicHistory, setAcademicHistory] = useState<AcademicHistoryType>();
   const [open, setOpen] = React.useState(false);
 
@@ -123,21 +125,8 @@ const Profile = () => {
             <h1 className={styles.workHistoryTitle}>職歴</h1>
 
             <div className={styles.companyWrapper}>
-              {/* <HistoryTable
-                jobSummary={workHistories?.jobSummary}
-                name={workHistories ? workHistories.name : ""}
-                position={workHistories ? workHistories.position : ""}
-                onClick={() => console.log("編集ボタンクリック！")}
-                sinceDate={workHistories ? workHistories.sinceDate : ""}
-                untilDate={workHistories ? workHistories.untilDate : ""}
-              /> */}
               <WorkHistoryTable
-                // sinceDate={workHistory ? workHistory.sinceDate : ""}
-                // untilDate={workHistory ? workHistory.untilDate : ""}
-                // name={workHistory ? workHistory.name : ""}
-                // position={workHistory ? workHistory.position : ""}
-                // jobSummary={workHistory ? workHistory.jobSummary : ""}
-                workHistoryType={workHistory}
+                workHistory={workHistory}
                 onClick={() => console.log("職歴編集クリック！")}
               />
             </div>
