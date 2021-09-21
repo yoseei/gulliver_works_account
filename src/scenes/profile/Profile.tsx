@@ -11,12 +11,11 @@ import { WorkHistoryType } from "../../data/workHistory/index";
 import { AcademicHistoryType } from "../../data/academicHistory/index";
 import WorkHistoryTable from "../../components/workHistoryTable/WorkHistoryTable";
 import AcademicHistoryTable from "../../components/academicHistoryTable/AcademicHistoryTable";
-import { WorkHistoryTypes } from "../../components/workHistoryTable/WorkHistoryTable";
+// import { WorkHistoryTypes } from "../../components/workHistoryTable/WorkHistoryTable";
+
 const Profile = () => {
   const [profile, setProfile] = useState<ProfileType>();
-  const [workHistory, setWorkHistory] = useState<
-    WorkHistoryTypes | undefined
-  >();
+  const [workHistory, setWorkHistory] = useState<WorkHistoryType>();
   const [academicHistory, setAcademicHistory] = useState<AcademicHistoryType>();
   const [open, setOpen] = React.useState(false);
 
@@ -125,10 +124,12 @@ const Profile = () => {
             <h1 className={styles.workHistoryTitle}>職歴</h1>
 
             <div className={styles.companyWrapper}>
-              <WorkHistoryTable
-                workHistory={workHistory}
-                onClick={() => console.log("職歴編集クリック！")}
-              />
+              {workHistory && (
+                <WorkHistoryTable
+                  workHistory={workHistory}
+                  onClick={() => console.log("職歴編集クリック！")}
+                />
+              )}
             </div>
 
             <div className={styles.buttonWrapper}>
@@ -143,14 +144,12 @@ const Profile = () => {
             <h1 className={styles.studyHistoryTitle}>学歴</h1>
 
             <div className={styles.companyWrapper}>
-              <AcademicHistoryTable
-                // sinceDate={academicHistory ? academicHistory.sinceDate : ""}
-                // untilDate={academicHistory ? academicHistory.untilDate : ""}
-                // name={academicHistory ? academicHistory.name : ""}
-                // faculty={academicHistory ? academicHistory.faculty : ""}
-                academicHistory={}
-                onClick={() => console.log("編集ボタンクリック！")}
-              />
+              {academicHistory && (
+                <AcademicHistoryTable
+                  academicHistory={academicHistory}
+                  onClick={() => console.log("編集ボタンクリック！")}
+                />
+              )}
             </div>
 
             <div className={styles.buttonWrapper}>
