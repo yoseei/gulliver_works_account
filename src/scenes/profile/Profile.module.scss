@@ -2,38 +2,36 @@
   width: 100vw;
   height: 100vh;
   .profileContainer {
-    width: 80%;
+    width: 60%;
     height: 80%;
-    background-color: gray;
     margin: 0 auto;
     margin-top: 50px;
-    .coverPhotoWrapper {
-      background-color: aqua;
-      height: 200px;
+    .profileImageWrapper {
       position: relative;
-      width: 100%;
-      .editProfileWrapper {
-        border: 1px solid black;
-        border: 1px solid black;
-        border-radius: 5px;
-        bottom: 10px;
-        display: inline-block;
+      .buttonWrapper {
         position: absolute;
-        right: 10px;
+        bottom: 0;
+        right: 20px;
       }
     }
     .basicInfoContainer {
-      display: flex;
       align-items: center;
-      // .leftWrapper {
-      // }
+      display: flex;
+      gap: 10px;
+      position: absolute;
+      bottom: -60px;
+      left: 85px;
+
       .rightWrapper {
         .nameAgeWrapper {
           display: flex;
           align-items: center;
         }
         .addressWrapper {
-          .left_wrapper {
+          margin-top: 20px;
+          margin-bottom: 10px;
+
+          .leftWrapper {
             width: 100px;
           }
           display: flex;
@@ -44,6 +42,65 @@
           }
           display: flex;
         }
+      }
+    }
+    .selfIntroductionContainer {
+      margin-top: 100px;
+      padding: 0 80px;
+      .topWrapper {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        position: relative;
+      }
+    }
+    .workHistoryWrapper {
+      width: 100%;
+      .workHistoryTitle {
+        margin: 80px 0 30px;
+      }
+      .companyWrapper {
+        padding-bottom: 30px;
+      }
+      .buttonWrapper {
+        color: #e5e5e5;
+        text-align: center;
+      }
+    }
+    .studyHistoryWrapper {
+      width: 100%;
+      .studyHistoryTitle {
+        margin: 80px 0 30px;
+      }
+      .companyWrapper {
+        padding-bottom: 30px;
+      }
+      .buttonWrapper {
+        color: #e5e5e5;
+        text-align: center;
+      }
+    }
+  }
+  .bottomSpace {
+    height: 100px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .root {
+    .profileContainer {
+      .basicInfoContainer {
+        left: 125px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1024px) {
+  .root {
+    .profileContainer {
+      .basicInfoContainer {
+        left: 27px;
       }
     }
   }

@@ -1,0 +1,11 @@
+.root {
+  width: 100%;
+  height: 300px;
+  .coverPhotoWrapper {
+    background: url(./Rectangle81.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 100%;
+    height: 100%;
+  }
+}
