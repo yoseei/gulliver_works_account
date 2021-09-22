@@ -12,6 +12,7 @@ const env = dotenv.config().parsed;
 const isDevelopment = env.REACT_APP_ENV === "development";
 
 module.exports = {
+  target: "web",
   mode: isDevelopment ? "development" : "production",
   entry: src + "/index.tsx",
 

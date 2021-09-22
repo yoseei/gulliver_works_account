@@ -43,7 +43,7 @@ const Profile = () => {
     fetchAccounts();
   }, []);
 
-  console.log(workHistory);
+  console.log(open);
 
   return (
     <div className={styles.root}>
@@ -72,7 +72,7 @@ const Profile = () => {
               </div>
               <div className={styles.educationalBackgroundWrapper}>
                 <p className={styles.leftWrapper}>最終学歴</p>
-                <p>{}</p>
+                <p>{academicHistory?.name}</p>
               </div>
             </div>
           </div>
@@ -135,7 +135,7 @@ const Profile = () => {
 
         {open ? (
           <div className={styles.profileModalContainer}>
-            <ProfileModal open={open} onClose={handleClose} />
+            <ProfileModal open={open} handleClose={handleClose} />
           </div>
         ) : (
           <></>

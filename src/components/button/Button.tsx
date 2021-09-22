@@ -4,10 +4,11 @@ import styles from "./Button.module.scss";
 interface PropsTypes {
   onClick: React.MouseEventHandler<HTMLParagraphElement> | undefined;
   text: string;
+  style?: React.CSSProperties | undefined;
 }
 const Button = (props: PropsTypes) => {
   return (
-    <div className={styles.root}>
+    <div className={styles.root} style={props.style}>
       <p onClick={props.onClick}>{props.text}</p>
     </div>
   );

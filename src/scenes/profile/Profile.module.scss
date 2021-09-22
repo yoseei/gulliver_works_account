@@ -1,15 +1,10 @@
 .root {
-  width: 100vw;
-  height: 100vh;
   .profileContainer {
     width: 60%;
     height: 80%;
     margin: 0 auto;
     margin-top: 50px;
-    // // ------- ProfileModalContainer -------- //
-    // .profileModalContainer {
-    //   margin: 0 auto;
-    // }
+
     .profileImageWrapper {
       position: relative;
       .buttonWrapper {
@@ -91,6 +86,11 @@
   }
 }
 
+// .button {
+//   border: 1px solid #e5e5e5;
+//   border-radius: 5px;
+//   padding: 5px;
+// }
 @media screen and (max-width: 1440px) {
   .root {
     .profileContainer {
