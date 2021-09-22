@@ -43,7 +43,7 @@ const Profile = () => {
     fetchAccounts();
   }, []);
 
-  console.log(workHistory);
+  console.log(profile);
 
   // プロフィール編集モーダル
   const body = (
