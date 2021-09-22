@@ -11,7 +11,6 @@ import { WorkHistoryType } from "../../data/workHistory/index";
 import { AcademicHistoryType } from "../../data/academicHistory/index";
 import WorkHistoryTable from "../../components/workHistoryTable/WorkHistoryTable";
 import AcademicHistoryTable from "../../components/academicHistoryTable/AcademicHistoryTable";
-// import { WorkHistoryTypes } from "../../components/workHistoryTable/WorkHistoryTable";
 
 const Profile = () => {
   const [profile, setProfile] = useState<ProfileType>();
@@ -33,7 +32,6 @@ const Profile = () => {
         method: "GET",
         url: "http://localhost:3000/accounts/497f6eca-6276-4993-bfeb-53cbbbba6f08",
       });
-      // console.log(res.data);
 
       const profileData = res.data.profile;
       const workHistoryData = res.data.workHistories[0];
