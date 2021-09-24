@@ -37,17 +37,21 @@ const ProfileModal = ({ open, handleClose }: PropsType) => {
         <div className={styles.buttonWrapper}>
           <div className={styles.cancelButtonWrapper}>
             <Button
+              backgroundColor={"gray"}
               border={"none"}
-              color={"black"}
+              fontWeight={"bold"}
               onClick={handleClose}
+              textColor={"black"}
               text={"キャンセル"}
             />
           </div>
           <div className={styles.updateButtonWrapper}>
             <Button
               border={"none"}
-              color={"white"}
+              backgroundColor={"primary"}
+              fontWeight={"bold"}
               onClick={() => console.log("更新クリック！")}
+              textColor={"white"}
               text={"更新"}
             />
           </div>
@@ -57,11 +61,9 @@ const ProfileModal = ({ open, handleClose }: PropsType) => {
   );
 
   return (
-    <>
-      <Modal open={open} onClose={handleClose}>
-        {body}
-      </Modal>
-    </>
+    <Modal open={open} onClose={handleClose}>
+      {body}
+    </Modal>
   );
 };
 
