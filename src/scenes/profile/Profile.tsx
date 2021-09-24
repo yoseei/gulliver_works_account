@@ -43,8 +43,6 @@ const Profile = () => {
     fetchAccounts();
   }, []);
 
-  console.log(open);
-
   return (
     <div className={styles.root}>
       <div className={styles.profileContainer}>
