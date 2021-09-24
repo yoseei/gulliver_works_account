@@ -1,7 +1,7 @@
 import React from "react";
+import Button from "../button/Button";
 import Modal from "@material-ui/core/Modal";
 import styles from "./ProfileModal.module.scss";
-import Button from "../button/Button";
 
 type PropsType = {
   open: boolean;
@@ -37,16 +37,18 @@ const ProfileModal = ({ open, handleClose }: PropsType) => {
         <div className={styles.buttonWrapper}>
           <div className={styles.cancelButtonWrapper}>
             <Button
+              border={"none"}
+              color={"black"}
               onClick={handleClose}
               text={"キャンセル"}
-              style={{ border: 0, color: "black", fontWeight: "bold" }}
             />
           </div>
           <div className={styles.updateButtonWrapper}>
             <Button
+              border={"none"}
+              color={"white"}
               onClick={() => console.log("更新クリック！")}
               text={"更新"}
-              style={{ border: "none", color: "white", fontWeight: "bold" }}
             />
           </div>
         </div>
