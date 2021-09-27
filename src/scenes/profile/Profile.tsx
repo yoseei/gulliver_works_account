@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Profile.module.scss";
-import Modal from "@material-ui/core/Modal";
 
 import Button from "../../components/button/Button";
 import { HttpClient } from "../../utilities/axiosInstance";
@@ -11,7 +10,7 @@ import { WorkHistoryType } from "../../data/workHistory/index";
 import { AcademicHistoryType } from "../../data/academicHistory/index";
 import WorkHistoryTable from "../../components/workHistoryTable/WorkHistoryTable";
 import AcademicHistoryTable from "../../components/academicHistoryTable/AcademicHistoryTable";
-// import { WorkHistoryTypes } from "../../components/workHistoryTable/WorkHistoryTable";
+import ProfileModal from "../../components/profileModal/ProfileModal";
 
 const Profile = () => {
   const [profile, setProfile] = useState<ProfileType>();
@@ -33,7 +32,6 @@ const Profile = () => {
         method: "GET",
         url: "http://localhost:3000/accounts/497f6eca-6276-4993-bfeb-53cbbbba6f08",
       });
-      // console.log(res.data);
 
       const profileData = res.data.profile;
       const workHistoryData = res.data.workHistories[0];
@@ -44,35 +42,6 @@ const Profile = () => {
     };
     fetchAccounts();
   }, []);
-
-  console.log(workHistory);
-
-  // プロフィール編集モーダル
-  const body = (
-    <div className={styles.modalRoot}>
-      <div className={styles.modalProfileContainer}>
-        <p>プロフィール</p>
-        <div className={styles.modalCoverPhotoWrapper}>カバー画像</div>
-        <div className={styles.modalProfilePhoto}>プロフィール画像</div>
-        <div className={styles.modalNameWrapper}>
-          <p>名前</p>
-          <input type="text" />
-        </div>
-        <div className={styles.modalAddressWrapper}>
-          <p>住まい</p>
-          <input type="text" />
-        </div>
-        <div className={styles.modalGenderWrapper}>
-          <p>性別</p>
-          <input type="text" />
-        </div>
-        <div className={styles.modalNameWrapper}>
-          <p>生年月日</p>
-          <input type="text" />
-        </div>
-      </div>
-    </div>
-  );
 
   return (
     <div className={styles.root}>
@@ -101,7 +70,7 @@ const Profile = () => {
               </div>
               <div className={styles.educationalBackgroundWrapper}>
                 <p className={styles.leftWrapper}>最終学歴</p>
-                <p>{}</p>
+                <p>{academicHistory?.name}</p>
               </div>
             </div>
           </div>
@@ -163,11 +132,9 @@ const Profile = () => {
         </div>
 
         {open ? (
-          <>
-            <Modal open={open} onClose={handleClose}>
-              {body}
-            </Modal>
-          </>
+          <div className={styles.profileModalContainer}>
+            <ProfileModal open={open} handleClose={handleClose} />
+          </div>
         ) : (
           <></>
         )}

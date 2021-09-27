@@ -1,0 +1,80 @@
+.root {
+  width: 40%;
+  margin: 50px auto;
+  outline: none;
+  .profileContainer {
+    height: 90%;
+    padding: 35px;
+    background-color: white;
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    .coverPhotoWrapper {
+      height: 200px;
+      margin-bottom: 80px;
+      position: relative;
+      .coverPhoto {
+        background: url(./Rectangle81.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: 100%;
+      }
+      .profilePhotoWrapper {
+        height: 100px;
+        width: 100px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 27%);
+        .profilePhoto {
+          background: url(./L.png);
+          background-repeat: no-repeat;
+          background-size: contain;
+          height: 100%;
+        }
+      }
+    }
+    .nameWrapper,
+    .addressWrapper,
+    .genderWrapper {
+      margin: 0 auto;
+      input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #e5e5e5;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+    }
+    .birthWrapper {
+      margin: 0 auto;
+      input {
+        width: 30%;
+        padding: 10px;
+        border: 1px solid #e5e5e5;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+    }
+    .buttonWrapper {
+      gap: 10px;
+      display: flex;
+      justify-content: end;
+      .cancelButtonWrapper {
+        background-color: #e5e5e5;
+        width: 80px;
+        text-align: center;
+        border: none;
+        border-radius: 5px;
+      }
+      .updateButtonWrapper {
+        background-color: #05c757;
+        width: 80px;
+        text-align: center;
+        border: none;
+        border-radius: 5px;
+      }
+    }
+  }
+}
