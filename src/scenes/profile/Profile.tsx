@@ -12,7 +12,6 @@ import WorkHistoryTable from "../../components/workHistoryTable/WorkHistoryTable
 import AcademicHistoryTable from "../../components/academicHistoryTable/AcademicHistoryTable";
 import ProfileModal from "../../components/profileModal/ProfileModal";
 
-
 const Profile = () => {
   const [profile, setProfile] = useState<ProfileType>();
   const [workHistory, setWorkHistory] = useState<WorkHistoryType>();
@@ -31,7 +30,7 @@ const Profile = () => {
     const fetchAccounts = async () => {
       const res = await HttpClient.request({
         method: "GET",
-        url: "http://localhost:3000/accounts/497f6eca-6276-4993-bfeb-53cbbbba6f08",
+        url: "http://localhost:3000/accounts/1",
       });
 
       const profileData = res.data.profile;

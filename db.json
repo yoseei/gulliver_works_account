@@ -1,11 +1,11 @@
 {
   "accounts": [
     {
-      "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
+      "id": 1,
       "email": "test@example.com",
       "email_verification_status": "unspecified",
       "profile": {
-        "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
+        "id": 1,
         "first_name": "太郎",
         "last_name": "山田",
         "first_name_kana": "タロウ",
@@ -19,14 +19,14 @@
       },
       "work_histories": [
         {
-          "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
+          "id": 1,
           "is_employed": "true",
           "occupation": {
-            "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
+            "id": 1,
             "name": "戦略・経営コンサルタント"
           },
           "industry": {
-            "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
+            "id": 1,
             "name": "銀行・信託銀行"
           },
           "position": "主任",
@@ -40,7 +40,7 @@
       ],
       "academic_histories": [
         {
-          "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
+          "id": 1,
           "name": "明治大学",
           "faculty": "情報コミュニケーション学部",
           "since_date": "2008-04-01",
@@ -51,26 +51,5 @@
       "email_verification_token": "43a05e8a-f327-4a60-97fd-cef1f4b78420",
       "last_notification_read_at": "2019-08-24"
     }
-  ],
-  "articles": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    },
-    {
-      "id": 2,
-      "title": "hoge",
-      "author": "huga"
-    },
-    {
-      "id": 3
-    },
-    {
-      "id": 4
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }
