@@ -12,6 +12,7 @@ import WorkHistoryTable from "../../components/workHistoryTable/WorkHistoryTable
 import AcademicHistoryTable from "../../components/academicHistoryTable/AcademicHistoryTable";
 import ProfileModal from "../../components/profileModal/ProfileModal";
 
+
 const Profile = () => {
   const [profile, setProfile] = useState<ProfileType>();
   const [workHistory, setWorkHistory] = useState<WorkHistoryType>();

@@ -3,10 +3,6 @@ import styles from "./AcademicHistoryTable.module.scss";
 import Button from "../button/Button";
 import { AcademicHistoryType } from "../../data/academicHistory/index";
 
-// interface OnClickType {
-//   onClick: React.MouseEventHandler<HTMLParagraphElement> | undefined;
-// }
-
 type AcademicHistoryTableType = {
   academicHistory: AcademicHistoryType;
   onClick: React.MouseEventHandler<HTMLParagraphElement> | undefined;
