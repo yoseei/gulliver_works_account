@@ -5,8 +5,28 @@
   color: rgb(121, 121, 121);
   display: flex;
   font-size: 0.6rem;
+  font-weight: bold;
   padding: 5px;
+
   p {
     width: 100%;
   }
+}
+//----- propsCSS -----//
+.borderNone {
+  border: none;
+}
+.black {
+  color: black;
+}
+.primary {
+  background-color: #05c757;
+  color: white;
+}
+.gray {
+  background-color: #e5e5e5;
+  color: black;
+}
+.white {
+  color: white;
 }

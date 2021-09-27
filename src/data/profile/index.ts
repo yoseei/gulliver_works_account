@@ -17,3 +17,8 @@ export type ProfileType = {
   dateOfBirth: string;
   biography: string;
 };
+
+// export type ProfileModalType = {
+//   open: any;
+//   onClose: any;
+// };
