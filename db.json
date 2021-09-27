@@ -51,5 +51,26 @@
       "email_verification_token": "43a05e8a-f327-4a60-97fd-cef1f4b78420",
       "last_notification_read_at": "2019-08-24"
     }
-  ]
+  ],
+  "articles": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "id": 2,
+      "title": "hoge",
+      "author": "huga"
+    },
+    {
+      "id": 3
+    },
+    {
+      "id": 4
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
 }

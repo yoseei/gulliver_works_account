@@ -3,31 +3,19 @@ import styles from "./Button.module.scss";
 import classNames from "classnames";
 
 interface PropsTypes {
-  backgroundColor?: "primary" | "gray";
+  color?: "primary" | "gray";
   border?: "none";
-  fontWeight?: "bold";
-  textColor?: "white" | "black";
   onClick: React.MouseEventHandler<HTMLParagraphElement> | undefined;
   text: string;
 }
-const Button = ({
-  backgroundColor,
-  border,
-  fontWeight,
-  onClick,
-  text,
-  textColor,
-}: PropsTypes) => {
+const Button = ({ color, border, onClick, text }: PropsTypes) => {
   return (
     <div
       className={classNames(
         styles.root,
-        { [styles.primary]: backgroundColor === "primary" },
-        { [styles.gray]: backgroundColor === "gray" },
-        { [styles.borderNone]: border === "none" },
-        { [styles.fontWeight]: fontWeight === "bold" },
-        { [styles.black]: textColor === "black" },
-        { [styles.white]: textColor === "white" }
+        { [styles.primary]: color === "primary" },
+        { [styles.gray]: color === "gray" },
+        { [styles.borderNone]: border === "none" }
       )}
     >
       <p onClick={onClick}>{text}</p>

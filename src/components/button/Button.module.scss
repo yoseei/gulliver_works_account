@@ -5,7 +5,9 @@
   color: rgb(121, 121, 121);
   display: flex;
   font-size: 0.6rem;
+  font-weight: bold;
   padding: 5px;
+
   p {
     width: 100%;
   }
@@ -17,14 +19,13 @@
 .black {
   color: black;
 }
-.fontWeight {
-  font-weight: bold;
-}
 .primary {
   background-color: #05c757;
+  color: white;
 }
 .gray {
   background-color: #e5e5e5;
+  color: black;
 }
 .white {
   color: white;

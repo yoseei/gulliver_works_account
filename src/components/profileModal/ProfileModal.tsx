@@ -37,21 +37,17 @@ const ProfileModal = ({ open, handleClose }: PropsType) => {
         <div className={styles.buttonWrapper}>
           <div className={styles.cancelButtonWrapper}>
             <Button
-              backgroundColor={"gray"}
+              color={"gray"}
               border={"none"}
-              fontWeight={"bold"}
               onClick={handleClose}
-              textColor={"black"}
               text={"キャンセル"}
             />
           </div>
           <div className={styles.updateButtonWrapper}>
             <Button
               border={"none"}
-              backgroundColor={"primary"}
-              fontWeight={"bold"}
+              color={"primary"}
               onClick={() => console.log("更新クリック！")}
-              textColor={"white"}
               text={"更新"}
             />
           </div>
