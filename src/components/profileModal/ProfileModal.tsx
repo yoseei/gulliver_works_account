@@ -11,41 +11,57 @@ type PropsType = {
   open: boolean;
   handleClose: React.MouseEventHandler<HTMLParagraphElement> | undefined;
 };
+type Inputs = {
+  profileName: string;
+  profileGender: string;
+  profileAddress: string;
+  profileDateOfBirth: string;
+};
+
 const ProfileModal = ({ open, handleClose }: PropsType) => {
-  // const { register, handleSubmit, reset } = useForm<SignInParams>();
   const { register, handleSubmit, reset } = useForm();
-  const history = useHistory();
 
   const [profile, setProfile] = useState<ProfileType>();
-
+  const history = useHistory();
   useEffect(() => {
-    const fetchAccounts = async () => {
+    const fetchProfile = async () => {
       const res = await HttpClient.request({
         method: "GET",
-        url: "http://localhost:3000/accounts/1",
+        url: "http://localhost:3000/profiles/1",
       });
 
-      const profileData = res.data.profile;
+      const profileData = res.data;
 
       setProfile(profileData);
     };
-    fetchAccounts();
+    fetchProfile();
   }, []);
-  console.log(profile);
 
-  const handleEditProfile = async (data: any) => {
+  const handleEditProfile = async (data: Inputs) => {
     try {
-      const res = await HttpClient.request<any>({
+      const res = await HttpClient.request({
         method: "PUT",
-        url: "http://localhost:3000/accounts/1",
-        data,
+        url: "http://localhost:3000/profiles/1",
+        data: {
+          id: profile ? profile.id : "",
+          name: data.profileName,
+          nameKana: profile ? profile.nameKana : "",
+          gender: data.profileGender,
+          phone: profile ? profile.phone : "",
+          postalCode: profile ? profile.postalCode : "",
+          address: data.profileAddress,
+          dateOfBirth: data.profileDateOfBirth,
+          biography: profile ? profile.biography : "",
+        },
       });
-      reset();
+      console.log(res);
+      alert("プロフィールを編集しました。");
       history.push("/");
     } catch (err) {
       console.log(err);
     }
   };
+
   const body = (
     <div className={styles.root}>
       <div className={styles.profileContainer}>
@@ -61,15 +77,17 @@ const ProfileModal = ({ open, handleClose }: PropsType) => {
             <p>名前</p>
             <input
               type="text"
-              defaultValue={profile ? profile.lastName + profile.firstName : ""}
-              {...(register("name"), { required: true })}
+              defaultValue={profile ? profile.name : ""}
+              name="profileName"
+              ref={register}
             />
           </div>
           <div className={styles.addressWrapper}>
             <p>住まい</p>
             <input
               type="text"
-              {...(register("address"), { required: true })}
+              name="profileAddress"
+              ref={register}
               defaultValue={profile ? profile.address : ""}
             />
           </div>
@@ -77,7 +95,8 @@ const ProfileModal = ({ open, handleClose }: PropsType) => {
             <p>性別</p>
             <input
               type="text"
-              {...(register("gender"), { required: true })}
+              name="profileGender"
+              ref={register}
               defaultValue={profile ? profile.gender : ""}
             />
           </div>
@@ -85,7 +104,8 @@ const ProfileModal = ({ open, handleClose }: PropsType) => {
             <p>生年月日</p>
             <input
               type="date"
-              {...(register("dateOfBirth"), { required: true })}
+              name="profileDateOfBirth"
+              ref={register}
               defaultValue={profile ? profile.dateOfBirth : ""}
             />
           </div>
@@ -96,14 +116,16 @@ const ProfileModal = ({ open, handleClose }: PropsType) => {
                 border={"none"}
                 onClick={handleClose}
                 text={"キャンセル"}
+                type={"button"}
               />
             </div>
             <div className={styles.updateButtonWrapper}>
               <Button
                 border={"none"}
                 color={"primary"}
-                onClick={() => alert("更新しました")}
+                onClick={() => handleClose}
                 text={"更新"}
+                type={"submit"}
               />
             </div>
           </div>

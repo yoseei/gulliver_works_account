@@ -27,20 +27,42 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    const fetchAccounts = async () => {
+    const fetchProfile = async () => {
       const res = await HttpClient.request({
         method: "GET",
-        url: "http://localhost:3000/accounts/1",
+        url: "http://localhost:3000/profiles/1",
       });
 
-      const profileData = res.data.profile;
-      const workHistoryData = res.data.workHistories[0];
-      const academicHistoryData = res.data.academicHistories[0];
+      const profileData = res.data;
       setProfile(profileData);
+    };
+    fetchProfile();
+  }, []);
+
+  useEffect(() => {
+    const fetchWorkHistory = async () => {
+      const res = await HttpClient.request({
+        method: "GET",
+        url: "http://localhost:3000/work_histories/1",
+      });
+
+      const workHistoryData = res.data;
       setWorkHistory(workHistoryData);
+    };
+    fetchWorkHistory();
+  }, []);
+
+  useEffect(() => {
+    const fetchAcademicHistory = async () => {
+      const res = await HttpClient.request({
+        method: "GET",
+        url: "http://localhost:3000/academic_histories/1",
+      });
+
+      const academicHistoryData = res.data;
       setAcademicHistory(academicHistoryData);
     };
-    fetchAccounts();
+    fetchAcademicHistory();
   }, []);
 
   return (
@@ -58,9 +80,7 @@ const Profile = () => {
             </div>
             <div className={styles.rightWrapper}>
               <div className={styles.nameAgeWrapper}>
-                <h2>
-                  {profile ? profile.lastName + profile.firstName : ""}(59)
-                </h2>
+                <h2>{profile ? profile.name : ""}(59)</h2>
               </div>
               <div className={styles.addressWrapper}>
                 <div className={styles.leftWrapper}>

@@ -1,15 +1,12 @@
 export interface Profile {
   id: string;
-  firstName: string;
-  lastName: string;
+  name: string;
 }
 
 export type ProfileType = {
   id: string;
-  firstName: string;
-  lastName: string;
-  firstNameKana: string;
-  lastNameKana: string;
+  name: string;
+  nameKana: string;
   gender: string;
   phone: string;
   postalCode: string;
