@@ -17,7 +17,7 @@ const Profile = () => {
   const [profile, setProfile] = useState<ProfileType>();
   const [workHistory, setWorkHistory] = useState<WorkHistoryType>();
   const [academicHistory, setAcademicHistory] = useState<AcademicHistoryType>();
-  const [openProfileModal, setOpenProfileModal] = React.useState(false);
+  const [openProfileModal, setOpenProfileModal] = useState(false);
   const [openEditBiographyModal, setOpenEditBiographyModal] =
     React.useState(false);
 
@@ -30,7 +30,6 @@ const Profile = () => {
   };
   const handleOpenEditBiographyModal = () => {
     setOpenEditBiographyModal(true);
-    console.log("test");
   };
 
   const handleCloseEditBiographyModal = () => {
@@ -165,26 +164,22 @@ const Profile = () => {
           <div className={styles.bottomSpace}></div>
         </div>
 
-        {openProfileModal ? (
+        {openProfileModal && (
           <div className={styles.profileModalContainer}>
             <ProfileModal
               openProfileModal={openProfileModal}
               handleCloseProfileModal={handleCloseProfileModal}
             />
           </div>
-        ) : (
-          <></>
         )}
 
-        {openEditBiographyModal ? (
+        {openEditBiographyModal && (
           <div className={styles.profileModalContainer}>
             <EditBiographyModal
               openEditBiographyModal={openEditBiographyModal}
               handleCloseEditBiographyModal={handleCloseEditBiographyModal}
             />
           </div>
-        ) : (
-          <></>
         )}
       </div>
     </div>

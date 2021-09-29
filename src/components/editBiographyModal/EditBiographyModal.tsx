@@ -24,7 +24,6 @@ const EditBiographyModal = ({
   const { register, handleSubmit } = useForm();
 
   const [profile, setProfile] = useState<ProfileType>();
-  // const [biography, setBiography] = useState<string>();
   const history = useHistory();
 
   useEffect(() => {
@@ -44,7 +43,7 @@ const EditBiographyModal = ({
     try {
       const res = await HttpClient.request({
         method: "PUT",
-        url: "http://localhost:3000/profiles/1",
+        url: `http://localhost:3000/profiles/${profile ? profile.id : ""}`,
         data: {
           id: profile ? profile.id : "",
           name: profile ? profile.name : "",
@@ -57,7 +56,6 @@ const EditBiographyModal = ({
           biography: data.profileBiography,
         },
       });
-      console.log(res);
       alert("プロフィールを編集しました。");
       history.push("/");
     } catch (err) {
@@ -73,7 +71,6 @@ const EditBiographyModal = ({
         <form onSubmit={handleSubmit(handleEditBiography)}>
           <div className={styles.biographyWrapper}>
             <textarea
-              // type="text"
               defaultValue={profile ? profile.biography : ""}
               name="profileBiography"
               ref={register}
