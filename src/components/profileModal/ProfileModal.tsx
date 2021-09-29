@@ -8,8 +8,10 @@ import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
 type PropsType = {
-  open: boolean;
-  handleClose: React.MouseEventHandler<HTMLParagraphElement> | undefined;
+  openProfileModal: boolean;
+  handleCloseProfileModal:
+    | React.MouseEventHandler<HTMLParagraphElement>
+    | undefined;
 };
 type Inputs = {
   profileName: string;
@@ -18,11 +20,14 @@ type Inputs = {
   profileDateOfBirth: string;
 };
 
-const ProfileModal = ({ open, handleClose }: PropsType) => {
-  const { register, handleSubmit, reset } = useForm();
-
+const ProfileModal = ({
+  openProfileModal,
+  handleCloseProfileModal,
+}: PropsType) => {
+  const { register, handleSubmit } = useForm();
   const [profile, setProfile] = useState<ProfileType>();
   const history = useHistory();
+
   useEffect(() => {
     const fetchProfile = async () => {
       const res = await HttpClient.request({
@@ -114,7 +119,7 @@ const ProfileModal = ({ open, handleClose }: PropsType) => {
               <Button
                 color={"gray"}
                 border={"none"}
-                onClick={handleClose}
+                onClick={handleCloseProfileModal}
                 text={"キャンセル"}
                 type={"button"}
               />
@@ -123,7 +128,7 @@ const ProfileModal = ({ open, handleClose }: PropsType) => {
               <Button
                 border={"none"}
                 color={"primary"}
-                onClick={() => handleClose}
+                onClick={() => handleCloseProfileModal}
                 text={"更新"}
                 type={"submit"}
               />
@@ -135,7 +140,7 @@ const ProfileModal = ({ open, handleClose }: PropsType) => {
   );
 
   return (
-    <Modal open={open} onClose={handleClose}>
+    <Modal open={openProfileModal} onClose={handleCloseProfileModal}>
       {body}
     </Modal>
   );

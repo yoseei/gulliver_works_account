@@ -11,19 +11,30 @@ import { AcademicHistoryType } from "../../data/academicHistory/index";
 import WorkHistoryTable from "../../components/workHistoryTable/WorkHistoryTable";
 import AcademicHistoryTable from "../../components/academicHistoryTable/AcademicHistoryTable";
 import ProfileModal from "../../components/profileModal/ProfileModal";
+import EditBiographyModal from "../../components/editBiographyModal/EditBiographyModal";
 
 const Profile = () => {
   const [profile, setProfile] = useState<ProfileType>();
   const [workHistory, setWorkHistory] = useState<WorkHistoryType>();
   const [academicHistory, setAcademicHistory] = useState<AcademicHistoryType>();
-  const [open, setOpen] = React.useState(false);
+  const [openProfileModal, setOpenProfileModal] = React.useState(false);
+  const [openEditBiographyModal, setOpenEditBiographyModal] =
+    React.useState(false);
 
-  const handleOpen = () => {
-    setOpen(true);
+  const handleOpenProfileModal = () => {
+    setOpenProfileModal(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleCloseProfileModal = () => {
+    setOpenProfileModal(false);
+  };
+  const handleOpenEditBiographyModal = () => {
+    setOpenEditBiographyModal(true);
+    console.log("test");
+  };
+
+  const handleCloseEditBiographyModal = () => {
+    setOpenEditBiographyModal(false);
   };
 
   useEffect(() => {
@@ -71,7 +82,10 @@ const Profile = () => {
         <div className={styles.profileImageWrapper}>
           <ProfileImage />
           <div className={styles.buttonWrapper}>
-            <Button onClick={handleOpen} text={"プロフィールを編集"} />
+            <Button
+              onClick={handleOpenProfileModal}
+              text={"プロフィールを編集"}
+            />
           </div>
 
           <div className={styles.basicInfoContainer}>
@@ -100,7 +114,7 @@ const Profile = () => {
             <h1>自己紹介</h1>
             <div className={styles.buttonWrapper}>
               <Button
-                onClick={() => console.log("編集くりっく！")}
+                onClick={handleOpenEditBiographyModal}
                 text={"編集する"}
               />
             </div>
@@ -151,9 +165,23 @@ const Profile = () => {
           <div className={styles.bottomSpace}></div>
         </div>
 
-        {open ? (
+        {openProfileModal ? (
           <div className={styles.profileModalContainer}>
-            <ProfileModal open={open} handleClose={handleClose} />
+            <ProfileModal
+              openProfileModal={openProfileModal}
+              handleCloseProfileModal={handleCloseProfileModal}
+            />
+          </div>
+        ) : (
+          <></>
+        )}
+
+        {openEditBiographyModal ? (
+          <div className={styles.profileModalContainer}>
+            <EditBiographyModal
+              openEditBiographyModal={openEditBiographyModal}
+              handleCloseEditBiographyModal={handleCloseEditBiographyModal}
+            />
           </div>
         ) : (
           <></>
