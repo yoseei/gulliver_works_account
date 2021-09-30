@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Button from "../button/Button";
 import Modal from "@material-ui/core/Modal";
 import styles from "./EditBiographyModal.module.scss";
@@ -12,6 +12,8 @@ type PropsType = {
   handleCloseEditBiographyModal:
     | React.MouseEventHandler<HTMLParagraphElement>
     | undefined;
+  profile: ProfileType | undefined;
+  accountId: number;
 };
 type Inputs = {
   profileBiography: string;
@@ -20,24 +22,11 @@ type Inputs = {
 const EditBiographyModal = ({
   openEditBiographyModal,
   handleCloseEditBiographyModal,
+  profile,
+  accountId,
 }: PropsType) => {
   const { register, handleSubmit } = useForm();
-
-  const [profile, setProfile] = useState<ProfileType>();
   const history = useHistory();
-
-  useEffect(() => {
-    const fetchProfile = async () => {
-      const res = await HttpClient.request({
-        method: "GET",
-        url: "http://localhost:3000/profiles/1",
-      });
-
-      const profileData = res.data;
-      setProfile(profileData);
-    };
-    fetchProfile();
-  }, []);
 
   const handleEditBiography = async (data: Inputs) => {
     try {
@@ -54,8 +43,10 @@ const EditBiographyModal = ({
           address: profile ? profile.address : "",
           dateOfBirth: profile ? profile.dateOfBirth : "",
           biography: data.profileBiography,
+          accountId: accountId,
         },
       });
+
       alert("プロフィールを編集しました。");
       history.push("/");
     } catch (err) {

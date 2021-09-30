@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Button from "../button/Button";
 import Modal from "@material-ui/core/Modal";
 import styles from "./ProfileModal.module.scss";
@@ -12,6 +12,8 @@ type PropsType = {
   handleCloseProfileModal:
     | React.MouseEventHandler<HTMLParagraphElement>
     | undefined;
+  accountId: number;
+  profile: ProfileType;
 };
 type Inputs = {
   profileName: string;
@@ -23,24 +25,11 @@ type Inputs = {
 const ProfileModal = ({
   openProfileModal,
   handleCloseProfileModal,
+  accountId,
+  profile,
 }: PropsType) => {
   const { register, handleSubmit } = useForm();
-  const [profile, setProfile] = useState<ProfileType>();
   const history = useHistory();
-
-  useEffect(() => {
-    const fetchProfile = async () => {
-      const res = await HttpClient.request({
-        method: "GET",
-        url: "http://localhost:3000/profiles/1",
-      });
-
-      const profileData = res.data;
-
-      setProfile(profileData);
-    };
-    fetchProfile();
-  }, []);
 
   const handleEditProfile = async (data: Inputs) => {
     try {
@@ -57,6 +46,7 @@ const ProfileModal = ({
           address: data.profileAddress,
           dateOfBirth: data.profileDateOfBirth,
           biography: profile ? profile.biography : "",
+          accountId: accountId,
         },
       });
       console.log(res);
