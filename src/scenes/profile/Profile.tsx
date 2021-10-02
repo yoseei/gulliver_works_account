@@ -6,38 +6,65 @@ import { HttpClient } from "../../utilities/axiosInstance";
 import ProfileImage from "../../components/profileImage/ProfileImage";
 import ProfileMainImage from "../../components/profileMainImage/ProfileMainImage";
 import { ProfileType } from "../../data/profile/index";
+import { AccountType } from "../../data/account/index";
 import { WorkHistoryType } from "../../data/workHistory/index";
 import { AcademicHistoryType } from "../../data/academicHistory/index";
 import WorkHistoryTable from "../../components/workHistoryTable/WorkHistoryTable";
 import AcademicHistoryTable from "../../components/academicHistoryTable/AcademicHistoryTable";
 import ProfileModal from "../../components/profileModal/ProfileModal";
+import EditBiographyModal from "../../components/editBiographyModal/EditBiographyModal";
 
 const Profile = () => {
   const [profile, setProfile] = useState<ProfileType>();
+  const [account, setAccount] = useState<AccountType>();
   const [workHistory, setWorkHistory] = useState<WorkHistoryType>();
   const [academicHistory, setAcademicHistory] = useState<AcademicHistoryType>();
-  const [open, setOpen] = React.useState(false);
+  const [openProfileModal, setOpenProfileModal] = useState(false);
+  const [openEditBiographyModal, setOpenEditBiographyModal] =
+    React.useState(false);
 
-  const handleOpen = () => {
-    setOpen(true);
+  const accountId = account?.id;
+
+  const handleOpenProfileModal = () => {
+    setOpenProfileModal(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleCloseProfileModal = () => {
+    setOpenProfileModal(false);
   };
+  const handleOpenEditBiographyModal = () => {
+    setOpenEditBiographyModal(true);
+  };
+
+  const handleCloseEditBiographyModal = () => {
+    setOpenEditBiographyModal(false);
+  };
+
+  useEffect(() => {
+    const fetchAccounts = async () => {
+      const res = await HttpClient.request({
+        method: "GET",
+        url: "http://localhost:3000/accounts/1",
+      });
+
+      const accountData = res.data;
+      setAccount(accountData);
+    };
+    fetchAccounts();
+  }, []);
 
   useEffect(() => {
     const fetchProfile = async () => {
       const res = await HttpClient.request({
         method: "GET",
-        url: "http://localhost:3000/profiles/1",
+        url: `http://localhost:3000/accounts/${accountId}/profiles`,
       });
 
-      const profileData = res.data;
+      const profileData = res.data[0];
       setProfile(profileData);
     };
     fetchProfile();
-  }, []);
+  }, [account]);
 
   useEffect(() => {
     const fetchWorkHistory = async () => {
@@ -71,7 +98,10 @@ const Profile = () => {
         <div className={styles.profileImageWrapper}>
           <ProfileImage />
           <div className={styles.buttonWrapper}>
-            <Button onClick={handleOpen} text={"プロフィールを編集"} />
+            <Button
+              onClick={handleOpenProfileModal}
+              text={"プロフィールを編集"}
+            />
           </div>
 
           <div className={styles.basicInfoContainer}>
@@ -80,7 +110,7 @@ const Profile = () => {
             </div>
             <div className={styles.rightWrapper}>
               <div className={styles.nameAgeWrapper}>
-                <h2>{profile ? profile.name : ""}(59)</h2>
+                <h2>{profile?.name}(59)</h2>
               </div>
               <div className={styles.addressWrapper}>
                 <div className={styles.leftWrapper}>
@@ -100,7 +130,7 @@ const Profile = () => {
             <h1>自己紹介</h1>
             <div className={styles.buttonWrapper}>
               <Button
-                onClick={() => console.log("編集くりっく！")}
+                onClick={handleOpenEditBiographyModal}
                 text={"編集する"}
               />
             </div>
@@ -151,12 +181,30 @@ const Profile = () => {
           <div className={styles.bottomSpace}></div>
         </div>
 
-        {open ? (
+        {openProfileModal && (
           <div className={styles.profileModalContainer}>
-            <ProfileModal open={open} handleClose={handleClose} />
+            {accountId && profile && (
+              <ProfileModal
+                openProfileModal={openProfileModal}
+                handleCloseProfileModal={handleCloseProfileModal}
+                accountId={accountId}
+                profile={profile}
+              />
+            )}
           </div>
-        ) : (
-          <></>
+        )}
+
+        {openEditBiographyModal && (
+          <div className={styles.profileModalContainer}>
+            {accountId && (
+              <EditBiographyModal
+                openEditBiographyModal={openEditBiographyModal}
+                handleCloseEditBiographyModal={handleCloseEditBiographyModal}
+                profile={profile}
+                accountId={accountId}
+              />
+            )}
+          </div>
         )}
       </div>
     </div>

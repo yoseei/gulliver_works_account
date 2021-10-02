@@ -13,9 +13,5 @@ export type ProfileType = {
   address: string;
   dateOfBirth: string;
   biography: string;
+  accountId: string;
 };
-
-// export type ProfileModalType = {
-//   open: any;
-//   onClose: any;
-// };

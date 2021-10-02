@@ -1,5 +1,5 @@
 import { useCurrentAccount } from "../../hooks/useCurrentAccount";
-import { Account } from "../../data/Account";
+import { Account } from "../../data/account/index";
 import { HttpClient } from "../../utilities/axiosInstance";
 import { APIHost } from "../../utilities/constants";
 

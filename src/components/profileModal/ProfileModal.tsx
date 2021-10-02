@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Button from "../button/Button";
 import Modal from "@material-ui/core/Modal";
 import styles from "./ProfileModal.module.scss";
@@ -8,8 +8,12 @@ import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
 type PropsType = {
-  open: boolean;
-  handleClose: React.MouseEventHandler<HTMLParagraphElement> | undefined;
+  openProfileModal: boolean;
+  handleCloseProfileModal:
+    | React.MouseEventHandler<HTMLParagraphElement>
+    | undefined;
+  accountId: number;
+  profile: ProfileType;
 };
 type Inputs = {
   profileName: string;
@@ -18,24 +22,14 @@ type Inputs = {
   profileDateOfBirth: string;
 };
 
-const ProfileModal = ({ open, handleClose }: PropsType) => {
-  const { register, handleSubmit, reset } = useForm();
-
-  const [profile, setProfile] = useState<ProfileType>();
+const ProfileModal = ({
+  openProfileModal,
+  handleCloseProfileModal,
+  accountId,
+  profile,
+}: PropsType) => {
+  const { register, handleSubmit } = useForm();
   const history = useHistory();
-  useEffect(() => {
-    const fetchProfile = async () => {
-      const res = await HttpClient.request({
-        method: "GET",
-        url: "http://localhost:3000/profiles/1",
-      });
-
-      const profileData = res.data;
-
-      setProfile(profileData);
-    };
-    fetchProfile();
-  }, []);
 
   const handleEditProfile = async (data: Inputs) => {
     try {
@@ -52,6 +46,7 @@ const ProfileModal = ({ open, handleClose }: PropsType) => {
           address: data.profileAddress,
           dateOfBirth: data.profileDateOfBirth,
           biography: profile ? profile.biography : "",
+          accountId: accountId,
         },
       });
       console.log(res);
@@ -114,7 +109,7 @@ const ProfileModal = ({ open, handleClose }: PropsType) => {
               <Button
                 color={"gray"}
                 border={"none"}
-                onClick={handleClose}
+                onClick={handleCloseProfileModal}
                 text={"キャンセル"}
                 type={"button"}
               />
@@ -123,7 +118,7 @@ const ProfileModal = ({ open, handleClose }: PropsType) => {
               <Button
                 border={"none"}
                 color={"primary"}
-                onClick={() => handleClose}
+                onClick={() => handleCloseProfileModal}
                 text={"更新"}
                 type={"submit"}
               />
@@ -135,7 +130,7 @@ const ProfileModal = ({ open, handleClose }: PropsType) => {
   );
 
   return (
-    <Modal open={open} onClose={handleClose}>
+    <Modal open={openProfileModal} onClose={handleCloseProfileModal}>
       {body}
     </Modal>
   );
