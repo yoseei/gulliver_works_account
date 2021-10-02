@@ -34,7 +34,7 @@ const EditBiographyModal = ({
 
       const res = await HttpClient.request({
         method: "PUT",
-        url: `http://localhost:3000/profiles/${profile ? profile.id : ""}`,
+        url: `http://localhost:3000/profiles/${profile.id}`,
         data: {
           id: profile ? profile.id : "",
           name: profile ? profile.name : "",
