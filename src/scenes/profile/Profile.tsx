@@ -57,10 +57,10 @@ const Profile = () => {
     const fetchProfile = async () => {
       const res = await HttpClient.request({
         method: "GET",
-        url: `http://localhost:3000/profiles/${accountId}`,
+        url: `http://localhost:3000/accounts/${accountId}/profiles`,
       });
 
-      const profileData = res.data;
+      const profileData = res.data[0];
       setProfile(profileData);
     };
     fetchProfile();

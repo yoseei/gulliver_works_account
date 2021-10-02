@@ -30,6 +30,8 @@ const EditBiographyModal = ({
 
   const handleEditBiography = async (data: Inputs) => {
     try {
+      if (!profile) return;
+
       const res = await HttpClient.request({
         method: "PUT",
         url: `http://localhost:3000/profiles/${profile ? profile.id : ""}`,
