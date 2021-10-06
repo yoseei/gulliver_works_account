@@ -10,6 +10,7 @@ const RecruitmentIndexPage = () => {
       </div>
       <SideBar textA={"募集一覧"} textB={"マイページ"} />
       <Link to="/signin">ログイン</Link>
+      <button>サインアウト</button>
     </div>
   );
 };
