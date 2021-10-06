@@ -4,10 +4,10 @@ import { useHistory } from "react-router-dom";
 import { useCurrentAccount } from "../../hooks/useCurrentAccount";
 import styles from "./style.module.scss";
 import { SignInParams, useSignInPresenter } from "./useSignInPresenter";
-
+import { ErrorMessage } from "@hookform/error-message";
 const SignInPage = () => {
   const [isRevealPassword, setIsRevealPassword] = useState(false);
-  const { register, handleSubmit } = useForm<SignInParams>();
+  const { register, handleSubmit, errors } = useForm<SignInParams>();
   const { signIn } = useSignInPresenter();
   const token = localStorage.getItem("GULLIVER_WORKS_AUTH_TOKEN");
   const history = useHistory();
@@ -38,8 +38,29 @@ const SignInPage = () => {
               className={styles.input}
               name="account.email"
               placeholder="coadmap@mail.com"
-              ref={register}
+              ref={register({
+                required: "※メールアドレスを入力してください。",
+                pattern: {
+                  value:
+                    /^[a-zA-Z0-9_.+-]+@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/,
+                  message: "※正しいメールアドレスを入力してください。",
+                },
+              })}
               type="email"
+            />
+            <ErrorMessage
+              name="account.email"
+              errors={errors}
+              render={({ messages }) => {
+                console.log("messages", messages);
+                return messages
+                  ? Object.entries(messages).map(([type, message]) => (
+                      <p key={type} className={styles.errorMessage}>
+                        {message}
+                      </p>
+                    ))
+                  : null;
+              }}
             />
           </div>
           <div className={styles.passwordInputWrapper}>
