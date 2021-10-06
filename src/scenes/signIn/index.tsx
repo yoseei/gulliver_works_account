@@ -7,7 +7,7 @@ import { SignInParams, useSignInPresenter } from "./useSignInPresenter";
 
 const SignInPage = () => {
   const [isRevealPassword, setIsRevealPassword] = useState(false);
-  const { register, handleSubmit, reset } = useForm<SignInParams>();
+  const { register, handleSubmit } = useForm<SignInParams>();
   const { signIn } = useSignInPresenter();
   const token = localStorage.getItem("GULLIVER_WORKS_AUTH_TOKEN");
   const history = useHistory();
