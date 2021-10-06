@@ -9,7 +9,7 @@ const SignInPage = () => {
   const [isRevealPassword, setIsRevealPassword] = useState(false);
   const { register, handleSubmit, reset } = useForm<SignInParams>();
   const { signIn } = useSignInPresenter();
-  const { account } = useCurrentAccount();
+  const token = localStorage.getItem("GULLIVER_WORKS_AUTH_TOKEN");
   const history = useHistory();
 
   const togglePassword = () => {
@@ -17,14 +17,13 @@ const SignInPage = () => {
   };
 
   useEffect(() => {
-    if (account) history.push("/");
-  }, [account]);
+    if (token) history.push("/");
+  }, [token]);
 
   const onSubmit = (data: SignInParams) => {
-    console.log(data);
+    console.log("Submit!!");
 
     signIn(data);
-    reset();
     history.push("/");
   };
 
@@ -66,14 +65,16 @@ const SignInPage = () => {
             </span>
           </div>
           <div className={styles.loginButtonWrapper}>
-            <button type="submit" value="ログイン" />
+            <button type="submit" onClick={() => console.log("click")}>
+              ログイン
+            </button>
           </div>
           <div className={styles.passwordLinkWrapper}>
             <a href="">パスワードを忘れた方はこちら</a>
             {/* ToDoパスワード再設定ページへのリンクを貼る */}
           </div>
           <div className={styles.signupWrapper}>
-            <button>新規登録はこちら</button>
+            <button type="button">新規登録はこちら</button>
           </div>
           {/* <Link to="/">ホームへ</Link> */}
         </form>
