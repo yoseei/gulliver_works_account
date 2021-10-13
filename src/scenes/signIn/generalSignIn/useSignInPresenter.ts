@@ -25,6 +25,7 @@ export function useSignInPresenter() {
         data,
       });
       localStorage.setItem("GULLIVER_WORKS_AUTH_TOKEN", res.data.token);
+      localStorage.setItem("LoginAs", "general");
       setAccount(res.data.account);
     } catch (e) {
       console.error(e);

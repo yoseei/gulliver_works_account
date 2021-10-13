@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./style.module.scss";
 import { Link } from "react-router-dom";
 import SideBar from "../../../components/sideBar/SideBar";
@@ -10,6 +10,10 @@ const RecruitmentIndexPage = () => {
     localStorage.removeItem("GULLIVER_WORKS_AUTH_TOKEN");
     history.push("/signin");
   };
+
+  // useEffect(() => {
+  //   console.log(localStorage.getItem("LoginAs"));
+  // }, []);
 
   return (
     <div className={styles.root}>
