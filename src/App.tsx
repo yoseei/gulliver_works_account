@@ -2,7 +2,8 @@ import React, { FC } from "react";
 import "./App.scss";
 import { BrowserRouter, Route } from "react-router-dom";
 import RecruitmentIndexPage from "./scenes/recruitment/RecruitmentIndexPage";
-import SignInPage from "./scenes/signIn";
+import SignInPage from "./scenes/signIn/generalSignIn";
+import EmployeeSignInPage from "./scenes/signIn/employeeSignIn";
 import Profile from "./scenes/profile/Profile";
 
 const App: FC = () => (
@@ -10,6 +11,7 @@ const App: FC = () => (
     <div>
       <Route exact path="/" component={RecruitmentIndexPage} />
       <Route path="/signin" component={SignInPage} />
+      <Route path="/employeesignin" component={EmployeeSignInPage} />
       <Route path="/profile" component={Profile}></Route>
     </div>
   </BrowserRouter>

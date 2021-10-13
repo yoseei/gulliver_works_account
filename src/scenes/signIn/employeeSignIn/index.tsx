@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
-import { useCurrentAccount } from "../../hooks/useCurrentAccount";
+import { useCurrentAccount } from "../../../hooks/useCurrentAccount";
 import styles from "./style.module.scss";
 import { SignInParams, useSignInPresenter } from "./useSignInPresenter";
+import { ErrorMessage } from "@hookform/error-message";
 
-const SignInPage = () => {
+const EmployeeSignInPage = () => {
   const [isRevealPassword, setIsRevealPassword] = useState(false);
-  const { register, handleSubmit, reset } = useForm<SignInParams>();
+  const { register, handleSubmit, reset, errors } = useForm<SignInParams>({
+    criteriaMode: "all",
+  });
   const { signIn } = useSignInPresenter();
   const { account } = useCurrentAccount();
   const history = useHistory();
@@ -21,8 +24,6 @@ const SignInPage = () => {
   }, [account]);
 
   const onSubmit = (data: SignInParams) => {
-    console.log(data);
-
     signIn(data);
     reset();
     history.push("/");
@@ -31,16 +32,36 @@ const SignInPage = () => {
   return (
     <div className={styles.page}>
       <div className={styles.loginContainer}>
-        <h1>求職者ログイン</h1>
+        <h1>従業員ログイン</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.emailInputWrapper}>
             <p>メールアドレス</p>
             <input
               className={styles.input}
-              name="account.email"
               placeholder="coadmap@mail.com"
-              ref={register}
-              type="email"
+              ref={register({
+                required: "※メールアドレスを入力してください。",
+                pattern: {
+                  value:
+                    /^[a-zA-Z0-9_.+-]+@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/,
+                  message: "※正しいメールアドレスを入力してください。",
+                },
+              })}
+              name="account.email"
+            />
+            <ErrorMessage
+              name="account.email"
+              errors={errors}
+              render={({ messages }) => {
+                console.log("messages", messages);
+                return messages
+                  ? Object.entries(messages).map(([type, message]) => (
+                      <p key={type} className={styles.errorMessage}>
+                        {message}
+                      </p>
+                    ))
+                  : null;
+              }}
             />
           </div>
           <div className={styles.passwordInputWrapper}>
@@ -49,10 +70,29 @@ const SignInPage = () => {
               className={styles.input}
               placeholder="パスワードを入力"
               type={isRevealPassword ? "text" : "password"}
-              ref={register({ required: true })}
+              ref={register({
+                required: "※パスワードは必須項目です。",
+                minLength: {
+                  value: 6,
+                  message: "※パスワードは６文字以上で入力してください。",
+                },
+              })}
               name="account.password"
             />
-
+            <ErrorMessage
+              name="account.password"
+              errors={errors}
+              render={({ messages }) => {
+                console.log("messages", messages);
+                return messages
+                  ? Object.entries(messages).map(([type, message]) => (
+                      <p key={type} className={styles.errorMessage}>
+                        {message}
+                      </p>
+                    ))
+                  : null;
+              }}
+            />
             <span
               onClick={togglePassword}
               role="presentation"
@@ -66,7 +106,7 @@ const SignInPage = () => {
             </span>
           </div>
           <div className={styles.loginButtonWrapper}>
-            <button type="submit" value="ログイン" />
+            <button type="submit">ログイン</button>
           </div>
           <div className={styles.passwordLinkWrapper}>
             <a href="">パスワードを忘れた方はこちら</a>
@@ -82,4 +122,4 @@ const SignInPage = () => {
   );
 };
 
-export default SignInPage;
+export default EmployeeSignInPage;
