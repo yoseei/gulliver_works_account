@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./style.module.scss";
 import { Link } from "react-router-dom";
 import SideBar from "../../../components/sideBar/SideBar";
@@ -11,8 +11,6 @@ const RecruitmentIndexPage = () => {
     history.push("/signin");
   };
 
-  // test
-  // test
   return (
     <div className={styles.root}>
       <div className={styles.text}>
