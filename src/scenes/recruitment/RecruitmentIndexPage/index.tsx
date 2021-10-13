@@ -11,10 +11,7 @@ const RecruitmentIndexPage = () => {
     history.push("/signin");
   };
 
-  // useEffect(() => {
-  //   console.log(localStorage.getItem("LoginAs"));
-  // }, []);
-
+  // test
   return (
     <div className={styles.root}>
       <div className={styles.text}>
