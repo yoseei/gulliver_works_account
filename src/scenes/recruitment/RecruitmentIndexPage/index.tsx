@@ -12,6 +12,7 @@ const RecruitmentIndexPage = () => {
   };
 
   // test
+  // test
   return (
     <div className={styles.root}>
       <div className={styles.text}>
