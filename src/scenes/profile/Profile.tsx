@@ -92,9 +92,6 @@ const Profile = () => {
     fetchAcademicHistory();
   }, []);
 
-  // test
-  // test
-  // test
   return (
     <div className={styles.root}>
       <div className={styles.profileContainer}>

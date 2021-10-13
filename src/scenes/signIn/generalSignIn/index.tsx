@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
-import { useCurrentAccount } from "../../hooks/useCurrentAccount";
+import { useCurrentAccount } from "../../../hooks/useCurrentAccount";
 import styles from "./style.module.scss";
 import { SignInParams, useSignInPresenter } from "./useSignInPresenter";
 import { ErrorMessage } from "@hookform/error-message";
@@ -21,8 +21,6 @@ const SignInPage = () => {
   }, [token]);
 
   const onSubmit = (data: SignInParams) => {
-    console.log("Submit!!");
-
     signIn(data);
     history.push("/");
   };

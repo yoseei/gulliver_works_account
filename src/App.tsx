@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import "./App.scss";
 import { BrowserRouter, Route } from "react-router-dom";
 import RecruitmentIndexPage from "./scenes/recruitment/RecruitmentIndexPage";
-import SignInPage from "./scenes/signIn";
+import SignInPage from "./scenes/signIn/generalSignIn";
 import EmployeeSignInPage from "./scenes/signIn/employeeSignIn";
 import Profile from "./scenes/profile/Profile";
 

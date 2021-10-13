@@ -24,8 +24,6 @@ const EmployeeSignInPage = () => {
   }, [account]);
 
   const onSubmit = (data: SignInParams) => {
-    console.log(data);
-
     signIn(data);
     reset();
     history.push("/");
@@ -72,10 +70,29 @@ const EmployeeSignInPage = () => {
               className={styles.input}
               placeholder="パスワードを入力"
               type={isRevealPassword ? "text" : "password"}
-              ref={register({ required: true })}
+              ref={register({
+                required: "※パスワードは必須項目です。",
+                minLength: {
+                  value: 6,
+                  message: "※パスワードは６文字以上で入力してください。",
+                },
+              })}
               name="account.password"
             />
-
+            <ErrorMessage
+              name="account.password"
+              errors={errors}
+              render={({ messages }) => {
+                console.log("messages", messages);
+                return messages
+                  ? Object.entries(messages).map(([type, message]) => (
+                      <p key={type} className={styles.errorMessage}>
+                        {message}
+                      </p>
+                    ))
+                  : null;
+              }}
+            />
             <span
               onClick={togglePassword}
               role="presentation"
