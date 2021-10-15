@@ -11,7 +11,7 @@ const Textarea = ({ name, placeholder, rows, title }: PropsType) => {
   return (
     <div className={styles.root}>
       <p>{title}</p>
-      <textarea rows={rows} name={name} placeholder={placeholder} />
+      <textarea rows={rows} name={name} placeholder={placeholder}></textarea>
     </div>
   );
 };

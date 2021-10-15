@@ -28,6 +28,7 @@ const CorporateRegistration = () => {
             <div>
               <div className={styles.selectBox}>
                 <select name="HeadOfficeLocation">
+                  <option value=""></option>
                   <option value="sample1">サンプル1</option>
                   <option value="sample2">サンプル2</option>
                   <option value="sample3">サンプル3</option>
@@ -41,6 +42,7 @@ const CorporateRegistration = () => {
             <div className={styles.selectBoxWrapper}>
               <div className={styles.selectBox}>
                 <select name="HeadOfficeLocation">
+                  <option value=""></option>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -104,10 +106,8 @@ const CorporateRegistration = () => {
           <Textarea rows={3} name={"businessSummery"} title={"事業概要"} />
           <Textarea
             name={"businessSummery"}
-            placeholder={
-              "アカウント作成後でも入力・更新いただけます&#13;&#10;ほげ"
-            }
-            rows={3}
+            placeholder="アカウント作成後でも入力・更新いただけます&#13;&#10;※1. 求人応募の際は、本項目への入力は必須です&#13;&#10;※2. 内容を充実させることで、スカウト受信・選考通過の可能性が高まります"
+            rows={4}
             title={"企業PR（５００文字）"}
           />
           <div className={styles.logoContainer}>

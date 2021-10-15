@@ -1,5 +1,4 @@
 .root {
-  height: 100vh;
   padding: 50px;
   .sideContainer {
     position: absolute;
@@ -12,11 +11,14 @@
     }
     .selectBoxContainer {
       margin-bottom: 20px;
+
       p {
         color: #7d7d7d;
       }
       .selectBoxWrapper {
         display: flex;
+        gap: 10px;
+        align-items: center;
       }
       .selectBox {
         width: 30%;
@@ -24,6 +26,7 @@
         border-radius: 5px;
         padding: 5px 10px;
         select {
+          cursor: pointer;
           width: 100%;
           -webkit-appearance: auto;
         }
