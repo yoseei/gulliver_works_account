@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./CorporateRegistration.module.scss";
 import SideBar from "../../components/sideBar/SideBar";
 import Input from "../../components/input/Input";
-import SelectBox from "../../components/selectBox/SelectBox";
 import Textarea from "../../components/textarea/Textarea";
 import Button from "../../components/button/Button";
 
@@ -58,7 +57,7 @@ const CorporateRegistration = () => {
           <div className={styles.listedContainer}>
             <p className={styles.title}>上場/非上場</p>
             <div className={styles.listedWrapper}>
-              <input type="radio" name="listed" value="listed" checked />
+              <input type="radio" name="listed" value="listed" defaultChecked />
               <p>上場</p>
             </div>
             <div className={styles.listedWrapper}>
