@@ -7,39 +7,37 @@ import CircleButton from "../../components/circleButton/CircleButton";
 import { HttpClient } from "../../utilities/axiosInstance";
 
 const CorporateRegistration = () => {
-  useEffect(() => {
+  const handleCreateCompanyInfo = async () => {
     try {
-      const fetchCompanyInfo = async () => {
-        const res = await HttpClient.request({
-          method: "GET",
-          url: `http://localhost:3000/companies/1`,
-          data: {
-            id: "1",
-            name: "株式会社SIMULA Labs",
-            nameKana: "シミュララボ ",
-            headOfficeLocation: "東京都港区元赤坂1-7-18",
-            yearOfEstablishment: "2015",
-            hpUrl: "https://simula-labs.com/",
-            phone: "03-1234-5678",
-            capital: 1520,
-            isListed: "false",
-            representative: "牧野暉弘",
-            representativeKana: "まきのあきひろ",
-            netSales: "5000",
-            numbersOfEmployees: "20",
-            averageAge: 28,
-            businessSummary: "事業概要",
-            corporatePr:
-              "ヒトが生涯の中で最も長く過ごす「働く」という時間。 日本の場合、この働く時間をどう過ごすかはほとんど就活の間に決まってしまっていると言ってもいいでしょう。",
-          },
-        });
-        console.log(res);
-      };
-      fetchCompanyInfo();
+      const res = await HttpClient.request({
+        method: "PUT",
+        url: `http://localhost:3000/companies/1`,
+        data: {
+          id: "1",
+          name: "株式会社SIMULA Labs",
+          nameKana: "test ",
+          headOfficeLocation: "東京都港区元赤坂1-7-18",
+          yearOfEstablishment: "2015",
+          hpUrl: "https://simula-labs.com/",
+          phone: "03-1234-5678",
+          capital: 1520,
+          isListed: "false",
+          representative: "牧野暉弘",
+          representativeKana: "まきのあきひろ",
+          netSales: "5000",
+          numbersOfEmployees: "20",
+          averageAge: 28,
+          businessSummary: "事業概要",
+          corporatePr:
+            "ヒトが生涯の中で最も長く過ごす「働く」という時間。 日本の場合、この働く時間をどう過ごすかはほとんど就活の間に決まってしまっていると言ってもいいでしょう。",
+        },
+      });
+      console.log(res);
+      alert("test");
     } catch (err) {
       console.log(err);
     }
-  }, []);
+  };
 
   return (
     <div className={styles.root}>
@@ -157,7 +155,7 @@ const CorporateRegistration = () => {
           </div>
 
           <div className={styles.buttonContainer}>
-            <CircleButton />
+            <CircleButton onClick={handleCreateCompanyInfo} />
           </div>
         </div>
       </form>

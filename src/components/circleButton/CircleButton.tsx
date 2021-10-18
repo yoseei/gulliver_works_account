@@ -1,14 +1,18 @@
 import React from "react";
 import Button from "../../components/button/Button";
 
-const CircleButton = () => {
+type PropsType = {
+  // handleCreateCompanyInfo: () => Promise<void>;
+  onClick: React.MouseEventHandler<HTMLParagraphElement> | undefined;
+};
+const CircleButton = ({ onClick }: PropsType) => {
   return (
     <Button
       color={"primary"}
       border={"none"}
-      onClick={() => console.log("動作チェック")}
+      onClick={onClick}
       text={"次へ"}
-      type={"submit"}
+      type={"button"}
       width={"30%"}
       borderRadius={"15px"}
       padding={"10px"}
