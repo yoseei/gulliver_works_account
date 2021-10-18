@@ -13,7 +13,7 @@ const App: FC = () => (
       <Route exact path="/" component={RecruitmentIndexPage} />
       <Route path="/signin" component={SignInPage} />
       <Route path="/employeesignin" component={EmployeeSignInPage} />
-      <Route path="/profile" component={Profile}></Route>
+      <Route path="/profile" component={Profile} />
       <Route
         path="/corporateregistration"
         component={CorporateRegistration}
