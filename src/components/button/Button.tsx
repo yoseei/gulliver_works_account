@@ -9,6 +9,9 @@ interface PropsTypes {
   text: string;
   type?: "button" | "submit" | "reset" | undefined;
   style?: React.CSSProperties | undefined;
+  width?: string;
+  borderRadius?: string;
+  padding?: string;
 }
 const Button = ({
   color,
@@ -16,9 +19,10 @@ const Button = ({
   onClick,
   text,
   type,
-  style,
-}: // width,
-PropsTypes) => {
+  width,
+  borderRadius,
+  padding,
+}: PropsTypes) => {
   return (
     <button
       className={classNames(
@@ -27,8 +31,8 @@ PropsTypes) => {
         { [styles.gray]: color === "gray" },
         { [styles.primary]: color === "primary" }
       )}
+      style={{ width: width, borderRadius: borderRadius, padding: padding }}
       type={type}
-      style={style}
     >
       <p onClick={onClick}>{text}</p>
     </button>

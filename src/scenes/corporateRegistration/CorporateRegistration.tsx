@@ -122,16 +122,6 @@ const CorporateRegistration = () => {
           </div>
 
           <div className={styles.buttonContainer}>
-            {/* <Button
-              color={"primary"}
-              border={"none"}
-              // borderRadius={"15px"}
-              onClick={() => console.log("test")}
-              // padding={"10px"}
-              text={"次へ"}
-              type={"submit"}
-              // width={"30%"}
-            /> */}
             <CircleButton />
           </div>
         </div>
