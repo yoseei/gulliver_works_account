@@ -14,10 +14,7 @@ const App: FC = () => (
       <Route path="/signin" component={SignInPage} />
       <Route path="/employeesignin" component={EmployeeSignInPage} />
       <Route path="/profile" component={Profile} />
-      <Route
-        path="/corporateregistration"
-        component={CorporateRegistration}
-      ></Route>
+      <Route path="/corporateregistration" component={CorporateRegistration} />
     </div>
   </BrowserRouter>
 );
