@@ -1,13 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./CorporateRegistration.module.scss";
 import SideBar from "../../components/sideBar/SideBar";
 import Input from "../../components/input/Input";
 import Textarea from "../../components/textarea/Textarea";
 import CircleButton from "../../components/circleButton/CircleButton";
 import { HttpClient } from "../../utilities/axiosInstance";
+import { useForm } from "react-hook-form";
+import { CompanyType } from "../../data/company";
 
 const CorporateRegistration = () => {
-  const handleCreateCompanyInfo = async () => {
+  const { register, handleSubmit } = useForm();
+
+  const handleCreateCompanyInfo = async (data: CompanyType) => {
     try {
       const res = await HttpClient.request({
         method: "PUT",
@@ -44,15 +48,21 @@ const CorporateRegistration = () => {
       <div className={styles.sideContainer}>
         <SideBar textA={"企業詳細"} textB={"募集管理"} />
       </div>
-      <form action="">
+      <form onSubmit={handleSubmit(handleCreateCompanyInfo)}>
         <div className={styles.mainContainer}>
           <h1>企業登録</h1>
 
-          <Input type={"text"} title={"法人名"} name={"corporateName"} />
+          <Input
+            type={"text"}
+            title={"法人名"}
+            name={"corporateName"}
+            ref={register}
+          />
           <Input
             type={"text"}
             title={"法人名（ふりがな）"}
             name={"corporateNameKana"}
+            ref={register}
           />
 
           <div className={styles.selectBoxContainer}>
@@ -84,17 +94,33 @@ const CorporateRegistration = () => {
             </div>
           </div>
 
-          <Input type={"text"} title={"HPのURL"} name={"url"} />
-          <Input type={"text"} title={"電話番号"} name={"phoneNumber"} />
+          <Input type={"text"} title={"HPのURL"} name={"url"} ref={register} />
+          <Input
+            type={"text"}
+            title={"電話番号"}
+            name={"phoneNumber"}
+            ref={register}
+          />
 
           <div className={styles.listedContainer}>
             <p className={styles.title}>上場/非上場</p>
             <div className={styles.listedWrapper}>
-              <input type="radio" name="listed" value="listed" defaultChecked />
+              <input
+                type="radio"
+                name="listed"
+                value="listed"
+                defaultChecked
+                ref={register}
+              />
               <p>上場</p>
             </div>
             <div className={styles.listedWrapper}>
-              <input type="radio" name="listed" value="unlisted" />
+              <input
+                type="radio"
+                name="listed"
+                value="unlisted"
+                ref={register}
+              />
               <p>非上場</p>
             </div>
           </div>
@@ -104,11 +130,11 @@ const CorporateRegistration = () => {
             <div className={styles.inputContainer}>
               <div className={styles.leftWrapper}>
                 <p>姓</p>
-                <Input type={"text"} name={"lastName"} />
+                <Input type={"text"} name={"lastName"} ref={register} />
               </div>
               <div className={styles.rightWrapper}>
                 <p>名</p>
-                <Input type={"text"} name={"firstName"} />
+                <Input type={"text"} name={"firstName"} ref={register} />
               </div>
             </div>
           </div>
@@ -118,11 +144,11 @@ const CorporateRegistration = () => {
             <div className={styles.inputContainer}>
               <div className={styles.leftWrapper}>
                 <p>姓</p>
-                <Input type={"text"} name={"lastNameKana"} />
+                <Input type={"text"} name={"lastNameKana"} ref={register} />
               </div>
               <div className={styles.rightWrapper}>
                 <p>名</p>
-                <Input type={"text"} name={"firstNamekana"} />
+                <Input type={"text"} name={"firstNamekana"} ref={register} />
               </div>
             </div>
           </div>
@@ -131,9 +157,20 @@ const CorporateRegistration = () => {
             type={"text"}
             title={"前年度の売上高"}
             name={"amountOfSales"}
+            ref={register}
           />
-          <Input type={"text"} title={"従業員数"} name={"numberOfEmployees"} />
-          <Input type={"text"} title={"平均年齢"} name={"averageAge"} />
+          <Input
+            type={"text"}
+            title={"従業員数"}
+            name={"numberOfEmployees"}
+            ref={register}
+          />
+          <Input
+            type={"text"}
+            title={"平均年齢"}
+            name={"averageAge"}
+            ref={register}
+          />
 
           <Textarea rows={3} name={"businessSummery"} title={"事業概要"} />
           <Textarea
@@ -144,7 +181,12 @@ const CorporateRegistration = () => {
           />
           <div className={styles.logoContainer}>
             <label>
-              <Input type={"file"} title={"企業ロゴ"} name={"logoImage"} />
+              <Input
+                type={"file"}
+                title={"企業ロゴ"}
+                name={"logoImage"}
+                ref={register}
+              />
               <div className={styles.logoWrapper}>
                 <div className={styles.image}></div>
                 <p className={styles.explanation}>
@@ -155,7 +197,7 @@ const CorporateRegistration = () => {
           </div>
 
           <div className={styles.buttonContainer}>
-            <CircleButton onClick={handleCreateCompanyInfo} />
+            <CircleButton onClick={() => alert("投稿しました")} />
           </div>
         </div>
       </form>
