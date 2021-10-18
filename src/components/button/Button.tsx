@@ -5,35 +5,30 @@ import classNames from "classnames";
 interface PropsTypes {
   color?: "primary" | "gray";
   border?: "none";
-  borderRadius?: "15px";
   onClick: React.MouseEventHandler<HTMLParagraphElement> | undefined;
-  padding?: "10px";
   text: string;
   type?: "button" | "submit" | "reset" | undefined;
-  width?: "30%";
+  style?: React.CSSProperties | undefined;
 }
 const Button = ({
   color,
   border,
-  borderRadius,
   onClick,
-  padding,
   text,
   type,
-  width,
-}: PropsTypes) => {
+  style,
+}: // width,
+PropsTypes) => {
   return (
     <button
       className={classNames(
         styles.root,
         { [styles.borderNone]: border === "none" },
-        { [styles.borderRadius]: borderRadius === "15px" },
         { [styles.gray]: color === "gray" },
-        { [styles.primary]: color === "primary" },
-        { [styles.padding]: padding === "10px" },
-        { [styles.width]: width === "30%" }
+        { [styles.primary]: color === "primary" }
       )}
       type={type}
+      style={style}
     >
       <p onClick={onClick}>{text}</p>
     </button>

@@ -3,7 +3,7 @@ import styles from "./CorporateRegistration.module.scss";
 import SideBar from "../../components/sideBar/SideBar";
 import Input from "../../components/input/Input";
 import Textarea from "../../components/textarea/Textarea";
-import Button from "../../components/button/Button";
+import CircleButton from "../../components/circleButton/CircleButton";
 
 const CorporateRegistration = () => {
   return (
@@ -80,7 +80,7 @@ const CorporateRegistration = () => {
             </div>
           </div>
 
-          <div className={styles.representativeNameContainer}>
+          <div className={styles.represTentativeNameContainer}>
             <p>代表氏名（ふりがな）</p>
             <div className={styles.inputContainer}>
               <div className={styles.leftWrapper}>
@@ -122,16 +122,17 @@ const CorporateRegistration = () => {
           </div>
 
           <div className={styles.buttonContainer}>
-            <Button
+            {/* <Button
               color={"primary"}
               border={"none"}
-              borderRadius={"15px"}
+              // borderRadius={"15px"}
               onClick={() => console.log("test")}
-              padding={"10px"}
+              // padding={"10px"}
               text={"次へ"}
               type={"submit"}
-              width={"30%"}
-            />
+              // width={"30%"}
+            /> */}
+            <CircleButton />
           </div>
         </div>
       </form>
