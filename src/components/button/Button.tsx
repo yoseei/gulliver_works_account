@@ -8,16 +8,30 @@ interface PropsTypes {
   onClick: React.MouseEventHandler<HTMLParagraphElement> | undefined;
   text: string;
   type?: "button" | "submit" | "reset" | undefined;
+  style?: React.CSSProperties | undefined;
+  width?: string;
+  borderRadius?: string;
+  padding?: string;
 }
-const Button = ({ color, border, onClick, text, type }: PropsTypes) => {
+const Button = ({
+  color,
+  border,
+  onClick,
+  text,
+  type,
+  width,
+  borderRadius,
+  padding,
+}: PropsTypes) => {
   return (
     <button
       className={classNames(
         styles.root,
-        { [styles.primary]: color === "primary" },
+        { [styles.borderNone]: border === "none" },
         { [styles.gray]: color === "gray" },
-        { [styles.borderNone]: border === "none" }
+        { [styles.primary]: color === "primary" }
       )}
+      style={{ width: width, borderRadius: borderRadius, padding: padding }}
       type={type}
     >
       <p onClick={onClick}>{text}</p>
