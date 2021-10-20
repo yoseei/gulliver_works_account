@@ -7,13 +7,15 @@ type PropsType = {
   type: "text" | "number" | "radio" | "file" | undefined;
 };
 
-const Input = ({ name, title, type }: PropsType) => {
-  return (
-    <div className={styles.root}>
-      <p>{title}</p>
-      <input type={type} name={name} />
-    </div>
-  );
-};
+const Input = React.forwardRef<HTMLInputElement, PropsType>(
+  ({ name, title, type }, ref) => {
+    return (
+      <div className={styles.root}>
+        <p>{title}</p>
+        <input type={type} name={name} ref={ref} />
+      </div>
+    );
+  }
+);
 
 export default Input;

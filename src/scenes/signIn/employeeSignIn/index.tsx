@@ -36,7 +36,6 @@ const EmployeeSignInPage = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.emailInputWrapper}>
             <p>メールアドレス</p>
-            <p>testtesttest</p>
             <input
               className={styles.input}
               placeholder="coadmap@mail.com"

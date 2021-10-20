@@ -46,6 +46,9 @@
       }
     }
     .representativeNameContainer {
+      .errorMessage {
+        color: red;
+      }
       p {
         color: #7d7d7d;
       }
@@ -93,5 +96,8 @@
       display: flex;
       justify-content: center;
     }
+  }
+  .errorMessage {
+    color: red;
   }
 }

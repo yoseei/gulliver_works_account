@@ -52,5 +52,29 @@
       "until_date": "2012-03-01",
       "type": "university"
     }
+  ],
+  "companies": [
+    {
+      "name": "dfa",
+      "name_kana": "fdafd",
+      "head_office_location": "sample2",
+      "year_of_establishment": "1",
+      "hp_url": "dfa",
+      "phone": "fsad",
+      "is_listed": "listed",
+      "representative_last": "fa",
+      "representative_first": "fdasf",
+      "representative_kana_last": "dsf",
+      "representative_kana_first": "dsfa",
+      "net_sales": "fda",
+      "numbers_of_employees": "fdsf",
+      "average_age": "dfa",
+      "business_summery": "fdaf",
+      "corporate_pr": "dfaa",
+      "logo_image": {
+        "0": {}
+      },
+      "id": 1
+    }
   ]
 }

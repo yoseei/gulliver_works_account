@@ -7,13 +7,19 @@ type PropsType = {
   rows: number;
   title: string;
 };
-const Textarea = ({ name, placeholder, rows, title }: PropsType) => {
-  return (
-    <div className={styles.root}>
-      <p>{title}</p>
-      <textarea rows={rows} name={name} placeholder={placeholder}></textarea>
-    </div>
-  );
-};
-
+const Textarea = React.forwardRef<HTMLTextAreaElement, PropsType>(
+  ({ name, placeholder, rows, title }, ref) => {
+    return (
+      <div className={styles.root}>
+        <p>{title}</p>
+        <textarea
+          rows={rows}
+          name={name}
+          placeholder={placeholder}
+          ref={ref}
+        ></textarea>
+      </div>
+    );
+  }
+);
 export default Textarea;
