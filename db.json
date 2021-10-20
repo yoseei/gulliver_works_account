@@ -55,21 +55,22 @@
   ],
   "companies": [
     {
-      "id": "1",
-      "name": "株式会社ホゲ",
-      "name_kana": "かぶしきがいしゃほげ",
+      "name": "hoge",
+      "name_kana": "ほげ",
       "head_office_location": "sample1",
       "year_of_establishment": "1",
-      "hp_url": "https://coadmap.com/services",
-      "phone": "000000000000",
+      "hp_url": "https://hoge",
+      "phone": "1234",
       "is_listed": "listed",
       "representative_last": "保",
       "representative_first": "下",
       "representative_kana_last": "ほ",
       "representative_kana_first": "げ",
-      "net_sales": "2億",
-      "numbers_of_employees": "200",
-      "average_age": "20"
+      "net_sales": "11111111",
+      "numbers_of_employees": "22222",
+      "average_age": "20",
+      "logo_image": {},
+      "id": "NO72_XP"
     }
   ]
 }

@@ -2,7 +2,6 @@ import React from "react";
 import Button from "../../components/button/Button";
 
 type PropsType = {
-  // handleCreateCompanyInfo: () => Promise<void>;
   onClick?: React.MouseEventHandler<HTMLParagraphElement> | undefined;
 };
 const CircleButton = ({ onClick }: PropsType) => {

@@ -14,28 +14,9 @@ const CorporateRegistration = () => {
   const handleCreateCompanyInfo = async (data: CompanyDataType) => {
     try {
       const response = await HttpClient.request({
-        method: "PUT",
-        url: `http://localhost:3000/companies/1`,
-        data: {
-          id: "1",
-          name: data.name,
-          nameKana: data.nameKana,
-          headOfficeLocation: data.headOfficeLocation,
-          yearOfEstablishment: data.yearOfEstablishment,
-          hpUrl: data.hpUrl,
-          phone: data.phone,
-          capital: data.capital,
-          isListed: data.isListed,
-          representativeLast: data.representativeLast,
-          representativeFirst: data.representativeFirst,
-          representativeKanaLast: data.representativeKanaLast,
-          representativeKanaFirst: data.representativeKanaFirst,
-          netSales: data.netSales,
-          numbersOfEmployees: data.numbersOfEmployees,
-          averageAge: data.averageAge,
-          businessSummary: data.businessSummary,
-          corporatePr: data.corporatePr,
-        },
+        method: "POST",
+        url: `http://localhost:3000/companies`,
+        data: { ...data },
       });
       console.log(response);
       alert("test");
