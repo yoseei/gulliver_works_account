@@ -13,7 +13,7 @@ const CorporateRegistration = () => {
 
   const handleCreateCompanyInfo = async (data: CompanyDataType) => {
     try {
-      const res = await HttpClient.request({
+      const response = await HttpClient.request({
         method: "PUT",
         url: `http://localhost:3000/companies/1`,
         data: {
@@ -37,14 +37,12 @@ const CorporateRegistration = () => {
           corporatePr: data.corporatePr,
         },
       });
-      console.log(res);
+      console.log(response);
       alert("test");
     } catch (err) {
       console.log(err);
     }
   };
-
-  const ref = React.createRef();
 
   return (
     <div className={styles.root}>
@@ -55,7 +53,7 @@ const CorporateRegistration = () => {
         <div className={styles.mainContainer}>
           <h1>企業登録</h1>
 
-          <Input type={"text"} title={"法人名"} name="name" ref={register} />
+          <Input type={"text"} title={"法人名"} name={"name"} ref={register} />
 
           <Input
             type={"text"}
@@ -134,11 +132,19 @@ const CorporateRegistration = () => {
             <div className={styles.inputContainer}>
               <div className={styles.leftWrapper}>
                 <p>姓</p>
-                <Input type={"text"} name={"lastName"} ref={register} />
+                <Input
+                  type={"text"}
+                  name={"representativeLast"}
+                  ref={register}
+                />
               </div>
               <div className={styles.rightWrapper}>
                 <p>名</p>
-                <Input type={"text"} name={"firstName"} ref={register} />
+                <Input
+                  type={"text"}
+                  name={"representativeFirst"}
+                  ref={register}
+                />
               </div>
             </div>
           </div>
@@ -148,11 +154,19 @@ const CorporateRegistration = () => {
             <div className={styles.inputContainer}>
               <div className={styles.leftWrapper}>
                 <p>姓</p>
-                <Input type={"text"} name={"lastNameKana"} ref={register} />
+                <Input
+                  type={"text"}
+                  name={"representativeKanaLast"}
+                  ref={register}
+                />
               </div>
               <div className={styles.rightWrapper}>
                 <p>名</p>
-                <Input type={"text"} name={"firstNamekana"} ref={register} />
+                <Input
+                  type={"text"}
+                  name={"representativeKanaFirst"}
+                  ref={register}
+                />
               </div>
             </div>
           </div>
