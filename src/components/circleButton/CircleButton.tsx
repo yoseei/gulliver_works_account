@@ -3,7 +3,7 @@ import Button from "../../components/button/Button";
 
 type PropsType = {
   // handleCreateCompanyInfo: () => Promise<void>;
-  onClick: React.MouseEventHandler<HTMLParagraphElement> | undefined;
+  onClick?: React.MouseEventHandler<HTMLParagraphElement> | undefined;
 };
 const CircleButton = ({ onClick }: PropsType) => {
   return (
@@ -12,7 +12,7 @@ const CircleButton = ({ onClick }: PropsType) => {
       border={"none"}
       onClick={onClick}
       text={"次へ"}
-      type={"button"}
+      type={"submit"}
       width={"30%"}
       borderRadius={"15px"}
       padding={"10px"}

@@ -6,34 +6,35 @@ import Textarea from "../../components/textarea/Textarea";
 import CircleButton from "../../components/circleButton/CircleButton";
 import { HttpClient } from "../../utilities/axiosInstance";
 import { useForm } from "react-hook-form";
-import { CompanyType } from "../../data/company";
+import { CompanyDataType } from "../../data/company";
 
 const CorporateRegistration = () => {
   const { register, handleSubmit } = useForm();
 
-  const handleCreateCompanyInfo = async (data: CompanyType) => {
+  const handleCreateCompanyInfo = async (data: CompanyDataType) => {
     try {
       const res = await HttpClient.request({
         method: "PUT",
         url: `http://localhost:3000/companies/1`,
         data: {
           id: "1",
-          name: "株式会社SIMULA Labs",
-          nameKana: "test ",
-          headOfficeLocation: "東京都港区元赤坂1-7-18",
-          yearOfEstablishment: "2015",
-          hpUrl: "https://simula-labs.com/",
-          phone: "03-1234-5678",
-          capital: 1520,
-          isListed: "false",
-          representative: "牧野暉弘",
-          representativeKana: "まきのあきひろ",
-          netSales: "5000",
-          numbersOfEmployees: "20",
-          averageAge: 28,
-          businessSummary: "事業概要",
-          corporatePr:
-            "ヒトが生涯の中で最も長く過ごす「働く」という時間。 日本の場合、この働く時間をどう過ごすかはほとんど就活の間に決まってしまっていると言ってもいいでしょう。",
+          name: data.name,
+          nameKana: data.nameKana,
+          headOfficeLocation: data.headOfficeLocation,
+          yearOfEstablishment: data.yearOfEstablishment,
+          hpUrl: data.hpUrl,
+          phone: data.phone,
+          capital: data.capital,
+          isListed: data.isListed,
+          representativeLast: data.representativeLast,
+          representativeFirst: data.representativeFirst,
+          representativeKanaLast: data.representativeKanaLast,
+          representativeKanaFirst: data.representativeKanaFirst,
+          netSales: data.netSales,
+          numbersOfEmployees: data.numbersOfEmployees,
+          averageAge: data.averageAge,
+          businessSummary: data.businessSummary,
+          corporatePr: data.corporatePr,
         },
       });
       console.log(res);
@@ -42,6 +43,8 @@ const CorporateRegistration = () => {
       console.log(err);
     }
   };
+
+  const ref = React.createRef();
 
   return (
     <div className={styles.root}>
@@ -52,16 +55,12 @@ const CorporateRegistration = () => {
         <div className={styles.mainContainer}>
           <h1>企業登録</h1>
 
-          <Input
-            type={"text"}
-            title={"法人名"}
-            name={"corporateName"}
-            ref={register}
-          />
+          <Input type={"text"} title={"法人名"} name="name" ref={register} />
+
           <Input
             type={"text"}
             title={"法人名（ふりがな）"}
-            name={"corporateNameKana"}
+            name={"nameKana"}
             ref={register}
           />
 
@@ -69,7 +68,7 @@ const CorporateRegistration = () => {
             <p>本店所在地</p>
             <div>
               <div className={styles.selectBox}>
-                <select name="HeadOfficeLocation">
+                <select name="headOfficeLocation" ref={register}>
                   <option value=""></option>
                   <option value="sample1">サンプル1</option>
                   <option value="sample2">サンプル2</option>
@@ -83,7 +82,7 @@ const CorporateRegistration = () => {
             <p>設立年</p>
             <div className={styles.selectBoxWrapper}>
               <div className={styles.selectBox}>
-                <select name="HeadOfficeLocation">
+                <select name="yearOfEstablishment" ref={register}>
                   <option value=""></option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -94,11 +93,16 @@ const CorporateRegistration = () => {
             </div>
           </div>
 
-          <Input type={"text"} title={"HPのURL"} name={"url"} ref={register} />
+          <Input
+            type={"text"}
+            title={"HPのURL"}
+            name={"hpUrl"}
+            ref={register}
+          />
           <Input
             type={"text"}
             title={"電話番号"}
-            name={"phoneNumber"}
+            name={"phone"}
             ref={register}
           />
 
@@ -107,7 +111,7 @@ const CorporateRegistration = () => {
             <div className={styles.listedWrapper}>
               <input
                 type="radio"
-                name="listed"
+                name="isListed"
                 value="listed"
                 defaultChecked
                 ref={register}
@@ -117,7 +121,7 @@ const CorporateRegistration = () => {
             <div className={styles.listedWrapper}>
               <input
                 type="radio"
-                name="listed"
+                name="isListed"
                 value="unlisted"
                 ref={register}
               />
@@ -139,7 +143,7 @@ const CorporateRegistration = () => {
             </div>
           </div>
 
-          <div className={styles.represTentativeNameContainer}>
+          <div className={styles.representativeNameContainer}>
             <p>代表氏名（ふりがな）</p>
             <div className={styles.inputContainer}>
               <div className={styles.leftWrapper}>
@@ -156,13 +160,13 @@ const CorporateRegistration = () => {
           <Input
             type={"text"}
             title={"前年度の売上高"}
-            name={"amountOfSales"}
+            name={"netSales"}
             ref={register}
           />
           <Input
             type={"text"}
             title={"従業員数"}
-            name={"numberOfEmployees"}
+            name={"numbersOfEmployees"}
             ref={register}
           />
           <Input
@@ -174,7 +178,7 @@ const CorporateRegistration = () => {
 
           <Textarea rows={3} name={"businessSummery"} title={"事業概要"} />
           <Textarea
-            name={"businessSummery"}
+            name={"corporatePr"}
             placeholder="アカウント作成後でも入力・更新いただけます&#13;&#10;※1. 求人応募の際は、本項目への入力は必須です&#13;&#10;※2. 内容を充実させることで、スカウト受信・選考通過の可能性が高まります"
             rows={4}
             title={"企業PR（５００文字）"}
@@ -197,7 +201,9 @@ const CorporateRegistration = () => {
           </div>
 
           <div className={styles.buttonContainer}>
-            <CircleButton onClick={() => alert("投稿しました")} />
+            <CircleButton
+            // onClick={() => alert("投稿しました")}
+            />
           </div>
         </div>
       </form>

@@ -1,4 +1,4 @@
-export type CompanyType = {
+export type CompanyDataType = {
   id: number;
   name: string;
   nameKana: string;
@@ -8,8 +8,10 @@ export type CompanyType = {
   phone: string;
   capital: number;
   isListed: boolean;
-  representative: string;
-  representativeKana: string;
+  representativeLast: string;
+  representativeFirst: string;
+  representativeKanaLast: string;
+  representativeKanaFirst: string;
   netSales: string;
   numbersOfEmployees: string;
   averageAge: number;
