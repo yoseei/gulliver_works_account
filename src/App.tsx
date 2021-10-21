@@ -6,6 +6,7 @@ import SignInPage from "./scenes/signIn/generalSignIn";
 import EmployeeSignInPage from "./scenes/signIn/employeeSignIn";
 import Profile from "./scenes/profile/Profile";
 import CorporateRegistration from "./scenes/corporateRegistration/CorporateRegistration";
+import CompanyDetail from "./scenes/companyDetail/CompanyDetail";
 
 const App: FC = () => (
   <BrowserRouter>
@@ -14,6 +15,7 @@ const App: FC = () => (
       <Route path="/signin" component={SignInPage} />
       <Route path="/employeesignin" component={EmployeeSignInPage} />
       <Route path="/profile" component={Profile} />
+      <Route path="/companydetail" component={CompanyDetail} />
       <Route path="/corporateregistration" component={CorporateRegistration} />
     </div>
   </BrowserRouter>
