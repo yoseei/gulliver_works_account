@@ -5,9 +5,9 @@ import styles from "./CompanyDetail.module.scss";
 const CompanyDetail = () => {
   return (
     <div className={styles.root}>
-      <div className={styles.sideBar}>
+      {/* <div className={styles.sideBar}>
         <SideBar textA={"企業詳細"} textB={"募集管理"} />
-      </div>
+      </div> */}
       <div className={styles.mainContainer}>
         <h1>株式会社ダミー</h1>
         <div className={styles.detailsContainer}>

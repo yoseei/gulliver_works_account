@@ -27,9 +27,6 @@ const CorporateRegistration = () => {
 
   return (
     <div className={styles.root}>
-      <div className={styles.sideContainer}>
-        <SideBar textA={"企業詳細"} textB={"募集管理"} />
-      </div>
       <form onSubmit={handleSubmit(handleCreateCompanyInfo)}>
         <div className={styles.mainContainer}>
           <h1>企業登録</h1>

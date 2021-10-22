@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 interface PropsTypes {
   textA: string;
   textB: string;
+  style: { display: string };
 }
 const SideBar = (props: PropsTypes) => {
   return (
