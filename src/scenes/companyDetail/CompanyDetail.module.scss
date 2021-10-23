@@ -3,10 +3,10 @@
     margin-bottom: 50px;
   }
   display: flex;
-  padding: 100px 50px;
+  width: 100%;
   .mainContainer {
-    width: 100%;
-    padding: 0px 200px 0 80px;
+    width: 80%;
+    margin-left: 60px;
     .detailsContainer {
       border-top: 1px solid #e5e5e5;
       border-bottom: 1px solid #e5e5e5;

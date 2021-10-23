@@ -11,28 +11,24 @@ import SideBar from "./components/sideBar/SideBar";
 
 const App: FC = () => {
   return (
-    <BrowserRouter>
-      <div className="generalPage">
-        <SideBar
-          textA="企業詳細"
-          textB="募集管理"
-          style={{ display: "none" }}
-        />
-
-        <Route exact path="/" component={RecruitmentIndexPage} />
-        <Route path="/signin" component={SignInPage} />
-        <Route path="/employeesignin" component={EmployeeSignInPage} />
-      </div>
-      <div className="employeePage">
-        {/* <SideBar textA="企業詳細" textB="募集管理" /> */}
-        <Route path="/profile" component={Profile} />
-        <Route path="/companydetail" component={CompanyDetail} />
-        <Route
-          path="/corporateregistration"
-          component={CorporateRegistration}
-        />
-      </div>
-    </BrowserRouter>
+    <div className="root">
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={RecruitmentIndexPage} />
+          <Route path="/signin" component={SignInPage} />
+          <Route path="/employeesignin" component={EmployeeSignInPage} />
+          <Route path="/profile" component={Profile} />
+          <div className="showSideBar">
+            <SideBar textA="企業詳細" textB="募集管理" />
+            <Route path="/companydetail" component={CompanyDetail} />
+            <Route
+              path="/corporateregistration"
+              component={CorporateRegistration}
+            />
+          </div>
+        </Switch>
+      </BrowserRouter>
+    </div>
   );
 };
 

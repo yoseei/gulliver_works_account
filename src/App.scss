@@ -7,8 +7,9 @@
   pointer-events: none;
 }
 
-.sidebar {
-  display: none;
+.showSideBar {
+  display: flex;
+  padding: 50px;
 }
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
