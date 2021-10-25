@@ -5,4 +5,5 @@ export interface AcademicHistoryType {
   sinceDate: string;
   untilDate: string;
   type?: string;
+  map: any;
 }

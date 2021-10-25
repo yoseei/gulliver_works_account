@@ -13,12 +13,16 @@ import WorkHistoryTable from "../../components/workHistoryTable/WorkHistoryTable
 import AcademicHistoryTable from "../../components/academicHistoryTable/AcademicHistoryTable";
 import ProfileModal from "../../components/profileModal/ProfileModal";
 import EditBiographyModal from "../../components/editBiographyModal/EditBiographyModal";
+import AcademicHistoryModal from "../../components/academicHistoryModal/AcademicHistoryModal";
 
 const Profile = () => {
   const [profile, setProfile] = useState<ProfileType>();
   const [account, setAccount] = useState<AccountType>();
   const [workHistory, setWorkHistory] = useState<WorkHistoryType>();
-  const [academicHistory, setAcademicHistory] = useState<AcademicHistoryType>();
+  const [academicHistories, setAcademicHistories] =
+    useState<AcademicHistoryType>();
+  const [openAcademicHistoryModal, setOpenAcademicHistoryModal] =
+    useState(false);
   const [openProfileModal, setOpenProfileModal] = useState(false);
   const [openEditBiographyModal, setOpenEditBiographyModal] =
     React.useState(false);
@@ -28,16 +32,22 @@ const Profile = () => {
   const handleOpenProfileModal = () => {
     setOpenProfileModal(true);
   };
-
   const handleCloseProfileModal = () => {
     setOpenProfileModal(false);
   };
+
   const handleOpenEditBiographyModal = () => {
     setOpenEditBiographyModal(true);
   };
-
   const handleCloseEditBiographyModal = () => {
     setOpenEditBiographyModal(false);
+  };
+
+  const handleOpenAcademicHistoryModal = () => {
+    setOpenAcademicHistoryModal(true);
+  };
+  const handleCloseAcademicHistoryModal = () => {
+    setOpenAcademicHistoryModal(false);
   };
 
   useEffect(() => {
@@ -83,14 +93,30 @@ const Profile = () => {
     const fetchAcademicHistory = async () => {
       const res = await HttpClient.request({
         method: "GET",
-        url: "http://localhost:3000/academic_histories/1",
+        url: "http://localhost:3000/academic_histories",
       });
-
-      const academicHistoryData = res.data;
-      setAcademicHistory(academicHistoryData);
+      const academicHistories = res.data;
+      setAcademicHistories(academicHistories);
     };
     fetchAcademicHistory();
   }, []);
+
+  // 最終学歴を取得するためのロジックを組もうとしています。
+  // useEffect(() => {
+  //   if (!academicHistories) return;
+  //   try {
+  //     let untilDate;
+  //     const lastAcademicHistory = academicHistories.map(
+  //       ({ academicHistory, index }: any) => (
+  //         (untilDate = academicHistory.untilDate),
+  //         console.log("test" + untilDate)
+  //       )
+  //     );
+  //     lastAcademicHistory();
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }, []);
 
   return (
     <div className={styles.root}>
@@ -120,7 +146,8 @@ const Profile = () => {
               </div>
               <div className={styles.educationalBackgroundWrapper}>
                 <p className={styles.leftWrapper}>最終学歴</p>
-                <p>{academicHistory?.name}</p>
+                <p>{academicHistories?.name}</p>{" "}
+                {/* 最終学歴を取る方法がわからず、、*/}
               </div>
             </div>
           </div>
@@ -163,9 +190,9 @@ const Profile = () => {
             <h1 className={styles.studyHistoryTitle}>学歴</h1>
 
             <div className={styles.companyWrapper}>
-              {academicHistory && (
+              {academicHistories && (
                 <AcademicHistoryTable
-                  academicHistory={academicHistory}
+                  academicHistories={academicHistories}
                   onClick={() => console.log("編集ボタンクリック！")}
                 />
               )}
@@ -174,7 +201,7 @@ const Profile = () => {
             <div className={styles.buttonWrapper}>
               <Button
                 text={"学歴を追加する"}
-                onClick={() => console.log("クリック")}
+                onClick={() => handleOpenAcademicHistoryModal()}
               />
             </div>
           </div>
@@ -201,6 +228,21 @@ const Profile = () => {
                 openEditBiographyModal={openEditBiographyModal}
                 handleCloseEditBiographyModal={handleCloseEditBiographyModal}
                 profile={profile}
+                accountId={accountId}
+              />
+            )}
+          </div>
+        )}
+
+        {openAcademicHistoryModal && (
+          <div className={styles.academicHistoryModalContainer}>
+            {accountId && (
+              <AcademicHistoryModal
+                openAcademicHistoryModal={openAcademicHistoryModal}
+                handleCloseAcademicHistoryModal={
+                  handleCloseAcademicHistoryModal
+                }
+                academicHistories={academicHistories}
                 accountId={accountId}
               />
             )}
