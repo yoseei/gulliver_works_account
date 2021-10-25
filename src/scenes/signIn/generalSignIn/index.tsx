@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
-import { useCurrentAccount } from "../../../hooks/useCurrentAccount";
 import styles from "./style.module.scss";
 import { SignInParams, useSignInPresenter } from "./useSignInPresenter";
 import { ErrorMessage } from "@hookform/error-message";
+
 const SignInPage = () => {
   const [isRevealPassword, setIsRevealPassword] = useState(false);
   const { register, handleSubmit, errors } = useForm<SignInParams>();
@@ -25,7 +25,6 @@ const SignInPage = () => {
     history.push("/");
   };
 
-  // test
   return (
     <div className={styles.page}>
       <div className={styles.loginContainer}>
