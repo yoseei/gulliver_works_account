@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "./CompanyEdit.module.scss";
 import { HttpClient } from "../../utilities/axiosInstance";
 import { CompanyDataType } from "../../data/company";
-import CompanyInfoInputs from "../../components/companyinfoInputs/CompanyInfoInputs";
+import CompanyForm from "../../components/companyForm/CompanyForm";
 
 const CorporateEdit = () => {
   const handleEditCompanyInfo = async (data: CompanyDataType) => {
@@ -19,7 +19,7 @@ const CorporateEdit = () => {
 
   return (
     <div className={styles.root}>
-      <CompanyInfoInputs
+      <CompanyForm
         buttonText={"更新"}
         handleFunction={handleEditCompanyInfo}
         title={"企業更新"}

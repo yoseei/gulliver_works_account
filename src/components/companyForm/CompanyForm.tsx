@@ -1,11 +1,10 @@
 import React from "react";
-import styles from "./CompanyInfoInputs.module.scss";
-import CircleButton from "../../components/circleButton/CircleButton";
+import styles from "./CompanyForm.module.scss";
+import CircleButton from "../circleButton/CircleButton";
 import { CompanyDataType } from "../../data/company";
 import { ErrorMessage } from "@hookform/error-message";
-import { HttpClient } from "../../utilities/axiosInstance";
-import Input from "../../components/input/Input";
-import Textarea from "../../components/textarea/Textarea";
+import Input from "../input/Input";
+import Textarea from "../textarea/Textarea";
 import { useForm } from "react-hook-form";
 
 type PropsType = {

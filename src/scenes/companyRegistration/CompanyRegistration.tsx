@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "./CompanyRegistration.module.scss";
 import { HttpClient } from "../../utilities/axiosInstance";
 import { useForm } from "react-hook-form";
 import { CompanyDataType } from "../../data/company";
-import CompanyInfoInputs from "../../components/companyinfoInputs/CompanyInfoInputs";
+import CompanyForm from "../../components/companyForm/CompanyForm";
 
 const CorporateRegistration = () => {
   const { reset } = useForm();
@@ -25,7 +25,7 @@ const CorporateRegistration = () => {
 
   return (
     <div className={styles.root}>
-      <CompanyInfoInputs
+      <CompanyForm
         buttonText={"作成"}
         handleFunction={handleCreateCompanyInfo}
         title={"企業登録"}
