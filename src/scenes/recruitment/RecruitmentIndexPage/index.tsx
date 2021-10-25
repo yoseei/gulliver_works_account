@@ -19,6 +19,7 @@ const RecruitmentIndexPage = () => {
       <SideBar textA={"募集一覧"} textB={"マイページ"} />
       <Link to="/signin">ログイン</Link>
       <button onClick={signOut}>サインアウト</button>
+      test
     </div>
   );
 };
