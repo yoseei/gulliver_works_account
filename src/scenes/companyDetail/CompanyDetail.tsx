@@ -1,12 +1,30 @@
-import SideBar from "../../components/sideBar/SideBar";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./CompanyDetail.module.scss";
+import { HttpClient } from "../../utilities/axiosInstance";
+import { CompanyDataType } from "data/company";
 
 const CompanyDetail = () => {
+  const [company, setCompany] = useState<CompanyDataType | undefined>();
+
+  useEffect(() => {
+    try {
+      const fetchCompany = async () => {
+        const res = await HttpClient.request({
+          method: "GET",
+          url: `http://localhost:3000/companies/1`,
+        });
+        const companyData = res.data;
+        setCompany(companyData);
+      };
+      fetchCompany();
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
   return (
     <div className={styles.root}>
       <div className={styles.mainContainer}>
-        <h1>株式会社ダミー</h1>
+        <h1>{company?.name}</h1>
         <div className={styles.detailsContainer}>
           <div className={styles.lowContainerTop}>
             <div className={styles.leftWrapper}>
@@ -14,8 +32,8 @@ const CompanyDetail = () => {
             </div>
             <div className={styles.rightWrapper}>
               <div className={styles.textWrapper}>
-                <p>Coadmap開発・運営事業</p>
-                <p>受託事業</p>
+                <p>{company?.businessSummary}</p>
+                {/* <p>受託事業</p> */}
               </div>
             </div>
           </div>
@@ -24,7 +42,7 @@ const CompanyDetail = () => {
               <p>所在地</p>
             </div>
             <div className={styles.rightWrapper}>
-              <p>東京都世田谷区新町1-32-16</p>
+              <p>{company?.headOfficeLocation}</p>
             </div>
           </div>
           <div className={styles.lowContainer}>
@@ -32,7 +50,7 @@ const CompanyDetail = () => {
               <p>設立</p>
             </div>
             <div className={styles.rightWrapper}>
-              <p>2016年8月</p>
+              <p>{company?.yearOfEstablishment}</p>
             </div>
           </div>
           <div className={styles.lowContainer}>
@@ -40,7 +58,9 @@ const CompanyDetail = () => {
               <p>代表者</p>
             </div>
             <div className={styles.rightWrapper}>
-              <p>牧野暉弘</p>
+              <p>
+                {company?.representativeLast} + {company?.representativeFirst}
+              </p>
             </div>
           </div>
           <div className={styles.lowContainer}>
@@ -48,7 +68,7 @@ const CompanyDetail = () => {
               <p>従業員数</p>
             </div>
             <div className={styles.rightWrapper}>
-              <p>12名</p>
+              <p>{company?.numbersOfEmployees}</p>
             </div>
           </div>
           <div className={styles.lowContainer}>
@@ -56,7 +76,7 @@ const CompanyDetail = () => {
               <p>上場市場名</p>
             </div>
             <div className={styles.rightWrapper}>
-              <p>非上場</p>
+              <p>{company?.isListed}</p>
             </div>
           </div>
           <div className={styles.lowContainer}>
@@ -64,7 +84,7 @@ const CompanyDetail = () => {
               <p>資本金</p>
             </div>
             <div className={styles.rightWrapper}>
-              <p>1520万（資本準備金を含む）</p>
+              <p>{company?.netSales}</p>
             </div>
           </div>
           <div className={styles.lowContainer}>
@@ -72,7 +92,7 @@ const CompanyDetail = () => {
               <p>平均年齢</p>
             </div>
             <div className={styles.rightWrapper}>
-              <p>26歳</p>
+              <p>{company?.averageAge}</p>
             </div>
           </div>
           <div className={styles.lowContainerBottom}>
@@ -82,7 +102,7 @@ const CompanyDetail = () => {
             <div className={styles.rightWrapper}>
               <p>
                 <a href="https://simula-labs.com" target="_blank">
-                  https://simula-labs.com
+                  {company?.hpUrl}
                 </a>
               </p>
             </div>
