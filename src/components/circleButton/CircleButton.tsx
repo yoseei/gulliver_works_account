@@ -3,14 +3,15 @@ import Button from "../../components/button/Button";
 
 type PropsType = {
   onClick?: React.MouseEventHandler<HTMLParagraphElement> | undefined;
+  text: "更新" | "作成";
 };
-const CircleButton = ({ onClick }: PropsType) => {
+const CircleButton = ({ onClick, text }: PropsType) => {
   return (
     <Button
       color={"primary"}
       border={"none"}
       onClick={onClick}
-      text={"次へ"}
+      text={text}
       type={"submit"}
       width={"30%"}
       borderRadius={"15px"}

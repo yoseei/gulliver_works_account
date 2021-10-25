@@ -6,6 +6,7 @@ import SignInPage from "./scenes/signIn/generalSignIn";
 import EmployeeSignInPage from "./scenes/signIn/employeeSignIn";
 import Profile from "./scenes/profile/Profile";
 import CorporateRegistration from "./scenes/corporateRegistration/CorporateRegistration";
+import CorporateEdit from "./scenes/corporateEdit/CorporateEdit";
 import CompanyDetail from "./scenes/companyDetail/CompanyDetail";
 import SideBar from "./components/sideBar/SideBar";
 
@@ -26,6 +27,7 @@ const App: FC = () => {
                 path="/corporateregistration"
                 component={CorporateRegistration}
               />
+              <Route path="/corporateedit" component={CorporateEdit} />
             </div>
           </React.Fragment>
         </Switch>

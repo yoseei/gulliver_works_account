@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "./CorporateRegistration.module.scss";
+import styles from "./CorporateEdit.module.scss";
 import SideBar from "../../components/sideBar/SideBar";
 import Input from "../../components/input/Input";
 import Textarea from "../../components/textarea/Textarea";
@@ -9,14 +9,14 @@ import { useForm } from "react-hook-form";
 import { CompanyDataType } from "../../data/company";
 import { ErrorMessage } from "@hookform/error-message";
 
-const CorporateRegistration = () => {
+const CorporateEdit = () => {
   const { register, handleSubmit, errors, reset } = useForm();
 
   const handleCreateCompanyInfo = async (data: CompanyDataType) => {
     try {
       const response = await HttpClient.request({
-        method: "POST",
-        url: `http://localhost:3000/companies`,
+        method: "PUT",
+        url: `http://localhost:3000/companies/1`,
         data: { ...data },
       });
       reset();
@@ -29,7 +29,7 @@ const CorporateRegistration = () => {
     <div className={styles.root}>
       <form onSubmit={handleSubmit(handleCreateCompanyInfo)}>
         <div className={styles.mainContainer}>
-          <h1>企業登録</h1>
+          <h1>企業更新</h1>
 
           <ErrorMessage
             className={styles.errorMessage}
@@ -289,7 +289,7 @@ const CorporateRegistration = () => {
           </div>
 
           <div className={styles.buttonContainer}>
-            <CircleButton text={"作成"} />
+            <CircleButton text={"更新"} />
           </div>
         </div>
       </form>
@@ -297,4 +297,4 @@ const CorporateRegistration = () => {
   );
 };
 
-export default CorporateRegistration;
+export default CorporateEdit;
