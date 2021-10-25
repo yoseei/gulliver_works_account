@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./CorporateRegistration.module.scss";
 import SideBar from "../../components/sideBar/SideBar";
 import Input from "../../components/input/Input";
@@ -132,7 +132,7 @@ const CorporateRegistration = () => {
               <input
                 type="radio"
                 name="isListed"
-                value="listed"
+                value="上場"
                 defaultChecked
                 ref={register}
               />
@@ -142,7 +142,7 @@ const CorporateRegistration = () => {
               <input
                 type="radio"
                 name="isListed"
-                value="unlisted"
+                value="非上場"
                 ref={register}
               />
               <p>非上場</p>
