@@ -1,0 +1,101 @@
+// .root {
+//   .sideContainer {
+//     position: absolute;
+//   }
+.mainContainer {
+  padding-left: 80px;
+  h1 {
+    margin-bottom: 30px;
+  }
+  .selectBoxContainer {
+    margin-bottom: 20px;
+
+    p {
+      color: #7d7d7d;
+    }
+    .selectBoxWrapper {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .selectBox {
+      width: 30%;
+      border: 1px solid #e5e5e5;
+      border-radius: 5px;
+      padding: 5px 10px;
+      select {
+        cursor: pointer;
+        width: 100%;
+        -webkit-appearance: auto;
+      }
+    }
+  }
+  .listedContainer {
+    margin-bottom: 20px;
+    .title {
+      margin-bottom: 10px;
+    }
+    p {
+      color: #7d7d7d;
+    }
+    .listedWrapper {
+      display: flex;
+      gap: 10px;
+    }
+  }
+  .representativeNameContainer {
+    .errorMessage {
+      color: red;
+    }
+    p {
+      color: #7d7d7d;
+    }
+    .inputContainer {
+      display: flex;
+      gap: 20px;
+      .leftWrapper,
+      .rightWrapper {
+        display: flex;
+        gap: 10px;
+        width: 30%;
+      }
+    }
+  }
+  .logoContainer {
+    margin-bottom: 20px;
+    label {
+      input[type="file"] {
+        display: none;
+      }
+      display: flex;
+      cursor: pointer;
+      gap: 50px;
+      .logoWrapper {
+        width: 150px;
+        height: 150px;
+        background: #f2f2f2;
+        padding: 30px 20px;
+        border-radius: 10px;
+        .image {
+          background: url(./Vector.png);
+          background-repeat: no-repeat;
+          background-size: contain;
+          width: 20px;
+          height: 20px;
+          margin: 0 auto;
+        }
+      }
+      .explanation {
+        font-size: 0.8rem;
+      }
+    }
+  }
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+  }
+}
+.errorMessage {
+  color: red;
+}
+// }

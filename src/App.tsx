@@ -5,8 +5,8 @@ import RecruitmentIndexPage from "./scenes/recruitment/RecruitmentIndexPage";
 import SignInPage from "./scenes/signIn/generalSignIn";
 import EmployeeSignInPage from "./scenes/signIn/employeeSignIn";
 import Profile from "./scenes/profile/Profile";
-import CorporateRegistration from "./scenes/corporateRegistration/CorporateRegistration";
-import CorporateEdit from "./scenes/corporateEdit/CorporateEdit";
+import CompanyRegistration from "./scenes/companyRegistration/CompanyRegistration";
+import CompanyEdit from "./scenes/companyEdit/CompanyEdit";
 import CompanyDetail from "./scenes/companyDetail/CompanyDetail";
 import SideBar from "./components/sideBar/SideBar";
 
@@ -24,10 +24,10 @@ const App: FC = () => {
               <SideBar textA="企業詳細" textB="募集管理" />
               <Route path="/companydetail" component={CompanyDetail} />
               <Route
-                path="/corporateregistration"
-                component={CorporateRegistration}
+                path="/companyregistration"
+                component={CompanyRegistration}
               />
-              <Route path="/corporateedit" component={CorporateEdit} />
+              <Route path="/companyedit" component={CompanyEdit} />
             </div>
           </React.Fragment>
         </Switch>
