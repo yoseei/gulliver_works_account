@@ -59,7 +59,7 @@ const CompanyDetail = () => {
             </div>
             <div className={styles.rightWrapper}>
               <p>
-                {company?.representativeLast} + {company?.representativeFirst}
+                {company?.representativeLast} {company?.representativeFirst}
               </p>
             </div>
           </div>
