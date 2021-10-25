@@ -33,7 +33,6 @@ const CompanyDetail = () => {
             <div className={styles.rightWrapper}>
               <div className={styles.textWrapper}>
                 <p>{company?.businessSummary}</p>
-                {/* <p>受託事業</p> */}
               </div>
             </div>
           </div>
