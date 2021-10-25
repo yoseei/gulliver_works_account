@@ -117,6 +117,7 @@ const Profile = () => {
   //     console.log(err);
   //   }
   // }, []);
+  console.log("pushするための記述");
 
   return (
     <div className={styles.root}>
