@@ -103,23 +103,22 @@ const Profile = () => {
     fetchAcademicHistory();
   }, []);
 
-  // useEffect(() => {
-  //   function compare({ a, b }: any) {
-  //     const nameA = a.name.toUpperCase();
-  //     const nameB = b.name.toUpperCase();
+  // untilDateの降順をconsole.logで取得しようとしています //
+  useEffect(() => {
+    try {
+      if (!academicHistories) return;
+      console.log(
+        academicHistories?.sort(function ({ a, b }: any) {
+          if (a.untilDate > b.untilDate) return -1;
+          if (b.untilDate > a.untilDate) return 1;
 
-  //     let comparison = 0;
-  //     if (nameA > nameB) {
-  //       comparison = 1;
-  //     } else if (nameA < nameB) {
-  //       comparison = -1;
-  //     }
-  //     return comparison;
-  //   }
-
-  //   console.log(academicHistories?.sort(compare));
-  // }, [academicHistories]);
-  // console.log(academicHistories);
+          return 0;
+        })
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  }, [academicHistories]);
 
   return (
     <div className={styles.root}>
