@@ -44,19 +44,18 @@
   ],
   "academic_histories": [
     {
-      "id": 1,
-      "name": "明治大学",
-      "faculty": "情報コミュニケーション学部",
-      "since_date": "2008-04-01",
-      "until_date": "2012-03-01",
-      "type": "university"
+      "name": "日本高校",
+      "faculty": "情報科",
+      "since_date": "2021-10-19",
+      "until_date": "2021-10-20",
+      "id": 2
     },
     {
-      "name": "荏隈小学校",
-      "faculty": "普通化",
-      "since_date": "2021-10-25",
-      "until_date": "2021-10-26",
-      "id": 2
+      "name": "日本大学",
+      "faculty": "情報科",
+      "since_date": "2021-10-26",
+      "until_date": "2021-10-27",
+      "id": 1
     }
   ],
   "companies": [
@@ -79,66 +78,6 @@
       "corporate_pr": "",
       "logo_image": {},
       "id": 1
-    },
-    {
-      "name": "ほげ",
-      "name_kana": "ほげ",
-      "head_office_location": "sample1",
-      "year_of_establishment": "1",
-      "hp_url": "hoge",
-      "phone": "00000",
-      "is_listed": "非上場",
-      "representative_last": "ほげ",
-      "representative_first": "ほげ",
-      "representative_kana_last": "ほげ",
-      "representative_kana_first": "ほげ",
-      "net_sales": "1111",
-      "numbers_of_employees": "",
-      "average_age": "",
-      "business_summary": "テスト",
-      "corporate_pr": "",
-      "logo_image": {},
-      "id": 2
-    },
-    {
-      "name": "ぎえ",
-      "name_kana": "ほげ",
-      "head_office_location": "sample2",
-      "year_of_establishment": "1",
-      "hp_url": "",
-      "phone": "",
-      "is_listed": "上場",
-      "representative_last": "ほげ",
-      "representative_first": "ほげ",
-      "representative_kana_last": "ほげ",
-      "representative_kana_first": "げほえ",
-      "net_sales": "",
-      "numbers_of_employees": "",
-      "average_age": "",
-      "business_summery": "ほげええええ",
-      "corporate_pr": "",
-      "logo_image": {},
-      "id": 3
-    },
-    {
-      "name": "お",
-      "name_kana": "さえｆ",
-      "head_office_location": "sample1",
-      "year_of_establishment": "1",
-      "hp_url": "",
-      "phone": "",
-      "is_listed": "上場",
-      "representative_last": "ｄｆｓｄｆ",
-      "representative_first": "ｄｆさ",
-      "representative_kana_last": "ｆｇｓｇ",
-      "representative_kana_first": "ｆｄｇ",
-      "net_sales": "",
-      "numbers_of_employees": "",
-      "average_age": "",
-      "business_summery": "ｇｆｄｓｇｆｄｓ",
-      "corporate_pr": "",
-      "logo_image": {},
-      "id": 4
     }
   ]
 }

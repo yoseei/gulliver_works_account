@@ -27,6 +27,8 @@ const Profile = () => {
   const [openEditBiographyModal, setOpenEditBiographyModal] =
     React.useState(false);
 
+  const [untilDate, setUntilDate] = useState<string[] | undefined>();
+
   const accountId = account?.id;
 
   const handleOpenProfileModal = () => {
@@ -101,23 +103,23 @@ const Profile = () => {
     fetchAcademicHistory();
   }, []);
 
-  // 最終学歴を取得するためのロジックを組もうとしています。
   // useEffect(() => {
-  //   if (!academicHistories) return;
-  //   try {
-  //     let untilDate;
-  //     const lastAcademicHistory = academicHistories.map(
-  //       ({ academicHistory, index }: any) => (
-  //         (untilDate = academicHistory.untilDate),
-  //         console.log("test" + untilDate)
-  //       )
-  //     );
-  //     lastAcademicHistory();
-  //   } catch (err) {
-  //     console.log(err);
+  //   function compare({ a, b }: any) {
+  //     const nameA = a.name.toUpperCase();
+  //     const nameB = b.name.toUpperCase();
+
+  //     let comparison = 0;
+  //     if (nameA > nameB) {
+  //       comparison = 1;
+  //     } else if (nameA < nameB) {
+  //       comparison = -1;
+  //     }
+  //     return comparison;
   //   }
-  // }, []);
-  console.log("pushするための記述");
+
+  //   console.log(academicHistories?.sort(compare));
+  // }, [academicHistories]);
+  // console.log(academicHistories);
 
   return (
     <div className={styles.root}>

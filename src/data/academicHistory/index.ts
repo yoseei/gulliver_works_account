@@ -6,4 +6,5 @@ export interface AcademicHistoryType {
   untilDate: string;
   type?: string;
   map: any;
+  sort: any;
 }

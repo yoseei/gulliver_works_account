@@ -6,28 +6,27 @@ import { HttpClient } from "../../utilities/axiosInstance";
 import Input from "../input/Input";
 import { AcademicHistoryType } from "../../data/academicHistory/index";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
-
+import { ErrorMessage } from "@hookform/error-message";
+// import { useHistory } from "react-router-dom";
 type PropsType = {
   openAcademicHistoryModal: boolean;
   handleCloseAcademicHistoryModal:
     | React.MouseEventHandler<HTMLParagraphElement>
     | undefined;
-  academicHistories: AcademicHistoryType | undefined;
+  academicHistories?: AcademicHistoryType;
   accountId: number;
 };
-type Inputs = {
-  profileBiography: string;
-};
+// type Inputs = {
+//   profileBiography: string;
+// };
 
 const AcademicHistoryModal = ({
-  accountId,
+  // accountId,
   handleCloseAcademicHistoryModal,
   openAcademicHistoryModal,
-  academicHistories,
-}: PropsType) => {
-  const { register, handleSubmit } = useForm();
-  // const history = useHistory();
+}: // academicHistories,
+PropsType) => {
+  const { register, handleSubmit, errors } = useForm();
 
   const handleAcademicHistory = async (data: AcademicHistoryType) => {
     try {
@@ -37,15 +36,9 @@ const AcademicHistoryModal = ({
         method: "POST",
         url: `http://localhost:3000/academic_histories`,
         data: {
-          // id: accountId,
-          name: data.name,
-          faculty: data.faculty,
-          since_date: data.sinceDate,
-          until_date: data.untilDate,
-          type: data.type,
+          ...data,
         },
       });
-
       alert("プロフィールを編集しました。");
     } catch (err) {
       console.log(err);
@@ -59,18 +52,36 @@ const AcademicHistoryModal = ({
 
         <form onSubmit={handleSubmit(handleAcademicHistory)}>
           <div className={styles.formContainer}>
+            <ErrorMessage
+              className={styles.errorMessage}
+              errors={errors}
+              name="name"
+              as="p"
+            />
             <Input
               name={"name"}
-              ref={register}
+              ref={register({
+                required: "※学校名を入力してください。",
+              })}
               type={"text"}
               title={"学校名"}
             />
+
+            <ErrorMessage
+              className={styles.errorMessage}
+              errors={errors}
+              name="faculty"
+              as="p"
+            />
             <Input
               name={"faculty"}
-              ref={register}
+              ref={register({
+                required: "※学部/学科を入力してください。",
+              })}
               type={"text"}
               title={"学部/学科"}
             />
+
             <div className={styles.calender}>
               <Input
                 name={"sinceDate"}
