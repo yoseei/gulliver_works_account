@@ -13,12 +13,9 @@ type PropsType = {
   handleCloseAcademicHistoryModal:
     | React.MouseEventHandler<HTMLParagraphElement>
     | undefined;
-  academicHistories?: AcademicHistoryType;
+  academicHistories?: AcademicHistoryType[];
   accountId: number;
 };
-// type Inputs = {
-//   profileBiography: string;
-// };
 
 const AcademicHistoryModal = ({
   // accountId,

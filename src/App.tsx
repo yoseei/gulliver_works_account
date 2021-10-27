@@ -15,21 +15,29 @@ const App: FC = () => {
     <div className="root">
       <BrowserRouter>
         <Switch>
-          <React.Fragment>
-            <Route exact path="/" component={RecruitmentIndexPage} />
-            <Route path="/signin" component={SignInPage} />
-            <Route path="/employeesignin" component={EmployeeSignInPage} />
-            <Route path="/profile" component={Profile} />
-            <div className="showSideBar">
+          <Route exact path="/" component={RecruitmentIndexPage} />
+          <Route path="/signin" component={SignInPage} />
+          <Route path="/employeesignin" component={EmployeeSignInPage} />
+          <Route path="/profile" component={Profile} />
+
+          <Route path="/companyregistration">
+            <div className="withSideBarContainer">
               <SideBar textA="企業詳細" textB="募集管理" />
-              <Route path="/companydetail" component={CompanyDetail} />
-              <Route
-                path="/companyregistration"
-                component={CompanyRegistration}
-              />
-              <Route path="/companyedit" component={CompanyEdit} />
+              <CompanyRegistration />
             </div>
-          </React.Fragment>
+          </Route>
+          <Route path="/companydetail">
+            <div className="withSideBarContainer">
+              <SideBar textA="企業詳細" textB="募集管理" />
+              <CompanyDetail />
+            </div>
+          </Route>
+          <Route path="/companyedit">
+            <div className="withSideBarContainer">
+              <SideBar textA="企業詳細" textB="募集管理" />
+              <CompanyEdit />
+            </div>
+          </Route>
         </Switch>
       </BrowserRouter>
     </div>

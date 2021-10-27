@@ -16,18 +16,18 @@ import EditBiographyModal from "../../components/editBiographyModal/EditBiograph
 import AcademicHistoryModal from "../../components/academicHistoryModal/AcademicHistoryModal";
 
 const Profile = () => {
-  const [profile, setProfile] = useState<ProfileType>();
   const [account, setAccount] = useState<AccountType>();
-  const [workHistory, setWorkHistory] = useState<WorkHistoryType>();
   const [academicHistories, setAcademicHistories] =
-    useState<AcademicHistoryType>();
+    useState<AcademicHistoryType[]>();
+  const [finalEducation, setFinalEducation] = useState<string | undefined>();
+  const [profile, setProfile] = useState<ProfileType>();
   const [openAcademicHistoryModal, setOpenAcademicHistoryModal] =
     useState(false);
   const [openProfileModal, setOpenProfileModal] = useState(false);
   const [openEditBiographyModal, setOpenEditBiographyModal] =
     React.useState(false);
-
-  const [untilDate, setUntilDate] = useState<string[] | undefined>();
+  const [untilDate, setUntilDate] = useState<string>();
+  const [workHistory, setWorkHistory] = useState<WorkHistoryType>();
 
   const accountId = account?.id;
 
@@ -98,27 +98,36 @@ const Profile = () => {
         url: "http://localhost:3000/academic_histories",
       });
       const academicHistories = res.data;
+
       setAcademicHistories(academicHistories);
     };
     fetchAcademicHistory();
   }, []);
 
-  // untilDateの降順をconsole.logで取得しようとしています //
   useEffect(() => {
-    try {
-      if (!academicHistories) return;
-      console.log(
-        academicHistories?.sort(function ({ a, b }: any) {
-          if (a.untilDate > b.untilDate) return -1;
-          if (b.untilDate > a.untilDate) return 1;
-
-          return 0;
-        })
-      );
-    } catch (err) {
-      console.log(err);
+    if (!academicHistories) return;
+    const length = academicHistories.length;
+    for (let i = 0; i < length; i++) {
+      setUntilDate(academicHistories[i].untilDate);
     }
   }, [academicHistories]);
+
+  // untilDateの降順をconsole.logで取得しようとしています
+  useEffect(() => {
+    if (!academicHistories) return;
+    if (!untilDate) return;
+
+    const newAcademicHistories = academicHistories.sort(function (
+      a: AcademicHistoryType,
+      b: AcademicHistoryType
+    ) {
+      if (a.untilDate > b.untilDate) return -1;
+      if (b.untilDate > a.untilDate) return 1;
+      return 0;
+    });
+    // 最終学歴をstateに代入
+    setFinalEducation(newAcademicHistories[0].name);
+  }, [academicHistories, untilDate]);
 
   return (
     <div className={styles.root}>
@@ -148,8 +157,7 @@ const Profile = () => {
               </div>
               <div className={styles.educationalBackgroundWrapper}>
                 <p className={styles.leftWrapper}>最終学歴</p>
-                <p>{academicHistories?.name}</p>{" "}
-                {/* 最終学歴を取る方法がわからず、、*/}
+                {finalEducation ? <p>{finalEducation}</p> : ""}
               </div>
             </div>
           </div>

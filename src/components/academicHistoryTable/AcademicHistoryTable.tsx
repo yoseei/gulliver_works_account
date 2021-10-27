@@ -4,7 +4,7 @@ import Button from "../button/Button";
 import { AcademicHistoryType } from "../../data/academicHistory/index";
 
 type AcademicHistoryTableType = {
-  academicHistories: AcademicHistoryType;
+  academicHistories: AcademicHistoryType[];
   onClick: React.MouseEventHandler<HTMLParagraphElement> | undefined;
 };
 const AcademicHistoryTable: React.FC<AcademicHistoryTableType> = ({
@@ -13,8 +13,8 @@ const AcademicHistoryTable: React.FC<AcademicHistoryTableType> = ({
 }) => {
   return (
     <>
-      {academicHistories.map(
-        (academicHistory: AcademicHistoryType, index: string) => (
+      {academicHistories?.map(
+        (academicHistory: AcademicHistoryType, index: number) => (
           <div className={styles.root} key={index}>
             <div className={styles.academicHistoryWrapper}>
               <div className={styles.leftWrapper}>
