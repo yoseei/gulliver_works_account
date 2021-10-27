@@ -4,7 +4,7 @@ import styles from "./Input.module.scss";
 type PropsType = {
   name: string;
   title?: string;
-  type: "text" | "number" | "radio" | "file" | undefined;
+  type: "text" | "number" | "radio" | "file" | "date" | undefined;
 };
 
 const Input = React.forwardRef<HTMLInputElement, PropsType>(

@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { CompanyDataType } from "../../data/company";
 import CompanyForm from "../../components/companyForm/CompanyForm";
 
-const CorporateRegistration = () => {
+const CompanyRegistration = () => {
   const { reset } = useForm();
 
   const handleCreateCompanyInfo = async (data: CompanyDataType) => {
@@ -34,4 +34,4 @@ const CorporateRegistration = () => {
   );
 };
 
-export default CorporateRegistration;
+export default CompanyRegistration;

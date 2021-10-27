@@ -13,31 +13,43 @@ import WorkHistoryTable from "../../components/workHistoryTable/WorkHistoryTable
 import AcademicHistoryTable from "../../components/academicHistoryTable/AcademicHistoryTable";
 import ProfileModal from "../../components/profileModal/ProfileModal";
 import EditBiographyModal from "../../components/editBiographyModal/EditBiographyModal";
+import AcademicHistoryModal from "../../components/academicHistoryModal/AcademicHistoryModal";
 
 const Profile = () => {
-  const [profile, setProfile] = useState<ProfileType>();
   const [account, setAccount] = useState<AccountType>();
-  const [workHistory, setWorkHistory] = useState<WorkHistoryType>();
-  const [academicHistory, setAcademicHistory] = useState<AcademicHistoryType>();
+  const [academicHistories, setAcademicHistories] =
+    useState<AcademicHistoryType[]>();
+  const [finalEducation, setFinalEducation] = useState<string | undefined>();
+  const [profile, setProfile] = useState<ProfileType>();
+  const [openAcademicHistoryModal, setOpenAcademicHistoryModal] =
+    useState(false);
   const [openProfileModal, setOpenProfileModal] = useState(false);
   const [openEditBiographyModal, setOpenEditBiographyModal] =
     React.useState(false);
+  const [untilDate, setUntilDate] = useState<string>();
+  const [workHistory, setWorkHistory] = useState<WorkHistoryType>();
 
   const accountId = account?.id;
 
   const handleOpenProfileModal = () => {
     setOpenProfileModal(true);
   };
-
   const handleCloseProfileModal = () => {
     setOpenProfileModal(false);
   };
+
   const handleOpenEditBiographyModal = () => {
     setOpenEditBiographyModal(true);
   };
-
   const handleCloseEditBiographyModal = () => {
     setOpenEditBiographyModal(false);
+  };
+
+  const handleOpenAcademicHistoryModal = () => {
+    setOpenAcademicHistoryModal(true);
+  };
+  const handleCloseAcademicHistoryModal = () => {
+    setOpenAcademicHistoryModal(false);
   };
 
   useEffect(() => {
@@ -83,14 +95,42 @@ const Profile = () => {
     const fetchAcademicHistory = async () => {
       const res = await HttpClient.request({
         method: "GET",
-        url: "http://localhost:3000/academic_histories/1",
+        url: "http://localhost:3000/academic_histories",
       });
+      const academicHistories = res.data;
 
-      const academicHistoryData = res.data;
-      setAcademicHistory(academicHistoryData);
+      setAcademicHistories(academicHistories);
     };
     fetchAcademicHistory();
   }, []);
+
+  useEffect(() => {
+    if (!academicHistories) return;
+    const length = academicHistories.length;
+    for (let i = 0; i < length; i++) {
+      setUntilDate(academicHistories[i].untilDate);
+    }
+  }, [academicHistories]);
+
+  // untilDateの降順をconsole.logで取得しようとしています
+  useEffect(() => {
+    if (!academicHistories) return;
+    // if (!untilDate) return;
+
+    const newAcademicHistories = academicHistories.sort(function (
+      a: AcademicHistoryType,
+      b: AcademicHistoryType
+    ) {
+      if (a.untilDate > b.untilDate) return -1;
+      if (b.untilDate > a.untilDate) return 1;
+      return 0;
+    });
+    // 最終学歴をstateに代入
+    setFinalEducation(newAcademicHistories[0].name);
+    if (newAcademicHistories[0].untilDate === null) {
+      setFinalEducation(newAcademicHistories[1].name);
+    }
+  }, [academicHistories, untilDate]);
 
   return (
     <div className={styles.root}>
@@ -120,7 +160,7 @@ const Profile = () => {
               </div>
               <div className={styles.educationalBackgroundWrapper}>
                 <p className={styles.leftWrapper}>最終学歴</p>
-                <p>{academicHistory?.name}</p>
+                {finalEducation ? <p>{finalEducation}</p> : ""}
               </div>
             </div>
           </div>
@@ -163,9 +203,9 @@ const Profile = () => {
             <h1 className={styles.studyHistoryTitle}>学歴</h1>
 
             <div className={styles.companyWrapper}>
-              {academicHistory && (
+              {academicHistories && (
                 <AcademicHistoryTable
-                  academicHistory={academicHistory}
+                  academicHistories={academicHistories}
                   onClick={() => console.log("編集ボタンクリック！")}
                 />
               )}
@@ -174,7 +214,7 @@ const Profile = () => {
             <div className={styles.buttonWrapper}>
               <Button
                 text={"学歴を追加する"}
-                onClick={() => console.log("クリック")}
+                onClick={() => handleOpenAcademicHistoryModal()}
               />
             </div>
           </div>
@@ -201,6 +241,21 @@ const Profile = () => {
                 openEditBiographyModal={openEditBiographyModal}
                 handleCloseEditBiographyModal={handleCloseEditBiographyModal}
                 profile={profile}
+                accountId={accountId}
+              />
+            )}
+          </div>
+        )}
+
+        {openAcademicHistoryModal && (
+          <div className={styles.academicHistoryModalContainer}>
+            {accountId && (
+              <AcademicHistoryModal
+                openAcademicHistoryModal={openAcademicHistoryModal}
+                handleCloseAcademicHistoryModal={
+                  handleCloseAcademicHistoryModal
+                }
+                academicHistories={academicHistories}
                 accountId={accountId}
               />
             )}

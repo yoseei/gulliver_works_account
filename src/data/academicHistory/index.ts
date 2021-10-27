@@ -6,3 +6,4 @@ export interface AcademicHistoryType {
   untilDate: string;
   type?: string;
 }
+[];

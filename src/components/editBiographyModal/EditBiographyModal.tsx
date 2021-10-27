@@ -20,10 +20,10 @@ type Inputs = {
 };
 
 const EditBiographyModal = ({
-  openEditBiographyModal,
-  handleCloseEditBiographyModal,
-  profile,
   accountId,
+  handleCloseEditBiographyModal,
+  openEditBiographyModal,
+  profile,
 }: PropsType) => {
   const { register, handleSubmit } = useForm();
   const history = useHistory();
