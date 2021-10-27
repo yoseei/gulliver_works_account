@@ -1,0 +1,54 @@
+.root {
+  width: 60%;
+  margin: 50px auto;
+  outline: none;
+  .academicHistoryContainer {
+    height: 90%;
+    padding: 35px;
+    background-color: white;
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    .formContainer {
+      margin: 0 auto;
+      font-size: 0.8rem;
+      .calender {
+        align-items: flex-end;
+        color: #afafaf;
+        display: flex;
+        gap: 10px;
+        width: 60%;
+      }
+    }
+    .buttonContainer {
+      gap: 10px;
+      display: flex;
+      justify-content: space-between;
+      .deleteButtonWrapper {
+        // width: 80px;
+      }
+      .rightButtonWrapper {
+        display: flex;
+        gap: 10px;
+        .cancelButtonWrapper {
+          background-color: #e5e5e5;
+          width: 80px;
+          text-align: center;
+          border: none;
+          border-radius: 5px;
+        }
+        .updateButtonWrapper {
+          background-color: #05c757;
+          width: 80px;
+          text-align: center;
+          border: none;
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+}
+.errorMessage {
+  color: red;
+}

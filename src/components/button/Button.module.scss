@@ -17,11 +17,18 @@
 .borderNone {
   border: none;
 }
+.borderRed {
+  border: 1px solid#d73a49;
+}
 .black {
   color: black;
 }
 .borderRadius {
   border-radius: 15px;
+}
+.gray {
+  background-color: #e5e5e5;
+  color: black;
 }
 .padding {
   padding: 10px;
@@ -30,12 +37,9 @@
   background-color: #05c757;
   color: white;
 }
-.gray {
-  background-color: #e5e5e5;
-  color: black;
-}
 .white {
-  color: white;
+  background-color: white;
+  color: #d73a49;
 }
 .width {
   width: 30%;

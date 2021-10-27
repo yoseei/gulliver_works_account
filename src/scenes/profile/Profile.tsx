@@ -14,6 +14,7 @@ import AcademicHistoryTable from "../../components/academicHistoryTable/Academic
 import ProfileModal from "../../components/profileModal/ProfileModal";
 import EditBiographyModal from "../../components/editBiographyModal/EditBiographyModal";
 import AcademicHistoryModal from "../../components/academicHistoryModal/AcademicHistoryModal";
+import EditAcademicHistoryModal from "../../components/editAcademicHistoryModal/EditAcademicHistoryModal";
 
 const Profile = () => {
   const [account, setAccount] = useState<AccountType>();
@@ -23,9 +24,10 @@ const Profile = () => {
   const [profile, setProfile] = useState<ProfileType>();
   const [openAcademicHistoryModal, setOpenAcademicHistoryModal] =
     useState(false);
+  const [openEditAcademicHistoryModal, setOpenEditAcademicHistoryModal] =
+    useState(false);
   const [openProfileModal, setOpenProfileModal] = useState(false);
-  const [openEditBiographyModal, setOpenEditBiographyModal] =
-    React.useState(false);
+  const [openEditBiographyModal, setOpenEditBiographyModal] = useState(false);
   const [untilDate, setUntilDate] = useState<string>();
   const [workHistory, setWorkHistory] = useState<WorkHistoryType>();
 
@@ -50,6 +52,13 @@ const Profile = () => {
   };
   const handleCloseAcademicHistoryModal = () => {
     setOpenAcademicHistoryModal(false);
+  };
+
+  const handleOpenEditAcademicHistoryModal = () => {
+    setOpenEditAcademicHistoryModal(true);
+  };
+  const handleCloseEditAcademicHistoryModal = () => {
+    setOpenEditAcademicHistoryModal(false);
   };
 
   useEffect(() => {
@@ -206,7 +215,7 @@ const Profile = () => {
               {academicHistories && (
                 <AcademicHistoryTable
                   academicHistories={academicHistories}
-                  onClick={() => console.log("編集ボタンクリック！")}
+                  onClick={() => handleOpenEditAcademicHistoryModal()}
                 />
               )}
             </div>
@@ -254,6 +263,21 @@ const Profile = () => {
                 openAcademicHistoryModal={openAcademicHistoryModal}
                 handleCloseAcademicHistoryModal={
                   handleCloseAcademicHistoryModal
+                }
+                academicHistories={academicHistories}
+                accountId={accountId}
+              />
+            )}
+          </div>
+        )}
+
+        {openEditAcademicHistoryModal && (
+          <div className={styles.academicHistoryModalContainer}>
+            {accountId && (
+              <EditAcademicHistoryModal
+                openEditAcademicHistoryModal={openEditAcademicHistoryModal}
+                handleCloseEditAcademicHistoryModal={
+                  handleCloseEditAcademicHistoryModal
                 }
                 academicHistories={academicHistories}
                 accountId={accountId}
