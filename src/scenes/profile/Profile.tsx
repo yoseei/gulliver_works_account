@@ -104,7 +104,7 @@ const Profile = () => {
     const fetchAcademicHistory = async () => {
       const res = await HttpClient.request({
         method: "GET",
-        url: "http://localhost:3000/academic_histories",
+        url: "http://localhost:3000/academic_histories/",
       });
       const academicHistories = res.data;
 
@@ -124,8 +124,6 @@ const Profile = () => {
   // untilDateの降順をconsole.logで取得しようとしています
   useEffect(() => {
     if (!academicHistories) return;
-    // if (!untilDate) return;
-
     const newAcademicHistories = academicHistories.sort(function (
       a: AcademicHistoryType,
       b: AcademicHistoryType
