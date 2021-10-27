@@ -115,7 +115,7 @@ const Profile = () => {
   // untilDateの降順をconsole.logで取得しようとしています
   useEffect(() => {
     if (!academicHistories) return;
-    if (!untilDate) return;
+    // if (!untilDate) return;
 
     const newAcademicHistories = academicHistories.sort(function (
       a: AcademicHistoryType,
@@ -127,6 +127,9 @@ const Profile = () => {
     });
     // 最終学歴をstateに代入
     setFinalEducation(newAcademicHistories[0].name);
+    if (newAcademicHistories[0].untilDate === null) {
+      setFinalEducation(newAcademicHistories[1].name);
+    }
   }, [academicHistories, untilDate]);
 
   return (
