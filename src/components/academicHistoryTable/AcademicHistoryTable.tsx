@@ -14,12 +14,16 @@ const AcademicHistoryTable: React.FC<AcademicHistoryTableType> = ({
 }) => {
   const [openEditAcademicHistoryModal, setOpenEditAcademicHistoryModal] =
     useState(false);
+  const [academicHistoryData, setAcademicHistoryData] = useState();
 
   const handleOpenEditAcademicHistoryModal = () => {
     setOpenEditAcademicHistoryModal(true);
   };
-  const handleCloseEditAcademicHistoryModal = () => {
+  const handleCloseEditAcademicHistoryModal = (
+    academicHistory: AcademicHistoryType
+  ) => {
     setOpenEditAcademicHistoryModal(false);
+    setAcademicHistoryData(academicHistory);
   };
   return (
     <>
@@ -60,7 +64,7 @@ const AcademicHistoryTable: React.FC<AcademicHistoryTableType> = ({
             handleCloseEditAcademicHistoryModal={
               handleCloseEditAcademicHistoryModal
             }
-            academicHistories={academicHistories}
+            academicHistories={academicHistory}
             // accountId={accountId}
           />
           {/* )} */}
