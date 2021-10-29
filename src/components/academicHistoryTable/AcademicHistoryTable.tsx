@@ -6,24 +6,21 @@ import EditAcademicHistoryModal from "../editAcademicHistoryModal/EditAcademicHi
 
 type AcademicHistoryTableType = {
   academicHistories: AcademicHistoryType[];
-  // onClick: React.MouseEventHandler<HTMLParagraphElement> | undefined;
 };
 const AcademicHistoryTable: React.FC<AcademicHistoryTableType> = ({
   academicHistories,
-  // onClick,
 }) => {
   const [openEditAcademicHistoryModal, setOpenEditAcademicHistoryModal] =
     useState(false);
-  const [academicHistoryData, setAcademicHistoryData] = useState();
+  const [academicHistoryData, setAcademicHistoryData] =
+    useState<AcademicHistoryType>();
 
-  const handleOpenEditAcademicHistoryModal = () => {
+  const [selectedHistory, selectHistory] = useState<AcademicHistoryType>();
+  console.log(academicHistoryData);
+
+  const onEditHistory = (selectedItem: AcademicHistoryType) => {
+    selectHistory(selectedItem);
     setOpenEditAcademicHistoryModal(true);
-  };
-  const handleCloseEditAcademicHistoryModal = (
-    academicHistory: AcademicHistoryType
-  ) => {
-    setOpenEditAcademicHistoryModal(false);
-    setAcademicHistoryData(academicHistory);
   };
   return (
     <>
@@ -46,7 +43,7 @@ const AcademicHistoryTable: React.FC<AcademicHistoryTableType> = ({
                   </div>
                   <div className={styles.buttonWrapper}>
                     <Button
-                      onClick={handleOpenEditAcademicHistoryModal}
+                      onClick={() => onEditHistory(academicHistory)}
                       text={"編集する"}
                     />
                   </div>
@@ -58,16 +55,13 @@ const AcademicHistoryTable: React.FC<AcademicHistoryTableType> = ({
       )}
       {openEditAcademicHistoryModal && (
         <div className={styles.academicHistoryModalContainer}>
-          {/* {accountId && ( */}
           <EditAcademicHistoryModal
             openEditAcademicHistoryModal={openEditAcademicHistoryModal}
-            handleCloseEditAcademicHistoryModal={
-              handleCloseEditAcademicHistoryModal
+            handleCloseEditAcademicHistoryModal={() =>
+              setOpenEditAcademicHistoryModal(false)
             }
-            academicHistories={academicHistory}
-            // accountId={accountId}
+            academicHistoryData={selectedHistory}
           />
-          {/* )} */}
         </div>
       )}
     </>

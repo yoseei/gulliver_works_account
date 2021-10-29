@@ -14,7 +14,6 @@ import AcademicHistoryTable from "../../components/academicHistoryTable/Academic
 import ProfileModal from "../../components/profileModal/ProfileModal";
 import EditBiographyModal from "../../components/editBiographyModal/EditBiographyModal";
 import AcademicHistoryModal from "../../components/academicHistoryModal/AcademicHistoryModal";
-import EditAcademicHistoryModal from "../../components/editAcademicHistoryModal/EditAcademicHistoryModal";
 
 const Profile = () => {
   const [account, setAccount] = useState<AccountType>();
@@ -24,8 +23,6 @@ const Profile = () => {
   const [profile, setProfile] = useState<ProfileType>();
   const [openAcademicHistoryModal, setOpenAcademicHistoryModal] =
     useState(false);
-  // const [openEditAcademicHistoryModal, setOpenEditAcademicHistoryModal] =
-  //   useState(false);
   const [openProfileModal, setOpenProfileModal] = useState(false);
   const [openEditBiographyModal, setOpenEditBiographyModal] = useState(false);
   const [untilDate, setUntilDate] = useState<string>();
@@ -53,13 +50,6 @@ const Profile = () => {
   const handleCloseAcademicHistoryModal = () => {
     setOpenAcademicHistoryModal(false);
   };
-
-  // const handleOpenEditAcademicHistoryModal = () => {
-  //   setOpenEditAcademicHistoryModal(true);
-  // };
-  // const handleCloseEditAcademicHistoryModal = () => {
-  //   setOpenEditAcademicHistoryModal(false);
-  // };
 
   useEffect(() => {
     const fetchAccounts = async () => {
@@ -211,10 +201,7 @@ const Profile = () => {
 
             <div className={styles.companyWrapper}>
               {academicHistories && (
-                <AcademicHistoryTable
-                  academicHistories={academicHistories}
-                  // onClick={() => handleOpenEditAcademicHistoryModal()}
-                />
+                <AcademicHistoryTable academicHistories={academicHistories} />
               )}
             </div>
 
@@ -268,21 +255,6 @@ const Profile = () => {
             )}
           </div>
         )}
-
-        {/* {openEditAcademicHistoryModal && (
-          <div className={styles.academicHistoryModalContainer}>
-            {accountId && (
-              <EditAcademicHistoryModal
-                openEditAcademicHistoryModal={openEditAcademicHistoryModal}
-                handleCloseEditAcademicHistoryModal={
-                  handleCloseEditAcademicHistoryModal
-                }
-                academicHistories={academicHistories}
-                accountId={accountId}
-              />
-            )}
-          </div>
-        )} */}
       </div>
     </div>
   );

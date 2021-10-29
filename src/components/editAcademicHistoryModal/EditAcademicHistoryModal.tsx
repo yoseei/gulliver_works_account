@@ -14,48 +14,16 @@ type PropsType = {
   handleCloseEditAcademicHistoryModal:
     | React.MouseEventHandler<HTMLParagraphElement>
     | undefined;
-  academicHistories?: AcademicHistoryType[];
-  // accountId: number;
+  academicHistoryData?: AcademicHistoryType;
 };
 
 const EditAcademicHistoryModal = ({
   handleCloseEditAcademicHistoryModal,
   openEditAcademicHistoryModal,
+  academicHistoryData,
 }: PropsType) => {
   const { register, handleSubmit, errors } = useForm();
-  const [academicHistories, setAcademicHistories] = useState<
-    AcademicHistoryType[] | undefined
-  >();
-  const [name, setName] = useState("");
-  const [faculty, setFaculty] = useState("");
 
-  // if (!academicHistories) return;
-  // const name = academicHistories[0].name;
-
-  console.log(academicHistories ? academicHistories[0].name : "");
-
-  useEffect(() => {
-    const fetchAcademicHistories = async () => {
-      try {
-        const res = await HttpClient.request({
-          method: "GET",
-          url: `http://localhost:3000/academic_histories`,
-        });
-        const academicHistoriesData = res.data;
-        setAcademicHistories(academicHistoriesData);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchAcademicHistories();
-  }, []);
-
-  useEffect(() => {
-    if (academicHistories) {
-      setName(academicHistories[0].name);
-      setFaculty(academicHistories[0].faculty);
-    }
-  });
   const handleAcademicHistory = async (data: AcademicHistoryType) => {
     try {
       if (!data) return;
@@ -83,6 +51,7 @@ const EditAcademicHistoryModal = ({
       console.log(err);
     }
   };
+
   const body = (
     <div className={styles.root}>
       <div className={styles.academicHistoryContainer}>
@@ -103,7 +72,7 @@ const EditAcademicHistoryModal = ({
               })}
               type={"text"}
               title={"学校名"}
-              defaultValue={name}
+              defaultValue={academicHistoryData?.name}
             />
 
             <ErrorMessage
@@ -119,7 +88,7 @@ const EditAcademicHistoryModal = ({
               })}
               type={"text"}
               title={"学部/学科"}
-              defaultValue={faculty}
+              defaultValue={academicHistoryData?.faculty}
             />
 
             <div className={styles.calender}>
