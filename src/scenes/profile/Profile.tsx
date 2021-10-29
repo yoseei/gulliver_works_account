@@ -122,6 +122,7 @@ const Profile = () => {
       if (b.untilDate > a.untilDate) return 1;
       return 0;
     });
+
     // 最終学歴をstateに代入
     setFinalEducation(newAcademicHistories[0].name);
     if (newAcademicHistories[0].untilDate === null) {

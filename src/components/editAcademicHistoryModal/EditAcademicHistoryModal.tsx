@@ -29,13 +29,14 @@ const EditAcademicHistoryModal = ({
       if (!data) return;
 
       const res = await HttpClient.request({
-        method: "POST",
-        url: `http://localhost:3000/academic_histories`,
+        method: "PUT",
+        url: `http://localhost:3000/academic_histories/${academicHistoryData?.id}`,
         data: {
           ...data,
         },
       });
-      alert("プロフィールを編集しました。");
+      alert("学歴を編集しました。");
+      location.reload();
     } catch (err) {
       console.log(err);
     }
@@ -43,10 +44,13 @@ const EditAcademicHistoryModal = ({
 
   const handleDeleteAcademicHistory = async () => {
     try {
+      if (!academicHistoryData) return;
       await HttpClient.request({
         method: "DELETE",
-        url: `http://localhost:3000/academic_histories`,
+        url: `http://localhost:3000/academic_histories/${academicHistoryData?.id}`,
       });
+      alert("学歴を削除しました。");
+      location.reload();
     } catch (err) {
       console.log(err);
     }
@@ -93,12 +97,18 @@ const EditAcademicHistoryModal = ({
 
             <div className={styles.calender}>
               <Input
+                defaultValue={academicHistoryData?.sinceDate}
                 name={"sinceDate"}
                 ref={register}
                 type={"date"}
                 title={"日程"}
               />
-              <Input name={"untilDate"} ref={register} type={"date"} />
+              <Input
+                defaultValue={academicHistoryData?.untilDate}
+                name={"untilDate"}
+                ref={register}
+                type={"date"}
+              />
             </div>
           </div>
 

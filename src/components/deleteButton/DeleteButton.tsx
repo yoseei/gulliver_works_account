@@ -11,7 +11,7 @@ const DeleteButton = ({ onClick }: PropsType) => {
       border={"red"}
       onClick={onClick}
       text={"削除する"}
-      type={"submit"}
+      type={"button"}
     />
   );
 };

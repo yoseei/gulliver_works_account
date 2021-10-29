@@ -7,7 +7,7 @@ import Input from "../input/Input";
 import { AcademicHistoryType } from "../../data/academicHistory/index";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
-// import { useHistory } from "react-router-dom";
+
 type PropsType = {
   openAcademicHistoryModal: boolean;
   handleCloseAcademicHistoryModal:
@@ -18,11 +18,9 @@ type PropsType = {
 };
 
 const AcademicHistoryModal = ({
-  // accountId,
   handleCloseAcademicHistoryModal,
   openAcademicHistoryModal,
-}: // academicHistories,
-PropsType) => {
+}: PropsType) => {
   const { register, handleSubmit, errors } = useForm();
 
   const handleAcademicHistory = async (data: AcademicHistoryType) => {
@@ -36,7 +34,8 @@ PropsType) => {
           ...data,
         },
       });
-      alert("プロフィールを編集しました。");
+      alert("学歴を追加しました。");
+      location.reload();
     } catch (err) {
       console.log(err);
     }
