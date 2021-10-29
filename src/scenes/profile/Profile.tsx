@@ -24,8 +24,8 @@ const Profile = () => {
   const [profile, setProfile] = useState<ProfileType>();
   const [openAcademicHistoryModal, setOpenAcademicHistoryModal] =
     useState(false);
-  const [openEditAcademicHistoryModal, setOpenEditAcademicHistoryModal] =
-    useState(false);
+  // const [openEditAcademicHistoryModal, setOpenEditAcademicHistoryModal] =
+  //   useState(false);
   const [openProfileModal, setOpenProfileModal] = useState(false);
   const [openEditBiographyModal, setOpenEditBiographyModal] = useState(false);
   const [untilDate, setUntilDate] = useState<string>();
@@ -54,12 +54,12 @@ const Profile = () => {
     setOpenAcademicHistoryModal(false);
   };
 
-  const handleOpenEditAcademicHistoryModal = () => {
-    setOpenEditAcademicHistoryModal(true);
-  };
-  const handleCloseEditAcademicHistoryModal = () => {
-    setOpenEditAcademicHistoryModal(false);
-  };
+  // const handleOpenEditAcademicHistoryModal = () => {
+  //   setOpenEditAcademicHistoryModal(true);
+  // };
+  // const handleCloseEditAcademicHistoryModal = () => {
+  //   setOpenEditAcademicHistoryModal(false);
+  // };
 
   useEffect(() => {
     const fetchAccounts = async () => {
@@ -213,7 +213,7 @@ const Profile = () => {
               {academicHistories && (
                 <AcademicHistoryTable
                   academicHistories={academicHistories}
-                  onClick={() => handleOpenEditAcademicHistoryModal()}
+                  // onClick={() => handleOpenEditAcademicHistoryModal()}
                 />
               )}
             </div>
@@ -269,7 +269,7 @@ const Profile = () => {
           </div>
         )}
 
-        {openEditAcademicHistoryModal && (
+        {/* {openEditAcademicHistoryModal && (
           <div className={styles.academicHistoryModalContainer}>
             {accountId && (
               <EditAcademicHistoryModal
@@ -282,7 +282,7 @@ const Profile = () => {
               />
             )}
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );

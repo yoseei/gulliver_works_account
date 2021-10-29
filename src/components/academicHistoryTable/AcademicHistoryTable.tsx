@@ -1,16 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./AcademicHistoryTable.module.scss";
 import Button from "../button/Button";
 import { AcademicHistoryType } from "../../data/academicHistory/index";
+import EditAcademicHistoryModal from "../editAcademicHistoryModal/EditAcademicHistoryModal";
 
 type AcademicHistoryTableType = {
   academicHistories: AcademicHistoryType[];
-  onClick: React.MouseEventHandler<HTMLParagraphElement> | undefined;
+  // onClick: React.MouseEventHandler<HTMLParagraphElement> | undefined;
 };
 const AcademicHistoryTable: React.FC<AcademicHistoryTableType> = ({
   academicHistories,
-  onClick,
+  // onClick,
 }) => {
+  const [openEditAcademicHistoryModal, setOpenEditAcademicHistoryModal] =
+    useState(false);
+
+  const handleOpenEditAcademicHistoryModal = () => {
+    setOpenEditAcademicHistoryModal(true);
+  };
+  const handleCloseEditAcademicHistoryModal = () => {
+    setOpenEditAcademicHistoryModal(false);
+  };
   return (
     <>
       {academicHistories?.map(
@@ -31,13 +41,30 @@ const AcademicHistoryTable: React.FC<AcademicHistoryTableType> = ({
                     </p>
                   </div>
                   <div className={styles.buttonWrapper}>
-                    <Button onClick={onClick} text={"編集する"} />
+                    <Button
+                      onClick={handleOpenEditAcademicHistoryModal}
+                      text={"編集する"}
+                    />
                   </div>
                 </div>
               </div>
             </div>
           </div>
         )
+      )}
+      {openEditAcademicHistoryModal && (
+        <div className={styles.academicHistoryModalContainer}>
+          {/* {accountId && ( */}
+          <EditAcademicHistoryModal
+            openEditAcademicHistoryModal={openEditAcademicHistoryModal}
+            handleCloseEditAcademicHistoryModal={
+              handleCloseEditAcademicHistoryModal
+            }
+            academicHistories={academicHistories}
+            // accountId={accountId}
+          />
+          {/* )} */}
+        </div>
       )}
     </>
   );

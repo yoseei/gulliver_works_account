@@ -15,7 +15,7 @@ type PropsType = {
     | React.MouseEventHandler<HTMLParagraphElement>
     | undefined;
   academicHistories?: AcademicHistoryType[];
-  accountId: number;
+  // accountId: number;
 };
 
 const EditAcademicHistoryModal = ({
