@@ -50,7 +50,6 @@ const SignInPage = () => {
               name="account.email"
               errors={errors}
               render={({ messages }) => {
-                console.log("messages", messages);
                 return messages
                   ? Object.entries(messages).map(([type, message]) => (
                       <p key={type} className={styles.errorMessage}>
@@ -84,7 +83,10 @@ const SignInPage = () => {
             </span>
           </div>
           <div className={styles.loginButtonWrapper}>
-            <button type="submit" onClick={() => console.log("click")}>
+            <button
+              type="submit"
+              onClick={() => alert("ログインボタンクリック")}
+            >
               ログイン
             </button>
           </div>

@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styles from "./EditAcademicHistoryModal.module.scss";
+import "antd/dist/antd.css";
 import { AcademicHistoryType } from "../../data/academicHistory/index";
 import Button from "../button/Button";
 import DeleteButton from "../../components/deleteButton/DeleteButton";
@@ -7,6 +8,7 @@ import { ErrorMessage } from "@hookform/error-message";
 import { HttpClient } from "../../utilities/axiosInstance";
 import Input from "../input/Input";
 import Modal from "@material-ui/core/Modal";
+import { notification } from "antd";
 import { useForm } from "react-hook-form";
 
 type PropsType = {
@@ -38,7 +40,9 @@ const EditAcademicHistoryModal = ({
       alert("学歴を編集しました。");
       location.reload();
     } catch (err) {
-      console.log(err);
+      notification.error({
+        message: "エラーが発生しました。",
+      });
     }
   };
 
@@ -50,9 +54,10 @@ const EditAcademicHistoryModal = ({
         url: `http://localhost:3000/academic_histories/${academicHistoryData?.id}`,
       });
       alert("学歴を削除しました。");
-      location.reload();
     } catch (err) {
-      console.log(err);
+      notification.error({
+        message: "エラーが発生しました。",
+      });
     }
   };
 

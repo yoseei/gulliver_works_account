@@ -1,8 +1,10 @@
 import React from "react";
 import styles from "./CompanyEdit.module.scss";
-import { HttpClient } from "../../utilities/axiosInstance";
+import "antd/dist/antd.css";
 import { CompanyDataType } from "../../data/company";
 import CompanyForm from "../../components/companyForm/CompanyForm";
+import { HttpClient } from "../../utilities/axiosInstance";
+import { notification } from "antd";
 
 const CorporateEdit = () => {
   const handleEditCompanyInfo = async (data: CompanyDataType) => {
@@ -13,7 +15,9 @@ const CorporateEdit = () => {
         data: { ...data },
       });
     } catch (err) {
-      console.log(err);
+      notification.error({
+        message: "エラーが発生しました。",
+      });
     }
   };
 

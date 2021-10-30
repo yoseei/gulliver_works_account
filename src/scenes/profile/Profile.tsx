@@ -184,7 +184,7 @@ const Profile = () => {
               {workHistory && (
                 <WorkHistoryTable
                   workHistory={workHistory}
-                  onClick={() => console.log("職歴編集クリック！")}
+                  onClick={() => alert("職歴編集クリック！")}
                 />
               )}
             </div>
@@ -192,7 +192,7 @@ const Profile = () => {
             <div className={styles.buttonWrapper}>
               <Button
                 text={"職歴を追加する"}
-                onClick={() => console.log("クリック")}
+                onClick={() => alert("職歴を追加ボタンクリック")}
               />
             </div>
           </div>

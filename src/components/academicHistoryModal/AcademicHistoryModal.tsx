@@ -1,12 +1,14 @@
 import React from "react";
 import styles from "./AcademicHistoryModal.module.scss";
+import "antd/dist/antd.css";
+import { AcademicHistoryType } from "../../data/academicHistory/index";
 import Button from "../button/Button";
-import Modal from "@material-ui/core/Modal";
+import { ErrorMessage } from "@hookform/error-message";
 import { HttpClient } from "../../utilities/axiosInstance";
 import Input from "../input/Input";
-import { AcademicHistoryType } from "../../data/academicHistory/index";
+import Modal from "@material-ui/core/Modal";
+import { notification } from "antd";
 import { useForm } from "react-hook-form";
-import { ErrorMessage } from "@hookform/error-message";
 
 type PropsType = {
   openAcademicHistoryModal: boolean;
@@ -35,9 +37,10 @@ const AcademicHistoryModal = ({
         },
       });
       alert("学歴を追加しました。");
-      location.reload();
     } catch (err) {
-      console.log(err);
+      notification.error({
+        message: "エラーが発生しました。",
+      });
     }
   };
 

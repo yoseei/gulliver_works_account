@@ -1,9 +1,11 @@
 import React from "react";
+import "antd/dist/antd.css";
 import Button from "../button/Button";
 import Modal from "@material-ui/core/Modal";
 import styles from "./EditBiographyModal.module.scss";
 import { HttpClient } from "../../utilities/axiosInstance";
 import { ProfileType } from "../../data/profile/index";
+import { notification } from "antd";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
@@ -52,7 +54,9 @@ const EditBiographyModal = ({
       alert("プロフィールを編集しました。");
       history.push("/");
     } catch (err) {
-      console.log(err);
+      notification.error({
+        message: "エラーが発生しました。",
+      });
     }
   };
 

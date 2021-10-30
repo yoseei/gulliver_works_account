@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import "antd/dist/antd.css";
 import styles from "./CompanyDetail.module.scss";
-import { HttpClient } from "../../utilities/axiosInstance";
 import { CompanyDataType } from "data/company";
+import { HttpClient } from "../../utilities/axiosInstance";
+import { notification } from "antd";
 
 const CompanyDetail = () => {
   const [company, setCompany] = useState<CompanyDataType | undefined>();
@@ -18,7 +20,9 @@ const CompanyDetail = () => {
       };
       fetchCompany();
     } catch (err) {
-      console.log(err);
+      notification.error({
+        message: "エラーが発生しました。",
+      });
     }
   }, []);
   return (

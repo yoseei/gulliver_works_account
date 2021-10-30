@@ -1,9 +1,11 @@
 import React from "react";
 import styles from "./CompanyRegistration.module.scss";
-import { HttpClient } from "../../utilities/axiosInstance";
-import { useForm } from "react-hook-form";
-import { CompanyDataType } from "../../data/company";
+import "antd/dist/antd.css";
 import CompanyForm from "../../components/companyForm/CompanyForm";
+import { CompanyDataType } from "../../data/company";
+import { HttpClient } from "../../utilities/axiosInstance";
+import { notification } from "antd";
+import { useForm } from "react-hook-form";
 
 const CompanyRegistration = () => {
   const { reset } = useForm();
@@ -15,11 +17,11 @@ const CompanyRegistration = () => {
         url: `http://localhost:3000/companies`,
         data: { ...data },
       });
-      console.log("成功");
-
       reset();
     } catch (err) {
-      console.log(err);
+      notification.error({
+        message: "エラーが発生しました。",
+      });
     }
   };
 
