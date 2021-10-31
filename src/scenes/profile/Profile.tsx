@@ -8,13 +8,15 @@ import AcademicHistoryModal from "../../components/academicHistoryModal/Academic
 import Button from "../../components/button/Button";
 import EditBiographyModal from "../../components/editBiographyModal/EditBiographyModal";
 import { HttpClient } from "../../utilities/axiosInstance";
+import { localHostURL } from "../../hooks/localHostURL";
 import ProfileImage from "../../components/profileImage/ProfileImage";
 import ProfileMainImage from "../../components/profileMainImage/ProfileMainImage";
 import ProfileModal from "../../components/profileModal/ProfileModal";
 import { ProfileType } from "../../data/profile/index";
 import { WorkHistoryType } from "../../data/workHistory/index";
 import WorkHistoryTable from "../../components/workHistoryTable/WorkHistoryTable";
-import { localHostURL } from "../../hooks/localHostURL";
+
+import useSWR from "swr";
 const Profile = () => {
   const [account, setAccount] = useState<AccountType>();
   const [academicHistories, setAcademicHistories] =
@@ -102,6 +104,20 @@ const Profile = () => {
     };
     fetchAcademicHistory();
   }, []);
+
+  //--------------- swrのテスト-----------------//
+  // useEffect(() => {
+  //   const fetcher = (url: any) => fetch(url).then((res) => res.json());
+  //   const { data, error } = useSWR(
+  //     `${localHostURL}/academic_histories`,
+  //     fetcher
+  //   ); // (1)
+
+  //   console.log(data);
+
+  //   if (error) return error;
+  //   if (data === null) return "null";
+  // }, []);
 
   useEffect(() => {
     if (!academicHistories) return;
