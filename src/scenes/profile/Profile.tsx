@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Profile.module.scss";
 
+import { AccountType } from "../../data/account/index";
+import { AcademicHistoryType } from "../../data/academicHistory/index";
+import AcademicHistoryTable from "../../components/academicHistoryTable/AcademicHistoryTable";
+import AcademicHistoryModal from "../../components/academicHistoryModal/AcademicHistoryModal";
 import Button from "../../components/button/Button";
+import EditBiographyModal from "../../components/editBiographyModal/EditBiographyModal";
 import { HttpClient } from "../../utilities/axiosInstance";
 import ProfileImage from "../../components/profileImage/ProfileImage";
 import ProfileMainImage from "../../components/profileMainImage/ProfileMainImage";
-import { ProfileType } from "../../data/profile/index";
-import { AccountType } from "../../data/account/index";
-import { WorkHistoryType } from "../../data/workHistory/index";
-import { AcademicHistoryType } from "../../data/academicHistory/index";
-import WorkHistoryTable from "../../components/workHistoryTable/WorkHistoryTable";
-import AcademicHistoryTable from "../../components/academicHistoryTable/AcademicHistoryTable";
 import ProfileModal from "../../components/profileModal/ProfileModal";
-import EditBiographyModal from "../../components/editBiographyModal/EditBiographyModal";
-import AcademicHistoryModal from "../../components/academicHistoryModal/AcademicHistoryModal";
-
+import { ProfileType } from "../../data/profile/index";
+import { WorkHistoryType } from "../../data/workHistory/index";
+import WorkHistoryTable from "../../components/workHistoryTable/WorkHistoryTable";
+import { localHostURL } from "../../hooks/localHostURL";
 const Profile = () => {
   const [account, setAccount] = useState<AccountType>();
   const [academicHistories, setAcademicHistories] =
@@ -55,7 +55,7 @@ const Profile = () => {
     const fetchAccounts = async () => {
       const res = await HttpClient.request({
         method: "GET",
-        url: "http://localhost:3000/accounts/1",
+        url: `${localHostURL}/accounts/1`,
       });
 
       const accountData = res.data;
@@ -68,7 +68,7 @@ const Profile = () => {
     const fetchProfile = async () => {
       const res = await HttpClient.request({
         method: "GET",
-        url: `http://localhost:3000/accounts/${accountId}/profiles`,
+        url: `${localHostURL}/accounts/${accountId}/profiles`,
       });
 
       const profileData = res.data[0];
@@ -81,7 +81,7 @@ const Profile = () => {
     const fetchWorkHistory = async () => {
       const res = await HttpClient.request({
         method: "GET",
-        url: "http://localhost:3000/work_histories/1",
+        url: `${localHostURL}/work_histories/1`,
       });
 
       const workHistoryData = res.data;
@@ -94,7 +94,7 @@ const Profile = () => {
     const fetchAcademicHistory = async () => {
       const res = await HttpClient.request({
         method: "GET",
-        url: "http://localhost:3000/academic_histories/",
+        url: `${localHostURL}/academic_histories/`,
       });
       const academicHistories = res.data;
 

@@ -8,6 +8,7 @@ import { ProfileType } from "../../data/profile/index";
 import { notification } from "antd";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
+import { localHostURL } from "../../hooks/localHostURL";
 
 type PropsType = {
   openEditBiographyModal: boolean;
@@ -36,7 +37,7 @@ const EditBiographyModal = ({
 
       const res = await HttpClient.request({
         method: "PUT",
-        url: `http://localhost:3000/profiles/${profile.id}`,
+        url: `${localHostURL}/profiles/${profile.id}`,
         data: {
           id: profile.id,
           name: profile.name,

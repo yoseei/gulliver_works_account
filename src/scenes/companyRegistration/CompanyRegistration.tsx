@@ -6,6 +6,7 @@ import { CompanyDataType } from "../../data/company";
 import { HttpClient } from "../../utilities/axiosInstance";
 import { notification } from "antd";
 import { useForm } from "react-hook-form";
+import { localHostURL } from "../../hooks/localHostURL";
 
 const CompanyRegistration = () => {
   const { reset } = useForm();
@@ -14,7 +15,7 @@ const CompanyRegistration = () => {
     try {
       const response = await HttpClient.request({
         method: "POST",
-        url: `http://localhost:3000/companies`,
+        url: `${localHostURL}/companies`,
         data: { ...data },
       });
       reset();

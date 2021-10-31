@@ -56,13 +56,6 @@
       "since_date": "2021-10-13",
       "until_date": "2021-10-30",
       "id": 4
-    },
-    {
-      "name": "hoge",
-      "faculty": "hoge",
-      "since_date": "",
-      "until_date": "",
-      "id": 5
     }
   ],
   "companies": [

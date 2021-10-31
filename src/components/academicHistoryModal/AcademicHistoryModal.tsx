@@ -9,6 +9,7 @@ import Input from "../input/Input";
 import Modal from "@material-ui/core/Modal";
 import { notification } from "antd";
 import { useForm } from "react-hook-form";
+import { localHostURL } from "../../hooks/localHostURL";
 
 type PropsType = {
   openAcademicHistoryModal: boolean;
@@ -31,7 +32,7 @@ const AcademicHistoryModal = ({
 
       const res = await HttpClient.request({
         method: "POST",
-        url: `http://localhost:3000/academic_histories`,
+        url: `${localHostURL}/academic_histories`,
         data: {
           ...data,
         },

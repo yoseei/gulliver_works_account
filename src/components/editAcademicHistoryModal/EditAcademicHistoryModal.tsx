@@ -10,6 +10,7 @@ import Input from "../input/Input";
 import Modal from "@material-ui/core/Modal";
 import { notification } from "antd";
 import { useForm } from "react-hook-form";
+import { localHostURL } from "../../hooks/localHostURL";
 
 type PropsType = {
   openEditAcademicHistoryModal: boolean;
@@ -32,7 +33,7 @@ const EditAcademicHistoryModal = ({
 
       const res = await HttpClient.request({
         method: "PUT",
-        url: `http://localhost:3000/academic_histories/${academicHistoryData?.id}`,
+        url: `${localHostURL}/academic_histories/${academicHistoryData?.id}`,
         data: {
           ...data,
         },
@@ -51,7 +52,7 @@ const EditAcademicHistoryModal = ({
       if (!academicHistoryData) return;
       await HttpClient.request({
         method: "DELETE",
-        url: `http://localhost:3000/academic_histories/${academicHistoryData?.id}`,
+        url: `${localHostURL}/academic_histories/${academicHistoryData?.id}`,
       });
       alert("学歴を削除しました。");
     } catch (err) {

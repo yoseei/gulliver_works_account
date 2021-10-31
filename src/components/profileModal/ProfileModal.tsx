@@ -8,6 +8,7 @@ import { notification } from "antd";
 import { ProfileType } from "../../data/profile/index";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
+import { localHostURL } from "../../hooks/localHostURL";
 
 type PropsType = {
   openProfileModal: boolean;
@@ -37,7 +38,7 @@ const ProfileModal = ({
     try {
       const res = await HttpClient.request({
         method: "PUT",
-        url: "http://localhost:3000/profiles/1",
+        url: `${localHostURL}/profiles/1`,
         data: {
           id: profile ? profile.id : "",
           name: data.profileName,

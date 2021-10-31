@@ -5,13 +5,14 @@ import { CompanyDataType } from "../../data/company";
 import CompanyForm from "../../components/companyForm/CompanyForm";
 import { HttpClient } from "../../utilities/axiosInstance";
 import { notification } from "antd";
+import { localHostURL } from "../../hooks/localHostURL";
 
 const CorporateEdit = () => {
   const handleEditCompanyInfo = async (data: CompanyDataType) => {
     try {
       const response = await HttpClient.request({
         method: "PUT",
-        url: `http://localhost:3000/companies/1`,
+        url: `${localHostURL}/companies/1`,
         data: { ...data },
       });
     } catch (err) {

@@ -4,6 +4,7 @@ import styles from "./CompanyDetail.module.scss";
 import { CompanyDataType } from "data/company";
 import { HttpClient } from "../../utilities/axiosInstance";
 import { notification } from "antd";
+import { localHostURL } from "../../hooks/localHostURL";
 
 const CompanyDetail = () => {
   const [company, setCompany] = useState<CompanyDataType | undefined>();
@@ -13,7 +14,7 @@ const CompanyDetail = () => {
       const fetchCompany = async () => {
         const res = await HttpClient.request({
           method: "GET",
-          url: `http://localhost:3000/companies/1`,
+          url: `${localHostURL}/companies/1`,
         });
         const companyData = res.data;
         setCompany(companyData);
