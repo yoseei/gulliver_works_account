@@ -105,19 +105,15 @@ const Profile = () => {
     fetchAcademicHistory();
   }, []);
 
-  //--------------- swrのテスト-----------------//
-  // useEffect(() => {
-  //   const fetcher = (url: any) => fetch(url).then((res) => res.json());
+  //----------- swrのテスト ---------------//
+  // const fetchAcademicHistory = () => {
+  //   const fetcher = (url: any) => fetch(url).then((res) => res.json()); // (2)
   //   const { data, error } = useSWR(
   //     `${localHostURL}/academic_histories`,
   //     fetcher
   //   ); // (1)
-
-  //   console.log(data);
-
-  //   if (error) return error;
-  //   if (data === null) return "null";
-  // }, []);
+  //   setAcademicHistories(data);
+  // };
 
   useEffect(() => {
     if (!academicHistories) return;
@@ -148,6 +144,9 @@ const Profile = () => {
 
   return (
     <div className={styles.root}>
+      {/* <button onClick={() => fetchAcademicHistory()}>
+        fetchAcademicHistory
+      </button> */}
       <div className={styles.profileContainer}>
         <div className={styles.profileImageWrapper}>
           <ProfileImage />
