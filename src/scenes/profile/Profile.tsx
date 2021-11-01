@@ -29,7 +29,9 @@ const Profile = () => {
   const [openProfileModal, setOpenProfileModal] = useState(false);
   const [openEditBiographyModal, setOpenEditBiographyModal] = useState(false);
   const [untilDate, setUntilDate] = useState<string>();
-  const [workHistory, setWorkHistory] = useState<WorkHistoryType>();
+  const [workHistories, setWorkHistories] = useState<
+    WorkHistoryType[] | undefined
+  >();
 
   const accountId = account?.id;
 
@@ -79,14 +81,14 @@ const Profile = () => {
     const fetchWorkHistory = async () => {
       const res = await HttpClient.request({
         method: "GET",
-        url: `${localHostURL}/work_histories/1`,
+        url: `${localHostURL}/accounts/${accountId}/work_histories`,
       });
 
-      const workHistoryData = res.data;
-      setWorkHistory(workHistoryData);
+      const workHistories = res.data;
+      setWorkHistories(workHistories);
     };
     fetchWorkHistory();
-  }, []);
+  }, [accountId]);
 
   useEffect(() => {
     const fetchAcademicHistory = async () => {
@@ -179,11 +181,8 @@ const Profile = () => {
             <h1 className={styles.workHistoryTitle}>職歴</h1>
 
             <div className={styles.companyWrapper}>
-              {workHistory && (
-                <WorkHistoryTable
-                  workHistory={workHistory}
-                  onClick={() => alert("職歴編集クリック！")}
-                />
+              {workHistories && (
+                <WorkHistoryTable workHistories={workHistories} />
               )}
             </div>
 

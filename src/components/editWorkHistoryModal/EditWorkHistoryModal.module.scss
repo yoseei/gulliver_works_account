@@ -24,11 +24,8 @@
     .buttonContainer {
       gap: 10px;
       display: flex;
-      justify-content: space-between;
-
+      justify-content: end;
       .rightButtonWrapper {
-        display: flex;
-        gap: 10px;
         .cancelButtonWrapper {
           background-color: #e5e5e5;
           width: 80px;

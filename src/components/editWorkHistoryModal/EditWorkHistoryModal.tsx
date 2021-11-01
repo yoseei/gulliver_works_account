@@ -1,43 +1,46 @@
 import React from "react";
-import styles from "./EditAcademicHistoryModal.module.scss";
-import { AcademicHistoryType } from "../../data/academicHistory/index";
+import styles from "./EditWorkHistoryModal.module.scss";
 import Button from "../button/Button";
-import DeleteButton from "../../components/deleteButton/DeleteButton";
+import DeleteButton from "../deleteButton/DeleteButton";
 import { ErrorMessage } from "@hookform/error-message";
 import { HttpClient } from "../../utilities/axiosInstance";
 import Input from "../input/Input";
+import { localHostURL } from "../../hooks/localHostURL";
 import Modal from "@material-ui/core/Modal";
 import { notification } from "antd";
+import Textarea from "../textarea/Textarea";
 import { useForm } from "react-hook-form";
-import { localHostURL } from "../../hooks/localHostURL";
+import { WorkHistoryType } from "../../data/workHistory/index";
 
 type PropsType = {
-  openEditAcademicHistoryModal: boolean;
-  handleCloseEditAcademicHistoryModal:
+  openWorkHistoryModal: boolean;
+  handleCloseEditWorkHistoryModal:
     | React.MouseEventHandler<HTMLParagraphElement>
     | undefined;
-  academicHistory?: AcademicHistoryType;
+  workHistory: WorkHistoryType;
+  // accountId: number | undefined;
 };
 
-const EditAcademicHistoryModal = ({
-  handleCloseEditAcademicHistoryModal,
-  openEditAcademicHistoryModal,
-  academicHistory,
+const EditWorkHistoryModal = ({
+  handleCloseEditWorkHistoryModal,
+  openWorkHistoryModal,
+  // accountId,
+  workHistory,
 }: PropsType) => {
   const { register, handleSubmit, errors } = useForm();
 
-  const handleAcademicHistory = async (data: AcademicHistoryType) => {
+  const handleEditWorkHistory = async (data: WorkHistoryType) => {
     try {
       if (!data) return;
 
       const res = await HttpClient.request({
         method: "PUT",
-        url: `${localHostURL}/academic_histories/${academicHistory?.id}`,
+        url: `${localHostURL}/work_histories/${workHistory?.id}`,
         data: {
           ...data,
         },
       });
-      alert("学歴を編集しました。");
+      alert("職歴を追加しました。");
     } catch (err) {
       notification.error({
         message: "エラーが発生しました。",
@@ -45,27 +48,26 @@ const EditAcademicHistoryModal = ({
     }
   };
 
-  const handleDeleteAcademicHistory = async () => {
+  const handleDeleteWorkHistory = async () => {
     try {
-      if (!academicHistory) return;
+      if (!workHistory) return;
       await HttpClient.request({
         method: "DELETE",
-        url: `${localHostURL}/academic_histories/${academicHistory?.id}`,
+        url: `${localHostURL}/work_histories/${workHistory?.id}`,
       });
-      alert("学歴を削除しました。");
+      alert("職歴を削除しました。");
     } catch (err) {
       notification.error({
         message: "エラーが発生しました。",
       });
     }
   };
-
   const body = (
     <div className={styles.root}>
       <div className={styles.academicHistoryContainer}>
-        <h2>学歴</h2>
+        <h2>職歴</h2>
 
-        <form onSubmit={handleSubmit(handleAcademicHistory)}>
+        <form onSubmit={handleSubmit(handleEditWorkHistory)}>
           <div className={styles.formContainer}>
             <ErrorMessage
               className={styles.errorMessage}
@@ -76,56 +78,72 @@ const EditAcademicHistoryModal = ({
             <Input
               name={"name"}
               ref={register({
-                required: "※学校名を入力してください。",
+                required: "※企業名を入力してください。",
               })}
               type={"text"}
-              title={"学校名"}
-              defaultValue={academicHistory?.name}
+              title={"企業名"}
+              defaultValue={workHistory.name}
             />
 
             <ErrorMessage
               className={styles.errorMessage}
               errors={errors}
-              name="faculty"
+              name="occupation"
               as="p"
             />
             <Input
-              name={"faculty"}
+              name={"occupation"}
               ref={register({
-                required: "※学部/学科を入力してください。",
+                required: "※部署・役職を入力してください。",
               })}
               type={"text"}
-              title={"学部/学科"}
-              defaultValue={academicHistory?.faculty}
+              title={"部署・役職"}
+              defaultValue={workHistory.occupation}
             />
 
             <div className={styles.calender}>
               <Input
-                defaultValue={academicHistory?.sinceDate}
                 name={"sinceDate"}
                 ref={register}
                 type={"date"}
                 title={"日程"}
+                defaultValue={workHistory.sinceDate}
               />
               <Input
-                defaultValue={academicHistory?.untilDate}
                 name={"untilDate"}
                 ref={register}
                 type={"date"}
+                defaultValue={workHistory.untilDate}
               />
             </div>
+
+            <ErrorMessage
+              className={styles.errorMessage}
+              errors={errors}
+              name="jobSummary"
+              as="p"
+            />
+            <Textarea
+              name={"jobSummary"}
+              rows={2}
+              title={"職歴"}
+              ref={register({
+                required: "※職歴を入力してください。",
+              })}
+              defaultValue={workHistory.jobSummary}
+            />
           </div>
 
           <div className={styles.buttonContainer}>
             <div className={styles.deleteButtonWrapper}>
-              <DeleteButton onClick={() => handleDeleteAcademicHistory()} />
+              <DeleteButton onClick={() => handleDeleteWorkHistory()} />
             </div>
             <div className={styles.rightButtonWrapper}>
               <div className={styles.cancelButtonWrapper}>
                 <Button
                   color={"gray"}
                   border={"none"}
-                  onClick={handleCloseEditAcademicHistoryModal}
+                  onClick={handleCloseEditWorkHistoryModal}
                   text={"キャンセル"}
                   type={"button"}
                 />
@@ -134,7 +152,7 @@ const EditAcademicHistoryModal = ({
                 <Button
                   border={"none"}
                   color={"primary"}
-                  onClick={() => handleCloseEditAcademicHistoryModal}
+                  onClick={() => handleCloseEditWorkHistoryModal}
                   text={"更新"}
                   type={"submit"}
                 />
@@ -148,12 +166,12 @@ const EditAcademicHistoryModal = ({
 
   return (
     <Modal
-      open={openEditAcademicHistoryModal}
-      onClose={handleCloseEditAcademicHistoryModal}
+      open={openWorkHistoryModal}
+      onClose={handleCloseEditWorkHistoryModal}
     >
       {body}
     </Modal>
   );
 };
 
-export default EditAcademicHistoryModal;
+export default EditWorkHistoryModal;

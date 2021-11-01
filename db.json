@@ -25,30 +25,16 @@
     {
       "id": 1,
       "is_employed": "true",
-      "occupation": {
-        "id": 1,
-        "name": "戦略・経営コンサルタント"
-      },
-      "industry": {
-        "id": 1,
-        "name": "銀行・信託銀行"
-      },
+      "occupation": "戦略・経営コンサルタント",
+      "industry": "銀行・信託銀行",
       "position": "主任",
       "annual_income": 4000000,
       "management_experience": 3,
       "job_summary": "Ruby on Railsを使ったバックエンド開発",
       "since_date": "2019-08-01",
       "until_date": "2020-05-01",
-      "name": "株式会社SIMULA Labs"
-    },
-    {
-      "name": "hoge",
-      "occupation": "hoge",
-      "since_date": "2021-11-03",
-      "until_date": "2021-11-03",
-      "job_summary": "hoge",
-      "accountId": "1",
-      "id": 2
+      "name": "株式会社SIMULA Labs",
+      "accountId": "1"
     },
     {
       "name": "株式会社ドーエヌナー",
@@ -60,24 +46,15 @@
       "id": 3
     },
     {
-      "name": "sssss",
-      "occupation": "ssssssss",
-      "since_date": "2021-11-07",
-      "until_date": "2021-11-17",
-      "job_summary": "sssssssssssssss",
-      "accountId": "1",
+      "name": "hoge1",
+      "occupation": "hoge1",
+      "since_date": "",
+      "until_date": "",
+      "job_summary": "1hoge",
       "id": 4
     }
   ],
   "academic_histories": [
-    {
-      "name": "hoge",
-      "faculty": "hoge",
-      "since_date": "2021-11-10",
-      "account_id": 1,
-      "until_date": "2021-11-17",
-      "id": "1"
-    },
     {
       "name": "日本高校",
       "faculty": "普通科",
@@ -93,6 +70,14 @@
       "until_date": "2021-11-25",
       "account_id": 1,
       "id": "RTQDHIK"
+    },
+    {
+      "name": "hoge",
+      "faculty": "hoge",
+      "since_date": "",
+      "until_date": "",
+      "accountId": "1",
+      "id": "L5xxoLf"
     }
   ],
   "companies": [
