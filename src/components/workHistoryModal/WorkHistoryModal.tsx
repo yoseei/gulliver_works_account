@@ -133,7 +133,6 @@ const WorkHistoryModal = ({
       </div>
     </div>
   );
-  console.log("実装画面反映のための記述");
 
   return (
     <Modal open={openWorkHistoryModal} onClose={handleCloseWorkHistoryModal}>
