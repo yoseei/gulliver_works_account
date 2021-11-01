@@ -16,7 +16,6 @@ import { ProfileType } from "../../data/profile/index";
 import { WorkHistoryType } from "../../data/workHistory/index";
 import WorkHistoryTable from "../../components/workHistoryTable/WorkHistoryTable";
 
-import useSWR from "swr";
 const Profile = () => {
   const [account, setAccount] = useState<AccountType>();
   const [academicHistories, setAcademicHistories] =
@@ -96,14 +95,14 @@ const Profile = () => {
     const fetchAcademicHistory = async () => {
       const res = await HttpClient.request({
         method: "GET",
-        url: `${localHostURL}/academic_histories/`,
+        url: `${localHostURL}/accounts/${accountId}/academic_histories/`,
       });
       const academicHistories = res.data;
 
       setAcademicHistories(academicHistories);
     };
     fetchAcademicHistory();
-  }, []);
+  }, [accountId]);
 
   //----------- swrのテスト ---------------//
   // const fetchAcademicHistory = () => {

@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./EditAcademicHistoryModal.module.scss";
-import "antd/dist/antd.css";
 import { AcademicHistoryType } from "../../data/academicHistory/index";
 import Button from "../button/Button";
 import DeleteButton from "../../components/deleteButton/DeleteButton";

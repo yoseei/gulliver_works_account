@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "antd/dist/antd.css";
 import styles from "./CompanyDetail.module.scss";
 import { CompanyDataType } from "data/company";
 import { HttpClient } from "../../utilities/axiosInstance";

@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./ProfileModal.module.scss";
-import "antd/dist/antd.css";
 import Button from "../button/Button";
 import { HttpClient } from "../../utilities/axiosInstance";
 import Modal from "@material-ui/core/Modal";

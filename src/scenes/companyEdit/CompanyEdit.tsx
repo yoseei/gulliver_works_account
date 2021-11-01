@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./CompanyEdit.module.scss";
-import "antd/dist/antd.css";
 import { CompanyDataType } from "../../data/company";
 import CompanyForm from "../../components/companyForm/CompanyForm";
 import { HttpClient } from "../../utilities/axiosInstance";

@@ -1,5 +1,4 @@
 import React from "react";
-import "antd/dist/antd.css";
 import Button from "../button/Button";
 import Modal from "@material-ui/core/Modal";
 import styles from "./EditBiographyModal.module.scss";

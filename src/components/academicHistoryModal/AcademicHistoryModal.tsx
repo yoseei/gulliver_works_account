@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./AcademicHistoryModal.module.scss";
-import "antd/dist/antd.css";
 import { AcademicHistoryType } from "../../data/academicHistory/index";
 import Button from "../button/Button";
 import { ErrorMessage } from "@hookform/error-message";
@@ -23,6 +22,7 @@ type PropsType = {
 const AcademicHistoryModal = ({
   handleCloseAcademicHistoryModal,
   openAcademicHistoryModal,
+  accountId,
 }: PropsType) => {
   const { register, handleSubmit, errors } = useForm();
 
@@ -32,7 +32,7 @@ const AcademicHistoryModal = ({
 
       const res = await HttpClient.request({
         method: "POST",
-        url: `${localHostURL}/academic_histories`,
+        url: `${localHostURL}/accounts/${accountId}/academic_histories`,
         data: {
           ...data,
         },
