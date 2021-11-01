@@ -40,6 +40,33 @@
       "since_date": "2019-08-01",
       "until_date": "2020-05-01",
       "name": "株式会社SIMULA Labs"
+    },
+    {
+      "name": "hoge",
+      "occupation": "hoge",
+      "since_date": "2021-11-03",
+      "until_date": "2021-11-03",
+      "job_summary": "hoge",
+      "accountId": "1",
+      "id": 2
+    },
+    {
+      "name": "株式会社ドーエヌナー",
+      "occupation": "企画広報の係長",
+      "since_date": "2021-11-03",
+      "until_date": "2021-11-24",
+      "job_summary": "複数の新規事業の立ち上げからグロースまで担当。ヘルスケアとモバイルアプリの分野では新記録を残した。",
+      "accountId": "1",
+      "id": 3
+    },
+    {
+      "name": "sssss",
+      "occupation": "ssssssss",
+      "since_date": "2021-11-07",
+      "until_date": "2021-11-17",
+      "job_summary": "sssssssssssssss",
+      "accountId": "1",
+      "id": 4
     }
   ],
   "academic_histories": [
@@ -57,7 +84,6 @@
       "since_date": "2021-11-02",
       "until_date": "2021-11-18",
       "account_id": 1,
-
       "id": "X8QrXck"
     },
     {

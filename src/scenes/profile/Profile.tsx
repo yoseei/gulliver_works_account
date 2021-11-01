@@ -15,6 +15,7 @@ import ProfileModal from "../../components/profileModal/ProfileModal";
 import { ProfileType } from "../../data/profile/index";
 import { WorkHistoryType } from "../../data/workHistory/index";
 import WorkHistoryTable from "../../components/workHistoryTable/WorkHistoryTable";
+import WorkHistoryModal from "../../components/workHistoryModal/WorkHistoryModal";
 
 const Profile = () => {
   const [account, setAccount] = useState<AccountType>();
@@ -24,6 +25,7 @@ const Profile = () => {
   const [profile, setProfile] = useState<ProfileType>();
   const [openAcademicHistoryModal, setOpenAcademicHistoryModal] =
     useState(false);
+  const [openWorkHistoryModal, setOpenWorkHistoryModal] = useState(false);
   const [openProfileModal, setOpenProfileModal] = useState(false);
   const [openEditBiographyModal, setOpenEditBiographyModal] = useState(false);
   const [untilDate, setUntilDate] = useState<string>();
@@ -31,25 +33,20 @@ const Profile = () => {
 
   const accountId = account?.id;
 
-  const handleOpenProfileModal = () => {
-    setOpenProfileModal(true);
-  };
-  const handleCloseProfileModal = () => {
-    setOpenProfileModal(false);
+  const handleToggleProfileModal = () => {
+    setOpenProfileModal(!openProfileModal);
   };
 
-  const handleOpenEditBiographyModal = () => {
-    setOpenEditBiographyModal(true);
-  };
-  const handleCloseEditBiographyModal = () => {
-    setOpenEditBiographyModal(false);
+  const handleToggleEditBiographyModal = () => {
+    setOpenEditBiographyModal(!openEditBiographyModal);
   };
 
-  const handleOpenAcademicHistoryModal = () => {
-    setOpenAcademicHistoryModal(true);
+  const handleToggleAcademicHistoryModal = () => {
+    setOpenAcademicHistoryModal(!openAcademicHistoryModal);
   };
-  const handleCloseAcademicHistoryModal = () => {
-    setOpenAcademicHistoryModal(false);
+
+  const handleToggleWorkHistoryModal = () => {
+    setOpenWorkHistoryModal(!openWorkHistoryModal);
   };
 
   useEffect(() => {
@@ -104,16 +101,6 @@ const Profile = () => {
     fetchAcademicHistory();
   }, [accountId]);
 
-  //----------- swrのテスト ---------------//
-  // const fetchAcademicHistory = () => {
-  //   const fetcher = (url: any) => fetch(url).then((res) => res.json()); // (2)
-  //   const { data, error } = useSWR(
-  //     `${localHostURL}/academic_histories`,
-  //     fetcher
-  //   ); // (1)
-  //   setAcademicHistories(data);
-  // };
-
   useEffect(() => {
     if (!academicHistories) return;
     const length = academicHistories.length;
@@ -143,15 +130,12 @@ const Profile = () => {
 
   return (
     <div className={styles.root}>
-      {/* <button onClick={() => fetchAcademicHistory()}>
-        fetchAcademicHistory
-      </button> */}
       <div className={styles.profileContainer}>
         <div className={styles.profileImageWrapper}>
           <ProfileImage />
           <div className={styles.buttonWrapper}>
             <Button
-              onClick={handleOpenProfileModal}
+              onClick={() => handleToggleProfileModal()}
               text={"プロフィールを編集"}
             />
           </div>
@@ -182,7 +166,7 @@ const Profile = () => {
             <h1>自己紹介</h1>
             <div className={styles.buttonWrapper}>
               <Button
-                onClick={handleOpenEditBiographyModal}
+                onClick={() => handleToggleEditBiographyModal()}
                 text={"編集する"}
               />
             </div>
@@ -206,7 +190,7 @@ const Profile = () => {
             <div className={styles.buttonWrapper}>
               <Button
                 text={"職歴を追加する"}
-                onClick={() => alert("職歴を追加ボタンクリック")}
+                onClick={() => handleToggleWorkHistoryModal()}
               />
             </div>
           </div>
@@ -223,7 +207,7 @@ const Profile = () => {
             <div className={styles.buttonWrapper}>
               <Button
                 text={"学歴を追加する"}
-                onClick={() => handleOpenAcademicHistoryModal()}
+                onClick={() => handleToggleAcademicHistoryModal()}
               />
             </div>
           </div>
@@ -235,7 +219,7 @@ const Profile = () => {
             {accountId && profile && (
               <ProfileModal
                 openProfileModal={openProfileModal}
-                handleCloseProfileModal={handleCloseProfileModal}
+                handleCloseProfileModal={handleToggleProfileModal}
                 accountId={accountId}
                 profile={profile}
               />
@@ -243,32 +227,29 @@ const Profile = () => {
           </div>
         )}
 
-        {openEditBiographyModal && (
-          <div className={styles.profileModalContainer}>
-            {accountId && (
-              <EditBiographyModal
-                openEditBiographyModal={openEditBiographyModal}
-                handleCloseEditBiographyModal={handleCloseEditBiographyModal}
-                profile={profile}
-                accountId={accountId}
-              />
-            )}
-          </div>
+        {openEditBiographyModal && accountId && (
+          <EditBiographyModal
+            openEditBiographyModal={openEditBiographyModal}
+            handleCloseEditBiographyModal={handleToggleEditBiographyModal}
+            profile={profile}
+            accountId={accountId}
+          />
         )}
 
-        {openAcademicHistoryModal && (
-          <div className={styles.academicHistoryModalContainer}>
-            {accountId && (
-              <AcademicHistoryModal
-                openAcademicHistoryModal={openAcademicHistoryModal}
-                handleCloseAcademicHistoryModal={
-                  handleCloseAcademicHistoryModal
-                }
-                academicHistories={academicHistories}
-                accountId={accountId}
-              />
-            )}
-          </div>
+        {openAcademicHistoryModal && accountId && (
+          <AcademicHistoryModal
+            openAcademicHistoryModal={openAcademicHistoryModal}
+            handleCloseAcademicHistoryModal={handleToggleAcademicHistoryModal}
+            academicHistories={academicHistories}
+            accountId={accountId}
+          />
+        )}
+        {openWorkHistoryModal && accountId && (
+          <WorkHistoryModal
+            openWorkHistoryModal={openWorkHistoryModal}
+            handleCloseWorkHistoryModal={handleToggleWorkHistoryModal}
+            accountId={accountId}
+          />
         )}
       </div>
     </div>
