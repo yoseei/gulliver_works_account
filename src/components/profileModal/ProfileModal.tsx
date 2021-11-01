@@ -1,11 +1,13 @@
 import React from "react";
-import Button from "../button/Button";
-import Modal from "@material-ui/core/Modal";
 import styles from "./ProfileModal.module.scss";
+import Button from "../button/Button";
 import { HttpClient } from "../../utilities/axiosInstance";
+import Modal from "@material-ui/core/Modal";
+import { notification } from "antd";
 import { ProfileType } from "../../data/profile/index";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
+import { localHostURL } from "../../hooks/localHostURL";
 
 type PropsType = {
   openProfileModal: boolean;
@@ -35,7 +37,7 @@ const ProfileModal = ({
     try {
       const res = await HttpClient.request({
         method: "PUT",
-        url: "http://localhost:3000/profiles/1",
+        url: `${localHostURL}/profiles/1`,
         data: {
           id: profile ? profile.id : "",
           name: data.profileName,
@@ -49,11 +51,12 @@ const ProfileModal = ({
           accountId: accountId,
         },
       });
-      console.log(res);
       alert("プロフィールを編集しました。");
       history.push("/");
     } catch (err) {
-      console.log(err);
+      notification.error({
+        message: "エラーが発生しました。",
+      });
     }
   };
 

@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./AcademicHistoryTable.module.scss";
 import Button from "../button/Button";
 import { AcademicHistoryType } from "../../data/academicHistory/index";
+import EditAcademicHistoryModal from "../editAcademicHistoryModal/EditAcademicHistoryModal";
 
 type AcademicHistoryTableType = {
   academicHistories: AcademicHistoryType[];
-  onClick: React.MouseEventHandler<HTMLParagraphElement> | undefined;
 };
 const AcademicHistoryTable: React.FC<AcademicHistoryTableType> = ({
   academicHistories,
-  onClick,
 }) => {
+  const [openEditAcademicHistoryModal, setOpenEditAcademicHistoryModal] =
+    useState(false);
+
+  const [selectedHistory, selectHistory] = useState<AcademicHistoryType>();
+
+  const onEditHistory = (selectedItem: AcademicHistoryType) => {
+    selectHistory(selectedItem);
+    setOpenEditAcademicHistoryModal(true);
+  };
   return (
     <>
       {academicHistories?.map(
@@ -31,13 +39,27 @@ const AcademicHistoryTable: React.FC<AcademicHistoryTableType> = ({
                     </p>
                   </div>
                   <div className={styles.buttonWrapper}>
-                    <Button onClick={onClick} text={"編集する"} />
+                    <Button
+                      onClick={() => onEditHistory(academicHistory)}
+                      text={"編集する"}
+                    />
                   </div>
                 </div>
               </div>
             </div>
           </div>
         )
+      )}
+      {openEditAcademicHistoryModal && (
+        <div className={styles.academicHistoryModalContainer}>
+          <EditAcademicHistoryModal
+            openEditAcademicHistoryModal={openEditAcademicHistoryModal}
+            handleCloseEditAcademicHistoryModal={() =>
+              setOpenEditAcademicHistoryModal(false)
+            }
+            academicHistoryData={selectedHistory}
+          />
+        </div>
       )}
     </>
   );

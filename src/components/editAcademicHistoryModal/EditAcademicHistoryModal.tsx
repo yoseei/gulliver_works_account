@@ -1,7 +1,8 @@
 import React from "react";
-import styles from "./AcademicHistoryModal.module.scss";
+import styles from "./EditAcademicHistoryModal.module.scss";
 import { AcademicHistoryType } from "../../data/academicHistory/index";
 import Button from "../button/Button";
+import DeleteButton from "../../components/deleteButton/DeleteButton";
 import { ErrorMessage } from "@hookform/error-message";
 import { HttpClient } from "../../utilities/axiosInstance";
 import Input from "../input/Input";
@@ -11,18 +12,17 @@ import { useForm } from "react-hook-form";
 import { localHostURL } from "../../hooks/localHostURL";
 
 type PropsType = {
-  openAcademicHistoryModal: boolean;
-  handleCloseAcademicHistoryModal:
+  openEditAcademicHistoryModal: boolean;
+  handleCloseEditAcademicHistoryModal:
     | React.MouseEventHandler<HTMLParagraphElement>
     | undefined;
-  academicHistories?: AcademicHistoryType[];
-  accountId: number;
+  academicHistoryData?: AcademicHistoryType;
 };
 
-const AcademicHistoryModal = ({
-  handleCloseAcademicHistoryModal,
-  openAcademicHistoryModal,
-  accountId,
+const EditAcademicHistoryModal = ({
+  handleCloseEditAcademicHistoryModal,
+  openEditAcademicHistoryModal,
+  academicHistoryData,
 }: PropsType) => {
   const { register, handleSubmit, errors } = useForm();
 
@@ -31,13 +31,29 @@ const AcademicHistoryModal = ({
       if (!data) return;
 
       const res = await HttpClient.request({
-        method: "POST",
-        url: `${localHostURL}/accounts/${accountId}/academic_histories`,
+        method: "PUT",
+        url: `${localHostURL}/academic_histories/${academicHistoryData?.id}`,
         data: {
           ...data,
         },
       });
-      alert("学歴を追加しました。");
+      alert("学歴を編集しました。");
+      location.reload();
+    } catch (err) {
+      notification.error({
+        message: "エラーが発生しました。",
+      });
+    }
+  };
+
+  const handleDeleteAcademicHistory = async () => {
+    try {
+      if (!academicHistoryData) return;
+      await HttpClient.request({
+        method: "DELETE",
+        url: `${localHostURL}/academic_histories/${academicHistoryData?.id}`,
+      });
+      alert("学歴を削除しました。");
     } catch (err) {
       notification.error({
         message: "エラーが発生しました。",
@@ -65,6 +81,7 @@ const AcademicHistoryModal = ({
               })}
               type={"text"}
               title={"学校名"}
+              defaultValue={academicHistoryData?.name}
             />
 
             <ErrorMessage
@@ -80,37 +97,49 @@ const AcademicHistoryModal = ({
               })}
               type={"text"}
               title={"学部/学科"}
+              defaultValue={academicHistoryData?.faculty}
             />
 
             <div className={styles.calender}>
               <Input
+                defaultValue={academicHistoryData?.sinceDate}
                 name={"sinceDate"}
                 ref={register}
                 type={"date"}
                 title={"日程"}
               />
-              <Input name={"untilDate"} ref={register} type={"date"} />
+              <Input
+                defaultValue={academicHistoryData?.untilDate}
+                name={"untilDate"}
+                ref={register}
+                type={"date"}
+              />
             </div>
           </div>
 
-          <div className={styles.buttonWrapper}>
-            <div className={styles.cancelButtonWrapper}>
-              <Button
-                color={"gray"}
-                border={"none"}
-                onClick={handleCloseAcademicHistoryModal}
-                text={"キャンセル"}
-                type={"button"}
-              />
+          <div className={styles.buttonContainer}>
+            <div className={styles.deleteButtonWrapper}>
+              <DeleteButton onClick={() => handleDeleteAcademicHistory()} />
             </div>
-            <div className={styles.updateButtonWrapper}>
-              <Button
-                border={"none"}
-                color={"primary"}
-                onClick={() => handleCloseAcademicHistoryModal}
-                text={"更新"}
-                type={"submit"}
-              />
+            <div className={styles.rightButtonWrapper}>
+              <div className={styles.cancelButtonWrapper}>
+                <Button
+                  color={"gray"}
+                  border={"none"}
+                  onClick={handleCloseEditAcademicHistoryModal}
+                  text={"キャンセル"}
+                  type={"button"}
+                />
+              </div>
+              <div className={styles.updateButtonWrapper}>
+                <Button
+                  border={"none"}
+                  color={"primary"}
+                  onClick={() => handleCloseEditAcademicHistoryModal}
+                  text={"更新"}
+                  type={"submit"}
+                />
+              </div>
             </div>
           </div>
         </form>
@@ -120,12 +149,12 @@ const AcademicHistoryModal = ({
 
   return (
     <Modal
-      open={openAcademicHistoryModal}
-      onClose={handleCloseAcademicHistoryModal}
+      open={openEditAcademicHistoryModal}
+      onClose={handleCloseEditAcademicHistoryModal}
     >
       {body}
     </Modal>
   );
 };
 
-export default AcademicHistoryModal;
+export default EditAcademicHistoryModal;

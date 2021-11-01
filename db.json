@@ -44,18 +44,29 @@
   ],
   "academic_histories": [
     {
+      "name": "hoge",
+      "faculty": "hoge",
+      "since_date": "2021-11-10",
+      "account_id": 1,
+      "until_date": "2021-11-17",
+      "id": "1"
+    },
+    {
       "name": "日本高校",
-      "faculty": "情報科",
-      "since_date": "2021-10-19",
-      "until_date": "2021-10-20",
-      "id": 2
+      "faculty": "普通科",
+      "since_date": "2021-11-02",
+      "until_date": "2021-11-18",
+      "account_id": 1,
+
+      "id": "X8QrXck"
     },
     {
       "name": "日本大学",
-      "faculty": "情報科",
-      "since_date": "2021-10-26",
-      "until_date": "2021-10-27",
-      "id": 1
+      "faculty": "普通科",
+      "since_date": "2021-11-17",
+      "until_date": "2021-11-25",
+      "account_id": 1,
+      "id": "RTQDHIK"
     }
   ],
   "companies": [

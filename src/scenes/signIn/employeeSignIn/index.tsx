@@ -53,7 +53,6 @@ const EmployeeSignInPage = () => {
               name="account.email"
               errors={errors}
               render={({ messages }) => {
-                console.log("messages", messages);
                 return messages
                   ? Object.entries(messages).map(([type, message]) => (
                       <p key={type} className={styles.errorMessage}>
@@ -83,7 +82,6 @@ const EmployeeSignInPage = () => {
               name="account.password"
               errors={errors}
               render={({ messages }) => {
-                console.log("messages", messages);
                 return messages
                   ? Object.entries(messages).map(([type, message]) => (
                       <p key={type} className={styles.errorMessage}>

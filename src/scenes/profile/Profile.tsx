@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Profile.module.scss";
 
+import { AccountType } from "../../data/account/index";
+import { AcademicHistoryType } from "../../data/academicHistory/index";
+import AcademicHistoryTable from "../../components/academicHistoryTable/AcademicHistoryTable";
+import AcademicHistoryModal from "../../components/academicHistoryModal/AcademicHistoryModal";
 import Button from "../../components/button/Button";
+import EditBiographyModal from "../../components/editBiographyModal/EditBiographyModal";
 import { HttpClient } from "../../utilities/axiosInstance";
+import { localHostURL } from "../../hooks/localHostURL";
 import ProfileImage from "../../components/profileImage/ProfileImage";
 import ProfileMainImage from "../../components/profileMainImage/ProfileMainImage";
-import { ProfileType } from "../../data/profile/index";
-import { AccountType } from "../../data/account/index";
-import { WorkHistoryType } from "../../data/workHistory/index";
-import { AcademicHistoryType } from "../../data/academicHistory/index";
-import WorkHistoryTable from "../../components/workHistoryTable/WorkHistoryTable";
-import AcademicHistoryTable from "../../components/academicHistoryTable/AcademicHistoryTable";
 import ProfileModal from "../../components/profileModal/ProfileModal";
-import EditBiographyModal from "../../components/editBiographyModal/EditBiographyModal";
-import AcademicHistoryModal from "../../components/academicHistoryModal/AcademicHistoryModal";
+import { ProfileType } from "../../data/profile/index";
+import { WorkHistoryType } from "../../data/workHistory/index";
+import WorkHistoryTable from "../../components/workHistoryTable/WorkHistoryTable";
 
 const Profile = () => {
   const [account, setAccount] = useState<AccountType>();
@@ -24,8 +25,7 @@ const Profile = () => {
   const [openAcademicHistoryModal, setOpenAcademicHistoryModal] =
     useState(false);
   const [openProfileModal, setOpenProfileModal] = useState(false);
-  const [openEditBiographyModal, setOpenEditBiographyModal] =
-    React.useState(false);
+  const [openEditBiographyModal, setOpenEditBiographyModal] = useState(false);
   const [untilDate, setUntilDate] = useState<string>();
   const [workHistory, setWorkHistory] = useState<WorkHistoryType>();
 
@@ -56,7 +56,7 @@ const Profile = () => {
     const fetchAccounts = async () => {
       const res = await HttpClient.request({
         method: "GET",
-        url: "http://localhost:3000/accounts/1",
+        url: `${localHostURL}/accounts/1`,
       });
 
       const accountData = res.data;
@@ -69,7 +69,7 @@ const Profile = () => {
     const fetchProfile = async () => {
       const res = await HttpClient.request({
         method: "GET",
-        url: `http://localhost:3000/accounts/${accountId}/profiles`,
+        url: `${localHostURL}/accounts/${accountId}/profiles`,
       });
 
       const profileData = res.data[0];
@@ -82,7 +82,7 @@ const Profile = () => {
     const fetchWorkHistory = async () => {
       const res = await HttpClient.request({
         method: "GET",
-        url: "http://localhost:3000/work_histories/1",
+        url: `${localHostURL}/work_histories/1`,
       });
 
       const workHistoryData = res.data;
@@ -95,14 +95,24 @@ const Profile = () => {
     const fetchAcademicHistory = async () => {
       const res = await HttpClient.request({
         method: "GET",
-        url: "http://localhost:3000/academic_histories",
+        url: `${localHostURL}/accounts/${accountId}/academic_histories/`,
       });
       const academicHistories = res.data;
 
       setAcademicHistories(academicHistories);
     };
     fetchAcademicHistory();
-  }, []);
+  }, [accountId]);
+
+  //----------- swrのテスト ---------------//
+  // const fetchAcademicHistory = () => {
+  //   const fetcher = (url: any) => fetch(url).then((res) => res.json()); // (2)
+  //   const { data, error } = useSWR(
+  //     `${localHostURL}/academic_histories`,
+  //     fetcher
+  //   ); // (1)
+  //   setAcademicHistories(data);
+  // };
 
   useEffect(() => {
     if (!academicHistories) return;
@@ -115,8 +125,6 @@ const Profile = () => {
   // untilDateの降順をconsole.logで取得しようとしています
   useEffect(() => {
     if (!academicHistories) return;
-    // if (!untilDate) return;
-
     const newAcademicHistories = academicHistories.sort(function (
       a: AcademicHistoryType,
       b: AcademicHistoryType
@@ -125,6 +133,7 @@ const Profile = () => {
       if (b.untilDate > a.untilDate) return 1;
       return 0;
     });
+
     // 最終学歴をstateに代入
     setFinalEducation(newAcademicHistories[0].name);
     if (newAcademicHistories[0].untilDate === null) {
@@ -134,6 +143,9 @@ const Profile = () => {
 
   return (
     <div className={styles.root}>
+      {/* <button onClick={() => fetchAcademicHistory()}>
+        fetchAcademicHistory
+      </button> */}
       <div className={styles.profileContainer}>
         <div className={styles.profileImageWrapper}>
           <ProfileImage />
@@ -186,7 +198,7 @@ const Profile = () => {
               {workHistory && (
                 <WorkHistoryTable
                   workHistory={workHistory}
-                  onClick={() => console.log("職歴編集クリック！")}
+                  onClick={() => alert("職歴編集クリック！")}
                 />
               )}
             </div>
@@ -194,7 +206,7 @@ const Profile = () => {
             <div className={styles.buttonWrapper}>
               <Button
                 text={"職歴を追加する"}
-                onClick={() => console.log("クリック")}
+                onClick={() => alert("職歴を追加ボタンクリック")}
               />
             </div>
           </div>
@@ -204,10 +216,7 @@ const Profile = () => {
 
             <div className={styles.companyWrapper}>
               {academicHistories && (
-                <AcademicHistoryTable
-                  academicHistories={academicHistories}
-                  onClick={() => console.log("編集ボタンクリック！")}
-                />
+                <AcademicHistoryTable academicHistories={academicHistories} />
               )}
             </div>
 
