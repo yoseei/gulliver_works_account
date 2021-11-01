@@ -15,6 +15,7 @@ import ProfileModal from "../../components/profileModal/ProfileModal";
 import { ProfileType } from "../../data/profile/index";
 import { WorkHistoryType } from "../../data/workHistory/index";
 import WorkHistoryTable from "../../components/workHistoryTable/WorkHistoryTable";
+import WorkHistoryModal from "../../components/workHistoryModal/WorkHistoryModal";
 
 const Profile = () => {
   const [account, setAccount] = useState<AccountType>();
@@ -24,6 +25,7 @@ const Profile = () => {
   const [profile, setProfile] = useState<ProfileType>();
   const [openAcademicHistoryModal, setOpenAcademicHistoryModal] =
     useState(false);
+  const [openWorkHistoryModal, setOpenWorkHistoryModal] = useState(false);
   const [openProfileModal, setOpenProfileModal] = useState(false);
   const [openEditBiographyModal, setOpenEditBiographyModal] = useState(false);
   const [untilDate, setUntilDate] = useState<string>();
@@ -50,6 +52,13 @@ const Profile = () => {
   };
   const handleCloseAcademicHistoryModal = () => {
     setOpenAcademicHistoryModal(false);
+  };
+
+  const handleOpenWorkHistoryModal = () => {
+    setOpenWorkHistoryModal(true);
+  };
+  const handleCloseWorkHistoryModal = () => {
+    setOpenWorkHistoryModal(false);
   };
 
   useEffect(() => {
@@ -103,16 +112,6 @@ const Profile = () => {
     };
     fetchAcademicHistory();
   }, [accountId]);
-
-  //----------- swrのテスト ---------------//
-  // const fetchAcademicHistory = () => {
-  //   const fetcher = (url: any) => fetch(url).then((res) => res.json()); // (2)
-  //   const { data, error } = useSWR(
-  //     `${localHostURL}/academic_histories`,
-  //     fetcher
-  //   ); // (1)
-  //   setAcademicHistories(data);
-  // };
 
   useEffect(() => {
     if (!academicHistories) return;
@@ -206,7 +205,7 @@ const Profile = () => {
             <div className={styles.buttonWrapper}>
               <Button
                 text={"職歴を追加する"}
-                onClick={() => alert("職歴を追加ボタンクリック")}
+                onClick={() => handleOpenWorkHistoryModal()}
               />
             </div>
           </div>
@@ -265,6 +264,17 @@ const Profile = () => {
                   handleCloseAcademicHistoryModal
                 }
                 academicHistories={academicHistories}
+                accountId={accountId}
+              />
+            )}
+          </div>
+        )}
+        {openWorkHistoryModal && (
+          <div className={styles.workHistoryModalContainer}>
+            {accountId && (
+              <WorkHistoryModal
+                openWorkHistoryModal={openWorkHistoryModal}
+                handleCloseWorkHistoryModal={handleCloseWorkHistoryModal}
                 accountId={accountId}
               />
             )}

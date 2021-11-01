@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import styles from "./WorkHistoryTable.module.scss";
 import Button from "../button/Button";
 import { WorkHistoryType } from "../../data/workHistory/index";
+import WorkHistoryModal from "../workHistoryModal/WorkHistoryModal";
 
 export type WorkHistoryTableTypes = {
   workHistory: WorkHistoryType;
