@@ -32,7 +32,6 @@ const EditWorkHistoryModal = ({
   const handleEditWorkHistory = async (data: WorkHistoryType) => {
     try {
       if (!data) return;
-      console.log(workHistory);
 
       const res = await HttpClient.request({
         method: "PUT",
@@ -42,7 +41,6 @@ const EditWorkHistoryModal = ({
           accountId: accountId,
         },
       });
-      console.log(res);
 
       alert("職歴を追加しました。");
     } catch (err) {

@@ -96,7 +96,6 @@ const Profile = () => {
         method: "GET",
         url: `${localHostURL}/accounts/${accountId}/academic_histories`,
       });
-      console.log(res);
 
       const academicHistories = res.data;
 
