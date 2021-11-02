@@ -23,61 +23,32 @@
   ],
   "work_histories": [
     {
-      "id": 1,
-      "is_employed": "true",
-      "occupation": "戦略・経営コンサルタント",
-      "industry": "銀行・信託銀行",
-      "position": "主任",
-      "annual_income": 4000000,
-      "management_experience": 3,
-      "job_summary": "Ruby on Railsを使ったバックエンド開発",
-      "since_date": "2019-08-01",
-      "until_date": "2020-05-01",
-      "name": "株式会社SIMULA Labs",
-      "accountId": "1"
+      "name": "hogeeaaaaaaaaa",
+      "occupation": "hoge",
+      "since_date": "2021-11-09",
+      "until_date": "2021-11-17",
+      "job_summary": "hoge",
+      "account_id": 1,
+      "id": 1
     },
     {
-      "name": "株式会社ドーエヌナー",
-      "occupation": "企画広報の係長",
-      "since_date": "2021-11-03",
-      "until_date": "2021-11-24",
-      "job_summary": "複数の新規事業の立ち上げからグロースまで担当。ヘルスケアとモバイルアプリの分野では新記録を残した。",
-      "accountId": "1",
-      "id": 3
-    },
-    {
-      "name": "hoge1",
-      "occupation": "hoge1",
-      "since_date": "",
-      "until_date": "",
-      "job_summary": "1hoge",
-      "id": 4
+      "name": "aaaaaabbbbbbbbbbbbb",
+      "occupation": "aaaaaaa",
+      "since_date": "2021-10-11",
+      "until_date": "2021-12-17",
+      "job_summary": "aaaaaaaa",
+      "account_id": 1,
+      "id": 2
     }
   ],
   "academic_histories": [
     {
-      "name": "日本高校",
-      "faculty": "普通科",
-      "since_date": "2021-11-02",
-      "until_date": "2021-11-18",
+      "name": "hogeaaaaaaaaaaa",
+      "faculty": "ghoe",
+      "since_date": "2021-11-16",
+      "until_date": "2021-11-11",
       "account_id": 1,
-      "id": "X8QrXck"
-    },
-    {
-      "name": "日本大学",
-      "faculty": "普通科",
-      "since_date": "2021-11-17",
-      "until_date": "2021-11-25",
-      "account_id": 1,
-      "id": "RTQDHIK"
-    },
-    {
-      "name": "hoge",
-      "faculty": "hoge",
-      "since_date": "",
-      "until_date": "",
-      "accountId": "1",
-      "id": "L5xxoLf"
+      "id": 1
     }
   ],
   "companies": [

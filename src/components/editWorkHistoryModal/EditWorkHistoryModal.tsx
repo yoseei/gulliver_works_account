@@ -18,13 +18,13 @@ type PropsType = {
     | React.MouseEventHandler<HTMLParagraphElement>
     | undefined;
   workHistory: WorkHistoryType;
-  // accountId: number | undefined;
+  accountId: number | undefined;
 };
 
 const EditWorkHistoryModal = ({
   handleCloseEditWorkHistoryModal,
   openWorkHistoryModal,
-  // accountId,
+  accountId,
   workHistory,
 }: PropsType) => {
   const { register, handleSubmit, errors } = useForm();
@@ -32,14 +32,18 @@ const EditWorkHistoryModal = ({
   const handleEditWorkHistory = async (data: WorkHistoryType) => {
     try {
       if (!data) return;
+      console.log(workHistory);
 
       const res = await HttpClient.request({
         method: "PUT",
         url: `${localHostURL}/work_histories/${workHistory?.id}`,
         data: {
           ...data,
+          accountId: accountId,
         },
       });
+      console.log(res);
+
       alert("職歴を追加しました。");
     } catch (err) {
       notification.error({

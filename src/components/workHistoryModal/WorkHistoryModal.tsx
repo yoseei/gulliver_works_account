@@ -33,9 +33,10 @@ const WorkHistoryModal = ({
 
       const res = await HttpClient.request({
         method: "POST",
-        url: `${localHostURL}/accounts/${accountId}/work_histories`,
+        url: `${localHostURL}/work_histories`,
         data: {
           ...data,
+          accountId: accountId,
         },
       });
       alert("職歴を追加しました。");

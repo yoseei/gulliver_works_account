@@ -94,8 +94,10 @@ const Profile = () => {
     const fetchAcademicHistory = async () => {
       const res = await HttpClient.request({
         method: "GET",
-        url: `${localHostURL}/accounts/${accountId}/academic_histories/`,
+        url: `${localHostURL}/accounts/${accountId}/academic_histories`,
       });
+      console.log(res);
+
       const academicHistories = res.data;
 
       setAcademicHistories(academicHistories);
@@ -104,7 +106,7 @@ const Profile = () => {
   }, [accountId]);
 
   useEffect(() => {
-    if (!academicHistories) return;
+    if (!academicHistories?.length) return;
     const length = academicHistories.length;
     for (let i = 0; i < length; i++) {
       setUntilDate(academicHistories[i].untilDate);
@@ -113,7 +115,7 @@ const Profile = () => {
 
   // untilDateの降順をconsole.logで取得しようとしています
   useEffect(() => {
-    if (!academicHistories) return;
+    if (!academicHistories?.length) return;
     const newAcademicHistories = academicHistories.sort(function (
       a: AcademicHistoryType,
       b: AcademicHistoryType
@@ -182,7 +184,10 @@ const Profile = () => {
 
             <div className={styles.companyWrapper}>
               {workHistories && (
-                <WorkHistoryTable workHistories={workHistories} />
+                <WorkHistoryTable
+                  workHistories={workHistories}
+                  accountId={accountId}
+                />
               )}
             </div>
 
@@ -199,7 +204,10 @@ const Profile = () => {
 
             <div className={styles.companyWrapper}>
               {academicHistories && (
-                <AcademicHistoryTable academicHistories={academicHistories} />
+                <AcademicHistoryTable
+                  academicHistories={academicHistories}
+                  accountId={accountId}
+                />
               )}
             </div>
 

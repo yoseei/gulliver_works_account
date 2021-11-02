@@ -6,9 +6,13 @@ import EditWorkHistoryModal from "../../components/editWorkHistoryModal/EditWork
 
 export type WorkHistoryTableTypes = {
   workHistories: WorkHistoryType[];
+  accountId: number | undefined;
 };
 
-const WorkHistoryTable: FC<WorkHistoryTableTypes> = ({ workHistories }) => {
+const WorkHistoryTable: FC<WorkHistoryTableTypes> = ({
+  workHistories,
+  accountId,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [workHistoryData, setWorkHistoryData] = useState<WorkHistoryType>();
   const onEditWorkHistory = (workHistory: WorkHistoryType) => {
@@ -50,7 +54,7 @@ const WorkHistoryTable: FC<WorkHistoryTableTypes> = ({ workHistories }) => {
         <EditWorkHistoryModal
           handleCloseEditWorkHistoryModal={() => setIsOpen(false)}
           openWorkHistoryModal={isOpen}
-          // accountId={accountId}
+          accountId={accountId}
           workHistory={workHistoryData}
         />
       )}

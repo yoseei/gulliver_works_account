@@ -32,9 +32,10 @@ const AcademicHistoryModal = ({
 
       const res = await HttpClient.request({
         method: "POST",
-        url: `${localHostURL}/accounts/${accountId}/academic_histories`,
+        url: `${localHostURL}/academic_histories`,
         data: {
           ...data,
+          accountId: accountId,
         },
       });
       alert("学歴を追加しました。");

@@ -17,12 +17,14 @@ type PropsType = {
     | React.MouseEventHandler<HTMLParagraphElement>
     | undefined;
   academicHistory?: AcademicHistoryType;
+  accountId: number | undefined;
 };
 
 const EditAcademicHistoryModal = ({
   handleCloseEditAcademicHistoryModal,
   openEditAcademicHistoryModal,
   academicHistory,
+  accountId,
 }: PropsType) => {
   const { register, handleSubmit, errors } = useForm();
 
@@ -35,6 +37,7 @@ const EditAcademicHistoryModal = ({
         url: `${localHostURL}/academic_histories/${academicHistory?.id}`,
         data: {
           ...data,
+          accountId: accountId,
         },
       });
       alert("学歴を編集しました。");
