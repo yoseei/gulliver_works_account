@@ -113,9 +113,7 @@ const Profile = () => {
     workHistory: WorkHistoriesType
   ) => {
     if (!editedWorkHistory) return;
-    console.log(editedWorkHistory);
-
-    const res = await HttpClient.request({
+    await HttpClient.request({
       method: "PUT",
       url: `${localHostURL}/work_histories/${workHistory?.id}`,
       data: {
@@ -138,7 +136,7 @@ const Profile = () => {
     editedAcademicHistory: AcademicHistoryType,
     academicHistory: AcademicHistoryType
   ) => {
-    const res = await HttpClient.request({
+    await HttpClient.request({
       method: "PUT",
       url: `${localHostURL}/academic_histories/${academicHistory?.id}`,
       data: {
