@@ -1,12 +1,12 @@
 import React from "react";
-import styles from "./WorkHistoryModal.module.scss";
+import styles from "./CreateWorkHistoryModal.module.scss";
 import { WorkHistoriesType } from "../../data/workHistory/index";
 import Button from "../button/Button";
 import { ErrorMessage } from "@hookform/error-message";
 import Input from "../input/Input";
 import Modal from "@material-ui/core/Modal";
 import { useForm } from "react-hook-form";
-import Textarea from "../../components/textarea/Textarea";
+import Textarea from "../textarea/Textarea";
 
 type PropsType = {
   addWorkHistory: (workHistory: WorkHistoriesType) => void;
@@ -15,7 +15,7 @@ type PropsType = {
   workHistories?: WorkHistoriesType[];
 };
 
-const WorkHistoryModal = ({
+const CreateWorkHistoryModal = ({
   addWorkHistory,
   closeWorkHistoryModal,
   openWorkHistoryModal,
@@ -128,4 +128,4 @@ const WorkHistoryModal = ({
   );
 };
 
-export default WorkHistoryModal;
+export default CreateWorkHistoryModal;

@@ -16,7 +16,7 @@ import ProfileModal from "../../components/profileModal/ProfileModal";
 import { ProfileType } from "../../data/profile/index";
 import { WorkHistoriesType } from "../../data/workHistory/index";
 import WorkHistoryTable from "../../components/workHistoryTable/WorkHistoryTable";
-import WorkHistoryModal from "../../components/workHistoryModal/WorkHistoryModal";
+import CreateWorkHistoryModal from "../../components/createWorkHistoryModal/CreateWorkHistoryModal";
 
 const Profile = () => {
   const [account, setAccount] = useState<AccountType>();
@@ -90,6 +90,33 @@ const Profile = () => {
     setAcademicHistories([...academicHistories, academicHistory]);
   };
 
+  const editWorkHistory = async (
+    editedWorkHistory: WorkHistoriesType,
+    workHistory: WorkHistoriesType
+  ) => {
+    if (!editedWorkHistory) return;
+    console.log(editedWorkHistory);
+
+    const res = await HttpClient.request({
+      method: "PUT",
+      url: `${localHostURL}/work_histories/${workHistory?.id}`,
+      data: {
+        ...editedWorkHistory,
+        accountId: accountId,
+      },
+    });
+
+    const fetchWorkHistories = async () => {
+      const res = await HttpClient.request({
+        method: "GET",
+        url: `${localHostURL}/accounts/${accountId}/work_histories`,
+      });
+      const workHistories = res.data;
+      setWorkHistories(workHistories);
+    };
+    fetchWorkHistories();
+  };
+
   useEffect(() => {
     const fetchAccounts = async () => {
       const res = await HttpClient.request({
@@ -122,7 +149,6 @@ const Profile = () => {
         method: "GET",
         url: `${localHostURL}/accounts/${accountId}/work_histories`,
       });
-
       const workHistories = res.data;
       setWorkHistories(workHistories);
     };
@@ -135,9 +161,7 @@ const Profile = () => {
         method: "GET",
         url: `${localHostURL}/accounts/${accountId}/academic_histories`,
       });
-
       const academicHistories = res.data;
-
       setAcademicHistories(academicHistories);
     };
     fetchAcademicHistories();
@@ -223,8 +247,9 @@ const Profile = () => {
             <div className={styles.companyWrapper}>
               {workHistories && (
                 <WorkHistoryTable
-                  workHistories={workHistories}
                   accountId={accountId}
+                  workHistories={workHistories}
+                  editWorkHistory={editWorkHistory}
                 />
               )}
             </div>
@@ -290,7 +315,7 @@ const Profile = () => {
           />
         )}
         {openWorkHistoryModal && accountId && (
-          <WorkHistoryModal
+          <CreateWorkHistoryModal
             addWorkHistory={addWorkHistory}
             closeWorkHistoryModal={handleToggleWorkHistoryModal}
             openWorkHistoryModal={openWorkHistoryModal}

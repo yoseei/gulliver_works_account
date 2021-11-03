@@ -5,13 +5,18 @@ import { WorkHistoriesType } from "../../data/workHistory/index";
 import EditWorkHistoryModal from "../../components/editWorkHistoryModal/EditWorkHistoryModal";
 
 export type WorkHistoryTableTypes = {
-  workHistories: WorkHistoriesType[];
   accountId: number | undefined;
+  editWorkHistory: (
+    editedWorkHistory: WorkHistoriesType,
+    workHistory: WorkHistoriesType
+  ) => Promise<void>;
+  workHistories: WorkHistoriesType[];
 };
 
 const WorkHistoryTable: FC<WorkHistoryTableTypes> = ({
-  workHistories,
   accountId,
+  editWorkHistory,
+  workHistories,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [workHistoryData, setWorkHistoryData] = useState<WorkHistoriesType>();
@@ -34,7 +39,9 @@ const WorkHistoryTable: FC<WorkHistoryTableTypes> = ({
               <div className={styles.companyNameWrapper}>
                 <div className={styles.leftPartWrapper}>
                   <h3>{workHistory.name}</h3>
-                  <p className={styles.directorName}>{workHistory.position}</p>
+                  <p className={styles.directorName}>
+                    {workHistory.occupation}
+                  </p>
                 </div>
                 <div className={styles.buttonWrapper}>
                   <Button
@@ -52,9 +59,10 @@ const WorkHistoryTable: FC<WorkHistoryTableTypes> = ({
       ))}
       {workHistoryData && (
         <EditWorkHistoryModal
+          accountId={accountId}
+          editWorkHistory={editWorkHistory}
           handleCloseEditWorkHistoryModal={() => setIsOpen(false)}
           openWorkHistoryModal={isOpen}
-          accountId={accountId}
           workHistory={workHistoryData}
         />
       )}

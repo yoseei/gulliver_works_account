@@ -13,18 +13,21 @@ import { useForm } from "react-hook-form";
 import { WorkHistoriesType } from "../../data/workHistory/index";
 
 type PropsType = {
-  openWorkHistoryModal: boolean;
-  handleCloseEditWorkHistoryModal:
-    | React.MouseEventHandler<HTMLParagraphElement>
-    | undefined;
-  workHistory: WorkHistoriesType;
   accountId: number | undefined;
+  editWorkHistory: (
+    editedWorkHistory: WorkHistoriesType,
+    workHistory: WorkHistoriesType
+  ) => Promise<void>;
+  handleCloseEditWorkHistoryModal: () => void;
+  openWorkHistoryModal: boolean;
+  workHistory: WorkHistoriesType;
 };
 
 const EditWorkHistoryModal = ({
+  accountId,
+  editWorkHistory,
   handleCloseEditWorkHistoryModal,
   openWorkHistoryModal,
-  accountId,
   workHistory,
 }: PropsType) => {
   const { register, handleSubmit, errors } = useForm();
@@ -32,17 +35,18 @@ const EditWorkHistoryModal = ({
   const handleEditWorkHistory = async (data: WorkHistoriesType) => {
     try {
       if (!data) return;
-
-      const res = await HttpClient.request({
-        method: "PUT",
-        url: `${localHostURL}/work_histories/${workHistory?.id}`,
-        data: {
-          ...data,
-          accountId: accountId,
-        },
-      });
+      await editWorkHistory(data, workHistory);
+      // const res = await HttpClient.request({
+      //   method: "PUT",
+      //   url: `${localHostURL}/work_histories/${workHistory?.id}`,
+      //   data: {
+      //     ...data,
+      //     accountId: accountId,
+      //   },
+      // });
 
       alert("職歴を追加しました。");
+      handleCloseEditWorkHistoryModal();
     } catch (err) {
       notification.error({
         message: "エラーが発生しました。",
