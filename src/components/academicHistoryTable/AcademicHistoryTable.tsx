@@ -11,10 +11,14 @@ type AcademicHistoryTableType = {
     editedAcademicHistory: AcademicHistoryType,
     academicHistory: AcademicHistoryType
   ) => Promise<void>;
+  deleteAcademicHistory: (
+    academicHistory: AcademicHistoryType
+  ) => Promise<void>;
 };
 const AcademicHistoryTable: React.FC<AcademicHistoryTableType> = ({
   academicHistories,
   accountId,
+  deleteAcademicHistory,
   editAcademicHistory,
 }) => {
   const [openEditAcademicHistoryModal, setOpenEditAcademicHistoryModal] =
@@ -60,6 +64,7 @@ const AcademicHistoryTable: React.FC<AcademicHistoryTableType> = ({
           <EditAcademicHistoryModal
             academicHistory={selectedHistory}
             accountId={accountId}
+            deleteAcademicHistory={deleteAcademicHistory}
             editAcademicHistory={editAcademicHistory}
             handleCloseEditAcademicHistoryModal={() =>
               setOpenEditAcademicHistoryModal(false)

@@ -128,6 +128,7 @@ const Profile = () => {
         accountId: accountId,
       },
     });
+    // 学歴編集後stateを更新 //
     const fetchAcademicHistories = async () => {
       const res = await HttpClient.request({
         method: "GET",
@@ -137,6 +138,31 @@ const Profile = () => {
       setAcademicHistories(academicHistories);
     };
     fetchAcademicHistories();
+  };
+
+  const deleteAcademicHistory = async (
+    academicHistory: AcademicHistoryType
+  ) => {
+    try {
+      await HttpClient.request({
+        method: "DELETE",
+        url: `${localHostURL}/academic_histories/${academicHistory?.id}`,
+      });
+
+      const fetchAcademicHistories = async () => {
+        const res = await HttpClient.request({
+          method: "GET",
+          url: `${localHostURL}/accounts/${accountId}/academic_histories`,
+        });
+        const academicHistories = res.data;
+        setAcademicHistories(academicHistories);
+      };
+      fetchAcademicHistories();
+    } catch (err) {
+      notification.error({
+        message: "エラーが発生しました。",
+      });
+    }
   };
 
   useEffect(() => {
@@ -289,9 +315,11 @@ const Profile = () => {
 
             <div className={styles.companyWrapper}>
               {academicHistories && (
+                //------- AcademicHistoryTable ------//
                 <AcademicHistoryTable
                   academicHistories={academicHistories}
                   accountId={accountId}
+                  deleteAcademicHistory={deleteAcademicHistory}
                   editAcademicHistory={editAcademicHistory}
                 />
               )}

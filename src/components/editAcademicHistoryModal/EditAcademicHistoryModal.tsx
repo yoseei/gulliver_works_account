@@ -14,6 +14,9 @@ import { localHostURL } from "../../hooks/localHostURL";
 type PropsType = {
   academicHistory?: AcademicHistoryType;
   accountId: number | undefined;
+  deleteAcademicHistory: (
+    academicHistory: AcademicHistoryType
+  ) => Promise<void>;
   editAcademicHistory: (
     editedAcademicHistory: AcademicHistoryType,
     academicHistory: AcademicHistoryType
@@ -24,14 +27,14 @@ type PropsType = {
 
 const EditAcademicHistoryModal = ({
   academicHistory,
-  accountId,
   editAcademicHistory,
+  deleteAcademicHistory,
   handleCloseEditAcademicHistoryModal,
   openEditAcademicHistoryModal,
 }: PropsType) => {
   const { register, handleSubmit, errors } = useForm();
 
-  const handleAcademicHistory = async (data: AcademicHistoryType) => {
+  const handleEditAcademicHistory = async (data: AcademicHistoryType) => {
     try {
       if (!data) return;
       if (!academicHistory) return;
@@ -48,12 +51,15 @@ const EditAcademicHistoryModal = ({
   const handleDeleteAcademicHistory = async () => {
     try {
       if (!academicHistory) return;
-      await HttpClient.request({
-        method: "DELETE",
-        url: `${localHostURL}/academic_histories/${academicHistory?.id}`,
-      });
+      await deleteAcademicHistory(academicHistory);
       alert("学歴を削除しました。");
-      return handleCloseEditAcademicHistoryModal;
+      handleCloseEditAcademicHistoryModal();
+      // await HttpClient.request({
+      //   method: "DELETE",
+      //   url: `${localHostURL}/academic_histories/${academicHistory?.id}`,
+      // });
+      // alert("学歴を削除しました。");
+      // return handleCloseEditAcademicHistoryModal;
     } catch (err) {
       notification.error({
         message: "エラーが発生しました。",
@@ -66,7 +72,7 @@ const EditAcademicHistoryModal = ({
       <div className={styles.academicHistoryContainer}>
         <h2>学歴</h2>
 
-        <form onSubmit={handleSubmit(handleAcademicHistory)}>
+        <form onSubmit={handleSubmit(handleEditAcademicHistory)}>
           <div className={styles.formContainer}>
             <ErrorMessage
               className={styles.errorMessage}
