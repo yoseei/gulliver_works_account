@@ -64,6 +64,7 @@ const EditWorkHistoryModal = ({
       });
     }
   };
+
   const body = (
     <div className={styles.root}>
       <div className={styles.academicHistoryContainer}>

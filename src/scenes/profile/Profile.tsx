@@ -71,6 +71,25 @@ const Profile = () => {
     setWorkHistories([...workHistories, workHistory]);
   };
 
+  const addAcademicHistory = async (academicHistory: AcademicHistoryType) => {
+    if (!academicHistories) return;
+    try {
+      const res = await HttpClient.request({
+        method: "POST",
+        url: `${localHostURL}/academic_histories`,
+        data: {
+          ...academicHistory,
+          accountId: accountId,
+        },
+      });
+    } catch (err) {
+      notification.error({
+        message: "エラーが発生しました。",
+      });
+    }
+    setAcademicHistories([...academicHistories, academicHistory]);
+  };
+
   useEffect(() => {
     const fetchAccounts = async () => {
       const res = await HttpClient.request({
@@ -240,6 +259,7 @@ const Profile = () => {
           <div className={styles.bottomSpace}></div>
         </div>
 
+        {/* //----------- Create Modals -------------// */}
         {openProfileModal && (
           <div className={styles.profileModalContainer}>
             {accountId && profile && (
@@ -264,17 +284,16 @@ const Profile = () => {
 
         {openAcademicHistoryModal && accountId && (
           <AcademicHistoryModal
-            openAcademicHistoryModal={openAcademicHistoryModal}
+            addAcademicHistory={addAcademicHistory}
             handleCloseAcademicHistoryModal={handleToggleAcademicHistoryModal}
-            academicHistories={academicHistories}
-            accountId={accountId}
+            openAcademicHistoryModal={openAcademicHistoryModal}
           />
         )}
         {openWorkHistoryModal && accountId && (
           <WorkHistoryModal
             addWorkHistory={addWorkHistory}
-            openWorkHistoryModal={openWorkHistoryModal}
             closeWorkHistoryModal={handleToggleWorkHistoryModal}
+            openWorkHistoryModal={openWorkHistoryModal}
           />
         )}
       </div>

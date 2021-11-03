@@ -23,13 +23,31 @@
   ],
   "work_histories": [
     {
-      "name": "hogeああああ",
+      "name": "gaf",
       "occupation": "hogeああああああ",
       "since_date": "2021-11-15",
       "until_date": "2021-12-02",
       "job_summary": "hoge",
       "account_id": 1,
       "id": 1
+    },
+    {
+      "name": "gfsg",
+      "occupation": "fgsfg",
+      "since_date": "",
+      "until_date": "",
+      "job_summary": "gsdfgs",
+      "account_id": 1,
+      "id": 2
+    },
+    {
+      "name": "ga",
+      "occupation": "ga",
+      "since_date": "",
+      "until_date": "",
+      "job_summary": "ga",
+      "account_id": 1,
+      "id": 3
     }
   ],
   "academic_histories": [
@@ -40,6 +58,38 @@
       "until_date": "",
       "account_id": 1,
       "id": 2
+    },
+    {
+      "name": "hogw",
+      "faculty": "hogw",
+      "since_date": "2021-11-04",
+      "until_date": "2021-11-18",
+      "account_id": 1,
+      "id": 3
+    },
+    {
+      "name": "fasd",
+      "faculty": "fdsafadf",
+      "since_date": "",
+      "until_date": "",
+      "account_id": 1,
+      "id": 4
+    },
+    {
+      "name": "fdsaf",
+      "faculty": "fdsaf",
+      "since_date": "",
+      "until_date": "",
+      "account_id": 1,
+      "id": 5
+    },
+    {
+      "name": "fdsffd",
+      "faculty": "dasfsd",
+      "since_date": "",
+      "until_date": "",
+      "account_id": 1,
+      "id": 6
     }
   ],
   "companies": [
