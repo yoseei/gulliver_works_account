@@ -5,6 +5,7 @@ import Button from "../button/Button";
 import { ErrorMessage } from "@hookform/error-message";
 import Input from "../input/Input";
 import Modal from "@material-ui/core/Modal";
+import { notification } from "antd";
 import { useForm } from "react-hook-form";
 import Textarea from "../textarea/Textarea";
 
@@ -23,14 +24,15 @@ const CreateWorkHistoryModal = ({
   const { register, handleSubmit, errors } = useForm();
 
   const handleWorkHistory = async (data: WorkHistoriesType) => {
-    addWorkHistory(data);
-    if (data) {
-      closeModal();
+    try {
+      if (!data) return;
+      addWorkHistory(data);
+      closeWorkHistoryModal();
+    } catch (err) {
+      notification.error({
+        message: "エラーが発生しました。",
+      });
     }
-  };
-
-  const closeModal = () => {
-    closeWorkHistoryModal();
   };
 
   const body = (

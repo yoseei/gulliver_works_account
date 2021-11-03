@@ -55,7 +55,7 @@ const Profile = () => {
   const addWorkHistory = async (workHistory: WorkHistoriesType) => {
     if (!workHistories) return;
     try {
-      const res = await HttpClient.request({
+      await HttpClient.request({
         method: "POST",
         url: `${localHostURL}/work_histories`,
         data: {
@@ -63,18 +63,26 @@ const Profile = () => {
           accountId: accountId,
         },
       });
+      const fetchWorkHistories = async () => {
+        const res = await HttpClient.request({
+          method: "GET",
+          url: `${localHostURL}/accounts/${accountId}/work_histories`,
+        });
+        const workHistories = res.data;
+        setWorkHistories(workHistories);
+      };
+      fetchWorkHistories();
     } catch (err) {
       notification.error({
         message: "エラーが発生しました。",
       });
     }
-    setWorkHistories([...workHistories, workHistory]);
   };
 
   const addAcademicHistory = async (academicHistory: AcademicHistoryType) => {
     if (!academicHistories) return;
     try {
-      const res = await HttpClient.request({
+      await HttpClient.request({
         method: "POST",
         url: `${localHostURL}/academic_histories`,
         data: {
@@ -82,6 +90,16 @@ const Profile = () => {
           accountId: accountId,
         },
       });
+
+      const fetchAcademicHistories = async () => {
+        const res = await HttpClient.request({
+          method: "GET",
+          url: `${localHostURL}/accounts/${accountId}/academic_histories`,
+        });
+        const academicHistories = res.data;
+        setAcademicHistories(academicHistories);
+      };
+      fetchAcademicHistories();
     } catch (err) {
       notification.error({
         message: "エラーが発生しました。",
