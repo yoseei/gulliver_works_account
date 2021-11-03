@@ -7,10 +7,15 @@ import EditAcademicHistoryModal from "../editAcademicHistoryModal/EditAcademicHi
 type AcademicHistoryTableType = {
   academicHistories: AcademicHistoryType[];
   accountId: number | undefined;
+  editAcademicHistory: (
+    editedAcademicHistory: AcademicHistoryType,
+    academicHistory: AcademicHistoryType
+  ) => Promise<void>;
 };
 const AcademicHistoryTable: React.FC<AcademicHistoryTableType> = ({
   academicHistories,
   accountId,
+  editAcademicHistory,
 }) => {
   const [openEditAcademicHistoryModal, setOpenEditAcademicHistoryModal] =
     useState(false);
@@ -53,12 +58,13 @@ const AcademicHistoryTable: React.FC<AcademicHistoryTableType> = ({
       {openEditAcademicHistoryModal && (
         <div className={styles.academicHistoryModalContainer}>
           <EditAcademicHistoryModal
-            openEditAcademicHistoryModal={openEditAcademicHistoryModal}
+            academicHistory={selectedHistory}
+            accountId={accountId}
+            editAcademicHistory={editAcademicHistory}
             handleCloseEditAcademicHistoryModal={() =>
               setOpenEditAcademicHistoryModal(false)
             }
-            academicHistory={selectedHistory}
-            accountId={accountId}
+            openEditAcademicHistoryModal={openEditAcademicHistoryModal}
           />
         </div>
       )}

@@ -34,65 +34,11 @@
   ],
   "academic_histories": [
     {
-      "name": "ふぁふぁ",
-      "faculty": "ｆｄふぁｓ",
-      "since_date": "",
-      "until_date": "",
-      "account_id": 1,
-      "id": 2
-    },
-    {
-      "name": "hogw",
-      "faculty": "hogw",
+      "name": "hoge3",
+      "faculty": "hoge3",
       "since_date": "2021-11-04",
-      "until_date": "2021-11-18",
+      "until_date": "2021-11-25",
       "account_id": 1,
-      "id": 3
-    },
-    {
-      "name": "fasd",
-      "faculty": "fdsafadf",
-      "since_date": "",
-      "until_date": "",
-      "account_id": 1,
-      "id": 4
-    },
-    {
-      "name": "fdsaf",
-      "faculty": "fdsaf",
-      "since_date": "",
-      "until_date": "",
-      "account_id": 1,
-      "id": 5
-    },
-    {
-      "name": "fdsffd",
-      "faculty": "dasfsd",
-      "since_date": "",
-      "until_date": "",
-      "account_id": 1,
-      "id": 6
-    }
-  ],
-  "companies": [
-    {
-      "name": "kkkkk",
-      "name_kana": "kkkkkkkkkkk",
-      "head_office_location": "sample1",
-      "year_of_establishment": "1",
-      "hp_url": "",
-      "phone": "",
-      "is_listed": "上場",
-      "representative_last": "eeeeeeeee",
-      "representative_first": "eeeeeeeee",
-      "representative_kana_last": "eeeeeeeee",
-      "representative_kana_first": "eeeeeeee",
-      "net_sales": "",
-      "numbers_of_employees": "",
-      "average_age": "",
-      "business_summery": "eeeeeeeeee",
-      "corporate_pr": "",
-      "logo_image": {},
       "id": 1
     }
   ]

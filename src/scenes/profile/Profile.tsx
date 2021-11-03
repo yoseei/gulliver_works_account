@@ -105,7 +105,6 @@ const Profile = () => {
         accountId: accountId,
       },
     });
-
     const fetchWorkHistories = async () => {
       const res = await HttpClient.request({
         method: "GET",
@@ -115,6 +114,29 @@ const Profile = () => {
       setWorkHistories(workHistories);
     };
     fetchWorkHistories();
+  };
+
+  const editAcademicHistory = async (
+    editedAcademicHistory: AcademicHistoryType,
+    academicHistory: AcademicHistoryType
+  ) => {
+    const res = await HttpClient.request({
+      method: "PUT",
+      url: `${localHostURL}/academic_histories/${academicHistory?.id}`,
+      data: {
+        ...editedAcademicHistory,
+        accountId: accountId,
+      },
+    });
+    const fetchAcademicHistories = async () => {
+      const res = await HttpClient.request({
+        method: "GET",
+        url: `${localHostURL}/accounts/${accountId}/academic_histories`,
+      });
+      const academicHistories = res.data;
+      setAcademicHistories(academicHistories);
+    };
+    fetchAcademicHistories();
   };
 
   useEffect(() => {
@@ -270,6 +292,7 @@ const Profile = () => {
                 <AcademicHistoryTable
                   academicHistories={academicHistories}
                   accountId={accountId}
+                  editAcademicHistory={editAcademicHistory}
                 />
               )}
             </div>

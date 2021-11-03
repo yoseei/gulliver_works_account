@@ -12,19 +12,22 @@ import { useForm } from "react-hook-form";
 import { localHostURL } from "../../hooks/localHostURL";
 
 type PropsType = {
-  openEditAcademicHistoryModal: boolean;
-  handleCloseEditAcademicHistoryModal:
-    | React.MouseEventHandler<HTMLParagraphElement>
-    | undefined;
   academicHistory?: AcademicHistoryType;
   accountId: number | undefined;
+  editAcademicHistory: (
+    editedAcademicHistory: AcademicHistoryType,
+    academicHistory: AcademicHistoryType
+  ) => Promise<void>;
+  handleCloseEditAcademicHistoryModal: () => void;
+  openEditAcademicHistoryModal: boolean;
 };
 
 const EditAcademicHistoryModal = ({
-  handleCloseEditAcademicHistoryModal,
-  openEditAcademicHistoryModal,
   academicHistory,
   accountId,
+  editAcademicHistory,
+  handleCloseEditAcademicHistoryModal,
+  openEditAcademicHistoryModal,
 }: PropsType) => {
   const { register, handleSubmit, errors } = useForm();
 
@@ -32,16 +35,9 @@ const EditAcademicHistoryModal = ({
     try {
       if (!data) return;
       if (!academicHistory) return;
-      const res = await HttpClient.request({
-        method: "PUT",
-        url: `${localHostURL}/academic_histories/${academicHistory?.id}`,
-        data: {
-          ...data,
-          accountId: accountId,
-        },
-      });
-
+      await editAcademicHistory(data, academicHistory);
       alert("学歴を編集しました。");
+      handleCloseEditAcademicHistoryModal();
     } catch (err) {
       notification.error({
         message: "エラーが発生しました。",
