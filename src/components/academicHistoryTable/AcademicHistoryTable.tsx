@@ -15,9 +15,7 @@ const AcademicHistoryTable: React.FC<AcademicHistoryTableType> = ({
   const [openEditAcademicHistoryModal, setOpenEditAcademicHistoryModal] =
     useState(false);
 
-  const [selectedHistory, selectHistory] = useState<
-    AcademicHistoryType | undefined
-  >();
+  const [selectedHistory, selectHistory] = useState<AcademicHistoryType>();
 
   const onEditHistory = (selectedItem: AcademicHistoryType) => {
     selectHistory(selectedItem);

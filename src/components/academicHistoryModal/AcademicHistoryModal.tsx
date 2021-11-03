@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./AcademicHistoryModal.module.scss";
 import { AcademicHistoryType } from "../../data/academicHistory/index";
 import Button from "../button/Button";
@@ -24,7 +24,7 @@ const AcademicHistoryModal = ({
   openAcademicHistoryModal,
   accountId,
 }: PropsType) => {
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors, reset } = useForm();
 
   const handleAcademicHistory = async (data: AcademicHistoryType) => {
     try {
@@ -38,7 +38,7 @@ const AcademicHistoryModal = ({
           accountId: accountId,
         },
       });
-      alert("学歴を追加しました。");
+      reset();
     } catch (err) {
       notification.error({
         message: "エラーが発生しました。",
@@ -108,7 +108,7 @@ const AcademicHistoryModal = ({
               <Button
                 border={"none"}
                 color={"primary"}
-                onClick={() => handleCloseAcademicHistoryModal}
+                onClick={() => alert("学歴を追加しました。")}
                 text={"更新"}
                 type={"submit"}
               />

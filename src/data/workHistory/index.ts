@@ -1,4 +1,4 @@
-export interface WorkHistoryType {
+export interface WorkHistoriesType {
   id?: string;
   isEmployed?: string;
   occupation?: string;
@@ -15,4 +15,3 @@ export interface WorkHistoryType {
   name: string;
   account_id: string;
 }
-[];

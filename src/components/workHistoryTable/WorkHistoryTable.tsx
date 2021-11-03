@@ -1,11 +1,11 @@
 import React, { FC, useState } from "react";
 import styles from "./WorkHistoryTable.module.scss";
 import Button from "../button/Button";
-import { WorkHistoryType } from "../../data/workHistory/index";
+import { WorkHistoriesType } from "../../data/workHistory/index";
 import EditWorkHistoryModal from "../../components/editWorkHistoryModal/EditWorkHistoryModal";
 
 export type WorkHistoryTableTypes = {
-  workHistories: WorkHistoryType[];
+  workHistories: WorkHistoriesType[];
   accountId: number | undefined;
 };
 
@@ -14,15 +14,15 @@ const WorkHistoryTable: FC<WorkHistoryTableTypes> = ({
   accountId,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [workHistoryData, setWorkHistoryData] = useState<WorkHistoryType>();
-  const onEditWorkHistory = (workHistory: WorkHistoryType) => {
+  const [workHistoryData, setWorkHistoryData] = useState<WorkHistoriesType>();
+  const onEditWorkHistory = (workHistory: WorkHistoriesType) => {
     setIsOpen(true);
     setWorkHistoryData(workHistory);
   };
 
   return (
     <>
-      {workHistories.map((workHistory: WorkHistoryType, index: number) => (
+      {workHistories.map((workHistory, index) => (
         <div className={styles.root} key={index}>
           <div className={styles.workHistoryWrapper}>
             <div className={styles.leftWrapper}>

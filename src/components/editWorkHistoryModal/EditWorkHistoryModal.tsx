@@ -10,14 +10,14 @@ import Modal from "@material-ui/core/Modal";
 import { notification } from "antd";
 import Textarea from "../textarea/Textarea";
 import { useForm } from "react-hook-form";
-import { WorkHistoryType } from "../../data/workHistory/index";
+import { WorkHistoriesType } from "../../data/workHistory/index";
 
 type PropsType = {
   openWorkHistoryModal: boolean;
   handleCloseEditWorkHistoryModal:
     | React.MouseEventHandler<HTMLParagraphElement>
     | undefined;
-  workHistory: WorkHistoryType;
+  workHistory: WorkHistoriesType;
   accountId: number | undefined;
 };
 
@@ -29,7 +29,7 @@ const EditWorkHistoryModal = ({
 }: PropsType) => {
   const { register, handleSubmit, errors } = useForm();
 
-  const handleEditWorkHistory = async (data: WorkHistoryType) => {
+  const handleEditWorkHistory = async (data: WorkHistoriesType) => {
     try {
       if (!data) return;
 

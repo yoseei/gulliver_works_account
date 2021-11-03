@@ -9,11 +9,12 @@ import Button from "../../components/button/Button";
 import EditBiographyModal from "../../components/editBiographyModal/EditBiographyModal";
 import { HttpClient } from "../../utilities/axiosInstance";
 import { localHostURL } from "../../hooks/localHostURL";
+import { notification } from "antd";
 import ProfileImage from "../../components/profileImage/ProfileImage";
 import ProfileMainImage from "../../components/profileMainImage/ProfileMainImage";
 import ProfileModal from "../../components/profileModal/ProfileModal";
 import { ProfileType } from "../../data/profile/index";
-import { WorkHistoryType } from "../../data/workHistory/index";
+import { WorkHistoriesType } from "../../data/workHistory/index";
 import WorkHistoryTable from "../../components/workHistoryTable/WorkHistoryTable";
 import WorkHistoryModal from "../../components/workHistoryModal/WorkHistoryModal";
 
@@ -30,7 +31,7 @@ const Profile = () => {
   const [openEditBiographyModal, setOpenEditBiographyModal] = useState(false);
   const [untilDate, setUntilDate] = useState<string>();
   const [workHistories, setWorkHistories] = useState<
-    WorkHistoryType[] | undefined
+    WorkHistoriesType[] | undefined
   >();
 
   const accountId = account?.id;
@@ -49,6 +50,25 @@ const Profile = () => {
 
   const handleToggleWorkHistoryModal = () => {
     setOpenWorkHistoryModal(!openWorkHistoryModal);
+  };
+
+  const addWorkHistory = async (workHistory: WorkHistoriesType) => {
+    if (!workHistories) return;
+    try {
+      const res = await HttpClient.request({
+        method: "POST",
+        url: `${localHostURL}/work_histories`,
+        data: {
+          ...workHistory,
+          accountId: accountId,
+        },
+      });
+    } catch (err) {
+      notification.error({
+        message: "エラーが発生しました。",
+      });
+    }
+    setWorkHistories([...workHistories, workHistory]);
   };
 
   useEffect(() => {
@@ -78,7 +98,7 @@ const Profile = () => {
   }, [account]);
 
   useEffect(() => {
-    const fetchWorkHistory = async () => {
+    const fetchWorkHistories = async () => {
       const res = await HttpClient.request({
         method: "GET",
         url: `${localHostURL}/accounts/${accountId}/work_histories`,
@@ -87,11 +107,11 @@ const Profile = () => {
       const workHistories = res.data;
       setWorkHistories(workHistories);
     };
-    fetchWorkHistory();
+    fetchWorkHistories();
   }, [accountId]);
 
   useEffect(() => {
-    const fetchAcademicHistory = async () => {
+    const fetchAcademicHistories = async () => {
       const res = await HttpClient.request({
         method: "GET",
         url: `${localHostURL}/accounts/${accountId}/academic_histories`,
@@ -101,7 +121,7 @@ const Profile = () => {
 
       setAcademicHistories(academicHistories);
     };
-    fetchAcademicHistory();
+    fetchAcademicHistories();
   }, [accountId]);
 
   useEffect(() => {
@@ -252,9 +272,9 @@ const Profile = () => {
         )}
         {openWorkHistoryModal && accountId && (
           <WorkHistoryModal
+            addWorkHistory={addWorkHistory}
             openWorkHistoryModal={openWorkHistoryModal}
-            handleCloseWorkHistoryModal={handleToggleWorkHistoryModal}
-            accountId={accountId}
+            closeWorkHistoryModal={handleToggleWorkHistoryModal}
           />
         )}
       </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./EditAcademicHistoryModal.module.scss";
 import { AcademicHistoryType } from "../../data/academicHistory/index";
 import Button from "../button/Button";
@@ -31,7 +31,7 @@ const EditAcademicHistoryModal = ({
   const handleAcademicHistory = async (data: AcademicHistoryType) => {
     try {
       if (!data) return;
-
+      if (!academicHistory) return;
       const res = await HttpClient.request({
         method: "PUT",
         url: `${localHostURL}/academic_histories/${academicHistory?.id}`,
@@ -40,6 +40,7 @@ const EditAcademicHistoryModal = ({
           accountId: accountId,
         },
       });
+
       alert("学歴を編集しました。");
     } catch (err) {
       notification.error({
@@ -56,6 +57,7 @@ const EditAcademicHistoryModal = ({
         url: `${localHostURL}/academic_histories/${academicHistory?.id}`,
       });
       alert("学歴を削除しました。");
+      return handleCloseEditAcademicHistoryModal;
     } catch (err) {
       notification.error({
         message: "エラーが発生しました。",
