@@ -165,6 +165,30 @@ const Profile = () => {
     }
   };
 
+  const deleteWorkHistory = async (workHistory: WorkHistoriesType) => {
+    try {
+      if (!workHistory) return;
+      await HttpClient.request({
+        method: "DELETE",
+        url: `${localHostURL}/work_histories/${workHistory?.id}`,
+      });
+
+      const fetchWorkHistories = async () => {
+        const res = await HttpClient.request({
+          method: "GET",
+          url: `${localHostURL}/accounts/${accountId}/work_histories`,
+        });
+        const workHistories = res.data;
+        setWorkHistories(workHistories);
+      };
+      fetchWorkHistories();
+    } catch (err) {
+      notification.error({
+        message: "エラーが発生しました。",
+      });
+    }
+  };
+
   useEffect(() => {
     const fetchAccounts = async () => {
       const res = await HttpClient.request({
@@ -296,8 +320,9 @@ const Profile = () => {
               {workHistories && (
                 <WorkHistoryTable
                   accountId={accountId}
-                  workHistories={workHistories}
+                  deleteWorkHistory={deleteWorkHistory}
                   editWorkHistory={editWorkHistory}
+                  workHistories={workHistories}
                 />
               )}
             </div>

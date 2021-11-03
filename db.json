@@ -23,14 +23,31 @@
   ],
   "work_histories": [
     {
-      "name": "hogehoge",
-      "occupation": "hogehoge",
-      "since_date": "2021-11-05",
-      "until_date": "2021-11-14",
-      "job_summary": "hogehoge",
+      "name": "b",
+      "occupation": "b",
+      "since_date": "",
+      "until_date": "",
+      "job_summary": "b",
       "account_id": 1,
-      "id": 1
+      "id": 2
     }
   ],
-  "academic_histories": []
+  "academic_histories": [
+    {
+      "name": "hoge1",
+      "faculty": "hoge",
+      "since_date": "2021-11-10",
+      "until_date": "2021-12-01",
+      "account_id": 1,
+      "id": 1
+    },
+    {
+      "name": "a",
+      "faculty": "a",
+      "since_date": "",
+      "until_date": "",
+      "account_id": 1,
+      "id": 2
+    }
+  ]
 }

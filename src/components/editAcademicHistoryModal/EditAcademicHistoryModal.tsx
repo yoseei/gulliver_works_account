@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./EditAcademicHistoryModal.module.scss";
 import { AcademicHistoryType } from "../../data/academicHistory/index";
 import Button from "../button/Button";
 import DeleteButton from "../../components/deleteButton/DeleteButton";
 import { ErrorMessage } from "@hookform/error-message";
-import { HttpClient } from "../../utilities/axiosInstance";
 import Input from "../input/Input";
 import Modal from "@material-ui/core/Modal";
 import { notification } from "antd";
 import { useForm } from "react-hook-form";
-import { localHostURL } from "../../hooks/localHostURL";
 
 type PropsType = {
   academicHistory?: AcademicHistoryType;
@@ -54,12 +52,6 @@ const EditAcademicHistoryModal = ({
       await deleteAcademicHistory(academicHistory);
       alert("学歴を削除しました。");
       handleCloseEditAcademicHistoryModal();
-      // await HttpClient.request({
-      //   method: "DELETE",
-      //   url: `${localHostURL}/academic_histories/${academicHistory?.id}`,
-      // });
-      // alert("学歴を削除しました。");
-      // return handleCloseEditAcademicHistoryModal;
     } catch (err) {
       notification.error({
         message: "エラーが発生しました。",

@@ -6,6 +6,7 @@ import EditWorkHistoryModal from "../../components/editWorkHistoryModal/EditWork
 
 export type WorkHistoryTableTypes = {
   accountId: number | undefined;
+  deleteWorkHistory: (workHistory: WorkHistoriesType) => Promise<void>;
   editWorkHistory: (
     editedWorkHistory: WorkHistoriesType,
     workHistory: WorkHistoriesType
@@ -15,6 +16,7 @@ export type WorkHistoryTableTypes = {
 
 const WorkHistoryTable: FC<WorkHistoryTableTypes> = ({
   accountId,
+  deleteWorkHistory,
   editWorkHistory,
   workHistories,
 }) => {
@@ -60,6 +62,7 @@ const WorkHistoryTable: FC<WorkHistoryTableTypes> = ({
       {workHistoryData && (
         <EditWorkHistoryModal
           accountId={accountId}
+          deleteWorkHistory={deleteWorkHistory}
           editWorkHistory={editWorkHistory}
           handleCloseEditWorkHistoryModal={() => setIsOpen(false)}
           openWorkHistoryModal={isOpen}

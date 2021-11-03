@@ -3,9 +3,7 @@ import styles from "./EditWorkHistoryModal.module.scss";
 import Button from "../button/Button";
 import DeleteButton from "../deleteButton/DeleteButton";
 import { ErrorMessage } from "@hookform/error-message";
-import { HttpClient } from "../../utilities/axiosInstance";
 import Input from "../input/Input";
-import { localHostURL } from "../../hooks/localHostURL";
 import Modal from "@material-ui/core/Modal";
 import { notification } from "antd";
 import Textarea from "../textarea/Textarea";
@@ -14,6 +12,7 @@ import { WorkHistoriesType } from "../../data/workHistory/index";
 
 type PropsType = {
   accountId: number | undefined;
+  deleteWorkHistory: (workHistory: WorkHistoriesType) => Promise<void>;
   editWorkHistory: (
     editedWorkHistory: WorkHistoriesType,
     workHistory: WorkHistoriesType
@@ -24,7 +23,7 @@ type PropsType = {
 };
 
 const EditWorkHistoryModal = ({
-  accountId,
+  deleteWorkHistory,
   editWorkHistory,
   handleCloseEditWorkHistoryModal,
   openWorkHistoryModal,
@@ -36,15 +35,6 @@ const EditWorkHistoryModal = ({
     try {
       if (!data) return;
       await editWorkHistory(data, workHistory);
-      // const res = await HttpClient.request({
-      //   method: "PUT",
-      //   url: `${localHostURL}/work_histories/${workHistory?.id}`,
-      //   data: {
-      //     ...data,
-      //     accountId: accountId,
-      //   },
-      // });
-
       alert("職歴を追加しました。");
       handleCloseEditWorkHistoryModal();
     } catch (err) {
@@ -57,11 +47,9 @@ const EditWorkHistoryModal = ({
   const handleDeleteWorkHistory = async () => {
     try {
       if (!workHistory) return;
-      await HttpClient.request({
-        method: "DELETE",
-        url: `${localHostURL}/work_histories/${workHistory?.id}`,
-      });
+      await deleteWorkHistory(workHistory);
       alert("職歴を削除しました。");
+      handleCloseEditWorkHistoryModal();
     } catch (err) {
       notification.error({
         message: "エラーが発生しました。",
