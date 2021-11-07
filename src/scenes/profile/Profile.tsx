@@ -6,6 +6,7 @@ import { AcademicHistoryType } from "../../data/academicHistory/index";
 import AcademicHistoryTable from "../../components/academicHistoryTable/AcademicHistoryTable";
 import AcademicHistoryModal from "../../components/academicHistoryModal/AcademicHistoryModal";
 import Button from "../../components/button/Button";
+import CreateWorkHistoryModal from "../../components/createWorkHistoryModal/CreateWorkHistoryModal";
 import EditBiographyModal from "../../components/editBiographyModal/EditBiographyModal";
 import { HttpClient } from "../../utilities/axiosInstance";
 import { localHostURL } from "../../hooks/localHostURL";
@@ -16,7 +17,6 @@ import ProfileModal from "../../components/profileModal/ProfileModal";
 import { ProfileType } from "../../data/profile/index";
 import { WorkHistoriesType } from "../../data/workHistory/index";
 import WorkHistoryTable from "../../components/workHistoryTable/WorkHistoryTable";
-import CreateWorkHistoryModal from "../../components/createWorkHistoryModal/CreateWorkHistoryModal";
 
 const Profile = () => {
   const [account, setAccount] = useState<AccountType>();
@@ -36,6 +36,46 @@ const Profile = () => {
 
   const accountId = account?.id;
 
+  //-------- fetch各データ関数 ----------//
+  const fetchAcademicHistories = async () => {
+    const res = await HttpClient.request({
+      method: "GET",
+      url: `${localHostURL}/accounts/${accountId}/academic_histories`,
+    });
+    const academicHistories = res.data;
+    setAcademicHistories(academicHistories);
+  };
+
+  const fetchAccounts = async () => {
+    const res = await HttpClient.request({
+      method: "GET",
+      url: `${localHostURL}/accounts/1`,
+    });
+
+    const accountData = res.data;
+    setAccount(accountData);
+  };
+
+  const fetchProfile = async () => {
+    const res = await HttpClient.request({
+      method: "GET",
+      url: `${localHostURL}/accounts/${accountId}/profiles`,
+    });
+
+    const profileData = res.data[0];
+    setProfile(profileData);
+  };
+
+  const fetchWorkHistories = async () => {
+    const res = await HttpClient.request({
+      method: "GET",
+      url: `${localHostURL}/accounts/${accountId}/work_histories`,
+    });
+    const workHistories = res.data;
+    setWorkHistories(workHistories);
+  };
+
+  //--------- modalのオープン・クローズ ----------//
   const handleToggleProfileModal = () => {
     setOpenProfileModal(!openProfileModal);
   };
@@ -52,33 +92,6 @@ const Profile = () => {
     setOpenWorkHistoryModal(!openWorkHistoryModal);
   };
 
-  const addWorkHistory = async (workHistory: WorkHistoriesType) => {
-    if (!workHistories) return;
-    try {
-      await HttpClient.request({
-        method: "POST",
-        url: `${localHostURL}/work_histories`,
-        data: {
-          ...workHistory,
-          accountId: accountId,
-        },
-      });
-      const fetchWorkHistories = async () => {
-        const res = await HttpClient.request({
-          method: "GET",
-          url: `${localHostURL}/accounts/${accountId}/work_histories`,
-        });
-        const workHistories = res.data;
-        setWorkHistories(workHistories);
-      };
-      fetchWorkHistories();
-    } catch (err) {
-      notification.error({
-        message: "エラーが発生しました。",
-      });
-    }
-  };
-
   const addAcademicHistory = async (academicHistory: AcademicHistoryType) => {
     if (!academicHistories) return;
     try {
@@ -90,16 +103,7 @@ const Profile = () => {
           accountId: accountId,
         },
       });
-
-      const fetchAcademicHistories = async () => {
-        const res = await HttpClient.request({
-          method: "GET",
-          url: `${localHostURL}/accounts/${accountId}/academic_histories`,
-        });
-        const academicHistories = res.data;
-        setAcademicHistories(academicHistories);
-      };
-      fetchAcademicHistories();
+      await fetchAcademicHistories();
     } catch (err) {
       notification.error({
         message: "エラーが発生しました。",
@@ -108,28 +112,23 @@ const Profile = () => {
     setAcademicHistories([...academicHistories, academicHistory]);
   };
 
-  const editWorkHistory = async (
-    editedWorkHistory: WorkHistoriesType,
-    workHistory: WorkHistoriesType
-  ) => {
-    if (!editedWorkHistory) return;
-    await HttpClient.request({
-      method: "PUT",
-      url: `${localHostURL}/work_histories/${workHistory?.id}`,
-      data: {
-        ...editedWorkHistory,
-        accountId: accountId,
-      },
-    });
-    const fetchWorkHistories = async () => {
-      const res = await HttpClient.request({
-        method: "GET",
-        url: `${localHostURL}/accounts/${accountId}/work_histories`,
+  const addWorkHistory = async (workHistory: WorkHistoriesType) => {
+    if (!workHistories) return;
+    try {
+      await HttpClient.request({
+        method: "POST",
+        url: `${localHostURL}/work_histories`,
+        data: {
+          ...workHistory,
+          accountId: accountId,
+        },
       });
-      const workHistories = res.data;
-      setWorkHistories(workHistories);
-    };
-    fetchWorkHistories();
+      await fetchWorkHistories();
+    } catch (err) {
+      notification.error({
+        message: "エラーが発生しました。",
+      });
+    }
   };
 
   const editAcademicHistory = async (
@@ -145,15 +144,23 @@ const Profile = () => {
       },
     });
     // 学歴編集後stateを更新 //
-    const fetchAcademicHistories = async () => {
-      const res = await HttpClient.request({
-        method: "GET",
-        url: `${localHostURL}/accounts/${accountId}/academic_histories`,
-      });
-      const academicHistories = res.data;
-      setAcademicHistories(academicHistories);
-    };
-    fetchAcademicHistories();
+    await fetchAcademicHistories();
+  };
+
+  const editWorkHistory = async (
+    editedWorkHistory: WorkHistoriesType,
+    workHistory: WorkHistoriesType
+  ) => {
+    if (!editedWorkHistory) return;
+    await HttpClient.request({
+      method: "PUT",
+      url: `${localHostURL}/work_histories/${workHistory?.id}`,
+      data: {
+        ...editedWorkHistory,
+        accountId: accountId,
+      },
+    });
+    await fetchWorkHistories();
   };
 
   const deleteAcademicHistory = async (
@@ -164,16 +171,7 @@ const Profile = () => {
         method: "DELETE",
         url: `${localHostURL}/academic_histories/${academicHistory?.id}`,
       });
-
-      const fetchAcademicHistories = async () => {
-        const res = await HttpClient.request({
-          method: "GET",
-          url: `${localHostURL}/accounts/${accountId}/academic_histories`,
-        });
-        const academicHistories = res.data;
-        setAcademicHistories(academicHistories);
-      };
-      fetchAcademicHistories();
+      await fetchAcademicHistories();
     } catch (err) {
       notification.error({
         message: "エラーが発生しました。",
@@ -188,16 +186,11 @@ const Profile = () => {
         method: "DELETE",
         url: `${localHostURL}/work_histories/${workHistory?.id}`,
       });
-
-      const fetchWorkHistories = async () => {
-        const res = await HttpClient.request({
-          method: "GET",
-          url: `${localHostURL}/accounts/${accountId}/work_histories`,
-        });
-        const workHistories = res.data;
-        setWorkHistories(workHistories);
-      };
-      fetchWorkHistories();
+      const newWorkHistories = workHistories?.filter((filteredWorkHistory) => {
+        filteredWorkHistory.id !== workHistory.id;
+      });
+      if (!newWorkHistories) return;
+      await setWorkHistories(newWorkHistories);
     } catch (err) {
       notification.error({
         message: "エラーが発生しました。",
@@ -206,52 +199,18 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    const fetchAccounts = async () => {
-      const res = await HttpClient.request({
-        method: "GET",
-        url: `${localHostURL}/accounts/1`,
-      });
-
-      const accountData = res.data;
-      setAccount(accountData);
-    };
     fetchAccounts();
   }, []);
 
   useEffect(() => {
-    const fetchProfile = async () => {
-      const res = await HttpClient.request({
-        method: "GET",
-        url: `${localHostURL}/accounts/${accountId}/profiles`,
-      });
-
-      const profileData = res.data[0];
-      setProfile(profileData);
-    };
     fetchProfile();
   }, [account]);
 
   useEffect(() => {
-    const fetchWorkHistories = async () => {
-      const res = await HttpClient.request({
-        method: "GET",
-        url: `${localHostURL}/accounts/${accountId}/work_histories`,
-      });
-      const workHistories = res.data;
-      setWorkHistories(workHistories);
-    };
     fetchWorkHistories();
   }, [accountId]);
 
   useEffect(() => {
-    const fetchAcademicHistories = async () => {
-      const res = await HttpClient.request({
-        method: "GET",
-        url: `${localHostURL}/accounts/${accountId}/academic_histories`,
-      });
-      const academicHistories = res.data;
-      setAcademicHistories(academicHistories);
-    };
     fetchAcademicHistories();
   }, [accountId]);
 

@@ -25,47 +25,21 @@
     {
       "name": "hoge",
       "occupation": "hoge",
-      "since_date": "2021-11-03",
-      "until_date": "2021-11-04",
+      "since_date": "2021-11-09",
+      "until_date": "2021-11-17",
       "job_summary": "hoge",
       "account_id": 1,
       "id": 1
-    },
-    {
-      "name": "test2",
-      "occupation": "test2",
-      "since_date": "",
-      "until_date": "",
-      "job_summary": "test2",
-      "account_id": 1,
-      "id": 2
-    },
-    {
-      "name": "hoge2",
-      "occupation": "hoge2",
-      "since_date": "",
-      "until_date": "",
-      "job_summary": "hoge2",
-      "account_id": 1,
-      "id": 3
     }
   ],
   "academic_histories": [
     {
-      "name": "hoge1",
+      "name": "hoge",
       "faculty": "hoge",
       "since_date": "2021-11-10",
       "until_date": "2021-12-01",
       "account_id": 1,
       "id": 1
-    },
-    {
-      "name": "a",
-      "faculty": "a",
-      "since_date": "",
-      "until_date": "",
-      "account_id": 1,
-      "id": 2
     }
   ]
 }
