@@ -95,7 +95,7 @@ const Profile = () => {
   const addAcademicHistory = async (academicHistory: AcademicHistoryType) => {
     if (!academicHistories) return;
     try {
-      await HttpClient.request({
+      const res = await HttpClient.request({
         method: "POST",
         url: `${localHostURL}/academic_histories`,
         data: {
@@ -103,19 +103,25 @@ const Profile = () => {
           accountId: accountId,
         },
       });
-      await fetchAcademicHistories();
+      const newAcademicHistories = academicHistories?.map(
+        (mappedAcademicHistory) => {
+          if (mappedAcademicHistory.id === res.data.id) return res.data;
+          else return mappedAcademicHistory;
+        }
+      );
+      if (!newAcademicHistories) return;
+      setAcademicHistories([...newAcademicHistories, res.data]);
     } catch (err) {
       notification.error({
         message: "エラーが発生しました。",
       });
     }
-    setAcademicHistories([...academicHistories, academicHistory]);
   };
 
   const addWorkHistory = async (workHistory: WorkHistoriesType) => {
     if (!workHistories) return;
     try {
-      await HttpClient.request({
+      const res = await HttpClient.request({
         method: "POST",
         url: `${localHostURL}/work_histories`,
         data: {
@@ -123,7 +129,12 @@ const Profile = () => {
           accountId: accountId,
         },
       });
-      await fetchWorkHistories();
+      const newWorkHistories = workHistories?.map((mappedWorkHistory) => {
+        if (mappedWorkHistory.id === res.data.id) return res.data;
+        else return mappedWorkHistory;
+      });
+      if (!newWorkHistories) return;
+      setWorkHistories([...newWorkHistories, res.data]);
     } catch (err) {
       notification.error({
         message: "エラーが発生しました。",
@@ -220,14 +231,8 @@ const Profile = () => {
   useEffect(() => {
     (async () => {
       await fetchAccounts();
-    })();
-    (async () => {
       await fetchProfile();
-    })();
-    (async () => {
       await fetchWorkHistories();
-    })();
-    (async () => {
       await fetchAcademicHistories();
     })();
   }, []);
