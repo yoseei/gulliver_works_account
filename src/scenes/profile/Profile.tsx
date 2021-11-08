@@ -221,25 +221,16 @@ const Profile = () => {
     (async () => {
       await fetchAccounts();
     })();
-  }, []);
-
-  useEffect(() => {
     (async () => {
       await fetchProfile();
     })();
-  }, [account]);
-
-  useEffect(() => {
     (async () => {
       await fetchWorkHistories();
     })();
-  }, [accountId]);
-
-  useEffect(() => {
     (async () => {
       await fetchAcademicHistories();
     })();
-  }, [accountId]);
+  }, []);
 
   useEffect(() => {
     if (!academicHistories?.length) return;
