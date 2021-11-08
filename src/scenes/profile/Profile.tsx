@@ -103,14 +103,14 @@ const Profile = () => {
           accountId: accountId,
         },
       });
-      const newAcademicHistories = academicHistories?.map(
-        (mappedAcademicHistory) => {
-          if (mappedAcademicHistory.id === res.data.id) return res.data;
-          else return mappedAcademicHistory;
-        }
-      );
-      if (!newAcademicHistories) return;
-      setAcademicHistories([...newAcademicHistories, res.data]);
+      // const newAcademicHistories = academicHistories?.map(
+      //   (mappedAcademicHistory) => {
+      //     if (mappedAcademicHistory.id === res.data.id) return res.data;
+      //     else return mappedAcademicHistory;
+      //   }
+      // );
+      // if (!newAcademicHistories) return;
+      setAcademicHistories([...academicHistories, res.data]);
     } catch (err) {
       notification.error({
         message: "エラーが発生しました。",
@@ -129,12 +129,12 @@ const Profile = () => {
           accountId: accountId,
         },
       });
-      const newWorkHistories = workHistories?.map((mappedWorkHistory) => {
-        if (mappedWorkHistory.id === res.data.id) return res.data;
-        else return mappedWorkHistory;
-      });
-      if (!newWorkHistories) return;
-      setWorkHistories([...newWorkHistories, res.data]);
+      // const newWorkHistories = workHistories?.map((mappedWorkHistory) => {
+      //   if (mappedWorkHistory.id === res.data.id) return res.data;
+      //   else return mappedWorkHistory;
+      // });
+      // if (!newWorkHistories) return;
+      setWorkHistories([...workHistories, res.data]);
     } catch (err) {
       notification.error({
         message: "エラーが発生しました。",
