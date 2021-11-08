@@ -275,7 +275,6 @@ const Profile = () => {
 
   return (
     <div className={styles.root}>
-      hoge
       <div className={styles.profileContainer}>
         <div className={styles.profileImageWrapper}>
           <ProfileImage />

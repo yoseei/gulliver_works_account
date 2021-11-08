@@ -27,6 +27,7 @@ const EditBiographyModal = ({
   const handleEditBiography = async (data: Inputs) => {
     try {
       await editBiography(data);
+      alert("自己紹介文を編集しました！");
       handleCloseEditBiographyModal();
     } catch (err) {
       notification.error({
@@ -63,7 +64,7 @@ const EditBiographyModal = ({
               <Button
                 border={"none"}
                 color={"primary"}
-                onClick={() => alert("自己紹介を更新しました!")}
+                onClick={() => ""}
                 text={"更新"}
                 type={"submit"}
               />
