@@ -135,7 +135,7 @@ const Profile = () => {
     editedAcademicHistory: AcademicHistoryType,
     academicHistory: AcademicHistoryType
   ) => {
-    await HttpClient.request({
+    const res = await HttpClient.request({
       method: "PUT",
       url: `${localHostURL}/academic_histories/${academicHistory?.id}`,
       data: {
@@ -143,8 +143,17 @@ const Profile = () => {
         accountId: accountId,
       },
     });
-    // 学歴編集後stateを更新 //
-    await fetchAcademicHistories();
+    const newAcademicHistories = academicHistories?.map(
+      (mappedAcademicHistory) => {
+        if (mappedAcademicHistory.id === res.data.id) {
+          return res.data;
+        } else {
+          return mappedAcademicHistory;
+        }
+      }
+    );
+    if (!newAcademicHistories) return;
+    setAcademicHistories(newAcademicHistories);
   };
 
   const editWorkHistory = async (
@@ -152,7 +161,7 @@ const Profile = () => {
     workHistory: WorkHistoriesType
   ) => {
     if (!editedWorkHistory) return;
-    await HttpClient.request({
+    const res = await HttpClient.request({
       method: "PUT",
       url: `${localHostURL}/work_histories/${workHistory?.id}`,
       data: {
@@ -160,7 +169,12 @@ const Profile = () => {
         accountId: accountId,
       },
     });
-    await fetchWorkHistories();
+    const newWorkHistories = workHistories?.map((mappedWorkHistory) => {
+      if (mappedWorkHistory.id === res.data.id) return res.data;
+      else return mappedWorkHistory;
+    });
+    if (!newWorkHistories) return;
+    setWorkHistories(newWorkHistories);
   };
 
   const deleteAcademicHistory = async (
@@ -171,7 +185,12 @@ const Profile = () => {
         method: "DELETE",
         url: `${localHostURL}/academic_histories/${academicHistory?.id}`,
       });
-      await fetchAcademicHistories();
+      const newAcademicHistories = academicHistories?.filter(
+        (filteredAcademicHistory) =>
+          filteredAcademicHistory.id !== academicHistory.id
+      );
+      if (!newAcademicHistories) return;
+      setAcademicHistories(newAcademicHistories);
     } catch (err) {
       notification.error({
         message: "エラーが発生しました。",
@@ -186,11 +205,11 @@ const Profile = () => {
         method: "DELETE",
         url: `${localHostURL}/work_histories/${workHistory?.id}`,
       });
-      const newWorkHistories = workHistories?.filter((filteredWorkHistory) => {
-        filteredWorkHistory.id !== workHistory.id;
-      });
+      const newWorkHistories = workHistories?.filter(
+        (filteredWorkHistory) => filteredWorkHistory.id !== workHistory.id
+      );
       if (!newWorkHistories) return;
-      await setWorkHistories(newWorkHistories);
+      setWorkHistories(newWorkHistories);
     } catch (err) {
       notification.error({
         message: "エラーが発生しました。",
@@ -199,19 +218,27 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    fetchAccounts();
+    (async () => {
+      await fetchAccounts();
+    })();
   }, []);
 
   useEffect(() => {
-    fetchProfile();
+    (async () => {
+      await fetchProfile();
+    })();
   }, [account]);
 
   useEffect(() => {
-    fetchWorkHistories();
+    (async () => {
+      await fetchWorkHistories();
+    })();
   }, [accountId]);
 
   useEffect(() => {
-    fetchAcademicHistories();
+    (async () => {
+      await fetchAcademicHistories();
+    })();
   }, [accountId]);
 
   useEffect(() => {
