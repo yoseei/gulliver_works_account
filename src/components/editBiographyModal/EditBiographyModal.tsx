@@ -1,58 +1,34 @@
 import React from "react";
+import styles from "./EditBiographyModal.module.scss";
 import Button from "../button/Button";
 import Modal from "@material-ui/core/Modal";
-import styles from "./EditBiographyModal.module.scss";
-import { HttpClient } from "../../utilities/axiosInstance";
-import { ProfileType } from "../../data/profile/index";
 import { notification } from "antd";
+import { ProfileType } from "../../data/profile/index";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
-import { localHostURL } from "../../hooks/localHostURL";
 
 type PropsType = {
+  editBiography: (data: Inputs) => Promise<void>;
+  handleCloseEditBiographyModal: () => void;
   openEditBiographyModal: boolean;
-  handleCloseEditBiographyModal:
-    | React.MouseEventHandler<HTMLParagraphElement>
-    | undefined;
   profile: ProfileType | undefined;
-  accountId: number;
 };
-type Inputs = {
-  profileBiography: string;
+export type Inputs = {
+  biography: string;
 };
 
 const EditBiographyModal = ({
-  accountId,
+  editBiography,
   handleCloseEditBiographyModal,
   openEditBiographyModal,
   profile,
 }: PropsType) => {
   const { register, handleSubmit } = useForm();
-  const history = useHistory();
 
   const handleEditBiography = async (data: Inputs) => {
     try {
-      if (!profile) return;
-
-      const res = await HttpClient.request({
-        method: "PUT",
-        url: `${localHostURL}/profiles/${profile.id}`,
-        data: {
-          id: profile.id,
-          name: profile.name,
-          nameKana: profile.nameKana,
-          gender: profile.gender,
-          phone: profile.phone,
-          postalCode: profile.postalCode,
-          address: profile.address,
-          dateOfBirth: profile.dateOfBirth,
-          biography: data.profileBiography,
-          accountId: accountId,
-        },
-      });
-
-      alert("プロフィールを編集しました。");
-      history.push("/");
+      await editBiography(data);
+      alert("自己紹介文を編集しました！");
+      handleCloseEditBiographyModal();
     } catch (err) {
       notification.error({
         message: "エラーが発生しました。",
@@ -69,7 +45,7 @@ const EditBiographyModal = ({
           <div className={styles.biographyWrapper}>
             <textarea
               defaultValue={profile ? profile.biography : ""}
-              name="profileBiography"
+              name="biography"
               ref={register}
             />
           </div>
@@ -88,7 +64,6 @@ const EditBiographyModal = ({
               <Button
                 border={"none"}
                 color={"primary"}
-                onClick={() => handleCloseEditBiographyModal}
                 text={"更新"}
                 type={"submit"}
               />

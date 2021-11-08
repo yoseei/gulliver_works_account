@@ -5,7 +5,7 @@ import classNames from "classnames";
 interface PropsTypes {
   color?: "primary" | "gray" | "white";
   border?: "none" | "red";
-  onClick: React.MouseEventHandler<HTMLParagraphElement> | undefined;
+  onClick?: React.MouseEventHandler<HTMLParagraphElement> | undefined;
   text: string;
   type?: "button" | "submit" | "reset" | undefined;
   style?: React.CSSProperties | undefined;

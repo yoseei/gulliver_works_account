@@ -7,7 +7,9 @@ import AcademicHistoryTable from "../../components/academicHistoryTable/Academic
 import AcademicHistoryModal from "../../components/academicHistoryModal/AcademicHistoryModal";
 import Button from "../../components/button/Button";
 import CreateWorkHistoryModal from "../../components/createWorkHistoryModal/CreateWorkHistoryModal";
-import EditBiographyModal from "../../components/editBiographyModal/EditBiographyModal";
+import EditBiographyModal, {
+  Inputs,
+} from "../../components/editBiographyModal/EditBiographyModal";
 import { HttpClient } from "../../utilities/axiosInstance";
 import { localHostURL } from "../../hooks/localHostURL";
 import { notification } from "antd";
@@ -61,7 +63,6 @@ const Profile = () => {
       method: "GET",
       url: `${localHostURL}/accounts/${accountId}/profiles`,
     });
-
     const profileData = res.data[0];
     setProfile(profileData);
   };
@@ -76,16 +77,16 @@ const Profile = () => {
   };
 
   //--------- modalのオープン・クローズ ----------//
-  const handleToggleProfileModal = () => {
-    setOpenProfileModal(!openProfileModal);
+  const handleToggleAcademicHistoryModal = () => {
+    setOpenAcademicHistoryModal(!openAcademicHistoryModal);
   };
 
   const handleToggleEditBiographyModal = () => {
     setOpenEditBiographyModal(!openEditBiographyModal);
   };
 
-  const handleToggleAcademicHistoryModal = () => {
-    setOpenAcademicHistoryModal(!openAcademicHistoryModal);
+  const handleToggleProfileModal = () => {
+    setOpenProfileModal(!openProfileModal);
   };
 
   const handleToggleWorkHistoryModal = () => {
@@ -153,6 +154,26 @@ const Profile = () => {
     );
     if (!newAcademicHistories) return;
     setAcademicHistories(newAcademicHistories);
+  };
+
+  const editBiography = async (editedBiography: Inputs) => {
+    try {
+      if (!profile) return;
+
+      const res = await HttpClient.request({
+        method: "PUT",
+        url: `${localHostURL}/profiles/${profile.id}`,
+        data: {
+          ...profile,
+          biography: editedBiography.biography,
+        },
+      });
+      setProfile(res.data);
+    } catch (err) {
+      notification.error({
+        message: "エラーが発生しました。",
+      });
+    }
   };
 
   const editWorkHistory = async (
@@ -351,9 +372,9 @@ const Profile = () => {
           <div className={styles.profileModalContainer}>
             {accountId && profile && (
               <ProfileModal
-                openProfileModal={openProfileModal}
-                handleCloseProfileModal={handleToggleProfileModal}
                 accountId={accountId}
+                handleCloseProfileModal={handleToggleProfileModal}
+                openProfileModal={openProfileModal}
                 profile={profile}
               />
             )}
@@ -362,10 +383,10 @@ const Profile = () => {
 
         {openEditBiographyModal && accountId && (
           <EditBiographyModal
-            openEditBiographyModal={openEditBiographyModal}
+            editBiography={editBiography}
             handleCloseEditBiographyModal={handleToggleEditBiographyModal}
+            openEditBiographyModal={openEditBiographyModal}
             profile={profile}
-            accountId={accountId}
           />
         )}
 
