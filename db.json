@@ -18,6 +18,7 @@
       "postal_code": "107-0051",
       "address": "千葉県",
       "date_of_birth": "2019-08-24",
+      "biography": "こんにちは！",
       "account_id": 1
     }
   ],
@@ -39,42 +40,6 @@
       "job_summary": "faf",
       "account_id": 1,
       "id": 8
-    },
-    {
-      "name": "d",
-      "occupation": "ds",
-      "since_date": "",
-      "until_date": "",
-      "job_summary": "s",
-      "account_id": 1,
-      "id": 9
-    },
-    {
-      "name": "fa",
-      "occupation": "fdsa",
-      "since_date": "",
-      "until_date": "",
-      "job_summary": "dsfa",
-      "account_id": 1,
-      "id": 10
-    },
-    {
-      "name": "dsfadsda",
-      "occupation": "fsdfsdaf",
-      "since_date": "",
-      "until_date": "",
-      "job_summary": "ssdfsadf",
-      "account_id": 1,
-      "id": 11
-    },
-    {
-      "name": "a",
-      "occupation": "a",
-      "since_date": "",
-      "until_date": "",
-      "job_summary": "a",
-      "account_id": 1,
-      "id": 12
     }
   ],
   "academic_histories": [
@@ -85,70 +50,6 @@
       "until_date": "",
       "account_id": 1,
       "id": 4
-    },
-    {
-      "name": "dfasdf",
-      "faculty": "fdsadf",
-      "since_date": "",
-      "until_date": "",
-      "account_id": 1,
-      "id": 5
-    },
-    {
-      "name": "gfdg",
-      "faculty": "gsfg",
-      "since_date": "",
-      "until_date": "",
-      "account_id": 1,
-      "id": 6
-    },
-    {
-      "name": "sa",
-      "faculty": "das",
-      "since_date": "",
-      "until_date": "",
-      "account_id": 1,
-      "id": 7
-    },
-    {
-      "name": "ds",
-      "faculty": "dasd",
-      "since_date": "",
-      "until_date": "",
-      "account_id": 1,
-      "id": 8
-    },
-    {
-      "name": "fda",
-      "faculty": "fads",
-      "since_date": "",
-      "until_date": "",
-      "account_id": 1,
-      "id": 9
-    },
-    {
-      "name": "afd",
-      "faculty": "dfa",
-      "since_date": "",
-      "until_date": "",
-      "account_id": 1,
-      "id": 10
-    },
-    {
-      "name": "hoge",
-      "faculty": "hoge",
-      "since_date": "",
-      "until_date": "",
-      "account_id": 1,
-      "id": 11
-    },
-    {
-      "name": "a",
-      "faculty": "a",
-      "since_date": "",
-      "until_date": "",
-      "account_id": 1,
-      "id": 12
     }
   ]
 }
