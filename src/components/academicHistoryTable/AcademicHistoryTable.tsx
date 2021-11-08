@@ -6,9 +6,20 @@ import EditAcademicHistoryModal from "../editAcademicHistoryModal/EditAcademicHi
 
 type AcademicHistoryTableType = {
   academicHistories: AcademicHistoryType[];
+  accountId: number | undefined;
+  editAcademicHistory: (
+    editedAcademicHistory: AcademicHistoryType,
+    academicHistory: AcademicHistoryType
+  ) => Promise<void>;
+  deleteAcademicHistory: (
+    academicHistory: AcademicHistoryType
+  ) => Promise<void>;
 };
 const AcademicHistoryTable: React.FC<AcademicHistoryTableType> = ({
   academicHistories,
+  accountId,
+  deleteAcademicHistory,
+  editAcademicHistory,
 }) => {
   const [openEditAcademicHistoryModal, setOpenEditAcademicHistoryModal] =
     useState(false);
@@ -21,43 +32,44 @@ const AcademicHistoryTable: React.FC<AcademicHistoryTableType> = ({
   };
   return (
     <>
-      {academicHistories?.map(
-        (academicHistory: AcademicHistoryType, index: number) => (
-          <div className={styles.root} key={index}>
-            <div className={styles.academicHistoryWrapper}>
-              <div className={styles.leftWrapper}>
-                <p>
-                  {academicHistory.sinceDate} - {academicHistory.untilDate}
-                </p>
-              </div>
-              <div className={styles.rightWrapper}>
-                <div className={styles.academicNameWrapper}>
-                  <div className={styles.leftPartWrapper}>
-                    <h3>{academicHistory.name}</h3>
-                    <p className={styles.facultyName}>
-                      {academicHistory.faculty}
-                    </p>
-                  </div>
-                  <div className={styles.buttonWrapper}>
-                    <Button
-                      onClick={() => onEditHistory(academicHistory)}
-                      text={"編集する"}
-                    />
-                  </div>
+      {academicHistories?.map((academicHistory, index) => (
+        <div className={styles.root} key={index}>
+          <div className={styles.academicHistoryWrapper}>
+            <div className={styles.leftWrapper}>
+              <p>
+                {academicHistory.sinceDate} - {academicHistory.untilDate}
+              </p>
+            </div>
+            <div className={styles.rightWrapper}>
+              <div className={styles.academicNameWrapper}>
+                <div className={styles.leftPartWrapper}>
+                  <h3>{academicHistory.name}</h3>
+                  <p className={styles.facultyName}>
+                    {academicHistory.faculty}
+                  </p>
+                </div>
+                <div className={styles.buttonWrapper}>
+                  <Button
+                    onClick={() => onEditHistory(academicHistory)}
+                    text={"編集する"}
+                  />
                 </div>
               </div>
             </div>
           </div>
-        )
-      )}
+        </div>
+      ))}
       {openEditAcademicHistoryModal && (
         <div className={styles.academicHistoryModalContainer}>
           <EditAcademicHistoryModal
-            openEditAcademicHistoryModal={openEditAcademicHistoryModal}
+            academicHistory={selectedHistory}
+            accountId={accountId}
+            deleteAcademicHistory={deleteAcademicHistory}
+            editAcademicHistory={editAcademicHistory}
             handleCloseEditAcademicHistoryModal={() =>
               setOpenEditAcademicHistoryModal(false)
             }
-            academicHistoryData={selectedHistory}
+            openEditAcademicHistoryModal={openEditAcademicHistoryModal}
           />
         </div>
       )}

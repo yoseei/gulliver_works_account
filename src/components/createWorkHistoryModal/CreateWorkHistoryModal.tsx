@@ -1,44 +1,33 @@
 import React from "react";
-import styles from "./WorkHistoryModal.module.scss";
-import { WorkHistoryType } from "../../data/workHistory/index";
+import styles from "./CreateWorkHistoryModal.module.scss";
+import { WorkHistoriesType } from "../../data/workHistory/index";
 import Button from "../button/Button";
 import { ErrorMessage } from "@hookform/error-message";
-import { HttpClient } from "../../utilities/axiosInstance";
 import Input from "../input/Input";
 import Modal from "@material-ui/core/Modal";
 import { notification } from "antd";
 import { useForm } from "react-hook-form";
-import { localHostURL } from "../../hooks/localHostURL";
-import Textarea from "../../components/textarea/Textarea";
+import Textarea from "../textarea/Textarea";
 
 type PropsType = {
+  addWorkHistory: (workHistory: WorkHistoriesType) => void;
   openWorkHistoryModal: boolean;
-  handleCloseWorkHistoryModal:
-    | React.MouseEventHandler<HTMLParagraphElement>
-    | undefined;
-  workHistories?: WorkHistoryType[];
-  accountId: number;
+  closeWorkHistoryModal: () => void;
+  workHistories?: WorkHistoriesType[];
 };
 
-const WorkHistoryModal = ({
-  handleCloseWorkHistoryModal,
+const CreateWorkHistoryModal = ({
+  addWorkHistory,
+  closeWorkHistoryModal,
   openWorkHistoryModal,
-  accountId,
 }: PropsType) => {
   const { register, handleSubmit, errors } = useForm();
 
-  const handleAcademicHistory = async (data: WorkHistoryType) => {
+  const handleWorkHistory = async (data: WorkHistoriesType) => {
     try {
       if (!data) return;
-
-      const res = await HttpClient.request({
-        method: "POST",
-        url: `${localHostURL}/accounts/${accountId}/work_histories`,
-        data: {
-          ...data,
-        },
-      });
-      alert("職歴を追加しました。");
+      addWorkHistory(data);
+      closeWorkHistoryModal();
     } catch (err) {
       notification.error({
         message: "エラーが発生しました。",
@@ -51,7 +40,7 @@ const WorkHistoryModal = ({
       <div className={styles.academicHistoryContainer}>
         <h2>職歴</h2>
 
-        <form onSubmit={handleSubmit(handleAcademicHistory)}>
+        <form onSubmit={handleSubmit(handleWorkHistory)}>
           <div className={styles.formContainer}>
             <ErrorMessage
               className={styles.errorMessage}
@@ -114,7 +103,7 @@ const WorkHistoryModal = ({
               <Button
                 color={"gray"}
                 border={"none"}
-                onClick={handleCloseWorkHistoryModal}
+                onClick={closeWorkHistoryModal}
                 text={"キャンセル"}
                 type={"button"}
               />
@@ -123,7 +112,7 @@ const WorkHistoryModal = ({
               <Button
                 border={"none"}
                 color={"primary"}
-                onClick={() => handleCloseWorkHistoryModal}
+                onClick={() => alert("職歴を追加しました。")}
                 text={"更新"}
                 type={"submit"}
               />
@@ -135,10 +124,10 @@ const WorkHistoryModal = ({
   );
 
   return (
-    <Modal open={openWorkHistoryModal} onClose={handleCloseWorkHistoryModal}>
+    <Modal open={openWorkHistoryModal} onClose={closeWorkHistoryModal}>
       {body}
     </Modal>
   );
 };
 
-export default WorkHistoryModal;
+export default CreateWorkHistoryModal;

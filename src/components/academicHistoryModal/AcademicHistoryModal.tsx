@@ -3,41 +3,31 @@ import styles from "./AcademicHistoryModal.module.scss";
 import { AcademicHistoryType } from "../../data/academicHistory/index";
 import Button from "../button/Button";
 import { ErrorMessage } from "@hookform/error-message";
-import { HttpClient } from "../../utilities/axiosInstance";
 import Input from "../input/Input";
 import Modal from "@material-ui/core/Modal";
 import { notification } from "antd";
 import { useForm } from "react-hook-form";
-import { localHostURL } from "../../hooks/localHostURL";
 
 type PropsType = {
+  addAcademicHistory: (academicHistory: AcademicHistoryType) => Promise<void>;
+  handleCloseAcademicHistoryModal: () => void;
   openAcademicHistoryModal: boolean;
-  handleCloseAcademicHistoryModal:
-    | React.MouseEventHandler<HTMLParagraphElement>
-    | undefined;
-  academicHistories?: AcademicHistoryType[];
-  accountId: number;
 };
 
 const AcademicHistoryModal = ({
+  addAcademicHistory,
   handleCloseAcademicHistoryModal,
   openAcademicHistoryModal,
-  accountId,
 }: PropsType) => {
   const { register, handleSubmit, errors } = useForm();
 
-  const handleAcademicHistory = async (data: AcademicHistoryType) => {
+  const onAcademicHistorySubmit = async (data: AcademicHistoryType) => {
     try {
       if (!data) return;
-
-      const res = await HttpClient.request({
-        method: "POST",
-        url: `${localHostURL}/accounts/${accountId}/academic_histories`,
-        data: {
-          ...data,
-        },
-      });
-      alert("学歴を追加しました。");
+      addAcademicHistory(data);
+      if (data) {
+        handleCloseAcademicHistoryModal();
+      }
     } catch (err) {
       notification.error({
         message: "エラーが発生しました。",
@@ -50,7 +40,7 @@ const AcademicHistoryModal = ({
       <div className={styles.academicHistoryContainer}>
         <h2>学歴</h2>
 
-        <form onSubmit={handleSubmit(handleAcademicHistory)}>
+        <form onSubmit={handleSubmit(onAcademicHistorySubmit)}>
           <div className={styles.formContainer}>
             <ErrorMessage
               className={styles.errorMessage}
@@ -107,7 +97,7 @@ const AcademicHistoryModal = ({
               <Button
                 border={"none"}
                 color={"primary"}
-                onClick={() => handleCloseAcademicHistoryModal}
+                onClick={() => alert("学歴を追加しました。")}
                 text={"更新"}
                 type={"submit"}
               />

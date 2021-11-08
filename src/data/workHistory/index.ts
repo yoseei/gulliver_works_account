@@ -1,19 +1,17 @@
-export interface WorkHistoryType {
+export interface WorkHistoriesType {
   id?: string;
   isEmployed?: string;
-  occupation?: {
-    id: string;
-    name: string;
-  };
+  occupation?: string;
   industry?: {
     id: string;
     name: string;
   };
-  position: string;
+  position?: string;
   annualIncome?: number;
   managementExperience?: number;
-  jobSummary: string;
-  sinceDate: string;
-  untilDate: string;
+  jobSummary?: string;
+  sinceDate?: string;
+  untilDate?: string;
   name: string;
+  account_id: string;
 }

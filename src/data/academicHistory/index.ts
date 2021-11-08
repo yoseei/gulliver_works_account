@@ -5,6 +5,6 @@ export interface AcademicHistoryType {
   sinceDate: string;
   untilDate: string;
   type?: string;
-  accountId: string;
+  accountId: number;
 }
 [];

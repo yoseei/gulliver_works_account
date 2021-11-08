@@ -6,16 +6,17 @@ import { AcademicHistoryType } from "../../data/academicHistory/index";
 import AcademicHistoryTable from "../../components/academicHistoryTable/AcademicHistoryTable";
 import AcademicHistoryModal from "../../components/academicHistoryModal/AcademicHistoryModal";
 import Button from "../../components/button/Button";
+import CreateWorkHistoryModal from "../../components/createWorkHistoryModal/CreateWorkHistoryModal";
 import EditBiographyModal from "../../components/editBiographyModal/EditBiographyModal";
 import { HttpClient } from "../../utilities/axiosInstance";
 import { localHostURL } from "../../hooks/localHostURL";
+import { notification } from "antd";
 import ProfileImage from "../../components/profileImage/ProfileImage";
 import ProfileMainImage from "../../components/profileMainImage/ProfileMainImage";
 import ProfileModal from "../../components/profileModal/ProfileModal";
 import { ProfileType } from "../../data/profile/index";
-import { WorkHistoryType } from "../../data/workHistory/index";
+import { WorkHistoriesType } from "../../data/workHistory/index";
 import WorkHistoryTable from "../../components/workHistoryTable/WorkHistoryTable";
-import WorkHistoryModal from "../../components/workHistoryModal/WorkHistoryModal";
 
 const Profile = () => {
   const [account, setAccount] = useState<AccountType>();
@@ -29,10 +30,52 @@ const Profile = () => {
   const [openProfileModal, setOpenProfileModal] = useState(false);
   const [openEditBiographyModal, setOpenEditBiographyModal] = useState(false);
   const [untilDate, setUntilDate] = useState<string>();
-  const [workHistory, setWorkHistory] = useState<WorkHistoryType>();
+  const [workHistories, setWorkHistories] = useState<
+    WorkHistoriesType[] | undefined
+  >();
 
   const accountId = account?.id;
 
+  //-------- fetch各データ関数 ----------//
+  const fetchAcademicHistories = async () => {
+    const res = await HttpClient.request({
+      method: "GET",
+      url: `${localHostURL}/accounts/${accountId}/academic_histories`,
+    });
+    const academicHistories = res.data;
+    setAcademicHistories(academicHistories);
+  };
+
+  const fetchAccounts = async () => {
+    const res = await HttpClient.request({
+      method: "GET",
+      url: `${localHostURL}/accounts/1`,
+    });
+
+    const accountData = res.data;
+    setAccount(accountData);
+  };
+
+  const fetchProfile = async () => {
+    const res = await HttpClient.request({
+      method: "GET",
+      url: `${localHostURL}/accounts/${accountId}/profiles`,
+    });
+
+    const profileData = res.data[0];
+    setProfile(profileData);
+  };
+
+  const fetchWorkHistories = async () => {
+    const res = await HttpClient.request({
+      method: "GET",
+      url: `${localHostURL}/accounts/${accountId}/work_histories`,
+    });
+    const workHistories = res.data;
+    setWorkHistories(workHistories);
+  };
+
+  //--------- modalのオープン・クローズ ----------//
   const handleToggleProfileModal = () => {
     setOpenProfileModal(!openProfileModal);
   };
@@ -49,60 +92,141 @@ const Profile = () => {
     setOpenWorkHistoryModal(!openWorkHistoryModal);
   };
 
-  useEffect(() => {
-    const fetchAccounts = async () => {
-      const res = await HttpClient.request({
-        method: "GET",
-        url: `${localHostURL}/accounts/1`,
-      });
-
-      const accountData = res.data;
-      setAccount(accountData);
-    };
-    fetchAccounts();
-  }, []);
-
-  useEffect(() => {
-    const fetchProfile = async () => {
-      const res = await HttpClient.request({
-        method: "GET",
-        url: `${localHostURL}/accounts/${accountId}/profiles`,
-      });
-
-      const profileData = res.data[0];
-      setProfile(profileData);
-    };
-    fetchProfile();
-  }, [account]);
-
-  useEffect(() => {
-    const fetchWorkHistory = async () => {
-      const res = await HttpClient.request({
-        method: "GET",
-        url: `${localHostURL}/work_histories/1`,
-      });
-
-      const workHistoryData = res.data;
-      setWorkHistory(workHistoryData);
-    };
-    fetchWorkHistory();
-  }, []);
-
-  useEffect(() => {
-    const fetchAcademicHistory = async () => {
-      const res = await HttpClient.request({
-        method: "GET",
-        url: `${localHostURL}/accounts/${accountId}/academic_histories/`,
-      });
-      const academicHistories = res.data;
-
-      setAcademicHistories(academicHistories);
-    };
-    fetchAcademicHistory();
-  }, [accountId]);
-
-  useEffect(() => {
+  const addAcademicHistory = async (academicHistory: AcademicHistoryType) => {
     if (!academicHistories) return;
+    try {
+      const res = await HttpClient.request({
+        method: "POST",
+        url: `${localHostURL}/academic_histories`,
+        data: {
+          ...academicHistory,
+          accountId: accountId,
+        },
+      });
+      setAcademicHistories([...academicHistories, res.data]);
+    } catch (err) {
+      notification.error({
+        message: "エラーが発生しました。",
+      });
+    }
+  };
+
+  const addWorkHistory = async (workHistory: WorkHistoriesType) => {
+    if (!workHistories) return;
+    try {
+      const res = await HttpClient.request({
+        method: "POST",
+        url: `${localHostURL}/work_histories`,
+        data: {
+          ...workHistory,
+          accountId: accountId,
+        },
+      });
+      setWorkHistories([...workHistories, res.data]);
+    } catch (err) {
+      notification.error({
+        message: "エラーが発生しました。",
+      });
+    }
+  };
+
+  const editAcademicHistory = async (
+    editedAcademicHistory: AcademicHistoryType,
+    academicHistory: AcademicHistoryType
+  ) => {
+    const res = await HttpClient.request({
+      method: "PUT",
+      url: `${localHostURL}/academic_histories/${academicHistory?.id}`,
+      data: {
+        ...editedAcademicHistory,
+        accountId: accountId,
+      },
+    });
+    const newAcademicHistories = academicHistories?.map(
+      (mappedAcademicHistory) => {
+        if (mappedAcademicHistory.id === res.data.id) {
+          return res.data;
+        } else {
+          return mappedAcademicHistory;
+        }
+      }
+    );
+    if (!newAcademicHistories) return;
+    setAcademicHistories(newAcademicHistories);
+  };
+
+  const editWorkHistory = async (
+    editedWorkHistory: WorkHistoriesType,
+    workHistory: WorkHistoriesType
+  ) => {
+    if (!editedWorkHistory) return;
+    const res = await HttpClient.request({
+      method: "PUT",
+      url: `${localHostURL}/work_histories/${workHistory?.id}`,
+      data: {
+        ...editedWorkHistory,
+        accountId: accountId,
+      },
+    });
+    const newWorkHistories = workHistories?.map((mappedWorkHistory) => {
+      if (mappedWorkHistory.id === res.data.id) return res.data;
+      else return mappedWorkHistory;
+    });
+    if (!newWorkHistories) return;
+    setWorkHistories(newWorkHistories);
+  };
+
+  const deleteAcademicHistory = async (
+    academicHistory: AcademicHistoryType
+  ) => {
+    try {
+      await HttpClient.request({
+        method: "DELETE",
+        url: `${localHostURL}/academic_histories/${academicHistory?.id}`,
+      });
+      const newAcademicHistories = academicHistories?.filter(
+        (filteredAcademicHistory) =>
+          filteredAcademicHistory.id !== academicHistory.id
+      );
+      if (!newAcademicHistories) return;
+      setAcademicHistories(newAcademicHistories);
+    } catch (err) {
+      notification.error({
+        message: "エラーが発生しました。",
+      });
+    }
+  };
+
+  const deleteWorkHistory = async (workHistory: WorkHistoriesType) => {
+    try {
+      if (!workHistory) return;
+      await HttpClient.request({
+        method: "DELETE",
+        url: `${localHostURL}/work_histories/${workHistory?.id}`,
+      });
+      const newWorkHistories = workHistories?.filter(
+        (filteredWorkHistory) => filteredWorkHistory.id !== workHistory.id
+      );
+      if (!newWorkHistories) return;
+      setWorkHistories(newWorkHistories);
+    } catch (err) {
+      notification.error({
+        message: "エラーが発生しました。",
+      });
+    }
+  };
+
+  useEffect(() => {
+    (async () => {
+      await fetchAccounts();
+      await fetchProfile();
+      await fetchWorkHistories();
+      await fetchAcademicHistories();
+    })();
+  }, []);
+
+  useEffect(() => {
+    if (!academicHistories?.length) return;
     const length = academicHistories.length;
     for (let i = 0; i < length; i++) {
       setUntilDate(academicHistories[i].untilDate);
@@ -111,7 +235,7 @@ const Profile = () => {
 
   // untilDateの降順をconsole.logで取得しようとしています
   useEffect(() => {
-    if (!academicHistories) return;
+    if (!academicHistories?.length) return;
     const newAcademicHistories = academicHistories.sort(function (
       a: AcademicHistoryType,
       b: AcademicHistoryType
@@ -179,10 +303,12 @@ const Profile = () => {
             <h1 className={styles.workHistoryTitle}>職歴</h1>
 
             <div className={styles.companyWrapper}>
-              {workHistory && (
+              {workHistories && (
                 <WorkHistoryTable
-                  workHistory={workHistory}
-                  onClick={() => alert("職歴編集クリック！")}
+                  accountId={accountId}
+                  deleteWorkHistory={deleteWorkHistory}
+                  editWorkHistory={editWorkHistory}
+                  workHistories={workHistories}
                 />
               )}
             </div>
@@ -200,7 +326,13 @@ const Profile = () => {
 
             <div className={styles.companyWrapper}>
               {academicHistories && (
-                <AcademicHistoryTable academicHistories={academicHistories} />
+                //------- AcademicHistoryTable ------//
+                <AcademicHistoryTable
+                  academicHistories={academicHistories}
+                  accountId={accountId}
+                  deleteAcademicHistory={deleteAcademicHistory}
+                  editAcademicHistory={editAcademicHistory}
+                />
               )}
             </div>
 
@@ -214,6 +346,7 @@ const Profile = () => {
           <div className={styles.bottomSpace}></div>
         </div>
 
+        {/* //----------- Create Modals -------------// */}
         {openProfileModal && (
           <div className={styles.profileModalContainer}>
             {accountId && profile && (
@@ -238,17 +371,16 @@ const Profile = () => {
 
         {openAcademicHistoryModal && accountId && (
           <AcademicHistoryModal
-            openAcademicHistoryModal={openAcademicHistoryModal}
+            addAcademicHistory={addAcademicHistory}
             handleCloseAcademicHistoryModal={handleToggleAcademicHistoryModal}
-            academicHistories={academicHistories}
-            accountId={accountId}
+            openAcademicHistoryModal={openAcademicHistoryModal}
           />
         )}
         {openWorkHistoryModal && accountId && (
-          <WorkHistoryModal
+          <CreateWorkHistoryModal
+            addWorkHistory={addWorkHistory}
+            closeWorkHistoryModal={handleToggleWorkHistoryModal}
             openWorkHistoryModal={openWorkHistoryModal}
-            handleCloseWorkHistoryModal={handleToggleWorkHistoryModal}
-            accountId={accountId}
           />
         )}
       </div>
