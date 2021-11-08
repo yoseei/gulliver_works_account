@@ -64,7 +64,6 @@ const EditBiographyModal = ({
               <Button
                 border={"none"}
                 color={"primary"}
-                onClick={() => ""}
                 text={"更新"}
                 type={"submit"}
               />
