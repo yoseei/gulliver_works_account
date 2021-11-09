@@ -1,0 +1,47 @@
+.root {
+  padding-left: 60px;
+  width: 70%;
+  h1 {
+    margin-bottom: 30px;
+  }
+  .selectBoxContainer {
+    margin-bottom: 20px;
+
+    p {
+      color: #7d7d7d;
+    }
+    .selectBoxWrapper {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .selectBox {
+      width: 30%;
+      border: 1px solid #e5e5e5;
+      border-radius: 5px;
+      padding: 5px 10px;
+      select {
+        cursor: pointer;
+        width: 100%;
+        -webkit-appearance: auto;
+      }
+    }
+  }
+  .publishingContainer {
+    p {
+      color: #7d7d7d;
+    }
+    .title {
+      margin-bottom: 0;
+    }
+  }
+  .buttonContainer {
+    display: flex;
+    width: 35%;
+    gap: 10px;
+    margin-left: auto;
+  }
+}
+.errorMessage {
+  color: red;
+}
