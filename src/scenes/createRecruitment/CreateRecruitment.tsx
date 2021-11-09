@@ -5,6 +5,7 @@ import RecruitmentForm from "../../components/recruitmentForm/RecruitmentForm";
 const CreateRecruitment = (handleFunction: any) => {
   return (
     <div className={styles.root}>
+      test
       <RecruitmentForm title={"新規募集作成"} handleFunction={handleFunction} />
     </div>
   );
