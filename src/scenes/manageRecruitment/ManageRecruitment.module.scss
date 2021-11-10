@@ -19,9 +19,17 @@
     padding: 10px 20px;
     margin: 20px 0;
 
-    .wrapper {
+    .recruitingWrapper {
+      color: #afafaf;
       display: flex;
       gap: 40px;
+      p {
+        cursor: pointer;
+        &:focus {
+          color: black !important;
+          font-weight: 500;
+        }
+      }
     }
   }
   .recruitmentListContainer {

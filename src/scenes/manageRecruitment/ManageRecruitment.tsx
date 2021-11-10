@@ -1,44 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./ManageRecruitment.module.scss";
 import Button from "../../components/button/Button";
 import CircleButton from "../../components/circleButton/CircleButton";
 
 const ManageRecruitment = () => {
-  const recruitmentLists = (
+  const [isRecruiting, setIsRecruiting] = useState(true);
+  const [isUnderSuspension, setIsUnderSuspension] = useState(false);
+  const [isDraft, setIsDraft] = useState(false);
+
+  const recruitingLists = (
     <>
-      <div className={styles.listsContainer}>
+      <div className={styles.listsContainer} key={3}>
         <div className={styles.titleWrapper}>
-          技術好きの集まる職場で周りより圧倒的に成長したい駆け出しエンジニア募集！
-        </div>
-        <div className={styles.occupationWrapper}>Webエンジニア</div>
-        <div className={styles.updatedDayWrapper}>2020/5/24</div>
-        <div className={styles.editButtonWrapper}>
-          <Button text={"編集"}></Button>
-        </div>
-      </div>
-      <div className={styles.listsContainer}>
-        <div className={styles.titleWrapper}>
-          技術好きの集まる職場で周りより圧倒的に成長したい駆け出しエンジニア募集！
-        </div>
-        <div className={styles.occupationWrapper}>Webエンジニア</div>
-        <div className={styles.updatedDayWrapper}>2020/5/24</div>
-        <div className={styles.editButtonWrapper}>
-          <Button text={"編集"}></Button>
-        </div>
-      </div>
-      <div className={styles.listsContainer}>
-        <div className={styles.titleWrapper}>
-          技術好きの集まる職場で周りより圧倒的に成長したい駆け出しエンジニア募集！
-        </div>
-        <div className={styles.occupationWrapper}>Webエンジニア</div>
-        <div className={styles.updatedDayWrapper}>2020/5/24</div>
-        <div className={styles.editButtonWrapper}>
-          <Button text={"編集"}></Button>
-        </div>
-      </div>
-      <div className={styles.listsContainer}>
-        <div className={styles.titleWrapper}>
-          技術好きの集まる職場で周りより圧倒的に成長したい駆け出しエンジニア募集！
+          【募集中】技術好きの集まる職場で周りより圧倒的に成長したい駆け出しエンジニア募集！
         </div>
         <div className={styles.occupationWrapper}>Webエンジニア</div>
         <div className={styles.updatedDayWrapper}>2020/5/24</div>
@@ -49,19 +23,70 @@ const ManageRecruitment = () => {
     </>
   );
 
+  const underSuspensionLists = (
+    <>
+      <div className={styles.listsContainer} key={2}>
+        <div className={styles.titleWrapper}>
+          【停止中】技術好きの集まる職場で周りより圧倒的に成長したい駆け出しエンジニア募集！
+        </div>
+        <div className={styles.occupationWrapper}>Webエンジニア</div>
+        <div className={styles.updatedDayWrapper}>2020/5/24</div>
+        <div className={styles.editButtonWrapper}>
+          <Button text={"編集"}></Button>
+        </div>
+      </div>
+    </>
+  );
+
+  const draftLists = (
+    <>
+      <div className={styles.listsContainer} key={1}>
+        <div className={styles.titleWrapper}>
+          【下書き】技術好きの集まる職場で周りより圧倒的に成長したい駆け出しエンジニア募集！
+        </div>
+        <div className={styles.occupationWrapper}>Webエンジニア</div>
+        <div className={styles.updatedDayWrapper}>2020/5/24</div>
+        <div className={styles.editButtonWrapper}>
+          <Button text={"編集"}></Button>
+        </div>
+      </div>
+    </>
+  );
+
+  const handleIsRecruiting = () => {
+    setIsRecruiting(true);
+    setIsUnderSuspension(false);
+    setIsDraft(false);
+  };
+
+  const handleIsUnderSuspension = () => {
+    setIsRecruiting(false);
+    setIsUnderSuspension(true);
+    setIsDraft(false);
+  };
+  const handleIsDraft = () => {
+    setIsRecruiting(false);
+    setIsUnderSuspension(false);
+    setIsDraft(true);
+  };
+
   return (
     <div className={styles.root}>
-      {/* TODO: 後で消す */}
-      push要記述
       <div className={styles.topContainer}>
         <h1>募集管理</h1>
         <CircleButton text={"新規作成"} />
       </div>
       <div className={styles.recruitingContainer}>
-        <div className={styles.wrapper}>
-          <p>募集中</p>
-          <p>停止中</p>
-          <p>下書き</p>
+        <div className={styles.recruitingWrapper}>
+          <p onClick={handleIsRecruiting} tabIndex={-1}>
+            募集中
+          </p>
+          <p onClick={handleIsUnderSuspension} tabIndex={-1}>
+            停止中
+          </p>
+          <p onClick={handleIsDraft} tabIndex={-1}>
+            下書き
+          </p>
         </div>
       </div>
       <div className={styles.recruitmentListContainer}>
@@ -71,7 +96,10 @@ const ManageRecruitment = () => {
           <div className={styles.updatedDayWrapper}>編集日</div>
           <div className={styles.editButtonWrapper}></div>
         </div>
-        {recruitmentLists}
+
+        {isRecruiting ? recruitingLists : ""}
+        {isUnderSuspension ? underSuspensionLists : ""}
+        {isDraft ? draftLists : ""}
       </div>
     </div>
   );
