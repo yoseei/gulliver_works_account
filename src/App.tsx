@@ -10,6 +10,7 @@ import CompanyEdit from "./scenes/companyEdit/CompanyEdit";
 import CompanyDetail from "./scenes/companyDetail/CompanyDetail";
 import SideBar from "./components/sideBar/SideBar";
 import CreateRecruitment from "./scenes/createRecruitment/CreateRecruitment";
+import ManageRecruitment from "./scenes/manageRecruitment/ManageRecruitment";
 
 const App: FC = () => {
   return (
@@ -18,31 +19,37 @@ const App: FC = () => {
         <Switch>
           <Route exact path="/" component={RecruitmentIndexPage} />
           <Route path="/signin" component={SignInPage} />
-          <Route path="/employeesignin" component={EmployeeSignInPage} />
+          <Route path="/employee_signin" component={EmployeeSignInPage} />
           <Route path="/profile" component={Profile} />
 
-          <Route path="/companyregistration">
+          <Route path="/company_registration">
             <div className="withSideBarContainer">
               <SideBar textA="企業詳細" textB="募集管理" />
               <CompanyRegistration />
             </div>
           </Route>
-          <Route path="/companydetail">
+          <Route path="/company_detail">
             <div className="withSideBarContainer">
               <SideBar textA="企業詳細" textB="募集管理" />
               <CompanyDetail />
             </div>
           </Route>
-          <Route path="/companyedit">
+          <Route path="/company_edit">
             <div className="withSideBarContainer">
               <SideBar textA="企業詳細" textB="募集管理" />
               <CompanyEdit />
             </div>
           </Route>
-          <Route path="/createrecruitment">
+          <Route path="/create_recruitment">
             <div className="withSideBarContainer">
               <SideBar textA="企業詳細" textB="募集管理" />
               <CreateRecruitment />
+            </div>
+          </Route>
+          <Route path="/manage_recruitment">
+            <div className="withSideBarContainer">
+              <SideBar textA="企業詳細" textB="募集管理" />
+              <ManageRecruitment />
             </div>
           </Route>
         </Switch>

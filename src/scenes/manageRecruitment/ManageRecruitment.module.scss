@@ -1,0 +1,53 @@
+.root {
+  padding: 0 80px;
+  width: 100%;
+  .topContainer {
+    display: flex;
+    justify-content: space-between;
+    h1 {
+      margin: 0;
+    }
+  }
+  .recruitingContainer {
+    p {
+      margin: 0;
+    }
+    align-items: center;
+    background-color: #e5e5e5;
+    border-radius: 5px;
+    display: flex;
+    padding: 10px 20px;
+    margin: 20px 0;
+
+    .wrapper {
+      display: flex;
+      gap: 40px;
+    }
+  }
+  .recruitmentListContainer {
+    .titlesContainer,
+    .listsContainer {
+      align-items: center;
+      border-bottom: 1px solid #e5e5e5;
+      display: flex;
+      color: #afafaf;
+      .titleWrapper {
+        flex: 3;
+        padding-right: 30px;
+      }
+      .occupationWrapper,
+      .updatedDayWrapper {
+        flex: 1;
+      }
+      .editButtonWrapper {
+        flex: 0.5;
+      }
+    }
+    .listsContainer {
+      padding: 15px 0;
+      .titleWrapper {
+        color: black;
+      }
+    }
+  }
+}
