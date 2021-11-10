@@ -9,6 +9,7 @@ import CompanyRegistration from "./scenes/companyRegistration/CompanyRegistratio
 import CompanyEdit from "./scenes/companyEdit/CompanyEdit";
 import CompanyDetail from "./scenes/companyDetail/CompanyDetail";
 import SideBar from "./components/sideBar/SideBar";
+import CreateRecruitment from "./scenes/createRecruitment/CreateRecruitment";
 
 const App: FC = () => {
   return (
@@ -36,6 +37,12 @@ const App: FC = () => {
             <div className="withSideBarContainer">
               <SideBar textA="企業詳細" textB="募集管理" />
               <CompanyEdit />
+            </div>
+          </Route>
+          <Route path="/createrecruitment">
+            <div className="withSideBarContainer">
+              <SideBar textA="企業詳細" textB="募集管理" />
+              <CreateRecruitment />
             </div>
           </Route>
         </Switch>

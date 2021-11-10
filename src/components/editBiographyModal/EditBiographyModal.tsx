@@ -1,8 +1,7 @@
 import React from "react";
 import styles from "./EditBiographyModal.module.scss";
 import Button from "../button/Button";
-import Modal from "@material-ui/core/Modal";
-import { notification } from "antd";
+import { Modal, notification } from "antd";
 import { ProfileType } from "../../data/profile/index";
 import { useForm } from "react-hook-form";
 
@@ -76,8 +75,11 @@ const EditBiographyModal = ({
 
   return (
     <Modal
-      open={openEditBiographyModal}
-      onClose={handleCloseEditBiographyModal}
+      closable={false}
+      footer={null}
+      visible={openEditBiographyModal}
+      width={600}
+      onCancel={handleCloseEditBiographyModal}
     >
       {body}
     </Modal>

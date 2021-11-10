@@ -4,8 +4,7 @@ import { AcademicHistoryType } from "../../data/academicHistory/index";
 import Button from "../button/Button";
 import { ErrorMessage } from "@hookform/error-message";
 import Input from "../input/Input";
-import Modal from "@material-ui/core/Modal";
-import { notification } from "antd";
+import { Modal, notification } from "antd";
 import { useForm } from "react-hook-form";
 
 type PropsType = {
@@ -110,8 +109,11 @@ const AcademicHistoryModal = ({
 
   return (
     <Modal
-      open={openAcademicHistoryModal}
-      onClose={handleCloseAcademicHistoryModal}
+      closable={false}
+      footer={null}
+      visible={openAcademicHistoryModal}
+      width={600}
+      onCancel={handleCloseAcademicHistoryModal}
     >
       {body}
     </Modal>
