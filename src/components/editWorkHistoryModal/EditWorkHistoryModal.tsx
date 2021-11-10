@@ -4,11 +4,11 @@ import Button from "../button/Button";
 import DeleteButton from "../deleteButton/DeleteButton";
 import { ErrorMessage } from "@hookform/error-message";
 import Input from "../input/Input";
-import Modal from "@material-ui/core/Modal";
 import { notification } from "antd";
 import Textarea from "../textarea/Textarea";
 import { useForm } from "react-hook-form";
 import { WorkHistoriesType } from "../../data/workHistory/index";
+import { Modal } from "antd";
 
 type PropsType = {
   accountId: number | undefined;
@@ -161,8 +161,11 @@ const EditWorkHistoryModal = ({
 
   return (
     <Modal
-      open={openWorkHistoryModal}
-      onClose={handleCloseEditWorkHistoryModal}
+      closable={false}
+      footer={null}
+      visible={openWorkHistoryModal}
+      width={600}
+      onCancel={handleCloseEditWorkHistoryModal}
     >
       {body}
     </Modal>

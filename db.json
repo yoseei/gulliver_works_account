@@ -13,43 +13,43 @@
       "id": 1,
       "name": "甲斐義隆",
       "name_kana": "ヤマダタロウ",
-      "gender": "MALE",
+      "gender": "男",
       "phone": "090-XXXX-XXXX",
       "postal_code": "107-0051",
-      "address": "千葉県",
+      "address": "ちば",
       "date_of_birth": "2019-08-24",
-      "biography": "hoge hoge",
+      "biography": "hoge",
       "account_id": 1
     }
   ],
   "work_histories": [
     {
-      "name": "adadffafd",
-      "occupation": "fasd",
-      "since_date": "",
-      "until_date": "",
-      "job_summary": "dfsa",
+      "name": "a",
+      "occupation": "a",
+      "since_date": "2021-11-09",
+      "until_date": "2021-11-11",
+      "job_summary": "a",
       "account_id": 1,
       "id": 7
     },
     {
-      "name": "fa",
-      "occupation": "fa",
-      "since_date": "",
-      "until_date": "",
-      "job_summary": "faf",
+      "name": "hog",
+      "occupation": "hoge",
+      "since_date": "2021-11-17",
+      "until_date": "2021-11-25",
+      "job_summary": "jpge",
       "account_id": 1,
-      "id": 8
+      "id": 9
     }
   ],
   "academic_histories": [
     {
-      "name": "sssssssss",
-      "faculty": "s",
-      "since_date": "",
-      "until_date": "",
+      "name": "hoge",
+      "faculty": "hoge",
+      "since_date": "2021-11-08",
+      "until_date": "2021-12-02",
       "account_id": 1,
-      "id": 4
+      "id": 5
     }
   ]
 }

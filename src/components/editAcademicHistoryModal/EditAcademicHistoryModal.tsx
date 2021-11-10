@@ -5,8 +5,7 @@ import Button from "../button/Button";
 import DeleteButton from "../../components/deleteButton/DeleteButton";
 import { ErrorMessage } from "@hookform/error-message";
 import Input from "../input/Input";
-import Modal from "@material-ui/core/Modal";
-import { notification } from "antd";
+import { Modal, notification } from "antd";
 import { useForm } from "react-hook-form";
 
 type PropsType = {
@@ -147,8 +146,11 @@ const EditAcademicHistoryModal = ({
 
   return (
     <Modal
-      open={openEditAcademicHistoryModal}
-      onClose={handleCloseEditAcademicHistoryModal}
+      closable={false}
+      footer={null}
+      visible={openEditAcademicHistoryModal}
+      width={600}
+      onCancel={handleCloseEditAcademicHistoryModal}
     >
       {body}
     </Modal>

@@ -4,8 +4,8 @@ import { WorkHistoriesType } from "../../data/workHistory/index";
 import Button from "../button/Button";
 import { ErrorMessage } from "@hookform/error-message";
 import Input from "../input/Input";
-import Modal from "@material-ui/core/Modal";
-import { notification } from "antd";
+// import Modal from "@material-ui/core/Modal";
+import { notification, Modal } from "antd";
 import { useForm } from "react-hook-form";
 import Textarea from "../textarea/Textarea";
 
@@ -124,7 +124,13 @@ const CreateWorkHistoryModal = ({
   );
 
   return (
-    <Modal open={openWorkHistoryModal} onClose={closeWorkHistoryModal}>
+    <Modal
+      closable={false}
+      footer={null}
+      visible={openWorkHistoryModal}
+      width={600}
+      onCancel={closeWorkHistoryModal}
+    >
       {body}
     </Modal>
   );

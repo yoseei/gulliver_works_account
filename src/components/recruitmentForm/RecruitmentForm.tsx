@@ -6,7 +6,7 @@ import Input from "../input/Input";
 import Textarea from "../textarea/Textarea";
 import { useForm } from "react-hook-form";
 import Button from "../../components/button/Button";
-import IosSwitch from "../iosSwitch/IosSwitch";
+import IosSwitch from "../switch/Switch";
 
 type PropsType = {
   title: "企業登録" | "企業更新" | "新規募集作成";
