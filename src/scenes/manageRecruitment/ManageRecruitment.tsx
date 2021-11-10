@@ -51,6 +51,8 @@ const ManageRecruitment = () => {
 
   return (
     <div className={styles.root}>
+      {/* TODO: 後で消す */}
+      push要記述
       <div className={styles.topContainer}>
         <h1>募集管理</h1>
         <CircleButton text={"新規作成"} />
