@@ -2,8 +2,7 @@ import React from "react";
 import styles from "./ProfileModal.module.scss";
 import Button from "../button/Button";
 import { HttpClient } from "../../utilities/axiosInstance";
-import Modal from "@material-ui/core/Modal";
-import { notification } from "antd";
+import { Modal, notification } from "antd";
 import { ProfileType } from "../../data/profile/index";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
@@ -11,9 +10,7 @@ import { localHostURL } from "../../hooks/localHostURL";
 
 type PropsType = {
   openProfileModal: boolean;
-  handleCloseProfileModal:
-    | React.MouseEventHandler<HTMLParagraphElement>
-    | undefined;
+  handleCloseProfileModal: () => void;
   accountId: number;
   profile: ProfileType;
 };
@@ -133,7 +130,13 @@ const ProfileModal = ({
   );
 
   return (
-    <Modal open={openProfileModal} onClose={handleCloseProfileModal}>
+    <Modal
+      closable={false}
+      footer={null}
+      visible={openProfileModal}
+      width={600}
+      onCancel={handleCloseProfileModal}
+    >
       {body}
     </Modal>
   );

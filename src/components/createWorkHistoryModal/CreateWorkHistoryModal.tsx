@@ -4,7 +4,6 @@ import { WorkHistoriesType } from "../../data/workHistory/index";
 import Button from "../button/Button";
 import { ErrorMessage } from "@hookform/error-message";
 import Input from "../input/Input";
-// import Modal from "@material-ui/core/Modal";
 import { notification, Modal } from "antd";
 import { useForm } from "react-hook-form";
 import Textarea from "../textarea/Textarea";
@@ -27,6 +26,7 @@ const CreateWorkHistoryModal = ({
     try {
       if (!data) return;
       addWorkHistory(data);
+      alert("職歴を追加しました。");
       closeWorkHistoryModal();
     } catch (err) {
       notification.error({
@@ -112,7 +112,6 @@ const CreateWorkHistoryModal = ({
               <Button
                 border={"none"}
                 color={"primary"}
-                onClick={() => alert("職歴を追加しました。")}
                 text={"更新"}
                 type={"submit"}
               />
@@ -127,9 +126,9 @@ const CreateWorkHistoryModal = ({
     <Modal
       closable={false}
       footer={null}
+      onCancel={closeWorkHistoryModal}
       visible={openWorkHistoryModal}
       width={600}
-      onCancel={closeWorkHistoryModal}
     >
       {body}
     </Modal>

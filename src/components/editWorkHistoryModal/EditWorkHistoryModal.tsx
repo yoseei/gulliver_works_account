@@ -147,7 +147,6 @@ const EditWorkHistoryModal = ({
                 <Button
                   border={"none"}
                   color={"primary"}
-                  onClick={() => handleCloseEditWorkHistoryModal}
                   text={"更新"}
                   type={"submit"}
                 />
@@ -163,9 +162,9 @@ const EditWorkHistoryModal = ({
     <Modal
       closable={false}
       footer={null}
+      onCancel={handleCloseEditWorkHistoryModal}
       visible={openWorkHistoryModal}
       width={600}
-      onCancel={handleCloseEditWorkHistoryModal}
     >
       {body}
     </Modal>

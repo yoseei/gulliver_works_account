@@ -40,6 +40,15 @@
       "job_summary": "jpge",
       "account_id": 1,
       "id": 9
+    },
+    {
+      "name": "ほげ",
+      "occupation": "ほげ",
+      "since_date": "",
+      "until_date": "",
+      "job_summary": "ほげ",
+      "account_id": 1,
+      "id": 10
     }
   ],
   "academic_histories": [
