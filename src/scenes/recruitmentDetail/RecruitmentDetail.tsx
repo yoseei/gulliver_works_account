@@ -29,6 +29,7 @@ const RecruitmentDetail = () => {
     <div className={styles.root}>
       <div className={styles.mainContainer}>
         {/* FIXME: コメントは、この後に値を挿入するためのもの */}
+        test
         {/* <h1>{company?.name}</h1> */}
         <h1>三度の飯よりReact！そんなGeekなあなたへ</h1>
         <div className={styles.detailsContainer}>
