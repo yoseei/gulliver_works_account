@@ -4,13 +4,13 @@ import Button from "../../components/button/Button";
 import CircleButton from "../../components/circleButton/CircleButton";
 
 const ManageRecruitment = () => {
-  const [isRecruiting, setIsRecruiting] = useState(true);
-  const [isUnderSuspension, setIsUnderSuspension] = useState(false);
-  const [isDraft, setIsDraft] = useState(false);
+  const [recruitmentType, setRecruitmentType] = useState<
+    "active" | "inActive" | "draft"
+  >();
 
   const recruitingLists = (
     <>
-      <div className={styles.listsContainer} key={3}>
+      <div className={styles.listsContainer}>
         <div className={styles.titleWrapper}>
           【募集中】技術好きの集まる職場で周りより圧倒的に成長したい駆け出しエンジニア募集！
         </div>
@@ -25,7 +25,7 @@ const ManageRecruitment = () => {
 
   const underSuspensionLists = (
     <>
-      <div className={styles.listsContainer} key={2}>
+      <div className={styles.listsContainer}>
         <div className={styles.titleWrapper}>
           【停止中】技術好きの集まる職場で周りより圧倒的に成長したい駆け出しエンジニア募集！
         </div>
@@ -40,7 +40,7 @@ const ManageRecruitment = () => {
 
   const draftLists = (
     <>
-      <div className={styles.listsContainer} key={1}>
+      <div className={styles.listsContainer}>
         <div className={styles.titleWrapper}>
           【下書き】技術好きの集まる職場で周りより圧倒的に成長したい駆け出しエンジニア募集！
         </div>
@@ -54,20 +54,15 @@ const ManageRecruitment = () => {
   );
 
   const handleIsRecruiting = () => {
-    setIsRecruiting(true);
-    setIsUnderSuspension(false);
-    setIsDraft(false);
+    setRecruitmentType("active");
   };
 
   const handleIsUnderSuspension = () => {
-    setIsRecruiting(false);
-    setIsUnderSuspension(true);
-    setIsDraft(false);
+    setRecruitmentType("inActive");
   };
+
   const handleIsDraft = () => {
-    setIsRecruiting(false);
-    setIsUnderSuspension(false);
-    setIsDraft(true);
+    setRecruitmentType("draft");
   };
 
   return (
@@ -97,9 +92,9 @@ const ManageRecruitment = () => {
           <div className={styles.editButtonWrapper}></div>
         </div>
 
-        {isRecruiting ? recruitingLists : ""}
-        {isUnderSuspension ? underSuspensionLists : ""}
-        {isDraft ? draftLists : ""}
+        {recruitmentType === "active" && recruitingLists}
+        {recruitmentType === "inActive" && underSuspensionLists}
+        {recruitmentType === "draft" && draftLists}
       </div>
     </div>
   );
