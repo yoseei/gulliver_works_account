@@ -3,25 +3,29 @@ import styles from "./Button.module.scss";
 import classNames from "classnames";
 
 interface PropsTypes {
-  color?: "primary" | "gray" | "white";
+  alignItems?: "center";
   border?: "none" | "red";
+  borderRadius?: string;
+  color?: "primary" | "gray" | "white";
+  fontSize?: string;
   onClick?: React.MouseEventHandler<HTMLParagraphElement> | undefined;
+  padding?: string;
   text: string;
   type?: "button" | "submit" | "reset" | undefined;
   style?: React.CSSProperties | undefined;
   width?: string;
-  borderRadius?: string;
-  padding?: string;
 }
 const Button = ({
-  color,
+  alignItems,
+  borderRadius,
   border,
+  color,
+  fontSize,
   onClick,
+  padding,
   text,
   type,
   width,
-  borderRadius,
-  padding,
 }: PropsTypes) => {
   return (
     <button
@@ -33,7 +37,13 @@ const Button = ({
         { [styles.primary]: color === "primary" },
         { [styles.white]: color === "white" }
       )}
-      style={{ width: width, borderRadius: borderRadius, padding: padding }}
+      style={{
+        alignItems: alignItems,
+        borderRadius: borderRadius,
+        fontSize: fontSize,
+        padding: padding,
+        width: width,
+      }}
       type={type}
     >
       <p onClick={onClick}>{text}</p>

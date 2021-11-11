@@ -8,11 +8,12 @@ import * as serviceWorker from "./serviceWorker";
 import { RecoilRoot } from "recoil";
 
 ReactDOM.render(
-  <React.StrictMode>
+  // FIXME: エラーを消すためにStrictModeから変更
+  <React.Fragment>
     <RecoilRoot>
       <App />
     </RecoilRoot>
-  </React.StrictMode>,
+  </React.Fragment>,
   document.getElementById("root")
 );
 
