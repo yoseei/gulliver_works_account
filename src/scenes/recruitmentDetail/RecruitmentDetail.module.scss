@@ -1,0 +1,100 @@
+.root {
+  h1 {
+    margin-bottom: 50px;
+  }
+  display: flex;
+  padding-bottom: 50px;
+  width: 100%;
+  .mainContainer {
+    margin-left: 60px;
+    width: 80%;
+    .detailsContainer {
+      border-top: 1px solid #e5e5e5;
+      border-bottom: 1px solid #e5e5e5;
+      .lowContainer {
+        border-bottom: 1px solid #e5e5e5;
+        display: flex;
+        height: 70px;
+        line-height: 70px;
+        .leftWrapper {
+          border-right: 1px solid #e5e5e5;
+          width: 20%;
+        }
+        .rightWrapper {
+          padding-left: 20px;
+          width: 80%;
+        }
+      }
+      .lowContainerTop {
+        border-bottom: 1px solid #e5e5e5;
+        display: flex;
+        height: 70px;
+        line-height: 70px;
+        .leftWrapper {
+          border-right: 1px solid #e5e5e5;
+          width: 20%;
+        }
+        .rightWrapper {
+          padding-left: 20px;
+        }
+      }
+      // 仕事内容の行のCSS
+      .jobDescription_lowContainer {
+        height: 100px;
+        display: flex;
+        border-bottom: 1px solid #e5e5e5;
+        .leftWrapper {
+          border-right: 1px solid #e5e5e5;
+          line-height: 100px;
+          width: 20%;
+        }
+        .rightWrapper {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding-left: 20px;
+          width: 80%;
+
+          p {
+            margin: 0;
+          }
+        }
+      }
+      // 労働条件の行のCSS
+      .workingConditions_lowContainer {
+        border-bottom: 1px solid #e5e5e5;
+        height: 200px;
+        display: flex;
+        .leftWrapper {
+          border-right: 1px solid #e5e5e5;
+          padding-top: 20px;
+          width: 20%;
+        }
+        .rightWrapper {
+          display: flex;
+          flex-direction: column;
+          padding: 20px 0 20px 20px;
+          margin: 0;
+          width: 80%;
+
+          p {
+            margin: 0;
+          }
+        }
+      }
+      .lowContainerBottom {
+        border-bottom: none;
+        display: flex;
+        height: 70px;
+        line-height: 70px;
+        .leftWrapper {
+          border-right: 1px solid #e5e5e5;
+          width: 20%;
+        }
+        .rightWrapper {
+          padding-left: 20px;
+        }
+      }
+    }
+  }
+}

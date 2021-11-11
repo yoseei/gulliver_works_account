@@ -11,6 +11,7 @@ import CompanyDetail from "./scenes/companyDetail/CompanyDetail";
 import SideBar from "./components/sideBar/SideBar";
 import CreateRecruitment from "./scenes/createRecruitment/CreateRecruitment";
 import ManageRecruitment from "./scenes/manageRecruitment/ManageRecruitment";
+import RecruitmentDetail from "./scenes/recruitmentDetail/RecruitmentDetail";
 
 const App: FC = () => {
   return (
@@ -50,6 +51,12 @@ const App: FC = () => {
             <div className="withSideBarContainer">
               <SideBar textA="企業詳細" textB="募集管理" />
               <ManageRecruitment />
+            </div>
+          </Route>
+          <Route path="/recruitment_detail">
+            <div className="withSideBarContainer">
+              <SideBar textA="企業詳細" textB="募集管理" />
+              <RecruitmentDetail />
             </div>
           </Route>
         </Switch>
