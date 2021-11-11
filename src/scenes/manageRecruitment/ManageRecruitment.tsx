@@ -6,7 +6,7 @@ import CircleButton from "../../components/circleButton/CircleButton";
 const ManageRecruitment = () => {
   const [recruitmentType, setRecruitmentType] = useState<
     "active" | "inActive" | "draft"
-  >();
+  >("active");
 
   const recruitingLists = (
     <>
