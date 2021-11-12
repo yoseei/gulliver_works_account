@@ -9,14 +9,14 @@ import { useForm } from "react-hook-form";
 
 type PropsType = {
   buttonText: "作成" | "更新";
-  title: "企業登録" | "企業更新";
   handleFunction: (data: CompanyDataType) => Promise<void>;
+  title: "企業登録" | "企業更新";
 };
 
 const CompanyInfoInputs = ({
   buttonText,
-  title,
   handleFunction,
+  title,
 }: PropsType) => {
   const { register, handleSubmit, errors } = useForm();
 
@@ -25,40 +25,40 @@ const CompanyInfoInputs = ({
       <h1>{title}</h1>
       <form onSubmit={handleSubmit(handleFunction)}>
         <ErrorMessage
+          as="p"
           className={styles.errorMessage}
           errors={errors}
           name="name"
-          as="p"
         />
         <Input
-          type={"text"}
-          title={"法人名"}
           name={"name"}
           ref={register({
             required: "※法人名を入力してください。",
           })}
+          type={"text"}
+          title={"法人名"}
         />
 
         <ErrorMessage
+          as="p"
           className={styles.errorMessage}
           errors={errors}
           name="nameKana"
-          as="p"
         />
         <Input
-          type={"text"}
-          title={"法人名（ふりがな）"}
           name={"nameKana"}
           ref={register({
             required: "※法人名（ふりがな）を入力してください。",
           })}
+          type={"text"}
+          title={"法人名（ふりがな）"}
         />
 
         <ErrorMessage
+          as="p"
           className={styles.errorMessage}
           errors={errors}
           name="headOfficeLocation"
-          as="p"
         />
         <div className={styles.selectBoxContainer}>
           <p>本店所在地</p>
@@ -80,10 +80,10 @@ const CompanyInfoInputs = ({
         </div>
 
         <ErrorMessage
+          as="p"
           className={styles.errorMessage}
           errors={errors}
           name="yearOfEstablishment"
-          as="p"
         />
         <div className={styles.selectBoxContainer}>
           <p>設立年</p>
@@ -113,11 +113,11 @@ const CompanyInfoInputs = ({
           <p className={styles.title}>上場/非上場</p>
           <div className={styles.listedWrapper}>
             <input
-              type="radio"
-              name="isListed"
-              value="上場"
               defaultChecked
+              name="isListed"
               ref={register}
+              type="radio"
+              value="上場"
             />
             <p>上場</p>
           </div>
@@ -132,35 +132,35 @@ const CompanyInfoInputs = ({
           <div className={styles.inputContainer}>
             <div className={styles.leftWrapper}>
               <ErrorMessage
+                as="p"
                 className={styles.errorMessage}
                 errors={errors}
                 name="representativeLast"
-                as="p"
               />
               <p>姓</p>
               <Input
-                type={"text"}
                 name={"representativeLast"}
                 ref={register({
                   required: "※姓を入力してください。",
                 })}
+                type={"text"}
               />
             </div>
 
             <div className={styles.rightWrapper}>
               <ErrorMessage
+                as="p"
                 className={styles.errorMessage}
                 errors={errors}
                 name="representativeFirst"
-                as="p"
               />
               <p>名</p>
               <Input
-                type={"text"}
                 name={"representativeFirst"}
                 ref={register({
                   required: "※名を入力してください。",
                 })}
+                type={"text"}
               />
             </div>
           </div>
@@ -171,91 +171,91 @@ const CompanyInfoInputs = ({
           <div className={styles.inputContainer}>
             <div className={styles.leftWrapper}>
               <ErrorMessage
+                as="p"
                 className={styles.errorMessage}
                 errors={errors}
                 name="representativeKanaLast"
-                as="p"
               />
               <p>姓</p>
               <Input
-                type={"text"}
                 name={"representativeKanaLast"}
                 ref={register({
                   required: "※姓(ふりがな)を入力してください。",
                 })}
+                type={"text"}
               />
             </div>
 
             <div className={styles.rightWrapper}>
               <ErrorMessage
+                as="p"
                 className={styles.errorMessage}
                 errors={errors}
                 name="representativeKanaFirst"
-                as="p"
               />
               <p>名</p>
               <Input
-                type={"text"}
                 name={"representativeKanaFirst"}
                 ref={register({
                   required: "※名(ふりがな)を入力してください。",
                 })}
+                type={"text"}
               />
             </div>
           </div>
         </div>
 
         <Input
-          type={"text"}
-          title={"前年度の売上高"}
           name={"netSales"}
           ref={register}
+          type={"text"}
+          title={"前年度の売上高"}
         />
 
         <Input
-          type={"text"}
-          title={"従業員数"}
           name={"numbersOfEmployees"}
           ref={register}
+          type={"text"}
+          title={"従業員数"}
         />
 
         <Input
-          type={"text"}
-          title={"平均年齢"}
           name={"averageAge"}
           ref={register}
+          type={"text"}
+          title={"平均年齢"}
         />
 
         <ErrorMessage
+          as="p"
           className={styles.errorMessage}
           errors={errors}
           name="businessSummery"
-          as="p"
         />
         <Textarea
-          rows={3}
           name={"businessSummery"}
-          title={"事業概要"}
+          rows={3}
           ref={register({
             required: "※事業概要を入力してください。",
           })}
+          title={"事業概要"}
         />
 
         <Textarea
           name={"corporatePr"}
           placeholder="アカウント作成後でも入力・更新いただけます&#13;&#10;※1. 求人応募の際は、本項目への入力は必須です&#13;&#10;※2. 内容を充実させることで、スカウト受信・選考通過の可能性が高まります"
           rows={4}
-          title={"企業PR（５００文字）"}
           ref={register}
+          title={"企業PR（５００文字）"}
         />
 
         <div className={styles.logoContainer}>
           <label>
             <Input
-              type={"file"}
-              title={"企業ロゴ"}
               name={"logoImage"}
               ref={register}
+              title={"企業ロゴ"}
+              type={"file"}
             />
             <div className={styles.logoWrapper}>
               <div className={styles.image}></div>

@@ -42,10 +42,10 @@ const AcademicHistoryModal = ({
         <form onSubmit={handleSubmit(onAcademicHistorySubmit)}>
           <div className={styles.formContainer}>
             <ErrorMessage
+              as="p"
               className={styles.errorMessage}
               errors={errors}
               name="name"
-              as="p"
             />
             <Input
               name={"name"}
@@ -57,10 +57,10 @@ const AcademicHistoryModal = ({
             />
 
             <ErrorMessage
+              as="p"
               className={styles.errorMessage}
               errors={errors}
               name="faculty"
-              as="p"
             />
             <Input
               name={"faculty"}
@@ -85,8 +85,8 @@ const AcademicHistoryModal = ({
           <div className={styles.buttonWrapper}>
             <div className={styles.cancelButtonWrapper}>
               <Button
-                color={"gray"}
                 border={"none"}
+                color={"gray"}
                 onClick={handleCloseAcademicHistoryModal}
                 text={"キャンセル"}
                 type={"button"}
@@ -111,9 +111,9 @@ const AcademicHistoryModal = ({
     <Modal
       closable={false}
       footer={null}
+      onCancel={handleCloseAcademicHistoryModal}
       visible={openAcademicHistoryModal}
       width={600}
-      onCancel={handleCloseAcademicHistoryModal}
     >
       {body}
     </Modal>

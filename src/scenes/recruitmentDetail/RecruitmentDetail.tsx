@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import styles from "./RecruitmentDetail.module.scss";
 import { CompanyDataType } from "data/company";
 import { HttpClient } from "../../utilities/axiosInstance";
-import { notification } from "antd";
 import { localHostURL } from "../../hooks/localHostURL";
+import { notification } from "antd";
 
 const RecruitmentDetail = () => {
   const [company, setCompany] = useState<CompanyDataType | undefined>();
@@ -25,6 +25,7 @@ const RecruitmentDetail = () => {
       });
     }
   }, []);
+
   return (
     <div className={styles.root}>
       <div className={styles.mainContainer}>
@@ -88,17 +89,15 @@ const RecruitmentDetail = () => {
               <p>労働条件</p>
             </div>
             <div className={styles.rightWrapper}>
-              <p>
-                <p>フレックス制度</p>
-                <p>リモートワーク可（申請制）</p>
-                <p>有給休（10日〜）</p>
-                <p>定期1on 1　など</p>
-                <p></p>
+              <p>フレックス制度</p>
+              <p>リモートワーク可（申請制）</p>
+              <p>有給休（10日〜）</p>
+              <p>定期1on 1　など</p>
+              <p></p>
 
-                <p>交通費支給</p>
-                <p>各種社会保険完備</p>
-                <p>Macbook支給</p>
-              </p>
+              <p>交通費支給</p>
+              <p>各種社会保険完備</p>
+              <p>Macbook支給</p>
               {/* <p>{company?.isListed}</p> */}
             </div>
           </div>

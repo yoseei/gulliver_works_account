@@ -24,12 +24,12 @@ type PropsType = {
 
 const EditAcademicHistoryModal = ({
   academicHistory,
-  editAcademicHistory,
   deleteAcademicHistory,
+  editAcademicHistory,
   handleCloseEditAcademicHistoryModal,
   openEditAcademicHistoryModal,
 }: PropsType) => {
-  const { register, handleSubmit, errors } = useForm();
+  const { errors, handleSubmit, register } = useForm();
 
   const handleEditAcademicHistory = async (data: AcademicHistoryType) => {
     try {
@@ -66,35 +66,35 @@ const EditAcademicHistoryModal = ({
         <form onSubmit={handleSubmit(handleEditAcademicHistory)}>
           <div className={styles.formContainer}>
             <ErrorMessage
+              as="p"
               className={styles.errorMessage}
               errors={errors}
               name="name"
-              as="p"
             />
             <Input
+              defaultValue={academicHistory?.name}
               name={"name"}
               ref={register({
                 required: "※学校名を入力してください。",
               })}
               type={"text"}
               title={"学校名"}
-              defaultValue={academicHistory?.name}
             />
 
             <ErrorMessage
+              as="p"
               className={styles.errorMessage}
               errors={errors}
               name="faculty"
-              as="p"
             />
             <Input
+              defaultValue={academicHistory?.faculty}
               name={"faculty"}
               ref={register({
                 required: "※学部/学科を入力してください。",
               })}
               type={"text"}
               title={"学部/学科"}
-              defaultValue={academicHistory?.faculty}
             />
 
             <div className={styles.calender}>
@@ -121,8 +121,8 @@ const EditAcademicHistoryModal = ({
             <div className={styles.rightButtonWrapper}>
               <div className={styles.cancelButtonWrapper}>
                 <Button
-                  color={"gray"}
                   border={"none"}
+                  color={"gray"}
                   onClick={handleCloseEditAcademicHistoryModal}
                   text={"キャンセル"}
                   type={"button"}
@@ -148,9 +148,9 @@ const EditAcademicHistoryModal = ({
     <Modal
       closable={false}
       footer={null}
+      onCancel={handleCloseEditAcademicHistoryModal}
       visible={openEditAcademicHistoryModal}
       width={600}
-      onCancel={handleCloseEditAcademicHistoryModal}
     >
       {body}
     </Modal>

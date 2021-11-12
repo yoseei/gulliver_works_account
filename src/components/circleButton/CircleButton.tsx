@@ -9,14 +9,14 @@ const CircleButton = ({ onClick, text }: PropsType) => {
   return (
     <Button
       alignItems={"center"}
-      color={"primary"}
       border={"none"}
+      borderRadius={"30px"}
+      color={"primary"}
       fontSize={"1rem"}
       onClick={onClick}
       text={text}
       type={"submit"}
       width={"25%"}
-      borderRadius={"30px"}
     />
   );
 };

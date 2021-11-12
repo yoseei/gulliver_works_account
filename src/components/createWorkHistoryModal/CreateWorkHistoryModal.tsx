@@ -5,8 +5,8 @@ import Button from "../button/Button";
 import { ErrorMessage } from "@hookform/error-message";
 import Input from "../input/Input";
 import { notification, Modal } from "antd";
-import { useForm } from "react-hook-form";
 import Textarea from "../textarea/Textarea";
+import { useForm } from "react-hook-form";
 
 type PropsType = {
   addWorkHistory: (workHistory: WorkHistoriesType) => void;
