@@ -28,8 +28,6 @@ const RecruitmentDetail = () => {
     }
   }, []);
 
-  console.log(recruitment);
-
   return (
     <div className={styles.root}>
       <div className={styles.mainContainer}>
