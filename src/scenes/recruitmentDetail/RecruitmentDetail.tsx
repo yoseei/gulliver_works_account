@@ -1,24 +1,26 @@
 import React, { useEffect, useState } from "react";
 import styles from "./RecruitmentDetail.module.scss";
-import { CompanyDataType } from "data/company";
+import { RecruitmentDataType } from "../../data/recruitment";
 import { HttpClient } from "../../utilities/axiosInstance";
 import { localHostURL } from "../../hooks/localHostURL";
 import { notification } from "antd";
 
 const RecruitmentDetail = () => {
-  const [company, setCompany] = useState<CompanyDataType | undefined>();
+  const [recruitment, setRecruitment] = useState<
+    RecruitmentDataType | undefined
+  >();
 
   useEffect(() => {
     try {
-      const fetchCompany = async () => {
+      const fetchRecruitment = async () => {
         const res = await HttpClient.request({
           method: "GET",
-          url: `${localHostURL}/companies/1`,
+          url: `${localHostURL}/recruitments/497f6eca-6276-4993-bfeb-53cbbbba6f08`,
         });
-        const companyData = res.data;
-        setCompany(companyData);
+        const recruitmentData = res.data;
+        setRecruitment(recruitmentData);
       };
-      fetchCompany();
+      fetchRecruitment();
     } catch (err) {
       notification.error({
         message: "エラーが発生しました。",
@@ -29,9 +31,7 @@ const RecruitmentDetail = () => {
   return (
     <div className={styles.root}>
       <div className={styles.mainContainer}>
-        {/* FIXME: コメントは、この後に値を挿入するためのもの */}
-        {/* <h1>{company?.name}</h1> */}
-        <h1>三度の飯よりReact！そんなGeekなあなたへ</h1>
+        <h1>{recruitment?.title}</h1>
         <div className={styles.detailsContainer}>
           <div className={styles.lowContainerTop}>
             <div className={styles.leftWrapper}>
@@ -39,8 +39,7 @@ const RecruitmentDetail = () => {
             </div>
             <div className={styles.rightWrapper}>
               <div className={styles.textWrapper}>
-                {/* <p>{company?.businessSummary}</p> */}
-                <p>開発部</p>
+                <p>{recruitment?.department}</p>
               </div>
             </div>
           </div>
@@ -49,8 +48,7 @@ const RecruitmentDetail = () => {
               <p>職種</p>
             </div>
             <div className={styles.rightWrapper}>
-              <p>フロントサイドエンジニア</p>
-              {/* <p>{company?.headOfficeLocation}</p> */}
+              <p>{recruitment?.occupation.name}</p>
             </div>
           </div>
           <div className={styles.lowContainer}>
@@ -58,8 +56,7 @@ const RecruitmentDetail = () => {
               <p>業種</p>
             </div>
             <div className={styles.rightWrapper}>
-              <p>インターネットサービス</p>
-              {/* <p>{company?.yearOfEstablishment}</p> */}
+              <p>{recruitment?.industry.name}</p>
             </div>
           </div>
           <div className={styles.lowContainer}>
@@ -67,10 +64,7 @@ const RecruitmentDetail = () => {
               <p>勤務地</p>
             </div>
             <div className={styles.rightWrapper}>
-              <p>
-                東京都
-                {/* {company?.representativeLast} {company?.representativeFirst} */}
-              </p>
+              <p>{recruitment?.workplace.name}</p>
             </div>
           </div>
           <div className={styles.jobDescription_lowContainer}>
@@ -78,10 +72,7 @@ const RecruitmentDetail = () => {
               <p>仕事内容</p>
             </div>
             <div className={styles.rightWrapper}>
-              <p>
-                AI事業部のトップとして事業部全体の統括をしていただきます。ご自身でも手を動かしながら、経営視点でのマネジメントに携わり、自社プロダクトのユーザビリティ向上に貢献していただくことを期待してます。
-              </p>
-              {/* <p>{company?.numbersOfEmployees}</p> */}
+              <p>{recruitment?.jobDescription}</p>
             </div>
           </div>
           <div className={styles.workingConditions_lowContainer}>
@@ -89,16 +80,7 @@ const RecruitmentDetail = () => {
               <p>労働条件</p>
             </div>
             <div className={styles.rightWrapper}>
-              <p>フレックス制度</p>
-              <p>リモートワーク可（申請制）</p>
-              <p>有給休（10日〜）</p>
-              <p>定期1on 1　など</p>
-              <p></p>
-
-              <p>交通費支給</p>
-              <p>各種社会保険完備</p>
-              <p>Macbook支給</p>
-              {/* <p>{company?.isListed}</p> */}
+              <p>{recruitment?.workConditions}</p>
             </div>
           </div>
           <div className={styles.lowContainer}>
@@ -106,8 +88,7 @@ const RecruitmentDetail = () => {
               <p>応募資格</p>
             </div>
             <div className={styles.rightWrapper}>
-              <p>フロントサイドエンジニア2年以上の実務経験</p>
-              {/* <p>{company?.netSales}</p> */}
+              <p>{recruitment?.qualificationRequirement}</p>
             </div>
           </div>
           <div className={styles.lowContainer}>
@@ -115,8 +96,7 @@ const RecruitmentDetail = () => {
               <p>更新日</p>
             </div>
             <div className={styles.rightWrapper}>
-              <p>2020年5月24日</p>
-              {/* <p>{company?.averageAge}</p> */}
+              <p>{recruitment?.updatedAt}</p>
             </div>
           </div>
           <div className={styles.lowContainerBottom}>
@@ -124,8 +104,7 @@ const RecruitmentDetail = () => {
               <p>求人番号</p>
             </div>
             <div className={styles.rightWrapper}>
-              <p>1734927</p>
-              {/* <p>{company?.hpUrl}</p> */}
+              <p>{recruitment?.advertisementNumber}</p>
             </div>
           </div>
         </div>

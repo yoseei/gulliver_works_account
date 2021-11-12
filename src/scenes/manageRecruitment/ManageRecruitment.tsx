@@ -1,55 +1,96 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./ManageRecruitment.module.scss";
 import Button from "../../components/button/Button";
 import CircleButton from "../../components/circleButton/CircleButton";
+import { HttpClient } from "../../utilities/axiosInstance";
+import { localHostURL } from "../../hooks/localHostURL";
+import { notification } from "antd";
+import { RecruitmentDataType } from "data/recruitment";
 
 const ManageRecruitment = () => {
+  const [recruitments, setRecruitments] = useState<RecruitmentDataType[]>();
   const [recruitmentType, setRecruitmentType] = useState<
     "active" | "inActive" | "draft"
   >();
 
+  useEffect(() => {
+    try {
+      const fetchRecruitments = async () => {
+        const res = await HttpClient.request({
+          method: "GET",
+          url: `${localHostURL}/recruitments`,
+        });
+        const recruitmentsData = res.data;
+        setRecruitments(recruitmentsData);
+      };
+      fetchRecruitments();
+    } catch (err) {
+      notification.error({
+        message: "エラーが発生しました。",
+      });
+    }
+  }, []);
+
   const recruitingLists = (
     <>
-      <div className={styles.listsContainer}>
-        <div className={styles.titleWrapper}>
-          【募集中】技術好きの集まる職場で周りより圧倒的に成長したい駆け出しエンジニア募集！
+      {recruitments?.map((recruitment, index) => (
+        <div className={styles.listsContainer} key={index}>
+          <div className={styles.titleWrapper}>
+            【募集中】{recruitment.title}
+          </div>
+          <div className={styles.occupationWrapper}>
+            {recruitment.department}
+          </div>
+          <div className={styles.updatedDayWrapper}>
+            {recruitment.updatedAt}
+          </div>
+          <div className={styles.editButtonWrapper}>
+            <Button text={"編集"}></Button>
+          </div>
         </div>
-        <div className={styles.occupationWrapper}>Webエンジニア</div>
-        <div className={styles.updatedDayWrapper}>2020/5/24</div>
-        <div className={styles.editButtonWrapper}>
-          <Button text={"編集"}></Button>
-        </div>
-      </div>
+      ))}
     </>
   );
 
   const underSuspensionLists = (
     <>
-      <div className={styles.listsContainer}>
-        <div className={styles.titleWrapper}>
-          【停止中】技術好きの集まる職場で周りより圧倒的に成長したい駆け出しエンジニア募集！
+      {recruitments?.map((recruitment, index) => (
+        <div className={styles.listsContainer} key={index}>
+          <div className={styles.titleWrapper}>
+            【停止中】{recruitment.title}
+          </div>
+          <div className={styles.occupationWrapper}>
+            {recruitment.department}
+          </div>
+          <div className={styles.updatedDayWrapper}>
+            {recruitment.updatedAt}
+          </div>
+          <div className={styles.editButtonWrapper}>
+            <Button text={"編集"}></Button>
+          </div>
         </div>
-        <div className={styles.occupationWrapper}>Webエンジニア</div>
-        <div className={styles.updatedDayWrapper}>2020/5/24</div>
-        <div className={styles.editButtonWrapper}>
-          <Button text={"編集"}></Button>
-        </div>
-      </div>
+      ))}
     </>
   );
 
   const draftLists = (
     <>
-      <div className={styles.listsContainer}>
-        <div className={styles.titleWrapper}>
-          【下書き】技術好きの集まる職場で周りより圧倒的に成長したい駆け出しエンジニア募集！
+      {recruitments?.map((recruitment, index) => (
+        <div className={styles.listsContainer} key={index}>
+          <div className={styles.titleWrapper}>
+            【下書き】{recruitment.title}
+          </div>
+          <div className={styles.occupationWrapper}>
+            {recruitment.department}
+          </div>
+          <div className={styles.updatedDayWrapper}>
+            {recruitment.updatedAt}
+          </div>
+          <div className={styles.editButtonWrapper}>
+            <Button text={"編集"}></Button>
+          </div>
         </div>
-        <div className={styles.occupationWrapper}>Webエンジニア</div>
-        <div className={styles.updatedDayWrapper}>2020/5/24</div>
-        <div className={styles.editButtonWrapper}>
-          <Button text={"編集"}></Button>
-        </div>
-      </div>
+      ))}
     </>
   );
 
