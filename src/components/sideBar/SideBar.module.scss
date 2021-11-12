@@ -9,15 +9,15 @@
     padding: 40px 20px;
     width: 200px;
     .recruitmentLink {
-      flex: 1;
       cursor: pointer;
+      flex: 1;
     }
     .profileLink {
-      flex: 1;
       cursor: pointer;
+      flex: 1;
       a {
-        text-decoration: none;
         color: black;
+        text-decoration: none;
       }
     }
   }

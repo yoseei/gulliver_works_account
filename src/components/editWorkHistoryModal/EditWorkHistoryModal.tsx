@@ -3,12 +3,12 @@ import styles from "./EditWorkHistoryModal.module.scss";
 import Button from "../button/Button";
 import DeleteButton from "../deleteButton/DeleteButton";
 import { ErrorMessage } from "@hookform/error-message";
-import Input from "../input/Input";
+import { Modal } from "antd";
 import { notification } from "antd";
+import Input from "../input/Input";
 import Textarea from "../textarea/Textarea";
 import { useForm } from "react-hook-form";
 import { WorkHistoriesType } from "../../data/workHistory/index";
-import { Modal } from "antd";
 
 type PropsType = {
   accountId: number | undefined;
@@ -29,7 +29,7 @@ const EditWorkHistoryModal = ({
   openWorkHistoryModal,
   workHistory,
 }: PropsType) => {
-  const { register, handleSubmit, errors } = useForm();
+  const { handleSubmit, errors, register } = useForm();
 
   const handleEditWorkHistory = async (data: WorkHistoriesType) => {
     try {
@@ -65,67 +65,67 @@ const EditWorkHistoryModal = ({
         <form onSubmit={handleSubmit(handleEditWorkHistory)}>
           <div className={styles.formContainer}>
             <ErrorMessage
+              as="p"
               className={styles.errorMessage}
               errors={errors}
               name="name"
-              as="p"
             />
             <Input
+              defaultValue={workHistory.name}
               name={"name"}
               ref={register({
                 required: "※企業名を入力してください。",
               })}
               type={"text"}
               title={"企業名"}
-              defaultValue={workHistory.name}
             />
 
             <ErrorMessage
+              as="p"
               className={styles.errorMessage}
               errors={errors}
               name="occupation"
-              as="p"
             />
             <Input
+              defaultValue={workHistory.occupation}
               name={"occupation"}
               ref={register({
                 required: "※部署・役職を入力してください。",
               })}
               type={"text"}
               title={"部署・役職"}
-              defaultValue={workHistory.occupation}
             />
 
             <div className={styles.calender}>
               <Input
+                defaultValue={workHistory.sinceDate}
                 name={"sinceDate"}
                 ref={register}
                 type={"date"}
                 title={"日程"}
-                defaultValue={workHistory.sinceDate}
               />
               <Input
+                defaultValue={workHistory.untilDate}
                 name={"untilDate"}
                 ref={register}
                 type={"date"}
-                defaultValue={workHistory.untilDate}
               />
             </div>
 
             <ErrorMessage
+              as="p"
               className={styles.errorMessage}
               errors={errors}
               name="jobSummary"
-              as="p"
             />
             <Textarea
+              defaultValue={workHistory.jobSummary}
               name={"jobSummary"}
               rows={2}
-              title={"職歴"}
               ref={register({
                 required: "※職歴を入力してください。",
               })}
-              defaultValue={workHistory.jobSummary}
+              title={"職歴"}
             />
           </div>
 

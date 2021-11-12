@@ -2,18 +2,18 @@ import React from "react";
 import styles from "./Input.module.scss";
 
 type PropsType = {
-  name: string;
   defaultValue?: string;
+  name: string;
   title?: string;
-  type: "text" | "number" | "radio" | "file" | "date" | undefined;
+  type: "date" | "file" | "number" | "radio" | "text" | undefined;
 };
 
 const Input = React.forwardRef<HTMLInputElement, PropsType>(
-  ({ name, defaultValue, title, type }, ref) => {
+  ({ defaultValue, name, title, type }, ref) => {
     return (
       <div className={styles.root}>
         <p>{title}</p>
-        <input type={type} name={name} defaultValue={defaultValue} ref={ref} />
+        <input defaultValue={defaultValue} name={name} ref={ref} type={type} />
       </div>
     );
   }

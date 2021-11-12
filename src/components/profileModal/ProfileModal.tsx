@@ -2,16 +2,16 @@ import React from "react";
 import styles from "./ProfileModal.module.scss";
 import Button from "../button/Button";
 import { HttpClient } from "../../utilities/axiosInstance";
+import { localHostURL } from "../../hooks/localHostURL";
 import { Modal, notification } from "antd";
 import { ProfileType } from "../../data/profile/index";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
-import { localHostURL } from "../../hooks/localHostURL";
 
 type PropsType = {
-  openProfileModal: boolean;
-  handleCloseProfileModal: () => void;
   accountId: number;
+  handleCloseProfileModal: () => void;
+  openProfileModal: boolean;
   profile: ProfileType;
 };
 type Inputs = {
@@ -22,13 +22,13 @@ type Inputs = {
 };
 
 const ProfileModal = ({
-  openProfileModal,
-  handleCloseProfileModal,
   accountId,
+  handleCloseProfileModal,
+  openProfileModal,
   profile,
 }: PropsType) => {
-  const { register, handleSubmit } = useForm();
   const history = useHistory();
+  const { register, handleSubmit } = useForm();
 
   const handleEditProfile = async (data: Inputs) => {
     try {
@@ -71,37 +71,37 @@ const ProfileModal = ({
           <div className={styles.nameWrapper}>
             <p>名前</p>
             <input
-              type="text"
               defaultValue={profile ? profile.name : ""}
               name="profileName"
               ref={register}
+              type="text"
             />
           </div>
           <div className={styles.addressWrapper}>
             <p>住まい</p>
             <input
-              type="text"
+              defaultValue={profile ? profile.address : ""}
               name="profileAddress"
               ref={register}
-              defaultValue={profile ? profile.address : ""}
+              type="text"
             />
           </div>
           <div className={styles.genderWrapper}>
             <p>性別</p>
             <input
-              type="text"
+              defaultValue={profile ? profile.gender : ""}
               name="profileGender"
               ref={register}
-              defaultValue={profile ? profile.gender : ""}
+              type="text"
             />
           </div>
           <div className={styles.birthWrapper}>
             <p>生年月日</p>
             <input
-              type="date"
+              defaultValue={profile ? profile.dateOfBirth : ""}
               name="profileDateOfBirth"
               ref={register}
-              defaultValue={profile ? profile.dateOfBirth : ""}
+              type="date"
             />
           </div>
           <div className={styles.buttonWrapper}>
@@ -116,8 +116,8 @@ const ProfileModal = ({
             </div>
             <div className={styles.updateButtonWrapper}>
               <Button
-                border={"none"}
                 color={"primary"}
+                border={"none"}
                 onClick={() => handleCloseProfileModal}
                 text={"更新"}
                 type={"submit"}
@@ -133,9 +133,9 @@ const ProfileModal = ({
     <Modal
       closable={false}
       footer={null}
+      onCancel={handleCloseProfileModal}
       visible={openProfileModal}
       width={600}
-      onCancel={handleCloseProfileModal}
     >
       {body}
     </Modal>

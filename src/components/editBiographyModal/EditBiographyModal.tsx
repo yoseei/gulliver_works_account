@@ -21,7 +21,7 @@ const EditBiographyModal = ({
   openEditBiographyModal,
   profile,
 }: PropsType) => {
-  const { register, handleSubmit } = useForm();
+  const { handleSubmit, register } = useForm();
 
   const handleEditBiography = async (data: Inputs) => {
     try {
@@ -52,8 +52,8 @@ const EditBiographyModal = ({
           <div className={styles.buttonWrapper}>
             <div className={styles.cancelButtonWrapper}>
               <Button
-                color={"gray"}
                 border={"none"}
+                color={"gray"}
                 onClick={handleCloseEditBiographyModal}
                 text={"キャンセル"}
                 type={"button"}
@@ -77,9 +77,9 @@ const EditBiographyModal = ({
     <Modal
       closable={false}
       footer={null}
+      onCancel={handleCloseEditBiographyModal}
       visible={openEditBiographyModal}
       width={600}
-      onCancel={handleCloseEditBiographyModal}
     >
       {body}
     </Modal>

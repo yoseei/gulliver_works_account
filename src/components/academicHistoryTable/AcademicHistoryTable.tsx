@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./AcademicHistoryTable.module.scss";
-import Button from "../button/Button";
 import { AcademicHistoryType } from "../../data/academicHistory/index";
+import Button from "../button/Button";
 import EditAcademicHistoryModal from "../editAcademicHistoryModal/EditAcademicHistoryModal";
 
 type AcademicHistoryTableType = {
