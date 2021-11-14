@@ -205,6 +205,43 @@
         "cover_image_url": "string"
       },
       "status": "active"
+    },
+    {
+      "name": "hoge",
+      "head_office_location": "sample1",
+      "year_of_establishment": "1",
+      "business_summery": "hoge",
+      "id": "JUUaGaP"
+    },
+    {
+      "title": "ほげ",
+      "work_place": "sample1",
+      "occupation": "1",
+      "industry": "2",
+      "business_summery": "ほげ",
+      "work_conditions": "ほげ",
+      "qualification_requirement": "ほげ",
+      "id": "iTob1hN"
+    },
+    {
+      "title": "ほげ2",
+      "work_place": "sample1",
+      "occupation": "1",
+      "industry": "2",
+      "business_summery": "ほげ",
+      "work_conditions": "ほげ",
+      "qualification_requirement": "ほげ",
+      "id": "5jDQJWl"
+    },
+    {
+      "title": "test",
+      "work_place": "sample1",
+      "occupation": "1",
+      "industry": "1",
+      "business_summery": "test",
+      "work_conditions": "test",
+      "qualification_requirement": "test",
+      "id": "X-gT387"
     }
   ]
 }

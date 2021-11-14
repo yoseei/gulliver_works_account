@@ -15,7 +15,7 @@ const RecruitmentDetail = () => {
       const fetchRecruitment = async () => {
         const res = await HttpClient.request({
           method: "GET",
-          url: `${localHostURL}/recruitments/497f6eca-6276-4993-bfeb-53cbbbba6f08`,
+          url: `${localHostURL}/recruitments/1`,
         });
         const recruitmentData = res.data;
         setRecruitment(recruitmentData);

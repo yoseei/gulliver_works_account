@@ -1,12 +1,25 @@
 import React from "react";
 import styles from "./CreateRecruitment.module.scss";
 import RecruitmentForm from "../../components/recruitmentForm/RecruitmentForm";
+import { HttpClient } from "../../utilities/axiosInstance";
+import { localHostURL } from "../../hooks/localHostURL";
+import { RecruitmentDataType } from "../../data/recruitment";
 
-// FIXME: とりあえず動かすために関数を入力している
-const CreateRecruitment = (handleFunction: any) => {
+const CreateRecruitment = () => {
+  const handleCreateRecruitment = async (data: RecruitmentDataType) => {
+    const res = await HttpClient.request({
+      method: "POST",
+      url: `${localHostURL}/recruitments`,
+      data: { ...data },
+    });
+  };
+
   return (
     <div className={styles.root}>
-      <RecruitmentForm title={"新規募集作成"} handleFunction={handleFunction} />
+      <RecruitmentForm
+        title={"新規募集作成"}
+        handleFunction={handleCreateRecruitment}
+      />
     </div>
   );
 };

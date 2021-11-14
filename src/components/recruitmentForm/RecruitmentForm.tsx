@@ -7,29 +7,35 @@ import Input from "../input/Input";
 import IosSwitch from "../switch/Switch";
 import Textarea from "../textarea/Textarea";
 import { useForm } from "react-hook-form";
+import { RecruitmentDataType } from "../../data/recruitment";
 
 type PropsType = {
-  handleFunction: (data: CompanyDataType) => Promise<void>;
-  title: "企業登録" | "企業更新" | "新規募集作成";
+  handleFunction: (data: RecruitmentDataType) => Promise<void>;
+  title: "募集作成" | "新規募集作成";
 };
 
 const RecruitmentForm = ({ handleFunction, title }: PropsType) => {
-  const { errors, handleSubmit, register } = useForm();
+  const { errors, handleSubmit, register, reset } = useForm();
 
+  const onHandleSubmit = async (data: RecruitmentDataType) => {
+    await handleFunction(data);
+    alert("募集を作成しました！");
+    reset();
+  };
   return (
     <div className={styles.root}>
       <h1>{title}</h1>
-      <form onSubmit={handleSubmit(handleFunction)}>
+      <form onSubmit={handleSubmit(onHandleSubmit)}>
         <ErrorMessage
           as="p"
           className={styles.errorMessage}
           errors={errors}
-          name="name"
+          name="title"
         />
         <Input
-          name={"name"}
+          name={"title"}
           ref={register({
-            required: "※法人名を入力してください。",
+            required: "※タイトルを入力してください。",
           })}
           type={"text"}
           title={"タイトル"}
@@ -39,22 +45,22 @@ const RecruitmentForm = ({ handleFunction, title }: PropsType) => {
           as="p"
           className={styles.errorMessage}
           errors={errors}
-          name="headOfficeLocation"
+          name="workPlace"
         />
         <div className={styles.selectBoxContainer}>
           <p>勤務地</p>
           <div>
             <div className={styles.selectBox}>
               <select
-                name="headOfficeLocation"
+                name="workPlace"
                 ref={register({
-                  required: "※本店所在地を選択してください。",
+                  required: "※勤務地を選択してください。",
                 })}
               >
                 <option value=""></option>
-                <option value="sample1">サンプル1</option>
-                <option value="sample2">サンプル2</option>
-                <option value="sample3">サンプル3</option>
+                <option value="sample1">東京</option>
+                <option value="sample2">神奈川</option>
+                <option value="sample3">千葉</option>
               </select>
             </div>
           </div>
@@ -64,22 +70,22 @@ const RecruitmentForm = ({ handleFunction, title }: PropsType) => {
           as="p"
           className={styles.errorMessage}
           errors={errors}
-          name="yearOfEstablishment"
+          name="occupation"
         />
         <div className={styles.selectBoxContainer}>
           <p>職種</p>
           <div className={styles.selectBoxWrapper}>
             <div className={styles.selectBox}>
               <select
-                name="yearOfEstablishment"
+                name="occupation"
                 ref={register({
-                  required: "※設立年を選択してください。",
+                  required: "※職種を選択してください。",
                 })}
               >
                 <option value=""></option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
+                <option value="1">フロントエンドエンジニア</option>
+                <option value="2">バックエンドエンジニア</option>
+                <option value="3">ドラマー</option>
               </select>
             </div>
           </div>
@@ -89,22 +95,22 @@ const RecruitmentForm = ({ handleFunction, title }: PropsType) => {
           as="p"
           className={styles.errorMessage}
           errors={errors}
-          name="yearOfEstablishment"
+          name="industry"
         />
         <div className={styles.selectBoxContainer}>
           <p>業種</p>
           <div className={styles.selectBoxWrapper}>
             <div className={styles.selectBox}>
               <select
-                name="yearOfEstablishment"
+                name="industry"
                 ref={register({
-                  required: "※設立年を選択してください。",
+                  required: "※業種を選択してください。",
                 })}
               >
                 <option value=""></option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
+                <option value="1">銀行</option>
+                <option value="2">IT</option>
+                <option value="3">ミュージシャン</option>
               </select>
             </div>
           </div>
@@ -120,7 +126,7 @@ const RecruitmentForm = ({ handleFunction, title }: PropsType) => {
           name={"businessSummery"}
           rows={3}
           ref={register({
-            required: "※事業概要を入力してください。",
+            required: "※仕事内容を入力してください。",
           })}
           title={"仕事内容"}
         />
@@ -129,13 +135,13 @@ const RecruitmentForm = ({ handleFunction, title }: PropsType) => {
           as="p"
           className={styles.errorMessage}
           errors={errors}
-          name="businessSummery"
+          name="workConditions"
         />
         <Textarea
-          name={"businessSummery"}
+          name={"workConditions"}
           rows={3}
           ref={register({
-            required: "※事業概要を入力してください。",
+            required: "※労働条件を入力してください。",
           })}
           title={"労働条件"}
         />
@@ -144,13 +150,13 @@ const RecruitmentForm = ({ handleFunction, title }: PropsType) => {
           as="p"
           className={styles.errorMessage}
           errors={errors}
-          name="businessSummery"
+          name="qualificationRequirement"
         />
         <Textarea
-          name={"businessSummery"}
+          name={"qualificationRequirement"}
           rows={3}
           ref={register({
-            required: "※事業概要を入力してください。",
+            required: "※応募資格を入力してください。",
           })}
           title={"応募資格"}
         />
