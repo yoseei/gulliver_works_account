@@ -10,21 +10,20 @@ import { useForm } from "react-hook-form";
 import { RecruitmentDataType } from "../../data/recruitment";
 
 type PropsType = {
-  handleFunction: (data: RecruitmentDataType) => Promise<void>;
+  createRecruitment: (data: RecruitmentDataType) => Promise<void>;
   title: "募集作成" | "新規募集作成";
 };
 
-const RecruitmentForm = ({ handleFunction, title }: PropsType) => {
+const RecruitmentForm = ({ createRecruitment, title }: PropsType) => {
   const { errors, handleSubmit, register, reset } = useForm();
 
   const onHandleSubmit = async (data: RecruitmentDataType) => {
-    await handleFunction(data);
+    await createRecruitment(data);
     alert("募集を作成しました！");
     reset();
   };
   return (
     <div className={styles.root}>
-      #FIXME: pushされたら消す hoge
       <h1>{title}</h1>
       <form onSubmit={handleSubmit(onHandleSubmit)}>
         <ErrorMessage

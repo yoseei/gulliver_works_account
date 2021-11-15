@@ -1,16 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./CreateRecruitment.module.scss";
 import RecruitmentForm from "../../components/recruitmentForm/RecruitmentForm";
 import { HttpClient } from "../../utilities/axiosInstance";
 import { localHostURL } from "../../hooks/localHostURL";
 import { RecruitmentDataType } from "../../data/recruitment";
+import { CompanyDataType } from "data/company";
 
 const CreateRecruitment = () => {
-  const handleCreateRecruitment = async (data: RecruitmentDataType) => {
-    const res = await HttpClient.request({
+  const [currentCompany, setCurrentCompany] = useState<CompanyDataType>();
+  useEffect(() => {
+    const fetchCurrentCompany = async () => {
+      const res = await HttpClient.request({
+        method: "GET",
+        url: `${localHostURL}/companies/1`,
+      });
+      setCurrentCompany(res.data);
+    };
+    fetchCurrentCompany();
+  }, []);
+
+  const createRecruitment = async (data: RecruitmentDataType) => {
+    await HttpClient.request({
       method: "POST",
       url: `${localHostURL}/recruitments`,
-      data: { ...data },
+      data: {
+        ...data,
+        companyId: currentCompany?.id,
+      },
     });
   };
 
@@ -18,7 +34,7 @@ const CreateRecruitment = () => {
     <div className={styles.root}>
       <RecruitmentForm
         title={"新規募集作成"}
-        handleFunction={handleCreateRecruitment}
+        createRecruitment={createRecruitment}
       />
     </div>
   );
