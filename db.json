@@ -85,27 +85,15 @@
   ],
   "recruitments": [
     {
-      "title": "fdsa",
-      "work_place": "sample2",
-      "occupation": "2",
-      "industry": "1",
-      "business_summery": "fdsa",
-      "work_conditions": "fdsa",
-      "qualification_requirement": "fdsa",
-      "company_id": 1,
-      "companyId": "1",
-      "id": 1
-    },
-    {
-      "title": "fasd",
+      "title": "hoge",
       "work_place": "sample1",
       "occupation": "1",
-      "industry": "2",
-      "business_summery": "dfasd",
-      "work_conditions": "fsda",
-      "qualification_requirement": "fdsa",
+      "industry": "1",
+      "business_summery": "hoge",
+      "work_conditions": "hoge",
+      "qualification_requirement": "hoge",
       "company_id": 1,
-      "id": 2
+      "id": 1
     }
   ]
 }
