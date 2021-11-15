@@ -92,7 +92,7 @@
       "business_summery": "hoge",
       "work_conditions": "hoge",
       "qualification_requirement": "hoge",
-      "company_id": 1,
+      "companyId": "1",
       "id": 1
     }
   ]

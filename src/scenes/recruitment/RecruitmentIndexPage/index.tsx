@@ -8,6 +8,7 @@ const RecruitmentIndexPage = () => {
 
   const signOut = () => {
     localStorage.removeItem("GULLIVER_WORKS_AUTH_TOKEN");
+    localStorage.removeItem("LOGIN_AS");
     history.push("/signin");
   };
 

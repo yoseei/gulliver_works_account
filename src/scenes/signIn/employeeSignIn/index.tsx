@@ -5,14 +5,15 @@ import { useCurrentAccount } from "../../../hooks/useCurrentAccount";
 import styles from "./style.module.scss";
 import { SignInParams, useSignInPresenter } from "./useSignInPresenter";
 import { ErrorMessage } from "@hookform/error-message";
+import { useCurrentCompany } from "../../../hooks/useCurrentCompany";
 
 const EmployeeSignInPage = () => {
   const [isRevealPassword, setIsRevealPassword] = useState(false);
-  const { register, handleSubmit, reset, errors } = useForm<SignInParams>({
+  const { register, handleSubmit, errors } = useForm<SignInParams>({
     criteriaMode: "all",
   });
   const { signIn } = useSignInPresenter();
-  const { account } = useCurrentAccount();
+  const { company } = useCurrentCompany();
   const history = useHistory();
 
   const togglePassword = () => {
@@ -20,13 +21,12 @@ const EmployeeSignInPage = () => {
   };
 
   useEffect(() => {
-    if (account) history.push("/");
-  }, [account]);
+    if (company) history.push("/manage_recruitment");
+  }, [company]);
 
   const onSubmit = (data: SignInParams) => {
     signIn(data);
-    reset();
-    history.push("/");
+    history.push("/manage_recruitment");
   };
 
   return (

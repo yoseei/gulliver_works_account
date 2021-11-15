@@ -22,10 +22,9 @@ const CreateRecruitment = () => {
   const createRecruitment = async (data: RecruitmentDataType) => {
     await HttpClient.request({
       method: "POST",
-      url: `${localHostURL}/recruitments`,
+      url: `${localHostURL}/companies/${currentCompany?.id}/recruitments`,
       data: {
         ...data,
-        companyId: currentCompany?.id,
       },
     });
   };

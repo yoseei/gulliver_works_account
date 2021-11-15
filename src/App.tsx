@@ -1,17 +1,17 @@
 import React, { FC } from "react";
 import "./App.scss";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import RecruitmentIndexPage from "./scenes/recruitment/RecruitmentIndexPage";
-import SignInPage from "./scenes/signIn/generalSignIn";
-import EmployeeSignInPage from "./scenes/signIn/employeeSignIn";
-import Profile from "./scenes/profile/Profile";
+import CreateRecruitment from "./scenes/createRecruitment/CreateRecruitment";
 import CompanyRegistration from "./scenes/companyRegistration/CompanyRegistration";
 import CompanyEdit from "./scenes/companyEdit/CompanyEdit";
 import CompanyDetail from "./scenes/companyDetail/CompanyDetail";
-import SideBar from "./components/sideBar/SideBar";
-import CreateRecruitment from "./scenes/createRecruitment/CreateRecruitment";
+import EmployeeSignInPage from "./scenes/signIn/employeeSignIn";
 import ManageRecruitment from "./scenes/manageRecruitment/ManageRecruitment";
+import Profile from "./scenes/profile/Profile";
 import RecruitmentDetail from "./scenes/recruitmentDetail/RecruitmentDetail";
+import RecruitmentIndexPage from "./scenes/recruitment/RecruitmentIndexPage";
+import SideBar from "./components/sideBar/SideBar";
+import SignInPage from "./scenes/signIn/generalSignIn";
 
 const App: FC = () => {
   return (
