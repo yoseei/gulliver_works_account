@@ -18,18 +18,17 @@ const companyState = atom<Account | undefined>({
 
 export function useCurrentCompany() {
   const [company, setCompany] = useRecoilState(companyState);
+  const token = localStorage.getItem("GULLIVER_WORKS_AUTH_TOKEN");
   const employee = localStorage.getItem("LOGIN_AS");
 
   useEffect(() => {
-    console.log(employee);
+    if (!token) return;
 
-    if (employee !== "employee") return;
-
-    const [_head, encodedPayload, _sig] = employee.split(".");
+    const [_head, encodedPayload, _sig] = token.split(".");
     const payload = JSON.parse(atob(encodedPayload));
     const companyId = payload.sub;
-    if (companyId !== "employee")
-      throw new UnauthorizedError("不正なemployeeです");
+    if (typeof companyId !== "string")
+      throw new UnauthorizedError("不正なtokenです");
 
     const fetchCompany = async () => {
       try {
@@ -45,5 +44,5 @@ export function useCurrentCompany() {
 
     fetchCompany();
   }, []);
-  return { isLoggedIn: !!employee, company, setCompany };
+  return { isLoggedIn: !!token, company, setCompany };
 }
