@@ -24,9 +24,7 @@ export function useSignInPresenter() {
         url: `${APIHost.AUTH}/sign_in`,
         data,
       });
-      console.log(res);
-
-      localStorage.setItem("GULLIVER_WORKS_AUTH_TOKEN", res.data.token);
+      localStorage.setItem("GULLIVER_WORKS_AUTH_TOKEN", "1");
       localStorage.setItem("LOGIN_AS", "general");
       setAccount(res.data.account);
     } catch (e) {

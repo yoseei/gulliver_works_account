@@ -11,7 +11,7 @@ import { useForm } from "react-hook-form";
 import { WorkHistoriesType } from "../../data/workHistory/index";
 
 type PropsType = {
-  accountId: number | undefined;
+  accountId: string | undefined;
   deleteWorkHistory: (workHistory: WorkHistoriesType) => Promise<void>;
   editWorkHistory: (
     editedWorkHistory: WorkHistoriesType,

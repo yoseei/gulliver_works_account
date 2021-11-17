@@ -1,26 +1,28 @@
 import React, { FC } from "react";
 import "./App.scss";
+import ApplicantRecruitment from "./scenes/applicantRecruitment/ApplicantRecruitment";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import CreateRecruitment from "./scenes/createRecruitment/CreateRecruitment";
 import CompanyRegistration from "./scenes/companyRegistration/CompanyRegistration";
 import CompanyEdit from "./scenes/companyEdit/CompanyEdit";
 import CompanyDetail from "./scenes/companyDetail/CompanyDetail";
-import EmployeeSignInPage from "./scenes/signIn/employeeSignIn";
+import EmployeeSignIn from "./scenes/signIn/employeeSignIn/EmployeeSignIn";
+import EmployeeSignUp from "./scenes/signUp/employeeSignUp/EmployeeSignUp";
 import ManageRecruitment from "./scenes/manageRecruitment/ManageRecruitment";
 import Profile from "./scenes/profile/Profile";
 import RecruitmentDetail from "./scenes/recruitmentDetail/RecruitmentDetail";
-import RecruitmentIndexPage from "./scenes/recruitment/RecruitmentIndexPage";
 import SideBar from "./components/sideBar/SideBar";
-import SignInPage from "./scenes/signIn/generalSignIn";
+import SignInPage from "./scenes/signIn/generalSignIn/GeneralSignIn";
 
 const App: FC = () => {
   return (
     <div className="root">
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={RecruitmentIndexPage} />
+          <Route exact path="/" component={ApplicantRecruitment} />
           <Route path="/signin" component={SignInPage} />
-          <Route path="/employee_signin" component={EmployeeSignInPage} />
+          <Route path="/employee_signin" component={EmployeeSignIn} />
+          <Route path="/employee_signup" component={EmployeeSignUp} />
           <Route path="/profile" component={Profile} />
 
           <Route path="/company_registration">

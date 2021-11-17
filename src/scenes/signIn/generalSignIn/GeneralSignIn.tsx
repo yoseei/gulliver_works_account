@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import styles from "./style.module.scss";
-import { SignInParams, useSignInPresenter } from "./useSignInPresenter";
+import { SignInParams, useSignInPresenter } from "./useGeneralSignInPresenter";
 import { ErrorMessage } from "@hookform/error-message";
 
 const SignInPage = () => {

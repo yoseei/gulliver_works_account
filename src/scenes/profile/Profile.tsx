@@ -19,9 +19,11 @@ import ProfileModal from "../../components/profileModal/ProfileModal";
 import { ProfileType } from "../../data/profile/index";
 import { WorkHistoriesType } from "../../data/workHistory/index";
 import WorkHistoryTable from "../../components/workHistoryTable/WorkHistoryTable";
+import { useCurrentAccount } from "../../hooks/useCurrentAccount";
 
 const Profile = () => {
-  const [account, setAccount] = useState<AccountType>();
+  const { account } = useCurrentAccount();
+
   const [academicHistories, setAcademicHistories] =
     useState<AcademicHistoryType[]>();
   const [finalEducation, setFinalEducation] = useState<string | undefined>();
@@ -55,7 +57,6 @@ const Profile = () => {
     });
 
     const accountData = res.data;
-    setAccount(accountData);
   };
 
   const fetchProfile = async () => {

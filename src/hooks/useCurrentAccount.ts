@@ -4,10 +4,11 @@
 
 import { useEffect } from "react";
 import { atom, useRecoilState } from "recoil";
+import { APIHost } from "../utilities/constants";
 import { Account } from "../data/account/index";
 import { HttpClient } from "../utilities/axiosInstance";
-import { APIHost } from "../utilities/constants";
 import { UnauthorizedError } from "../utilities/errors";
+import { localHostURL } from "./localHostURL";
 
 const accountState = atom<Account | undefined>({
   key: "account",
@@ -21,17 +22,17 @@ export function useCurrentAccount() {
   useEffect(() => {
     if (!token) return;
 
-    const [_head, encodedPayload, _sig] = token.split(".");
-    const payload = JSON.parse(atob(encodedPayload));
-    const accountId = payload.sub;
-    if (typeof accountId !== "string")
-      throw new UnauthorizedError("不正なtokenです");
+    // const [_head, encodedPayload, _sig] = token.split(".");
+    // const payload = JSON.parse(atob(encodedPayload));
+    // const accountId = payload.sub;
+    // if (typeof accountId !== "string")
+    //   throw new UnauthorizedError("不正なtokenです");
 
     const fetchAccount = async () => {
       try {
         const res = await HttpClient.request<Account>({
           method: "GET",
-          url: `${APIHost.APP}/accounts/${accountId}`,
+          url: `${localHostURL}/accounts?_expand=employees`,
         });
         setAccount(res.data);
       } catch (e) {

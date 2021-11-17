@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./style.module.scss";
 import { Link } from "react-router-dom";
-import SideBar from "../../../components/sideBar/SideBar";
+import SideBar from "../../components/sideBar/SideBar";
 import { useHistory } from "react-router";
-const RecruitmentIndexPage = () => {
+const ApplicantRecruitment = () => {
   const history = useHistory();
 
   const signOut = () => {
@@ -24,4 +24,4 @@ const RecruitmentIndexPage = () => {
   );
 };
 
-export default RecruitmentIndexPage;
+export default ApplicantRecruitment;

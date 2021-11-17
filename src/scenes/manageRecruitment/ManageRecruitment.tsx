@@ -6,13 +6,14 @@ import { HttpClient } from "../../utilities/axiosInstance";
 import { localHostURL } from "../../hooks/localHostURL";
 import { notification } from "antd";
 import { RecruitmentDataType } from "data/recruitment";
-import { useCurrentCompany } from "../../hooks/useCurrentCompany";
+// import { useCurrentCompany } from "../../hooks/useCurrentCompany";
 
 const ManageRecruitment = () => {
   const [recruitments, setRecruitments] = useState<RecruitmentDataType[]>();
   const [recruitmentType, setRecruitmentType] = useState<
     "active" | "inActive" | "draft"
   >();
+  // const { company } = useCurrentCompany();
 
   useEffect(() => {
     try {

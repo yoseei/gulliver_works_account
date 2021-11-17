@@ -8,6 +8,12 @@
       "last_notification_read_at": "2019-08-24"
     }
   ],
+  "employees": [
+    {
+      "account_id": 1,
+      "id": 1
+    }
+  ],
   "profiles": [
     {
       "id": 1,
