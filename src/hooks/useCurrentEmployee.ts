@@ -1,13 +1,12 @@
 /**
- * ログイン中のcompanyを管理するHook
+ * ログイン中のemployeeを管理するHook
  * **/
 
 import { useEffect } from "react";
 import { atom, useRecoilState } from "recoil";
 import { Account } from "../data/account";
-import { APIHost } from "../utilities/constants";
 import { HttpClient } from "../utilities/axiosInstance";
-import { UnauthorizedError } from "../utilities/errors";
+import { localHostURL } from "./localHostURL";
 
 const employeeState = atom<Account | undefined>({
   key: "employee",
@@ -27,19 +26,20 @@ export function useCurrentEmployee() {
     // if (typeof employeeId !== "string")
     //   throw new UnauthorizedError("不正なtokenです");
 
-    const fetchCompany = async () => {
-      // try {
-      //   const res = await HttpClient.request<Account>({
-      //     method: "GET",
-      //     url: `${APIHost.APP}/employee/${employeeId}`,
-      //   });
-      //   setEmployee(res.data);
-      // } catch (e) {
-      //   console.error(e);
-      // }
-    };
+    const fetchEmployee = async () => {
+      try {
+        const res = await HttpClient.request<Account>({
+          method: "GET",
+          url: `${localHostURL}/employees/${token}`,
+        });
+        console.log(res);
 
-    fetchCompany();
+        setEmployee(res.data);
+      } catch (e) {
+        console.error(e);
+      }
+    };
+    fetchEmployee();
   }, []);
   return { isLoggedIn: !!token, employee, setEmployee };
 }

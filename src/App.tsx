@@ -13,8 +13,13 @@ import Profile from "./scenes/profile/Profile";
 import RecruitmentDetail from "./scenes/recruitmentDetail/RecruitmentDetail";
 import SideBar from "./components/sideBar/SideBar";
 import SignInPage from "./scenes/signIn/generalSignIn/GeneralSignIn";
+import { useCurrentEmployee } from "./hooks/useCurrentEmployee";
 
 const App: FC = () => {
+  useCurrentEmployee();
+  const sideBar = (
+    <SideBar textA="企業詳細" textB="募集管理" textC="サインアウト" />
+  );
   return (
     <div className="root">
       <BrowserRouter>
@@ -23,41 +28,55 @@ const App: FC = () => {
           <Route path="/signin" component={SignInPage} />
           <Route path="/employee_signin" component={EmployeeSignIn} />
           <Route path="/employee_signup" component={EmployeeSignUp} />
-          <Route path="/profile" component={Profile} />
+
+          <Route path="/profile">
+            <div className="withSideBarContainer_profile">
+              <div className="sidebarWrapper">
+                <SideBar
+                  textA="募集一覧"
+                  textB="マイページ"
+                  textC="サインアウト"
+                />
+              </div>
+              <div className="profileWrapper">
+                <Route path="/profile" component={Profile} />
+              </div>
+            </div>
+          </Route>
 
           <Route path="/company_registration">
             <div className="withSideBarContainer">
-              <SideBar textA="企業詳細" textB="募集管理" />
+              {sideBar}
               <CompanyRegistration />
             </div>
           </Route>
           <Route path="/company_detail">
             <div className="withSideBarContainer">
-              <SideBar textA="企業詳細" textB="募集管理" />
+              {sideBar}
               <CompanyDetail />
             </div>
           </Route>
           <Route path="/company_edit">
             <div className="withSideBarContainer">
-              <SideBar textA="企業詳細" textB="募集管理" />
+              {sideBar}
               <CompanyEdit />
             </div>
           </Route>
           <Route path="/create_recruitment">
             <div className="withSideBarContainer">
-              <SideBar textA="企業詳細" textB="募集管理" />
+              {sideBar}
               <CreateRecruitment />
             </div>
           </Route>
           <Route path="/manage_recruitment">
             <div className="withSideBarContainer">
-              <SideBar textA="企業詳細" textB="募集管理" />
+              {sideBar}
               <ManageRecruitment />
             </div>
           </Route>
           <Route path="/recruitment_detail">
             <div className="withSideBarContainer">
-              <SideBar textA="企業詳細" textB="募集管理" />
+              {sideBar}
               <RecruitmentDetail />
             </div>
           </Route>

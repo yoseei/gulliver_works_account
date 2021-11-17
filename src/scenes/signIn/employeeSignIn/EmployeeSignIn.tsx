@@ -2,21 +2,22 @@ import React, { useEffect, useState } from "react";
 import styles from "./style.module.scss";
 import { ErrorMessage } from "@hookform/error-message";
 import { Link } from "react-router-dom";
-import { SignInParams, useSignInPresenter } from "./useEmployeeSignInPresenter";
+import {
+  SignInParams,
+  useEmployeeSignInPresenter,
+} from "./useEmployeeSignInPresenter";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
-import { useCurrentAccount } from "../../../hooks/useCurrentAccount";
+import { useCurrentEmployee } from "../../../hooks/useCurrentEmployee";
 
 const EmployeeSignInPage = () => {
   const [isRevealPassword, setIsRevealPassword] = useState(false);
   const { register, handleSubmit, errors } = useForm<SignInParams>({
     criteriaMode: "all",
   });
-  const { signIn } = useSignInPresenter();
+  const { signIn } = useEmployeeSignInPresenter();
   const token = localStorage.getItem("GULLIVER_WORKS_AUTH_TOKEN");
   const history = useHistory();
-  const { account } = useCurrentAccount();
-  console.log(account);
 
   const togglePassword = () => {
     setIsRevealPassword((prevState) => !prevState);
@@ -115,6 +116,11 @@ const EmployeeSignInPage = () => {
           <div className={styles.signupWrapper}>
             <Link to="/employee_signup">
               <button>新規登録はこちら</button>
+            </Link>
+          </div>
+          <div className={styles.signupWrapper}>
+            <Link to="/signin">
+              <button>求職者ログインはこちら</button>
             </Link>
           </div>
         </form>

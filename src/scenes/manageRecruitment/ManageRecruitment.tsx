@@ -5,7 +5,8 @@ import CircleButton from "../../components/circleButton/CircleButton";
 import { HttpClient } from "../../utilities/axiosInstance";
 import { localHostURL } from "../../hooks/localHostURL";
 import { notification } from "antd";
-import { RecruitmentDataType } from "data/recruitment";
+import { RecruitmentDataType } from "../../data/recruitment";
+import { useCurrentEmployee } from "../../hooks/useCurrentEmployee";
 // import { useCurrentCompany } from "../../hooks/useCurrentCompany";
 
 const ManageRecruitment = () => {
@@ -14,6 +15,8 @@ const ManageRecruitment = () => {
     "active" | "inActive" | "draft"
   >();
   // const { company } = useCurrentCompany();
+  const { employee } = useCurrentEmployee();
+  // console.log(employee);
 
   useEffect(() => {
     try {

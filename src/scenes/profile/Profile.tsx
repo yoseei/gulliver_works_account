@@ -69,6 +69,8 @@ const Profile = () => {
   };
 
   const fetchWorkHistories = async () => {
+    console.log(accountId);
+
     const res = await HttpClient.request({
       method: "GET",
       url: `${localHostURL}/accounts/${accountId}/work_histories`,
@@ -239,13 +241,14 @@ const Profile = () => {
   };
 
   useEffect(() => {
+    if (!account) return;
     (async () => {
       await fetchAccounts();
       await fetchProfile();
       await fetchWorkHistories();
       await fetchAcademicHistories();
     })();
-  }, []);
+  }, [account]);
 
   useEffect(() => {
     if (!academicHistories?.length) return;

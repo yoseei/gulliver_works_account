@@ -3,21 +3,21 @@ import { Account } from "../../../data/account/index";
 import { HttpClient } from "../../../utilities/axiosInstance";
 
 export type SignUpParams = {
-  account: {
+  employee: {
     email: string;
     password: string;
   };
 };
 
 export type SignUpPayload = {
-  account: Account;
+  employee: Account;
   token: string;
 };
 
 export function useEmployeeSignUpPresenter() {
   const signUp = async (data: SignUpParams) => {
     try {
-      const resLocalStorage = await HttpClient.request<SignUpPayload>({
+      const res = await HttpClient.request<SignUpPayload>({
         method: "POST",
         url: `${APIHost.AUTH}/sign_up`,
         data,
@@ -25,7 +25,7 @@ export function useEmployeeSignUpPresenter() {
 
       localStorage.setItem(
         "GULLIVER_WORKS_AUTH_TOKEN",
-        resLocalStorage.data.token
+        res.data.token
       );
       localStorage.setItem("SIGNUP_AS", "employee");
     } catch (e) {

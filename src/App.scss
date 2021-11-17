@@ -44,7 +44,18 @@
 
 .root {
   .withSideBarContainer {
+    // display: flex;
+    // margin: 50px;
+  }
+  .withSideBarContainer_profile {
     display: flex;
+    justify-content: flex-start;
     margin: 50px;
+    .sidebarWrapper {
+      margin-right: 20px;
+    }
+    .profileWrapper {
+      width: 100%;
+    }
   }
 }

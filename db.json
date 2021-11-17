@@ -3,57 +3,60 @@
     {
       "id": 1,
       "email": "test@example.com",
-      "email_verification_status": "unspecified",
-      "email_verification_token": "43a05e8a-f327-4a60-97fd-cef1f4b78420",
-      "last_notification_read_at": "2019-08-24"
+      "emailVerificationStatus": "unspecified",
+      "emailVerificationToken": "43a05e8a-f327-4a60-97fd-cef1f4b78420",
+      "lastNotificationReadAt": "2019-08-24"
     }
   ],
   "employees": [
     {
-      "account_id": 1,
-      "id": 1
+      "id": 1,
+      "email": "employee@example.com",
+      "emailVerificationStatus": "unspecified",
+      "emailVerificationToken": "43a05e8a-f327-4a60-97fd-cef1f4b78420",
+      "lastNotificationReadAt": "2019-08-24"
     }
   ],
   "profiles": [
     {
       "id": 1,
       "name": "甲斐義隆",
-      "name_kana": "ヤマダタロウ",
+      "nameKana": "ヤマダタロウ",
       "gender": "男",
       "phone": "090-XXXX-XXXX",
-      "postal_code": "107-0051",
+      "postalCode": "107-0051",
       "address": "ちば",
-      "date_of_birth": "2019-08-24",
+      "dateOfBirth": "2019-08-24",
       "biography": "hoge",
-      "account_id": 1
+      "accountId": 1
     }
   ],
   "work_histories": [
     {
       "name": "a",
       "occupation": "a",
-      "since_date": "2021-11-09",
-      "until_date": "2021-11-11",
-      "job_summary": "a",
-      "account_id": 1,
+      "sinceDate": "2021-11-09",
+      "untilDate": "2021-11-11",
+      "jobSummary": "bbb",
+      "accountId": 1,
       "id": 7
     },
     {
       "name": "hog",
       "occupation": "hoge",
-      "since_date": "2021-11-17",
-      "until_date": "2021-11-25",
-      "job_summary": "jpge",
-      "account_id": 1,
+      "sinceDate": "2021-11-17",
+      "untilDate": "2021-11-25",
+      "jobSummary": "jpge",
+      "accountId": 1,
       "id": 9
     },
     {
       "name": "ほげ",
       "occupation": "ほげ",
-      "since_date": "",
-      "until_date": "",
-      "job_summary": "ほげ",
-      "account_id": 1,
+      "sinceDate": "",
+      "untilDate": "",
+      "jobSummary": "ほげ",
+      "accountId": 1,
       "id": 10
     }
   ],
@@ -61,43 +64,43 @@
     {
       "name": "hoge",
       "faculty": "hoge",
-      "since_date": "2021-11-08",
-      "until_date": "2021-12-02",
-      "account_id": 1,
+      "sinceDate": "2021-11-08",
+      "untilDate": "2021-12-02",
+      "accSntId": 1,
       "id": 5
     }
   ],
   "companies": [
     {
       "name": "ほげ",
-      "name_kana": "ほげ",
-      "head_office_location": "sample1",
-      "year_of_establishment": "1",
-      "hp_url": "",
+      "nameKana": "ほげ",
+      "headOfficeLocation": "sample1",
+      "yearOfEstablishment": "1",
+      "hpUrl": "",
       "phone": "",
-      "is_listed": "上場",
-      "representative_last": "ほげ",
-      "representative_first": "ｇほえ",
-      "representative_kana_last": "げお",
-      "representative_kana_first": "ほげ",
-      "net_sales": "",
-      "numbers_of_employees": "",
-      "average_age": "",
-      "business_summery": "ｈげ",
-      "corporate_pr": "",
-      "logo_image": {},
+      "isListed": "上場",
+      "representativeLast": "ほげ",
+      "representativeFirst": "ｇほえ",
+      "representativeKanaLast": "げお",
+      "representativeKanaFirst": "ほげ",
+      "netSales": "",
+      "numbersOfEmployees": "",
+      "averageAge": "",
+      "businessSummery": "ｈげ",
+      "corporatePr": "",
+      "logoImage": {},
       "id": 1
     }
   ],
   "recruitments": [
     {
       "title": "hoge",
-      "work_place": "sample1",
+      "workPlace": "sample1",
       "occupation": "1",
       "industry": "1",
       "business_summery": "hoge",
-      "work_conditions": "hoge",
-      "qualification_requirement": "hoge",
+      "workConditions": "hoge",
+      "qualificationRequirement": "hoge",
       "companyId": "1",
       "id": 1
     }

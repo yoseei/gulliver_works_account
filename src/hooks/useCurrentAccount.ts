@@ -32,7 +32,7 @@ export function useCurrentAccount() {
       try {
         const res = await HttpClient.request<Account>({
           method: "GET",
-          url: `${localHostURL}/accounts?_expand=employees`,
+          url: `${localHostURL}/accounts/${token}`,
         });
         setAccount(res.data);
       } catch (e) {

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
+import styles from "./style.module.scss";
+import { ErrorMessage } from "@hookform/error-message";
+import { Link } from "react-router-dom";
+import { SignInParams, useSignInPresenter } from "./useGeneralSignInPresenter";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
-import styles from "./style.module.scss";
-import { SignInParams, useSignInPresenter } from "./useGeneralSignInPresenter";
-import { ErrorMessage } from "@hookform/error-message";
-
 const SignInPage = () => {
   const [isRevealPassword, setIsRevealPassword] = useState(false);
   const { register, handleSubmit, errors } = useForm<SignInParams>();
@@ -83,21 +83,19 @@ const SignInPage = () => {
             </span>
           </div>
           <div className={styles.loginButtonWrapper}>
-            <button
-              type="submit"
-              onClick={() => alert("ログインボタンクリック")}
-            >
-              ログイン
-            </button>
+            <button type="submit">ログイン</button>
           </div>
           <div className={styles.passwordLinkWrapper}>
             <a href="">パスワードを忘れた方はこちら</a>
-            {/* ToDoパスワード再設定ページへのリンクを貼る */}
           </div>
           <div className={styles.signupWrapper}>
             <button type="button">新規登録はこちら</button>
           </div>
-          {/* <Link to="/">ホームへ</Link> */}
+          <Link to="/employee_signin">
+            <div className={styles.signupWrapper}>
+              <button type="button">従業員ログインはこちら</button>
+            </div>
+          </Link>
         </form>
       </div>
     </div>

@@ -15,17 +15,16 @@ export type SignInPayload = {
   token: string;
 };
 
-export function useSignInPresenter() {
+export function useEmployeeSignInPresenter() {
   const signIn = async (data: SignInParams) => {
     try {
-      const res = await HttpClient.request<SignInPayload>({
+      await HttpClient.request<SignInPayload>({
         method: "POST",
-        url: `${APIHost.AUTH}/sign_in`,
+        url: `${APIHost.ENTERPRISE_AUTH}/sign_in`,
         data,
       });
-      console.log(res);
 
-      localStorage.setItem("GULLIVER_WORKS_AUTH_TOKEN", res.data.token);
+      localStorage.setItem("GULLIVER_WORKS_ENTERPRISE_AUTH_TOKEN", "1");
       localStorage.setItem("LOGIN_AS", "employee");
     } catch (e) {
       console.error(e);

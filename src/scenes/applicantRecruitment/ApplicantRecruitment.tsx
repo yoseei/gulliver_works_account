@@ -17,9 +17,7 @@ const ApplicantRecruitment = () => {
       <div className={styles.text}>
         <h1>すべての募集</h1>
       </div>
-      <SideBar textA={"募集一覧"} textB={"マイページ"} />
-      <Link to="/signin">ログイン</Link>
-      <button onClick={signOut}>サインアウト</button>
+      <SideBar textA={"募集一覧"} textB={"マイページ"} textC={"サインアウト"} />
     </div>
   );
 };
