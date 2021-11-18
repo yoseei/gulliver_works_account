@@ -2,7 +2,7 @@
   "accounts": [
     {
       "id": 1,
-      "email": "test@example.com",
+      "email": "accounts@example.com",
       "emailVerificationStatus": "unspecified",
       "emailVerificationToken": "43a05e8a-f327-4a60-97fd-cef1f4b78420",
       "lastNotificationReadAt": "2019-08-24"

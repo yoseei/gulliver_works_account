@@ -16,7 +16,7 @@ const EmployeeSignInPage = () => {
     criteriaMode: "all",
   });
   const { signIn } = useEmployeeSignInPresenter();
-  const token = localStorage.getItem("GULLIVER_WORKS_AUTH_TOKEN");
+  const token = localStorage.getItem("GULLIVER_WORKS_ENTERPRISE_AUTH_TOKEN");
   const history = useHistory();
 
   const togglePassword = () => {

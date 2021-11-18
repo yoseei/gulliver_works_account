@@ -56,7 +56,7 @@ const Profile = () => {
       url: `${localHostURL}/accounts/1`,
     });
 
-    const accountData = res.data;
+    // const accountData = res.data;
   };
 
   const fetchProfile = async () => {
@@ -69,8 +69,6 @@ const Profile = () => {
   };
 
   const fetchWorkHistories = async () => {
-    console.log(accountId);
-
     const res = await HttpClient.request({
       method: "GET",
       url: `${localHostURL}/accounts/${accountId}/work_histories`,

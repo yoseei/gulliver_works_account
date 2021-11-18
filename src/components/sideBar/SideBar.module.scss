@@ -11,14 +11,12 @@
     .recruitmentLink {
       cursor: pointer;
       flex: 1;
+      margin-bottom: 0;
     }
     .profileLink {
       cursor: pointer;
       flex: 1;
-      a {
-        color: black;
-        text-decoration: none;
-      }
+      margin-bottom: 0;
     }
   }
 }

@@ -7,16 +7,12 @@ import { localHostURL } from "../../hooks/localHostURL";
 import { notification } from "antd";
 import { RecruitmentDataType } from "../../data/recruitment";
 import { useCurrentEmployee } from "../../hooks/useCurrentEmployee";
-// import { useCurrentCompany } from "../../hooks/useCurrentCompany";
 
 const ManageRecruitment = () => {
   const [recruitments, setRecruitments] = useState<RecruitmentDataType[]>();
   const [recruitmentType, setRecruitmentType] = useState<
     "active" | "inActive" | "draft"
   >();
-  // const { company } = useCurrentCompany();
-  const { employee } = useCurrentEmployee();
-  // console.log(employee);
 
   useEffect(() => {
     try {

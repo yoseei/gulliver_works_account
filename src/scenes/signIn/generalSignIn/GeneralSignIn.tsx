@@ -88,9 +88,11 @@ const SignInPage = () => {
           <div className={styles.passwordLinkWrapper}>
             <a href="">パスワードを忘れた方はこちら</a>
           </div>
-          <div className={styles.signupWrapper}>
-            <button type="button">新規登録はこちら</button>
-          </div>
+          <Link to="/employee_signup">
+            <div className={styles.signupWrapper}>
+              <button type="button">新規登録はこちら</button>
+            </div>
+          </Link>
           <Link to="/employee_signin">
             <div className={styles.signupWrapper}>
               <button type="button">従業員ログインはこちら</button>

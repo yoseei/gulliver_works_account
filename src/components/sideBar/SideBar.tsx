@@ -5,26 +5,42 @@ import { useHistory } from "react-router";
 
 interface PropsTypes {
   textA: "募集一覧" | "企業詳細";
-  textB: "募集管理" | "マイページ";
+  textB: "マイページ" | "募集管理";
   textC?: "サインアウト";
 }
-const SideBar = (props: PropsTypes) => {
+const SideBar = ({ textA, textB, textC }: PropsTypes) => {
   const history = useHistory();
 
   const signOut = () => {
     localStorage.removeItem("GULLIVER_WORKS_AUTH_TOKEN");
+    localStorage.removeItem("GULLIVER_WORKS_ENTERPRISE_AUTH_TOKEN");
     localStorage.removeItem("LOGIN_AS");
     history.push("/signin");
   };
   return (
     <div className={styles.root}>
       <div className={styles.recruitmentProfileContainer}>
-        <p className={styles.recruitmentLink}>{props.textA}</p>
-        <p className={styles.profileLink}>
-          <Link to="/profile">{props.textB}</Link>
-        </p>
+        {textA === "募集一覧" ? (
+          <p className={styles.recruitmentLink}>
+            {/* #TODO: 募集一覧ページができたら、リンクを貼り直し */}
+            <Link to="/profile">{textA}</Link>
+          </p>
+        ) : (
+          <Link to="/company_detail">{textA}</Link>
+        )}
+
+        {textB === "マイページ" ? (
+          <p className={styles.profileLink}>
+            <Link to="/profile">{textB}</Link>
+          </p>
+        ) : (
+          <p className={styles.profileLink}>
+            <Link to="/manage_recruitment">{textB}</Link>
+          </p>
+        )}
+
         <p className={styles.profileLink} onClick={() => signOut()}>
-          <Link to="/signin">{props.textC}</Link>
+          <Link to="/signin">{textC}</Link>
         </p>
       </div>
     </div>

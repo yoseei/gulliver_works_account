@@ -2,6 +2,7 @@
  * ログイン中のemployeeを管理するHook
  * **/
 
+import { CompanyDataType } from "data/company";
 import { useEffect } from "react";
 import { atom, useRecoilState } from "recoil";
 import { Account } from "../data/account";
@@ -12,13 +13,18 @@ const employeeState = atom<Account | undefined>({
   key: "employee",
   default: undefined,
 });
+const companyState = atom<CompanyDataType | undefined>({
+  key: "company",
+  default: undefined,
+});
 
 export function useCurrentEmployee() {
   const [employee, setEmployee] = useRecoilState(employeeState);
-  const token = localStorage.getItem("GULLIVER_WORKS_AUTH_TOKEN");
+  const [company, setCompany] = useRecoilState(companyState);
+  const token = localStorage.getItem("GULLIVER_WORKS_ENTERPRISE_AUTH_TOKEN");
 
   useEffect(() => {
-    // if (!token) return;
+    if (!token) return;
 
     // const [_head, encodedPayload, _sig] = token.split(".");
     // const payload = JSON.parse(atob(encodedPayload));
@@ -32,7 +38,6 @@ export function useCurrentEmployee() {
           method: "GET",
           url: `${localHostURL}/employees/${token}`,
         });
-        console.log(res);
 
         setEmployee(res.data);
       } catch (e) {
@@ -40,6 +45,6 @@ export function useCurrentEmployee() {
       }
     };
     fetchEmployee();
-  }, []);
-  return { isLoggedIn: !!token, employee, setEmployee };
+  }, [token]);
+  return { isLoggedIn: !!token, employee, setEmployee, company, setCompany };
 }
