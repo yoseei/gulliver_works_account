@@ -17,9 +17,9 @@ import ProfileImage from "../../components/profileImage/ProfileImage";
 import ProfileMainImage from "../../components/profileMainImage/ProfileMainImage";
 import ProfileModal from "../../components/profileModal/ProfileModal";
 import { ProfileType } from "../../data/profile/index";
+import { useCurrentAccount } from "../../hooks/useCurrentAccount";
 import { WorkHistoriesType } from "../../data/workHistory/index";
 import WorkHistoryTable from "../../components/workHistoryTable/WorkHistoryTable";
-import { useCurrentAccount } from "../../hooks/useCurrentAccount";
 
 const Profile = () => {
   const { account } = useCurrentAccount();

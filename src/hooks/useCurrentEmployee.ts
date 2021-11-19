@@ -2,7 +2,6 @@
  * ログイン中のemployeeを管理するHook
  * **/
 
-import { CompanyDataType } from "data/company";
 import { useEffect } from "react";
 import { atom, useRecoilState } from "recoil";
 import { Employee } from "../data/employee";
