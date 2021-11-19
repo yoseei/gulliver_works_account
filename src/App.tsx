@@ -18,8 +18,6 @@ import { useCurrentEmployee } from "./hooks/useCurrentEmployee";
 const App: FC = () => {
   const { employee, setEmployee } = useCurrentEmployee();
 
-  console.log(employee);
-
   const sideBar = (
     <SideBar textA="企業詳細" textB="募集管理" textC="サインアウト" />
   );
@@ -68,7 +66,7 @@ const App: FC = () => {
           <Route path="/create_recruitment">
             <div className="withSideBarContainer">
               {sideBar}
-              {employee && <CreateRecruitment />}
+              <CreateRecruitment />
             </div>
           </Route>
           <Route path="/manage_recruitment">
