@@ -1,5 +1,5 @@
 export type CompanyDataType = {
-  id: number;
+  id: string | undefined;
   name: string;
   nameKana: string;
   headOfficeLocation: string;

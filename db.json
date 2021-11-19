@@ -21,13 +21,13 @@
     {
       "id": 1,
       "name": "甲斐義隆",
-      "nameKana": "ヤマダタロウ",
+      "nameKana": "カイヨシタカ",
       "gender": "男",
       "phone": "090-XXXX-XXXX",
       "postalCode": "107-0051",
-      "address": "ちば",
-      "dateOfBirth": "2019-08-24",
-      "biography": "hoge",
+      "address": "千葉県",
+      "dateOfBirth": "1987-07-07",
+      "biography": "ほげほげ",
       "accountId": 1
     }
   ],
@@ -72,24 +72,25 @@
   ],
   "companies": [
     {
-      "name": "ほげ",
-      "nameKana": "ほげ",
+      "name": "てすと",
+      "nameKana": "てすと",
       "headOfficeLocation": "sample1",
       "yearOfEstablishment": "1",
-      "hpUrl": "",
-      "phone": "",
+      "hpUrl": "http://hoge",
+      "phone": "11111111111",
       "isListed": "上場",
       "representativeLast": "ほげ",
-      "representativeFirst": "ｇほえ",
-      "representativeKanaLast": "げお",
+      "representativeFirst": "ほげ",
+      "representativeKanaLast": "ほげ",
       "representativeKanaFirst": "ほげ",
-      "netSales": "",
-      "numbersOfEmployees": "",
-      "averageAge": "",
-      "businessSummery": "ｈげ",
-      "corporatePr": "",
+      "netSales": "11111111",
+      "numbersOfEmployees": "11111111",
+      "averageAge": "30",
+      "businessSummery": " ほげ",
+      "corporatePr": "ほげ",
       "logoImage": {},
-      "id": 1
+      "id": 1,
+      "employeeId": 1
     }
   ],
   "recruitments": [
@@ -103,6 +104,28 @@
       "qualificationRequirement": "hoge",
       "companyId": "1",
       "id": 1
+    },
+    {
+      "title": "hoge",
+      "workPlace": "sample1",
+      "occupation": "1",
+      "industry": "1",
+      "businessSummery": "hoge",
+      "workConditions": "hoge",
+      "qualificationRequirement": "hoge",
+      "companyId": "1",
+      "id": 2
+    },
+    {
+      "title": "テスト",
+      "workPlace": "sample1",
+      "occupation": "1",
+      "industry": "1",
+      "businessSummery": "テスト",
+      "workConditions": "test",
+      "qualificationRequirement": "test",
+      "companyId": "1",
+      "id": 3
     }
   ]
 }

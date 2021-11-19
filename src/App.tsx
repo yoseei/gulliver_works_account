@@ -15,31 +15,10 @@ import SideBar from "./components/sideBar/SideBar";
 import SignInPage from "./scenes/signIn/generalSignIn/GeneralSignIn";
 import { useCurrentEmployee } from "./hooks/useCurrentEmployee";
 
-import { HttpClient } from "./utilities/axiosInstance";
-import { localHostURL } from "./hooks/localHostURL";
-import { CompanyDataType } from "data/company";
-
 const App: FC = () => {
-  const { employee, company, setCompany } = useCurrentEmployee();
+  const { employee, setEmployee } = useCurrentEmployee();
 
-  useEffect(() => {
-    const fetchEmployee = async () => {
-      try {
-        if (!employee) return;
-        const res = await HttpClient.request<CompanyDataType>({
-          method: "GET",
-          url: `${localHostURL}/companies/${employee?.id}`,
-        });
-        setCompany(res.data);
-      } catch (e) {
-        console.error(e);
-      }
-    };
-    fetchEmployee();
-  }, [employee]);
-
-  // #FIXME: companyが保存出来ているかの確認
-  console.log(company);
+  console.log(employee);
 
   const sideBar = (
     <SideBar textA="企業詳細" textB="募集管理" textC="サインアウト" />
@@ -89,7 +68,7 @@ const App: FC = () => {
           <Route path="/create_recruitment">
             <div className="withSideBarContainer">
               {sideBar}
-              <CreateRecruitment />
+              {employee && <CreateRecruitment />}
             </div>
           </Route>
           <Route path="/manage_recruitment">

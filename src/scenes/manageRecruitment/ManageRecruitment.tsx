@@ -6,7 +6,6 @@ import { HttpClient } from "../../utilities/axiosInstance";
 import { localHostURL } from "../../hooks/localHostURL";
 import { notification } from "antd";
 import { RecruitmentDataType } from "../../data/recruitment";
-import { useCurrentEmployee } from "../../hooks/useCurrentEmployee";
 
 const ManageRecruitment = () => {
   const [recruitments, setRecruitments] = useState<RecruitmentDataType[]>();
@@ -111,6 +110,7 @@ const ManageRecruitment = () => {
     <div className={styles.root}>
       <div className={styles.topContainer}>
         <h1>募集管理</h1>
+
         <CircleButton text={"新規作成"} />
       </div>
       <div className={styles.recruitingContainer}>

@@ -1,28 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "./CreateRecruitment.module.scss";
 import RecruitmentForm from "../../components/recruitmentForm/RecruitmentForm";
 import { HttpClient } from "../../utilities/axiosInstance";
 import { localHostURL } from "../../hooks/localHostURL";
 import { RecruitmentDataType } from "../../data/recruitment";
-import { CompanyDataType } from "data/company";
+import { useCurrentEmployee } from "../../hooks/useCurrentEmployee";
 
 const CreateRecruitment = () => {
-  const [currentCompany, setCurrentCompany] = useState<CompanyDataType>();
-  useEffect(() => {
-    const fetchCurrentCompany = async () => {
-      const res = await HttpClient.request({
-        method: "GET",
-        url: `${localHostURL}/companies/1`,
-      });
-      setCurrentCompany(res.data);
-    };
-    fetchCurrentCompany();
-  }, []);
+  const { employee } = useCurrentEmployee();
+  const companyId = employee?.companies[0].id;
 
   const createRecruitment = async (data: RecruitmentDataType) => {
     await HttpClient.request({
       method: "POST",
-      url: `${localHostURL}/companies/${currentCompany?.id}/recruitments`,
+      url: `${localHostURL}/companies/${companyId}/recruitments`,
       data: {
         ...data,
       },
