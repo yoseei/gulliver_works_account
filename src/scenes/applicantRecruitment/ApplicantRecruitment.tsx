@@ -1,16 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./style.module.scss";
-import { Link } from "react-router-dom";
 import SideBar from "../../components/sideBar/SideBar";
 import { useHistory } from "react-router";
+
 const ApplicantRecruitment = () => {
   const history = useHistory();
+  const token = localStorage.getItem("GULLIVER_WORKS_AUTH_TOKEN");
 
-  const signOut = () => {
-    localStorage.removeItem("GULLIVER_WORKS_AUTH_TOKEN");
-    localStorage.removeItem("LOGIN_AS");
-    history.push("/signin");
-  };
+  useEffect(() => {
+    if (!token) history.push("/signin");
+  }, [token]);
 
   return (
     <div className={styles.root}>

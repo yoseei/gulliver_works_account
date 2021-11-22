@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React from "react";
 import "./App.scss";
 import ApplicantRecruitment from "./scenes/applicantRecruitment/ApplicantRecruitment";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
@@ -15,7 +15,7 @@ import SideBar from "./components/sideBar/SideBar";
 import SignInPage from "./scenes/signIn/generalSignIn/GeneralSignIn";
 import { useCurrentEmployee } from "./hooks/useCurrentEmployee";
 
-const App: FC = () => {
+const App = () => {
   const { employee, setEmployee } = useCurrentEmployee();
 
   const sideBar = (
