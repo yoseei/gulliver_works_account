@@ -6,7 +6,7 @@ import EditAcademicHistoryModal from "../editAcademicHistoryModal/EditAcademicHi
 
 type AcademicHistoryTableType = {
   academicHistories: AcademicHistoryType[];
-  accountId: number | undefined;
+  accountId: string | undefined;
   editAcademicHistory: (
     editedAcademicHistory: AcademicHistoryType,
     academicHistory: AcademicHistoryType

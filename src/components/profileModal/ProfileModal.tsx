@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
 type PropsType = {
-  accountId: number;
+  accountId: string;
   handleCloseProfileModal: () => void;
   openProfileModal: boolean;
   profile: ProfileType;

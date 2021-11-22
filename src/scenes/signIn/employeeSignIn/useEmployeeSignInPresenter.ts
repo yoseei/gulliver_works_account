@@ -1,4 +1,4 @@
-import { useCurrentAccount } from "../../../hooks/useCurrentAccount";
+import { useCurrentEmployee } from "../../../hooks/useCurrentEmployee";
 import { Account } from "../../../data/account/index";
 import { HttpClient } from "../../../utilities/axiosInstance";
 import { APIHost } from "../../../utilities/constants";
@@ -15,18 +15,17 @@ export type SignInPayload = {
   token: string;
 };
 
-export function useSignInPresenter() {
-  const { setAccount } = useCurrentAccount();
+export function useEmployeeSignInPresenter() {
   const signIn = async (data: SignInParams) => {
     try {
-      const res = await HttpClient.request<SignInPayload>({
+      await HttpClient.request<SignInPayload>({
         method: "POST",
-        url: `${APIHost.AUTH}/sign_in`,
+        url: `${APIHost.ENTERPRISE_AUTH}/sign_in`,
         data,
       });
-      localStorage.setItem("GULLIVER_WORKS_AUTH_TOKEN", res.data.token);
-      localStorage.setItem("LoginAs", "general");
-      setAccount(res.data.account);
+
+      localStorage.setItem("GULLIVER_WORKS_ENTERPRISE_AUTH_TOKEN", "1");
+      localStorage.setItem("LOGIN_AS", "employee");
     } catch (e) {
       console.error(e);
     }

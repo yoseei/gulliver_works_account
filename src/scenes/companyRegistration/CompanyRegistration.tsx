@@ -12,11 +12,12 @@ const CompanyRegistration = () => {
 
   const handleCreateCompanyInfo = async (data: CompanyDataType) => {
     try {
-      const response = await HttpClient.request({
+      await HttpClient.request({
         method: "POST",
         url: `${localHostURL}/companies`,
         data: { ...data },
       });
+      alert("企業を登録しました！");
       reset();
     } catch (err) {
       notification.error({

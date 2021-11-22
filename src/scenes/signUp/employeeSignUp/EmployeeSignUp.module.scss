@@ -22,7 +22,7 @@
         padding: 10px;
         border-radius: 5px;
       }
-      .errorModal {
+      .errorMessage {
         color: red;
       }
     }
@@ -37,6 +37,9 @@
         border-radius: 5px;
         padding: 10px;
         position: relative;
+      }
+      .errorMessage {
+        color: red;
       }
       .PasswordReveal {
         left: auto;
@@ -66,12 +69,16 @@
     .signupWrapper {
       border: 1px solid rgb(102, 102, 102);
       border-radius: 5px;
+      color: rgb(102, 102, 102);
       cursor: pointer;
+
       font-weight: 500;
       font-size: 0.8rem;
       margin: 20px 0 10px;
       padding: 10px 0;
       width: 100%;
+      // button {
+      // }
     }
   }
 }

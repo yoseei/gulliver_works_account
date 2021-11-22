@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from "react";
+import styles from "./style.module.scss";
+import { ErrorMessage } from "@hookform/error-message";
+import { Link } from "react-router-dom";
+import {
+  SignInParams,
+  useEmployeeSignInPresenter,
+} from "./useEmployeeSignInPresenter";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
-import styles from "./style.module.scss";
-import { SignInParams, useSignInPresenter } from "./useSignInPresenter";
-import { ErrorMessage } from "@hookform/error-message";
+import { useCurrentEmployee } from "../../../hooks/useCurrentEmployee";
 
-const SignInPage = () => {
+const EmployeeSignInPage = () => {
   const [isRevealPassword, setIsRevealPassword] = useState(false);
-  const { register, handleSubmit, errors } = useForm<SignInParams>();
-  const { signIn } = useSignInPresenter();
-  const token = localStorage.getItem("GULLIVER_WORKS_AUTH_TOKEN");
+  const { register, handleSubmit, errors } = useForm<SignInParams>({
+    criteriaMode: "all",
+  });
+  const { signIn } = useEmployeeSignInPresenter();
+  const token = localStorage.getItem("GULLIVER_WORKS_ENTERPRISE_AUTH_TOKEN");
   const history = useHistory();
 
   const togglePassword = () => {
@@ -17,24 +24,23 @@ const SignInPage = () => {
   };
 
   useEffect(() => {
-    if (token) history.push("/");
+    if (token) history.push("/manage_recruitment");
   }, [token]);
 
   const onSubmit = (data: SignInParams) => {
     signIn(data);
-    history.push("/");
+    history.push("/manage_recruitment");
   };
 
   return (
     <div className={styles.page}>
       <div className={styles.loginContainer}>
-        <h1>求職者ログイン</h1>
+        <h1>従業員ログイン</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.emailInputWrapper}>
             <p>メールアドレス</p>
             <input
               className={styles.input}
-              name="account.email"
               placeholder="coadmap@mail.com"
               ref={register({
                 required: "※メールアドレスを入力してください。",
@@ -44,7 +50,7 @@ const SignInPage = () => {
                   message: "※正しいメールアドレスを入力してください。",
                 },
               })}
-              type="email"
+              name="account.email"
             />
             <ErrorMessage
               name="account.email"
@@ -66,10 +72,28 @@ const SignInPage = () => {
               className={styles.input}
               placeholder="パスワードを入力"
               type={isRevealPassword ? "text" : "password"}
-              ref={register({ required: true })}
+              ref={register({
+                required: "※パスワードは必須項目です。",
+                minLength: {
+                  value: 6,
+                  message: "※パスワードは６文字以上で入力してください。",
+                },
+              })}
               name="account.password"
             />
-
+            <ErrorMessage
+              name="account.password"
+              errors={errors}
+              render={({ messages }) => {
+                return messages
+                  ? Object.entries(messages).map(([type, message]) => (
+                      <p key={type} className={styles.errorMessage}>
+                        {message}
+                      </p>
+                    ))
+                  : null;
+              }}
+            />
             <span
               onClick={togglePassword}
               role="presentation"
@@ -83,25 +107,26 @@ const SignInPage = () => {
             </span>
           </div>
           <div className={styles.loginButtonWrapper}>
-            <button
-              type="submit"
-              onClick={() => alert("ログインボタンクリック")}
-            >
-              ログイン
-            </button>
+            <button type="submit">ログイン</button>
           </div>
           <div className={styles.passwordLinkWrapper}>
             <a href="">パスワードを忘れた方はこちら</a>
-            {/* ToDoパスワード再設定ページへのリンクを貼る */}
+            {/* TODO:パスワード再設定ページへのリンクを貼る */}
           </div>
           <div className={styles.signupWrapper}>
-            <button type="button">新規登録はこちら</button>
+            <Link to="/employee_signup">
+              <button>新規登録はこちら</button>
+            </Link>
           </div>
-          {/* <Link to="/">ホームへ</Link> */}
+          <div className={styles.signupWrapper}>
+            <Link to="/signin">
+              <button>求職者ログインはこちら</button>
+            </Link>
+          </div>
         </form>
       </div>
     </div>
   );
 };
 
-export default SignInPage;
+export default EmployeeSignInPage;

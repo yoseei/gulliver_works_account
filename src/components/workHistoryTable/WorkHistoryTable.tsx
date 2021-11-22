@@ -5,7 +5,7 @@ import { WorkHistoriesType } from "../../data/workHistory/index";
 import EditWorkHistoryModal from "../../components/editWorkHistoryModal/EditWorkHistoryModal";
 
 export type WorkHistoryTableTypes = {
-  accountId: number | undefined;
+  accountId: string | undefined;
   deleteWorkHistory: (workHistory: WorkHistoriesType) => Promise<void>;
   editWorkHistory: (
     editedWorkHistory: WorkHistoriesType,

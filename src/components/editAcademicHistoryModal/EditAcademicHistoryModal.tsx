@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 
 type PropsType = {
   academicHistory?: AcademicHistoryType;
-  accountId: number | undefined;
+  accountId: string | undefined;
   deleteAcademicHistory: (
     academicHistory: AcademicHistoryType
   ) => Promise<void>;

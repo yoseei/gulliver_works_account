@@ -17,11 +17,13 @@ import ProfileImage from "../../components/profileImage/ProfileImage";
 import ProfileMainImage from "../../components/profileMainImage/ProfileMainImage";
 import ProfileModal from "../../components/profileModal/ProfileModal";
 import { ProfileType } from "../../data/profile/index";
+import { useCurrentAccount } from "../../hooks/useCurrentAccount";
 import { WorkHistoriesType } from "../../data/workHistory/index";
 import WorkHistoryTable from "../../components/workHistoryTable/WorkHistoryTable";
 
 const Profile = () => {
-  const [account, setAccount] = useState<AccountType>();
+  const { account } = useCurrentAccount();
+
   const [academicHistories, setAcademicHistories] =
     useState<AcademicHistoryType[]>();
   const [finalEducation, setFinalEducation] = useState<string | undefined>();
@@ -54,8 +56,7 @@ const Profile = () => {
       url: `${localHostURL}/accounts/1`,
     });
 
-    const accountData = res.data;
-    setAccount(accountData);
+    // const accountData = res.data;
   };
 
   const fetchProfile = async () => {
@@ -238,13 +239,14 @@ const Profile = () => {
   };
 
   useEffect(() => {
+    if (!account) return;
     (async () => {
       await fetchAccounts();
       await fetchProfile();
       await fetchWorkHistories();
       await fetchAcademicHistories();
     })();
-  }, []);
+  }, [account]);
 
   useEffect(() => {
     if (!academicHistories?.length) return;

@@ -1,38 +1,41 @@
 import React, { useEffect, useState } from "react";
+import styles from "./EmployeeSignUp.module.scss";
+import { ErrorMessage } from "@hookform/error-message";
+import { Link } from "react-router-dom";
+import {
+  SignUpParams,
+  useEmployeeSignUpPresenter,
+} from "./useEmployeeSignUpPresenter";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
-import { useCurrentAccount } from "../../../hooks/useCurrentAccount";
-import styles from "./style.module.scss";
-import { SignInParams, useSignInPresenter } from "./useSignInPresenter";
-import { ErrorMessage } from "@hookform/error-message";
+import { useCurrentEmployee } from "../../../hooks/useCurrentEmployee";
 
-const EmployeeSignInPage = () => {
+const EmployeeSignUpPage = () => {
+  const { employee } = useCurrentEmployee();
+  const history = useHistory();
   const [isRevealPassword, setIsRevealPassword] = useState(false);
-  const { register, handleSubmit, reset, errors } = useForm<SignInParams>({
+  const { register, handleSubmit, errors } = useForm<SignUpParams>({
     criteriaMode: "all",
   });
-  const { signIn } = useSignInPresenter();
-  const { account } = useCurrentAccount();
-  const history = useHistory();
+  const { signUp } = useEmployeeSignUpPresenter();
 
   const togglePassword = () => {
     setIsRevealPassword((prevState) => !prevState);
   };
 
   useEffect(() => {
-    if (account) history.push("/");
-  }, [account]);
+    if (employee) history.push("/manage_recruitment");
+  }, [employee]);
 
-  const onSubmit = (data: SignInParams) => {
-    signIn(data);
-    reset();
-    history.push("/");
+  const onSubmit = (data: SignUpParams) => {
+    signUp(data);
+    history.push("/manage_recruitment");
   };
 
   return (
     <div className={styles.page}>
       <div className={styles.loginContainer}>
-        <h1>従業員ログイン</h1>
+        <h1>従業員サインアップ</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.emailInputWrapper}>
             <p>メールアドレス</p>
@@ -96,28 +99,30 @@ const EmployeeSignInPage = () => {
               role="presentation"
               className={styles.PasswordReveal}
             >
-              {isRevealPassword ? (
+              {/* #FIXME: ant designに目のアイコンある */}
+              {/* {isRevealPassword ? (
                 <i className="fas fa-eye" />
               ) : (
                 <i className="fas fa-eye-slash" />
-              )}
+              )} */}
             </span>
           </div>
           <div className={styles.loginButtonWrapper}>
-            <button type="submit">ログイン</button>
+            <button type="submit">サインアップ</button>
           </div>
           <div className={styles.passwordLinkWrapper}>
             <a href="">パスワードを忘れた方はこちら</a>
-            {/* ToDoパスワード再設定ページへのリンクを貼る */}
+            {/* TODO: パスワード再設定ページへのリンクを貼る */}
           </div>
           <div className={styles.signupWrapper}>
-            <button>新規登録はこちら</button>
+            <Link to="/employee_signin">
+              <button>ログインはこちら</button>
+            </Link>
           </div>
-          {/* <Link to="/">ホームへ</Link> */}
         </form>
       </div>
     </div>
   );
 };
 
-export default EmployeeSignInPage;
+export default EmployeeSignUpPage;
