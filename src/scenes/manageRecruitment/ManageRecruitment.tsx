@@ -6,9 +6,15 @@ import { HttpClient } from "../../utilities/axiosInstance";
 import { localHostURL } from "../../hooks/localHostURL";
 import { notification } from "antd";
 import { RecruitmentDataType } from "../../data/recruitment";
+import { Link } from "react-router-dom";
+import { useCurrentRecruitment } from "../../hooks/useCurrentRecruitment";
+import { useHistory } from "react-router";
 
 const ManageRecruitment = () => {
+  const { recruitment, setRecruitment } = useCurrentRecruitment();
   const [recruitments, setRecruitments] = useState<RecruitmentDataType[]>();
+  const history = useHistory();
+
   const [recruitmentType, setRecruitmentType] = useState<
     "active" | "inActive" | "draft"
   >();
@@ -29,23 +35,33 @@ const ManageRecruitment = () => {
         message: "エラーが発生しました。",
       });
     }
-  }, []);
+  }, [recruitment]);
+
+  const handleSetRecruitment = (recruitmentData: RecruitmentDataType) => {
+    setRecruitment(recruitmentData);
+    history.push("/edit_recruitment");
+  };
 
   const recruitingLists = (
     <>
-      {recruitments?.map((recruitment, index) => (
+      {recruitments?.map((recruitmentData, index) => (
         <div className={styles.listsContainer} key={index}>
           <div className={styles.titleWrapper}>
-            【募集中】{recruitment.title}
+            【募集中】{recruitmentData.title}
           </div>
           <div className={styles.occupationWrapper}>
-            {recruitment.department}
+            {recruitmentData.department}
           </div>
           <div className={styles.updatedDayWrapper}>
-            {recruitment.updatedAt}
+            {recruitmentData.updatedAt}
           </div>
           <div className={styles.editButtonWrapper}>
-            <Button text={"編集"}></Button>
+            <Link to="edit_recruitment">
+              <Button
+                onClick={() => handleSetRecruitment(recruitmentData)}
+                text={"編集"}
+              ></Button>
+            </Link>
           </div>
         </div>
       ))}
@@ -66,7 +82,10 @@ const ManageRecruitment = () => {
             {recruitment.updatedAt}
           </div>
           <div className={styles.editButtonWrapper}>
-            <Button text={"編集"}></Button>
+            <Button
+              onClick={() => handleSetRecruitment(recruitment)}
+              text={"編集"}
+            ></Button>
           </div>
         </div>
       ))}
@@ -87,7 +106,10 @@ const ManageRecruitment = () => {
             {recruitment.updatedAt}
           </div>
           <div className={styles.editButtonWrapper}>
-            <Button text={"編集"}></Button>
+            <Button
+              onClick={() => handleSetRecruitment(recruitment)}
+              text={"編集"}
+            ></Button>
           </div>
         </div>
       ))}

@@ -24,7 +24,7 @@ const CreateRecruitment = () => {
     <div className={styles.root}>
       <RecruitmentForm
         title={"新規募集作成"}
-        createRecruitment={createRecruitment}
+        handleRecruitment={createRecruitment}
       />
     </div>
   );

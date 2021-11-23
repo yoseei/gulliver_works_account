@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./RecruitmentForm.module.scss";
 import Button from "../../components/button/Button";
-import { CompanyDataType } from "../../data/company";
 import DeleteButton from "../../components/deleteButton/DeleteButton";
 import { ErrorMessage } from "@hookform/error-message";
 import Input from "../input/Input";
@@ -9,29 +8,30 @@ import IosSwitch from "../switch/Switch";
 import Textarea from "../textarea/Textarea";
 import { useForm } from "react-hook-form";
 import { RecruitmentDataType } from "../../data/recruitment";
+import { useCurrentRecruitment } from "../../hooks/useCurrentRecruitment";
 
 type PropsType = {
-  createRecruitment: (data: RecruitmentDataType) => Promise<void>;
+  handleRecruitment: (data: RecruitmentDataType) => Promise<void>;
   showDeleteButton?: boolean;
   title: "募集更新" | "新規募集作成";
 };
 
 const RecruitmentForm = ({
-  createRecruitment,
+  handleRecruitment,
   title,
   showDeleteButton,
 }: PropsType) => {
+  const { recruitment } = useCurrentRecruitment();
   const { errors, handleSubmit, register, reset } = useForm();
 
-  const onHandleSubmit = async (data: RecruitmentDataType) => {
-    await createRecruitment(data);
-    alert("募集を作成しました！");
+  const onHandleRecruitment = async (data: RecruitmentDataType) => {
+    await handleRecruitment(data);
     reset();
   };
   return (
     <div className={styles.root}>
       <h1>{title}</h1>
-      <form onSubmit={handleSubmit(onHandleSubmit)}>
+      <form onSubmit={handleSubmit(onHandleRecruitment)}>
         <ErrorMessage
           as="p"
           className={styles.errorMessage}
@@ -39,6 +39,7 @@ const RecruitmentForm = ({
           name="title"
         />
         <Input
+          defaultValue={recruitment?.title}
           name={"title"}
           ref={register({
             required: "※タイトルを入力してください。",
@@ -129,6 +130,7 @@ const RecruitmentForm = ({
           name="businessSummery"
         />
         <Textarea
+          defaultValue={recruitment?.jobDescription}
           name={"businessSummery"}
           rows={3}
           ref={register({
@@ -144,6 +146,7 @@ const RecruitmentForm = ({
           name="workConditions"
         />
         <Textarea
+          defaultValue={recruitment?.workConditions}
           name={"workConditions"}
           rows={3}
           ref={register({
@@ -159,6 +162,7 @@ const RecruitmentForm = ({
           name="qualificationRequirement"
         />
         <Textarea
+          defaultValue={recruitment?.qualificationRequirement}
           name={"qualificationRequirement"}
           rows={3}
           ref={register({

@@ -95,25 +95,25 @@
   ],
   "recruitments": [
     {
-      "title": "hoge",
+      "title": "ほげほげ２",
       "workPlace": "sample1",
       "occupation": "1",
       "industry": "1",
-      "business_summery": "hoge",
-      "workConditions": "hoge",
-      "qualificationRequirement": "hoge",
-      "companyId": "1",
+      "businessSummery": "gfdadff",
+      "workConditions": "ほげほげ",
+      "qualificationRequirement": "ほげほげ",
+      "companyId": 1,
       "id": 1
     },
     {
-      "title": "hoge",
-      "workPlace": "sample1",
-      "occupation": "1",
-      "industry": "1",
-      "businessSummery": "hoge",
-      "workConditions": "hoge",
-      "qualificationRequirement": "hoge",
-      "companyId": "1",
+      "title": "hogeeeeeeeeee",
+      "workPlace": "sample2",
+      "occupation": "2",
+      "industry": "2",
+      "businessSummery": "hogeeeeeeeeeeeeeee",
+      "workConditions": "hogeeeeeeeeeeee",
+      "qualificationRequirement": "hogeeeeeeeeee",
+      "companyId": 1,
       "id": 2
     },
     {
