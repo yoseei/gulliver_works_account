@@ -9,8 +9,8 @@ import { RecruitmentDataType } from "../../data/recruitment";
 import { useHistory } from "react-router";
 
 const ManageRecruitment = () => {
-  const [recruitments, setRecruitments] = useState<RecruitmentDataType[]>();
   const history = useHistory();
+  const [recruitments, setRecruitments] = useState<RecruitmentDataType[]>();
   const [recruitmentType, setRecruitmentType] = useState<
     "active" | "inActive" | "draft"
   >();
@@ -69,7 +69,7 @@ const ManageRecruitment = () => {
             【停止中】{recruitment.title}
           </div>
           <div className={styles.occupationWrapper}>
-            {recruitment.department}
+            {recruitment.occupation}
           </div>
           <div className={styles.updatedDayWrapper}>
             {recruitment.updatedAt}
@@ -93,7 +93,7 @@ const ManageRecruitment = () => {
             【下書き】{recruitment.title}
           </div>
           <div className={styles.occupationWrapper}>
-            {recruitment.department}
+            {recruitment.occupation}
           </div>
           <div className={styles.updatedDayWrapper}>
             {recruitment.updatedAt}
