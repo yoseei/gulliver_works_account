@@ -197,7 +197,7 @@ const RecruitmentForm = ({
             <Button
               border={"red"}
               color={"white"}
-              icon
+              icon={"delete"}
               onClick={deleteRecruitment}
               text={"削除する"}
             />

@@ -118,7 +118,7 @@ const EditAcademicHistoryModal = ({
               <Button
                 border={"red"}
                 color={"white"}
-                icon
+                icon={"delete"}
                 onClick={handleDeleteAcademicHistory}
                 text={"削除する"}
               />

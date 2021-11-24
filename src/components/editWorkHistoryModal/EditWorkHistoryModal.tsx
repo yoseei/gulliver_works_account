@@ -133,7 +133,7 @@ const EditWorkHistoryModal = ({
               <Button
                 border={"red"}
                 color={"white"}
-                icon
+                icon={"delete"}
                 onClick={handleDeleteWorkHistory}
                 text={"削除する"}
               />
