@@ -52,7 +52,6 @@ const EditRecruitment = () => {
       <EditRecruitmentForm
         handleRecruitment={editRecruitment}
         recruitment={recruitment}
-        showDeleteButton
         title={"募集更新"}
       />
     </div>

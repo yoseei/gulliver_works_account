@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./EditRecruitmentForm.module.scss";
 import Button from "../../components/button/Button";
-import DeleteButton from "../../components/deleteButton/DeleteButton";
 import { ErrorMessage } from "@hookform/error-message";
 import Input from "../input/Input";
 import IosSwitch from "../switch/Switch";
@@ -15,14 +14,12 @@ import { useHistory } from "react-router";
 type PropsType = {
   handleRecruitment: (data: RecruitmentDataType) => Promise<void>;
   recruitment: RecruitmentDataType | undefined;
-  showDeleteButton?: boolean;
   title: "募集更新" | "新規募集作成";
 };
 
 const RecruitmentForm = ({
   handleRecruitment,
   recruitment,
-  showDeleteButton,
   title,
 }: PropsType) => {
   const { errors, handleSubmit, register, reset } = useForm();
@@ -196,13 +193,15 @@ const RecruitmentForm = ({
         </div>
 
         <div className={styles.buttonContainer}>
-          {showDeleteButton ? (
-            <div className={styles.leftButtonWrapper}>
-              <DeleteButton onClick={deleteRecruitment} />
-            </div>
-          ) : (
-            ""
-          )}
+          <div className={styles.leftButtonWrapper}>
+            <Button
+              border={"red"}
+              color={"white"}
+              icon
+              onClick={deleteRecruitment}
+              text={"削除する"}
+            />
+          </div>
 
           <div className={styles.rightButtonWrapper}>
             <Button text={"キャンセル"} color={"gray"} border={"none"} />

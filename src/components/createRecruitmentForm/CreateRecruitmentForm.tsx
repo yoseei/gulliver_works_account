@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./CreateRecruitmentForm.module.scss";
 import Button from "../button/Button";
-import DeleteButton from "../deleteButton/DeleteButton";
 import { ErrorMessage } from "@hookform/error-message";
 import Input from "../input/Input";
 import IosSwitch from "../switch/Switch";
@@ -11,15 +10,10 @@ import { RecruitmentDataType } from "../../data/recruitment";
 
 type PropsType = {
   handleRecruitment: (data: RecruitmentDataType) => Promise<void>;
-  showDeleteButton?: boolean;
   title: "募集更新" | "新規募集作成";
 };
 
-const RecruitmentForm = ({
-  handleRecruitment,
-  title,
-  showDeleteButton,
-}: PropsType) => {
+const RecruitmentForm = ({ handleRecruitment, title }: PropsType) => {
   const { errors, handleSubmit, register, reset } = useForm();
 
   const onHandleRecruitment = async (data: RecruitmentDataType) => {
@@ -176,14 +170,6 @@ const RecruitmentForm = ({
         </div>
 
         <div className={styles.buttonContainer}>
-          {showDeleteButton ? (
-            <div className={styles.leftButtonWrapper}>
-              <DeleteButton />
-            </div>
-          ) : (
-            ""
-          )}
-
           <div className={styles.rightButtonWrapper}>
             <Button text={"キャンセル"} color={"gray"} border={"none"} />
             <Button text={"募集公開"} color={"primary"} border={"none"} />

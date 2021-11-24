@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./EditWorkHistoryModal.module.scss";
 import Button from "../button/Button";
-import DeleteButton from "../deleteButton/DeleteButton";
 import { ErrorMessage } from "@hookform/error-message";
 import { Modal } from "antd";
 import { notification } from "antd";
@@ -131,7 +130,13 @@ const EditWorkHistoryModal = ({
 
           <div className={styles.buttonContainer}>
             <div className={styles.deleteButtonWrapper}>
-              <DeleteButton onClick={() => handleDeleteWorkHistory()} />
+              <Button
+                border={"red"}
+                color={"white"}
+                icon
+                onClick={handleDeleteWorkHistory}
+                text={"削除する"}
+              />
             </div>
             <div className={styles.rightButtonWrapper}>
               <div className={styles.cancelButtonWrapper}>
