@@ -8,7 +8,6 @@ import IosSwitch from "../switch/Switch";
 import Textarea from "../textarea/Textarea";
 import { useForm } from "react-hook-form";
 import { RecruitmentDataType } from "../../data/recruitment";
-import { useCurrentRecruitment } from "../../hooks/useCurrentRecruitment";
 
 type PropsType = {
   handleRecruitment: (data: RecruitmentDataType) => Promise<void>;
@@ -21,7 +20,6 @@ const RecruitmentForm = ({
   title,
   showDeleteButton,
 }: PropsType) => {
-  const { recruitment } = useCurrentRecruitment();
   const { errors, handleSubmit, register, reset } = useForm();
 
   const onHandleRecruitment = async (data: RecruitmentDataType) => {

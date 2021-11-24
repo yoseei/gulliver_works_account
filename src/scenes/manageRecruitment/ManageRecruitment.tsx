@@ -45,7 +45,7 @@ const ManageRecruitment = () => {
             【募集中】{recruitment.title}
           </div>
           <div className={styles.occupationWrapper}>
-            {recruitment.department}
+            {recruitment.occupation}
           </div>
           <div className={styles.updatedDayWrapper}>
             {recruitment.updatedAt}

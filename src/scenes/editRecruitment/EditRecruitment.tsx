@@ -8,6 +8,13 @@ import { useCurrentEmployee } from "../../hooks/useCurrentEmployee";
 import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
 
+const now = new Date();
+const year = now.getFullYear();
+const month = now.getMonth() + 1;
+const date = now.getDate();
+
+const updatedAt = `${year}/${month}/${date}`;
+
 const EditRecruitment = () => {
   const { employee } = useCurrentEmployee();
   const companyId = employee?.companies[0].id;
@@ -22,6 +29,7 @@ const EditRecruitment = () => {
       data: {
         ...data,
         companyId: companyId,
+        updatedAt: updatedAt,
       },
     });
     alert("募集を更新しました！");

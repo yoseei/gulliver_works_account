@@ -95,28 +95,6 @@
   ],
   "recruitments": [
     {
-      "title": "ほ",
-      "workPlace": "東京",
-      "occupation": "フロントエンドエンジニア",
-      "industry": "銀行",
-      "businessSummary": "gfdadfffda",
-      "workConditions": "ほげほげfdaf",
-      "qualificationRequirement": "ほげほげfda",
-      "companyId": 1,
-      "id": 1
-    },
-    {
-      "title": "hogeeeeeeeeee",
-      "workPlace": "神奈川",
-      "occupation": "バックエンドエンジニア",
-      "industry": "IT",
-      "businessSummary": "hogeeeeeeeeeeeeeee",
-      "workConditions": "hogeeeeeeeeeeee",
-      "qualificationRequirement": "hogeeeeeeeeee",
-      "companyId": 1,
-      "id": 2
-    },
-    {
       "title": "テスト2",
       "workPlace": "東京",
       "occupation": "フロントエンドエンジニア",
@@ -125,7 +103,32 @@
       "workConditions": "test",
       "qualificationRequirement": "test",
       "companyId": 1,
+      "updatedAt": "2021/11/24",
       "id": 3
+    },
+    {
+      "title": "hoge",
+      "workPlace": "神奈川",
+      "occupation": "ドラマー",
+      "industry": "銀行",
+      "businessSummary": "hoge",
+      "workConditions": "hoge",
+      "qualificationRequirement": "hoge",
+      "companyId": 1,
+      "updatedAt": "2021/11/24",
+      "id": 4
+    },
+    {
+      "title": "test",
+      "workPlace": "神奈川",
+      "occupation": "フロントエンドエンジニア",
+      "industry": "IT",
+      "businessSummary": "test",
+      "workConditions": "test",
+      "qualificationRequirement": "test",
+      "companyId": 1,
+      "updatedAt": "2021/11/24",
+      "id": 5
     }
   ]
 }

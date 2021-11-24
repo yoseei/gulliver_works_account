@@ -5,10 +5,12 @@ import { HttpClient } from "../../utilities/axiosInstance";
 import { localHostURL } from "../../hooks/localHostURL";
 import { RecruitmentDataType } from "../../data/recruitment";
 import { useCurrentEmployee } from "../../hooks/useCurrentEmployee";
+import { useHistory } from "react-router";
 
 const CreateRecruitment = () => {
   const { employee } = useCurrentEmployee();
   const companyId = employee?.companies[0].id;
+  const history = useHistory();
 
   const createRecruitment = async (data: RecruitmentDataType) => {
     await HttpClient.request({
@@ -18,6 +20,9 @@ const CreateRecruitment = () => {
         ...data,
       },
     });
+
+    alert("募集を作成しました！");
+    history.push("/manage_recruitment");
   };
 
   return (

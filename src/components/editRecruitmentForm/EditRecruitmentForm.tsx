@@ -8,6 +8,9 @@ import IosSwitch from "../switch/Switch";
 import Textarea from "../textarea/Textarea";
 import { useForm } from "react-hook-form";
 import { RecruitmentDataType } from "../../data/recruitment";
+import { HttpClient } from "../../utilities/axiosInstance";
+import { localHostURL } from "../../hooks/localHostURL";
+import { useHistory } from "react-router";
 
 type PropsType = {
   handleRecruitment: (data: RecruitmentDataType) => Promise<void>;
@@ -23,11 +26,22 @@ const RecruitmentForm = ({
   title,
 }: PropsType) => {
   const { errors, handleSubmit, register, reset } = useForm();
+  const history = useHistory();
 
   const onHandleRecruitment = async (data: RecruitmentDataType) => {
     await handleRecruitment(data);
     reset();
   };
+
+  const deleteRecruitment = async () => {
+    await HttpClient.request({
+      method: "DELETE",
+      url: `${localHostURL}/recruitments/${recruitment?.id}`,
+    });
+    alert("募集を削除しました。");
+    history.push("/manage_recruitment");
+  };
+
   return (
     <div className={styles.root}>
       <h1>{title}</h1>
@@ -184,7 +198,7 @@ const RecruitmentForm = ({
         <div className={styles.buttonContainer}>
           {showDeleteButton ? (
             <div className={styles.leftButtonWrapper}>
-              <DeleteButton />
+              <DeleteButton onClick={deleteRecruitment} />
             </div>
           ) : (
             ""
