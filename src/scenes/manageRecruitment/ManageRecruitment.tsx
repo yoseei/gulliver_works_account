@@ -6,15 +6,11 @@ import { HttpClient } from "../../utilities/axiosInstance";
 import { localHostURL } from "../../hooks/localHostURL";
 import { notification } from "antd";
 import { RecruitmentDataType } from "../../data/recruitment";
-import { Link } from "react-router-dom";
-import { useCurrentRecruitment } from "../../hooks/useCurrentRecruitment";
 import { useHistory } from "react-router";
 
 const ManageRecruitment = () => {
-  const { recruitment, setRecruitment } = useCurrentRecruitment();
   const [recruitments, setRecruitments] = useState<RecruitmentDataType[]>();
   const history = useHistory();
-
   const [recruitmentType, setRecruitmentType] = useState<
     "active" | "inActive" | "draft"
   >();
@@ -35,33 +31,30 @@ const ManageRecruitment = () => {
         message: "エラーが発生しました。",
       });
     }
-  }, [recruitment]);
+  }, []);
 
-  const handleSetRecruitment = (recruitmentData: RecruitmentDataType) => {
-    setRecruitment(recruitmentData);
-    history.push("/edit_recruitment");
+  const moveToEditPage = (recruitmentId: string) => {
+    history.push(`/edit_recruitment/${recruitmentId}`);
   };
 
   const recruitingLists = (
     <>
-      {recruitments?.map((recruitmentData, index) => (
+      {recruitments?.map((recruitment, index) => (
         <div className={styles.listsContainer} key={index}>
           <div className={styles.titleWrapper}>
-            【募集中】{recruitmentData.title}
+            【募集中】{recruitment.title}
           </div>
           <div className={styles.occupationWrapper}>
-            {recruitmentData.department}
+            {recruitment.department}
           </div>
           <div className={styles.updatedDayWrapper}>
-            {recruitmentData.updatedAt}
+            {recruitment.updatedAt}
           </div>
           <div className={styles.editButtonWrapper}>
-            <Link to="edit_recruitment">
-              <Button
-                onClick={() => handleSetRecruitment(recruitmentData)}
-                text={"編集"}
-              ></Button>
-            </Link>
+            <Button
+              onClick={() => moveToEditPage(recruitment.id)}
+              text={"編集"}
+            ></Button>
           </div>
         </div>
       ))}
@@ -83,7 +76,7 @@ const ManageRecruitment = () => {
           </div>
           <div className={styles.editButtonWrapper}>
             <Button
-              onClick={() => handleSetRecruitment(recruitment)}
+              onClick={() => moveToEditPage(recruitment.id)}
               text={"編集"}
             ></Button>
           </div>
@@ -107,7 +100,7 @@ const ManageRecruitment = () => {
           </div>
           <div className={styles.editButtonWrapper}>
             <Button
-              onClick={() => handleSetRecruitment(recruitment)}
+              onClick={() => moveToEditPage(recruitment.id)}
               text={"編集"}
             ></Button>
           </div>

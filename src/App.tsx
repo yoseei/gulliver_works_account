@@ -70,7 +70,7 @@ const App = () => {
               <CreateRecruitment />
             </div>
           </Route>
-          <Route path="/edit_recruitment">
+          <Route path="/edit_recruitment/:id">
             <div className="withSideBarContainer">
               {sideBar}
               <EditRecruitment />

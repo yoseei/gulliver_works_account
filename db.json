@@ -95,36 +95,36 @@
   ],
   "recruitments": [
     {
-      "title": "ほげほげ２",
-      "workPlace": "sample1",
-      "occupation": "1",
-      "industry": "1",
-      "businessSummery": "gfdadff",
-      "workConditions": "ほげほげ",
-      "qualificationRequirement": "ほげほげ",
+      "title": "ほ",
+      "workPlace": "東京",
+      "occupation": "フロントエンドエンジニア",
+      "industry": "銀行",
+      "businessSummary": "gfdadfffda",
+      "workConditions": "ほげほげfdaf",
+      "qualificationRequirement": "ほげほげfda",
       "companyId": 1,
       "id": 1
     },
     {
       "title": "hogeeeeeeeeee",
-      "workPlace": "sample2",
-      "occupation": "2",
-      "industry": "2",
-      "businessSummery": "hogeeeeeeeeeeeeeee",
+      "workPlace": "神奈川",
+      "occupation": "バックエンドエンジニア",
+      "industry": "IT",
+      "businessSummary": "hogeeeeeeeeeeeeeee",
       "workConditions": "hogeeeeeeeeeeee",
       "qualificationRequirement": "hogeeeeeeeeee",
       "companyId": 1,
       "id": 2
     },
     {
-      "title": "テスト",
-      "workPlace": "sample1",
-      "occupation": "1",
-      "industry": "1",
-      "businessSummery": "テスト",
+      "title": "テスト2",
+      "workPlace": "東京",
+      "occupation": "フロントエンドエンジニア",
+      "industry": "銀行",
+      "businessSummary": "test",
       "workConditions": "test",
       "qualificationRequirement": "test",
-      "companyId": "1",
+      "companyId": 1,
       "id": 3
     }
   ]

@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./RecruitmentForm.module.scss";
-import Button from "../../components/button/Button";
-import DeleteButton from "../../components/deleteButton/DeleteButton";
+import styles from "./CreateRecruitmentForm.module.scss";
+import Button from "../button/Button";
+import DeleteButton from "../deleteButton/DeleteButton";
 import { ErrorMessage } from "@hookform/error-message";
 import Input from "../input/Input";
 import IosSwitch from "../switch/Switch";
@@ -39,7 +39,6 @@ const RecruitmentForm = ({
           name="title"
         />
         <Input
-          defaultValue={recruitment?.title}
           name={"title"}
           ref={register({
             required: "※タイトルを入力してください。",
@@ -65,9 +64,9 @@ const RecruitmentForm = ({
                 })}
               >
                 <option value=""></option>
-                <option value="sample1">東京</option>
-                <option value="sample2">神奈川</option>
-                <option value="sample3">千葉</option>
+                <option value="東京">東京</option>
+                <option value="神奈川">神奈川</option>
+                <option value="千葉">千葉</option>
               </select>
             </div>
           </div>
@@ -90,9 +89,13 @@ const RecruitmentForm = ({
                 })}
               >
                 <option value=""></option>
-                <option value="1">フロントエンドエンジニア</option>
-                <option value="2">バックエンドエンジニア</option>
-                <option value="3">ドラマー</option>
+                <option value="フロントエンドエンジニア">
+                  フロントエンドエンジニア
+                </option>
+                <option value="バックエンドエンジニア">
+                  バックエンドエンジニア
+                </option>
+                <option value="ドラマー">ドラマー</option>
               </select>
             </div>
           </div>
@@ -115,9 +118,9 @@ const RecruitmentForm = ({
                 })}
               >
                 <option value=""></option>
-                <option value="1">銀行</option>
-                <option value="2">IT</option>
-                <option value="3">ミュージシャン</option>
+                <option value="銀行">銀行</option>
+                <option value="IT">IT</option>
+                <option value="ミュージシャン">ミュージシャン</option>
               </select>
             </div>
           </div>
@@ -127,11 +130,10 @@ const RecruitmentForm = ({
           as="p"
           className={styles.errorMessage}
           errors={errors}
-          name="businessSummery"
+          name="businessSummary"
         />
         <Textarea
-          defaultValue={recruitment?.jobDescription}
-          name={"businessSummery"}
+          name={"businessSummary"}
           rows={3}
           ref={register({
             required: "※仕事内容を入力してください。",
@@ -146,7 +148,6 @@ const RecruitmentForm = ({
           name="workConditions"
         />
         <Textarea
-          defaultValue={recruitment?.workConditions}
           name={"workConditions"}
           rows={3}
           ref={register({
@@ -162,7 +163,6 @@ const RecruitmentForm = ({
           name="qualificationRequirement"
         />
         <Textarea
-          defaultValue={recruitment?.qualificationRequirement}
           name={"qualificationRequirement"}
           rows={3}
           ref={register({

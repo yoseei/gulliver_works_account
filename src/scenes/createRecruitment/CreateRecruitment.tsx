@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./CreateRecruitment.module.scss";
-import RecruitmentForm from "../../components/recruitmentForm/RecruitmentForm";
+import CreateRecruitmentForm from "../../components/createRecruitmentForm/CreateRecruitmentForm";
 import { HttpClient } from "../../utilities/axiosInstance";
 import { localHostURL } from "../../hooks/localHostURL";
 import { RecruitmentDataType } from "../../data/recruitment";
@@ -22,7 +22,7 @@ const CreateRecruitment = () => {
 
   return (
     <div className={styles.root}>
-      <RecruitmentForm
+      <CreateRecruitmentForm
         title={"新規募集作成"}
         handleRecruitment={createRecruitment}
       />
