@@ -18,12 +18,15 @@ const CreateRecruitment = () => {
       url: `${localHostURL}/companies/${companyId}/recruitments`,
       data: {
         ...data,
+        company: employee?.companies[0],
       },
     });
 
     alert("募集を作成しました！");
     history.push("/manage_recruitment");
   };
+
+  console.log(employee);
 
   return (
     <div className={styles.root}>
