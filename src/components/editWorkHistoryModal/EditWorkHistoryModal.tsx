@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./EditWorkHistoryModal.module.scss";
 import Button from "../button/Button";
+import { DeleteOutlined } from "@ant-design/icons";
 import { ErrorMessage } from "@hookform/error-message";
 import { Modal } from "antd";
 import { notification } from "antd";
@@ -133,7 +134,7 @@ const EditWorkHistoryModal = ({
               <Button
                 border={"red"}
                 color={"white"}
-                icon={"delete"}
+                icon={<DeleteOutlined />}
                 onClick={handleDeleteWorkHistory}
                 text={"削除する"}
               />

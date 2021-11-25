@@ -6,6 +6,7 @@ import { ErrorMessage } from "@hookform/error-message";
 import Input from "../input/Input";
 import { Modal, notification } from "antd";
 import { useForm } from "react-hook-form";
+import { DeleteOutlined } from "@ant-design/icons";
 
 type PropsType = {
   academicHistory?: AcademicHistoryType;
@@ -118,7 +119,7 @@ const EditAcademicHistoryModal = ({
               <Button
                 border={"red"}
                 color={"white"}
-                icon={"delete"}
+                icon={<DeleteOutlined />}
                 onClick={handleDeleteAcademicHistory}
                 text={"削除する"}
               />
