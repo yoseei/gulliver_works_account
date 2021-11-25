@@ -14,11 +14,9 @@ import Profile from "./scenes/profile/Profile";
 import RecruitmentDetail from "./scenes/recruitmentDetail/RecruitmentDetail";
 import SideBar from "./components/sideBar/SideBar";
 import SignInPage from "./scenes/signIn/generalSignIn/GeneralSignIn";
-import { useCurrentEmployee } from "./hooks/useCurrentEmployee";
+import NotLoggedInApplicantRecruitment from "./scenes/notLoggedInApplicantRecruitment/NotLoggedInApplicantRecruitment";
 
 const App = () => {
-  const { employee, setEmployee } = useCurrentEmployee();
-
   const sideBar = (
     <SideBar textA="企業詳細" textB="募集管理" textC="サインアウト" />
   );
@@ -27,6 +25,10 @@ const App = () => {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={ApplicantRecruitment} />
+          <Route
+            path="/not_loggedin_user"
+            component={NotLoggedInApplicantRecruitment}
+          />
           <Route path="/signin" component={SignInPage} />
           <Route path="/employee_signin" component={EmployeeSignIn} />
           <Route path="/employee_signup" component={EmployeeSignUp} />

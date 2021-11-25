@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Profile.module.scss";
-
-import { AccountType } from "../../data/account/index";
 import { AcademicHistoryType } from "../../data/academicHistory/index";
 import AcademicHistoryTable from "../../components/academicHistoryTable/AcademicHistoryTable";
 import AcademicHistoryModal from "../../components/academicHistoryModal/AcademicHistoryModal";
@@ -51,12 +49,10 @@ const Profile = () => {
   };
 
   const fetchAccounts = async () => {
-    const res = await HttpClient.request({
+    await HttpClient.request({
       method: "GET",
       url: `${localHostURL}/accounts/1`,
     });
-
-    // const accountData = res.data;
   };
 
   const fetchProfile = async () => {
