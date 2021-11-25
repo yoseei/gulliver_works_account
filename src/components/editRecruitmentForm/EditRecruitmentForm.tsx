@@ -1,14 +1,15 @@
 import React from "react";
 import styles from "./EditRecruitmentForm.module.scss";
 import Button from "../../components/button/Button";
+import { DeleteOutlined } from "@ant-design/icons";
 import { ErrorMessage } from "@hookform/error-message";
+import { HttpClient } from "../../utilities/axiosInstance";
 import Input from "../input/Input";
 import IosSwitch from "../switch/Switch";
+import { localHostURL } from "../../hooks/localHostURL";
+import { RecruitmentDataType } from "../../data/recruitment";
 import Textarea from "../textarea/Textarea";
 import { useForm } from "react-hook-form";
-import { RecruitmentDataType } from "../../data/recruitment";
-import { HttpClient } from "../../utilities/axiosInstance";
-import { localHostURL } from "../../hooks/localHostURL";
 import { useHistory } from "react-router";
 
 type PropsType = {
@@ -197,12 +198,11 @@ const RecruitmentForm = ({
             <Button
               border={"red"}
               color={"white"}
-              icon={"delete"}
+              icon={<DeleteOutlined />}
               onClick={deleteRecruitment}
               text={"削除する"}
             />
           </div>
-
           <div className={styles.rightButtonWrapper}>
             <Button text={"キャンセル"} color={"gray"} border={"none"} />
             <Button text={"募集公開"} color={"primary"} border={"none"} />

@@ -1,8 +1,6 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import styles from "./Button.module.scss";
 import classNames from "classnames";
-import { DeleteOutlined } from "@ant-design/icons";
-import { EditOutlined } from "@ant-design/icons";
 
 interface PropsTypes {
   alignItems?: "center";
@@ -10,7 +8,7 @@ interface PropsTypes {
   borderRadius?: string;
   color?: "primary" | "gray" | "white";
   fontSize?: string;
-  icon?: "edit" | "delete";
+  icon?: ReactNode;
   onClick?: React.MouseEventHandler<HTMLParagraphElement> | undefined;
   padding?: string;
   text: string;
@@ -50,15 +48,7 @@ const Button = ({
       }}
       type={type}
     >
-      <span>
-        {icon === "delete" ? (
-          <DeleteOutlined />
-        ) : "" || icon === "edit" ? (
-          <EditOutlined />
-        ) : (
-          ""
-        )}
-      </span>
+      <span>{icon}</span>
       <p onClick={onClick}>{text}</p>
     </button>
   );
