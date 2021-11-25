@@ -37,9 +37,13 @@
   }
   .buttonContainer {
     display: flex;
-    gap: 10px;
+    justify-content: space-between;
     margin-left: auto;
-    width: 35%;
+    .rightButtonWrapper {
+      display: flex;
+      gap: 10px;
+      width: 10rem;
+    }
   }
 }
 .errorMessage {

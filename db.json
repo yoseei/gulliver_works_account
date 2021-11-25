@@ -95,37 +95,40 @@
   ],
   "recruitments": [
     {
-      "title": "hoge",
-      "workPlace": "sample1",
-      "occupation": "1",
-      "industry": "1",
-      "business_summery": "hoge",
-      "workConditions": "hoge",
-      "qualificationRequirement": "hoge",
-      "companyId": "1",
-      "id": 1
-    },
-    {
-      "title": "hoge",
-      "workPlace": "sample1",
-      "occupation": "1",
-      "industry": "1",
-      "businessSummery": "hoge",
-      "workConditions": "hoge",
-      "qualificationRequirement": "hoge",
-      "companyId": "1",
-      "id": 2
-    },
-    {
-      "title": "テスト",
-      "workPlace": "sample1",
-      "occupation": "1",
-      "industry": "1",
-      "businessSummery": "テスト",
+      "title": "テスト2",
+      "workPlace": "東京",
+      "occupation": "フロントエンドエンジニア",
+      "industry": "銀行",
+      "businessSummary": "test",
       "workConditions": "test",
       "qualificationRequirement": "test",
-      "companyId": "1",
+      "companyId": 1,
+      "updatedAt": "2021/11/24",
       "id": 3
+    },
+    {
+      "title": "hoge",
+      "workPlace": "神奈川",
+      "occupation": "ドラマー",
+      "industry": "銀行",
+      "businessSummary": "hoge",
+      "workConditions": "hoge",
+      "qualificationRequirement": "hoge",
+      "companyId": 1,
+      "updatedAt": "2021/11/24",
+      "id": 4
+    },
+    {
+      "title": "test",
+      "workPlace": "神奈川",
+      "occupation": "フロントエンドエンジニア",
+      "industry": "IT",
+      "businessSummary": "test",
+      "workConditions": "test",
+      "qualificationRequirement": "test",
+      "companyId": 1,
+      "updatedAt": "2021/11/24",
+      "id": 5
     }
   ]
 }

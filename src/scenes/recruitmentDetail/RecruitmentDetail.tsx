@@ -64,7 +64,7 @@ const RecruitmentDetail = () => {
               <p>勤務地</p>
             </div>
             <div className={styles.rightWrapper}>
-              <p>{recruitment?.workplace.name}</p>
+              <p>{recruitment?.workPlace.name}</p>
             </div>
           </div>
           <div className={styles.jobDescription_lowContainer}>

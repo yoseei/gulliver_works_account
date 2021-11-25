@@ -1,5 +1,5 @@
 export type RecruitmentDataType = {
-  id: number;
+  id: string;
   title: string;
   department: string;
   occupation: {
@@ -10,7 +10,7 @@ export type RecruitmentDataType = {
     id: number;
     name: string;
   };
-  workplace: {
+  workPlace: {
     id: string;
     name: string;
   };
@@ -19,11 +19,12 @@ export type RecruitmentDataType = {
   qualificationRequirement: string;
   updatedAt: string;
   advertisementNumber: number;
+  businessSummary: string;
   company: {
     id: number;
     name: string;
-    name_kana: string;
-    head_office_location: string;
+    nameKana: string;
+    headOfficeLocation: string;
     year_of_establishment: string;
     hp_url: string;
     phone: string;

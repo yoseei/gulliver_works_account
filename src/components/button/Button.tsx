@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import styles from "./Button.module.scss";
 import classNames from "classnames";
 
@@ -8,6 +8,7 @@ interface PropsTypes {
   borderRadius?: string;
   color?: "primary" | "gray" | "white";
   fontSize?: string;
+  icon?: ReactNode;
   onClick?: React.MouseEventHandler<HTMLParagraphElement> | undefined;
   padding?: string;
   text: string;
@@ -21,6 +22,7 @@ const Button = ({
   border,
   color,
   fontSize,
+  icon,
   onClick,
   padding,
   text,
@@ -46,6 +48,7 @@ const Button = ({
       }}
       type={type}
     >
+      <span>{icon}</span>
       <p onClick={onClick}>{text}</p>
     </button>
   );

@@ -2,11 +2,11 @@ import React from "react";
 import styles from "./EditAcademicHistoryModal.module.scss";
 import { AcademicHistoryType } from "../../data/academicHistory/index";
 import Button from "../button/Button";
-import DeleteButton from "../../components/deleteButton/DeleteButton";
 import { ErrorMessage } from "@hookform/error-message";
 import Input from "../input/Input";
 import { Modal, notification } from "antd";
 import { useForm } from "react-hook-form";
+import { DeleteOutlined } from "@ant-design/icons";
 
 type PropsType = {
   academicHistory?: AcademicHistoryType;
@@ -116,7 +116,13 @@ const EditAcademicHistoryModal = ({
 
           <div className={styles.buttonContainer}>
             <div className={styles.deleteButtonWrapper}>
-              <DeleteButton onClick={() => handleDeleteAcademicHistory()} />
+              <Button
+                border={"red"}
+                color={"white"}
+                icon={<DeleteOutlined />}
+                onClick={handleDeleteAcademicHistory}
+                text={"削除する"}
+              />
             </div>
             <div className={styles.rightButtonWrapper}>
               <div className={styles.cancelButtonWrapper}>

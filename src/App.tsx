@@ -6,6 +6,7 @@ import CreateRecruitment from "./scenes/createRecruitment/CreateRecruitment";
 import CompanyRegistration from "./scenes/companyRegistration/CompanyRegistration";
 import CompanyEdit from "./scenes/companyEdit/CompanyEdit";
 import CompanyDetail from "./scenes/companyDetail/CompanyDetail";
+import EditRecruitment from "./scenes/editRecruitment/EditRecruitment";
 import EmployeeSignIn from "./scenes/signIn/employeeSignIn/EmployeeSignIn";
 import EmployeeSignUp from "./scenes/signUp/employeeSignUp/EmployeeSignUp";
 import ManageRecruitment from "./scenes/manageRecruitment/ManageRecruitment";
@@ -67,6 +68,12 @@ const App = () => {
             <div className="withSideBarContainer">
               {sideBar}
               <CreateRecruitment />
+            </div>
+          </Route>
+          <Route path="/edit_recruitment/:id">
+            <div className="withSideBarContainer">
+              {sideBar}
+              <EditRecruitment />
             </div>
           </Route>
           <Route path="/manage_recruitment">

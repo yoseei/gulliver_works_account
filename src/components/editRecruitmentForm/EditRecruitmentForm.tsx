@@ -1,31 +1,49 @@
 import React from "react";
-import styles from "./RecruitmentForm.module.scss";
+import styles from "./EditRecruitmentForm.module.scss";
 import Button from "../../components/button/Button";
-import { CompanyDataType } from "../../data/company";
+import { DeleteOutlined } from "@ant-design/icons";
 import { ErrorMessage } from "@hookform/error-message";
+import { HttpClient } from "../../utilities/axiosInstance";
 import Input from "../input/Input";
 import IosSwitch from "../switch/Switch";
+import { localHostURL } from "../../hooks/localHostURL";
+import { RecruitmentDataType } from "../../data/recruitment";
 import Textarea from "../textarea/Textarea";
 import { useForm } from "react-hook-form";
-import { RecruitmentDataType } from "../../data/recruitment";
+import { useHistory } from "react-router";
 
 type PropsType = {
-  createRecruitment: (data: RecruitmentDataType) => Promise<void>;
-  title: "募集作成" | "新規募集作成";
+  handleRecruitment: (data: RecruitmentDataType) => Promise<void>;
+  recruitment: RecruitmentDataType | undefined;
+  title: "募集更新" | "新規募集作成";
 };
 
-const RecruitmentForm = ({ createRecruitment, title }: PropsType) => {
+const RecruitmentForm = ({
+  handleRecruitment,
+  recruitment,
+  title,
+}: PropsType) => {
   const { errors, handleSubmit, register, reset } = useForm();
+  const history = useHistory();
 
-  const onHandleSubmit = async (data: RecruitmentDataType) => {
-    await createRecruitment(data);
-    alert("募集を作成しました！");
+  const onHandleRecruitment = async (data: RecruitmentDataType) => {
+    await handleRecruitment(data);
     reset();
   };
+
+  const deleteRecruitment = async () => {
+    await HttpClient.request({
+      method: "DELETE",
+      url: `${localHostURL}/recruitments/${recruitment?.id}`,
+    });
+    alert("募集を削除しました。");
+    history.push("/manage_recruitment");
+  };
+
   return (
     <div className={styles.root}>
       <h1>{title}</h1>
-      <form onSubmit={handleSubmit(onHandleSubmit)}>
+      <form onSubmit={handleSubmit(onHandleRecruitment)}>
         <ErrorMessage
           as="p"
           className={styles.errorMessage}
@@ -33,6 +51,7 @@ const RecruitmentForm = ({ createRecruitment, title }: PropsType) => {
           name="title"
         />
         <Input
+          defaultValue={recruitment?.title}
           name={"title"}
           ref={register({
             required: "※タイトルを入力してください。",
@@ -57,10 +76,10 @@ const RecruitmentForm = ({ createRecruitment, title }: PropsType) => {
                   required: "※勤務地を選択してください。",
                 })}
               >
-                <option value=""></option>
-                <option value="sample1">東京</option>
-                <option value="sample2">神奈川</option>
-                <option value="sample3">千葉</option>
+                <option value="">{recruitment?.workPlace}</option>
+                <option value="東京">東京</option>
+                <option value="神奈川">神奈川</option>
+                <option value="千葉">千葉</option>
               </select>
             </div>
           </div>
@@ -82,10 +101,14 @@ const RecruitmentForm = ({ createRecruitment, title }: PropsType) => {
                   required: "※職種を選択してください。",
                 })}
               >
-                <option value=""></option>
-                <option value="1">フロントエンドエンジニア</option>
-                <option value="2">バックエンドエンジニア</option>
-                <option value="3">ドラマー</option>
+                <option value="">{recruitment?.occupation}</option>
+                <option value="フロントエンドエンジニア">
+                  フロントエンドエンジニア
+                </option>
+                <option value="バックエンドエンジニア">
+                  バックエンドエンジニア
+                </option>
+                <option value="ドラマー">ドラマー</option>
               </select>
             </div>
           </div>
@@ -107,10 +130,10 @@ const RecruitmentForm = ({ createRecruitment, title }: PropsType) => {
                   required: "※業種を選択してください。",
                 })}
               >
-                <option value=""></option>
-                <option value="1">銀行</option>
-                <option value="2">IT</option>
-                <option value="3">ミュージシャン</option>
+                <option value="">{recruitment?.industry}</option>
+                <option value="銀行">銀行</option>
+                <option value="IT">IT</option>
+                <option value="ミュージシャン">ミュージシャン</option>
               </select>
             </div>
           </div>
@@ -120,10 +143,11 @@ const RecruitmentForm = ({ createRecruitment, title }: PropsType) => {
           as="p"
           className={styles.errorMessage}
           errors={errors}
-          name="businessSummery"
+          name="businessSummary"
         />
         <Textarea
-          name={"businessSummery"}
+          defaultValue={recruitment?.businessSummary}
+          name={"businessSummary"}
           rows={3}
           ref={register({
             required: "※仕事内容を入力してください。",
@@ -138,6 +162,7 @@ const RecruitmentForm = ({ createRecruitment, title }: PropsType) => {
           name="workConditions"
         />
         <Textarea
+          defaultValue={recruitment?.workConditions}
           name={"workConditions"}
           rows={3}
           ref={register({
@@ -153,6 +178,7 @@ const RecruitmentForm = ({ createRecruitment, title }: PropsType) => {
           name="qualificationRequirement"
         />
         <Textarea
+          defaultValue={recruitment?.qualificationRequirement}
           name={"qualificationRequirement"}
           rows={3}
           ref={register({
@@ -168,8 +194,19 @@ const RecruitmentForm = ({ createRecruitment, title }: PropsType) => {
         </div>
 
         <div className={styles.buttonContainer}>
-          <Button text={"キャンセル"} color={"gray"} border={"none"} />
-          <Button text={"募集公開"} color={"primary"} border={"none"} />
+          <div className={styles.leftButtonWrapper}>
+            <Button
+              border={"red"}
+              color={"white"}
+              icon={<DeleteOutlined />}
+              onClick={deleteRecruitment}
+              text={"削除する"}
+            />
+          </div>
+          <div className={styles.rightButtonWrapper}>
+            <Button text={"キャンセル"} color={"gray"} border={"none"} />
+            <Button text={"募集公開"} color={"primary"} border={"none"} />
+          </div>
         </div>
       </form>
     </div>

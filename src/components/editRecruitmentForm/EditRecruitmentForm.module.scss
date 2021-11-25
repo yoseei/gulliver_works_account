@@ -1,0 +1,51 @@
+.root {
+  padding-left: 60px;
+  width: 70%;
+  h1 {
+    margin-bottom: 30px;
+  }
+  .selectBoxContainer {
+    margin-bottom: 20px;
+
+    p {
+      color: #7d7d7d;
+    }
+    .selectBoxWrapper {
+      align-items: center;
+      display: flex;
+      gap: 10px;
+    }
+    .selectBox {
+      border: 1px solid #e5e5e5;
+      border-radius: 5px;
+      padding: 5px 10px;
+      width: 30%;
+      select {
+        cursor: pointer;
+        width: 100%;
+        -webkit-appearance: auto;
+      }
+    }
+  }
+  .publishingContainer {
+    p {
+      color: #7d7d7d;
+    }
+    .title {
+      margin-bottom: 0;
+    }
+  }
+  .buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-left: auto;
+    .rightButtonWrapper {
+      display: flex;
+      gap: 10px;
+      width: 10rem;
+    }
+  }
+}
+.errorMessage {
+  color: red;
+}
