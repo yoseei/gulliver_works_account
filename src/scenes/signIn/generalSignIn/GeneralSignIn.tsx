@@ -23,7 +23,7 @@ const SignInPage = () => {
 
   const onSubmit = (data: SignInParams) => {
     signIn(data);
-    history.push("/");
+    history.push("/applicant_recruitment");
   };
 
   return (

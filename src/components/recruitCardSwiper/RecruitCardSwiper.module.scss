@@ -1,0 +1,41 @@
+.root {
+  h1 {
+    width: 50%;
+    margin: 0 auto;
+  }
+  .recruitmentsContainer {
+    margin: 0 auto;
+    gap: 20px;
+    width: 50%;
+    .recruitmentContainer {
+      border: 1px solid #afafaf;
+      margin-bottom: 20px;
+      width: 500px;
+      .coverImageWrapper {
+        img {
+          width: 100%;
+        }
+      }
+      .titleWrapper {
+        margin: 0;
+        padding: 10px 20px;
+        h3 {
+          margin: 0;
+        }
+      }
+      .companyNameWrapper {
+        align-items: center;
+        display: flex;
+        gap: 5px;
+        padding: 0px 20px 10px;
+        margin: 0;
+        .imageWrapper {
+          background-repeat: no-repeat;
+        }
+        p {
+          margin: 0;
+        }
+      }
+    }
+  }
+}

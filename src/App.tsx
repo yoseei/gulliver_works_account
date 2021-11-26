@@ -13,7 +13,7 @@ import ManageRecruitment from "./scenes/manageRecruitment/ManageRecruitment";
 import Profile from "./scenes/profile/Profile";
 import RecruitmentDetail from "./scenes/recruitmentDetail/RecruitmentDetail";
 import SideBar from "./components/sideBar/SideBar";
-import SignInPage from "./scenes/signIn/generalSignIn/GeneralSignIn";
+import GeneralSignIn from "./scenes/signIn/generalSignIn/GeneralSignIn";
 import NotLoggedInApplicantRecruitment from "./scenes/notLoggedInApplicantRecruitment/NotLoggedInApplicantRecruitment";
 
 const App = () => {
@@ -27,8 +27,8 @@ const App = () => {
     <div className="root">
       <BrowserRouter>
         <Switch>
-          <Route path="/applicant_recruitment">
-            <div>
+          <Route exact path="/">
+            <div className="withSideBarContainer_applicantRecruitment">
               <div className="sidebarWrapper">{sideBarB}</div>
               <ApplicantRecruitment />
             </div>
@@ -38,7 +38,7 @@ const App = () => {
             path="/not_loggedin_user"
             component={NotLoggedInApplicantRecruitment}
           />
-          <Route path="/signin" component={SignInPage} />
+          <Route path="/signin" component={GeneralSignIn} />
           <Route path="/employee_signin" component={EmployeeSignIn} />
           <Route path="/employee_signup" component={EmployeeSignUp} />
 

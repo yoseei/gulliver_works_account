@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import styles from "./ApplicantRecruitment.module.scss";
 import { useHistory } from "react-router";
 import RecruitCard from "../../components/recruitCard/RecruitCard";
+import RecruitCardSwiper from "../../components/recruitCardSwiper/RecruitCardSwiper";
 
 const ApplicantRecruitment = () => {
   const history = useHistory();
@@ -13,7 +14,7 @@ const ApplicantRecruitment = () => {
 
   return (
     <div className={styles.root}>
-      <RecruitCard title={"おすすめの募集"} />
+      <RecruitCardSwiper title={"おすすめの募集"} />
       <RecruitCard title={"すべての募集"} />
     </div>
   );
