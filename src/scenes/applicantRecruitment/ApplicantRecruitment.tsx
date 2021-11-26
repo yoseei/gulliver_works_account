@@ -14,8 +14,8 @@ const ApplicantRecruitment = () => {
 
   return (
     <div className={styles.root}>
-      <RecruitCardSwiper title={"おすすめの募集"} />
-      <RecruitCard title={"すべての募集"} />
+      <RecruitCardSwiper />
+      <RecruitCard />
     </div>
   );
 };

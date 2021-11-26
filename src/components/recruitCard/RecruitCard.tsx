@@ -2,14 +2,11 @@ import React, { useEffect, useState } from "react";
 import styles from "./RecruitCard.module.scss";
 import { HttpClient } from "../../utilities/axiosInstance";
 import { localHostURL } from "../../hooks/localHostURL";
-import { RecruitmentDataType } from "data/recruitment";
+import { RecruitmentDataType } from "../../data/recruitment";
 import image from "../image/Ellipse2.png";
 import coverImage from "../image/Rectangle77.png";
 
-type PropsType = {
-  title: "すべての募集" | "おすすめの募集";
-};
-const RecruitCard = ({ title }: PropsType) => {
+const RecruitCard = () => {
   const [allRecruitment, setAllRecruitment] = useState<RecruitmentDataType[]>();
 
   useEffect(() => {
@@ -25,7 +22,7 @@ const RecruitCard = ({ title }: PropsType) => {
 
   return (
     <div className={styles.root}>
-      <h1>{title}</h1>
+      <h1>すべての募集</h1>
       <div className={styles.recruitmentsContainer}>
         {allRecruitment?.map(
           (recruitment: RecruitmentDataType, index: number) => (

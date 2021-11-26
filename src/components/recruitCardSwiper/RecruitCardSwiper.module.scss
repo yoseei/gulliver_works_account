@@ -4,13 +4,14 @@
     margin: 0 auto;
   }
   .recruitmentsContainer {
+    display: flex;
     margin: 0 auto;
     gap: 20px;
-    width: 50%;
+    width: 100%;
     .recruitmentContainer {
       border: 1px solid #afafaf;
       margin-bottom: 20px;
-      width: 500px;
+      width: 50%;
       .coverImageWrapper {
         img {
           width: 100%;

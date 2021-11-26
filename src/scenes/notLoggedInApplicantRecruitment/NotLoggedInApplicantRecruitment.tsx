@@ -5,7 +5,7 @@ import RecruitCard from "../../components/recruitCard/RecruitCard";
 const NotLoggedInApplicantRecruitment = () => {
   return (
     <div className={styles.root}>
-      <RecruitCard title={"すべての募集"} />
+      <RecruitCard />
     </div>
   );
 };
