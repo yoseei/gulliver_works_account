@@ -23,8 +23,6 @@ const RecruitCard = ({ title }: PropsType) => {
     fetchAllRecruitment();
   }, []);
 
-  console.log(allRecruitment);
-
   return (
     <div className={styles.root}>
       <h1>{title}</h1>

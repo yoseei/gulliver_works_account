@@ -26,8 +26,6 @@ const CreateRecruitment = () => {
     history.push("/manage_recruitment");
   };
 
-  console.log(employee);
-
   return (
     <div className={styles.root}>
       <CreateRecruitmentForm
