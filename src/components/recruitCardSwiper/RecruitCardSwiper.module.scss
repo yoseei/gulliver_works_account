@@ -5,13 +5,14 @@
   }
   .recruitmentsContainer {
     display: flex;
+
     margin: 0 auto;
     gap: 20px;
-    width: 100%;
+    width: 50%;
     .recruitmentContainer {
       border: 1px solid #afafaf;
       margin-bottom: 20px;
-      width: 50%;
+      flex: 1;
       .coverImageWrapper {
         img {
           width: 100%;
