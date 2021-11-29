@@ -45,7 +45,14 @@ const RecruitCardSwiper = () => {
   return (
     <div className={styles.root}>
       <h1>おすすめの募集</h1>
-      <Carousel autoPlay={true} infiniteLoop={true} showStatus={false}>
+      <Carousel
+        autoPlay={true}
+        width={"100%"}
+        centerMode={true}
+        centerSlidePercentage={50}
+        infiniteLoop={true}
+        showStatus={false}
+      >
         <div className={styles.recruitmentsContainer}>{recruitmentCards}</div>
         <div className={styles.recruitmentsContainer}>{recruitmentCards}</div>
         <div className={styles.recruitmentsContainer}>{recruitmentCards}</div>
