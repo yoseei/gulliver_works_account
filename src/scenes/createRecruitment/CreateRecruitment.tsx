@@ -18,6 +18,7 @@ const CreateRecruitment = () => {
       url: `${localHostURL}/companies/${companyId}/recruitments`,
       data: {
         ...data,
+        company: employee?.companies[0],
       },
     });
 

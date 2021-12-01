@@ -51,6 +51,12 @@ a {
     display: flex;
     margin: 50px;
   }
+  .withSideBarContainer_applicantRecruitment {
+    .sidebarWrapper {
+      position: absolute;
+      top: 70%;
+    }
+  }
   .withSideBarContainer_profile {
     display: flex;
     justify-content: flex-start;

@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import styles from "./style.module.scss";
-import SideBar from "../../components/sideBar/SideBar";
+import styles from "./ApplicantRecruitment.module.scss";
 import { useHistory } from "react-router";
+import RecruitCard from "../../components/recruitCard/RecruitCard";
+import RecruitCardSwiper from "../../components/recruitCardSwiper/RecruitCardSwiper";
 
 const ApplicantRecruitment = () => {
   const history = useHistory();
@@ -13,10 +14,8 @@ const ApplicantRecruitment = () => {
 
   return (
     <div className={styles.root}>
-      <div className={styles.text}>
-        <h1>すべての募集</h1>
-      </div>
-      <SideBar textA={"募集一覧"} textB={"マイページ"} textC={"サインアウト"} />
+      <RecruitCardSwiper />
+      <RecruitCard />
     </div>
   );
 };
