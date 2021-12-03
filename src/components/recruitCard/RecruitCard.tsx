@@ -26,8 +26,6 @@ const RecruitCard = () => {
     history.push(`/applicant_recruitment/${id}/detail`);
   };
 
-  console.log();
-
   return (
     <div className={styles.root}>
       <h1>すべての募集</h1>
