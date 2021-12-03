@@ -1,0 +1,22 @@
+.root {
+  padding: 0 25px;
+  .companyProfileContainer {
+    padding-right: 60px;
+  }
+  .companyImage_nameWrapper {
+    align-items: center;
+    display: flex;
+    margin: 10px 0;
+    p {
+      margin-left: 10px;
+    }
+  }
+  p,
+  a {
+    display: block;
+    margin: 10px 0 10px;
+  }
+  a {
+    color: #05c757;
+  }
+}

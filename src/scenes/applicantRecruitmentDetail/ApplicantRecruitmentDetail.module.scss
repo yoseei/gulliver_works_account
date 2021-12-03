@@ -1,0 +1,29 @@
+p {
+  margin-bottom: 0;
+}
+.root {
+  padding: 100px 200px;
+  .container {
+    .topContainer {
+      img {
+        width: 100%;
+      }
+      h1 {
+        margin: 20px 0;
+      }
+    }
+    .bottomContainer {
+      display: flex;
+      .leftSideContainer {
+        flex: 2;
+        margin-right: 100px;
+        .prContainer {
+          margin-bottom: 50px;
+        }
+      }
+      .rightSideContainer {
+        flex: 1;
+      }
+    }
+  }
+}

@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import styles from "./RecruitCardSwiper.module.scss";
+import { Carousel } from "react-responsive-carousel";
+import coverImage from "../image/Rectangle77.png";
 import { HttpClient } from "../../utilities/axiosInstance";
+import image from "../image/Ellipse2.png";
 import { localHostURL } from "../../hooks/localHostURL";
 import { RecruitmentDataType } from "../../data/recruitment";
-import image from "../image/Ellipse2.png";
-import coverImage from "../image/Rectangle77.png";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
+import { useHistory } from "react-router";
 
 const RecruitCardSwiper = () => {
   const [allRecruitments, setAllRecruitments] =
     useState<RecruitmentDataType[]>();
+  const history = useHistory();
 
   useEffect(() => {
     const fetchAllRecruitment = async () => {
@@ -23,8 +25,16 @@ const RecruitCardSwiper = () => {
     fetchAllRecruitment();
   }, []);
 
+  const moveToApplicantRecruitmentDetail = (id: string) => {
+    history.push(`/applicant_recruitment/${id}/detail`);
+  };
+
   const recruitmentCards = allRecruitments?.map((recruitment) => (
-    <div className={styles.recruitmentsContainer} key={recruitment.id}>
+    <div
+      className={styles.recruitmentsContainer}
+      key={recruitment.id}
+      onClick={() => moveToApplicantRecruitmentDetail(recruitment.id)}
+    >
       <div className={styles.recruitmentContainer}>
         <div className={styles.coverImageWrapper}>
           <img src={coverImage} alt="cover画像" />

@@ -15,6 +15,7 @@ import RecruitmentDetail from "./scenes/recruitmentDetail/RecruitmentDetail";
 import SideBar from "./components/sideBar/SideBar";
 import GeneralSignIn from "./scenes/signIn/generalSignIn/GeneralSignIn";
 import NotLoggedInApplicantRecruitment from "./scenes/notLoggedInApplicantRecruitment/NotLoggedInApplicantRecruitment";
+import ApplicantRecruitmentDetail from "./scenes/applicantRecruitmentDetail/ApplicantRecruitmentDetail";
 
 const App = () => {
   const sideBarA = (
@@ -33,12 +34,16 @@ const App = () => {
               <ApplicantRecruitment />
             </div>
           </Route>
+          <Route path="/general_signin" component={GeneralSignIn} />
 
           <Route
             path="/not_loggedin_user"
             component={NotLoggedInApplicantRecruitment}
           />
-          <Route path="/signin" component={GeneralSignIn} />
+          <Route
+            path="/applicant_recruitment/:id/detail"
+            component={ApplicantRecruitmentDetail}
+          />
           <Route path="/employee_signin" component={EmployeeSignIn} />
           <Route path="/employee_signup" component={EmployeeSignUp} />
 

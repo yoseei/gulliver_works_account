@@ -9,7 +9,7 @@ const ApplicantRecruitment = () => {
   const token = localStorage.getItem("GULLIVER_WORKS_AUTH_TOKEN");
 
   useEffect(() => {
-    if (!token) history.push("/signin");
+    if (!token) history.push("/general_signin");
   }, [token]);
 
   return (

@@ -5,9 +5,11 @@ import { localHostURL } from "../../hooks/localHostURL";
 import { RecruitmentDataType } from "../../data/recruitment";
 import image from "../image/Ellipse2.png";
 import coverImage from "../image/Rectangle77.png";
+import { useHistory } from "react-router";
 
 const RecruitCard = () => {
   const [allRecruitment, setAllRecruitment] = useState<RecruitmentDataType[]>();
+  const history = useHistory();
 
   useEffect(() => {
     const fetchAllRecruitment = async () => {
@@ -20,13 +22,20 @@ const RecruitCard = () => {
     fetchAllRecruitment();
   }, []);
 
+  const moveToApplicantRecruitmentDetail = (id: string) => {
+    history.push(`/applicant_recruitment/${id}/detail`);
+  };
   return (
     <div className={styles.root}>
       <h1>すべての募集</h1>
       <div className={styles.recruitmentsContainer}>
         {allRecruitment?.map(
           (recruitment: RecruitmentDataType, index: number) => (
-            <div className={styles.recruitmentContainer} key={index}>
+            <div
+              className={styles.recruitmentContainer}
+              key={index}
+              onClick={() => moveToApplicantRecruitmentDetail(recruitment.id)}
+            >
               <div className={styles.coverImageWrapper}>
                 <img src={coverImage} alt="cover画像" />
               </div>

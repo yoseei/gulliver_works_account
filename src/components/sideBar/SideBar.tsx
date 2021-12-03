@@ -15,15 +15,14 @@ const SideBar = ({ textA, textB, textC }: PropsTypes) => {
     localStorage.removeItem("GULLIVER_WORKS_AUTH_TOKEN");
     localStorage.removeItem("GULLIVER_WORKS_ENTERPRISE_AUTH_TOKEN");
     localStorage.removeItem("LOGIN_AS");
-    history.push("/signin");
+    history.push("/general_signin");
   };
   return (
     <div className={styles.root}>
       <div className={styles.recruitmentProfileContainer}>
         {textA === "募集一覧" ? (
           <p className={styles.recruitmentLink}>
-            {/* #TODO: 募集一覧ページができたら、リンクを貼り直し */}
-            <Link to="/profile">{textA}</Link>
+            <Link to="/">{textA}</Link>
           </p>
         ) : (
           <Link to="/company_detail">{textA}</Link>
