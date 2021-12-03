@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 
 type PropsType = {
   onClick?: React.MouseEventHandler<HTMLParagraphElement> | undefined;
-  text: "更新" | "作成" | "新規作成";
+  text: "応募する" | "更新" | "作成" | "新規作成";
+  width?: string;
 };
-const CircleButton = ({ onClick, text }: PropsType) => {
+const CircleButton = ({ onClick, text, width }: PropsType) => {
   return (
     <>
       <Link
@@ -27,7 +28,7 @@ const CircleButton = ({ onClick, text }: PropsType) => {
           onClick={onClick}
           text={text}
           type={"submit"}
-          width={"25%"}
+          width={width}
         />
       </Link>
     </>
