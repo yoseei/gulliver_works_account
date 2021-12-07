@@ -124,7 +124,8 @@
         "employeeId": 1
       },
       "companyId": "1",
-      "id": 6
+      "id": 6,
+      "accountId": 1
     },
     {
       "title": "みんなで世界を救おう！",
@@ -188,7 +189,8 @@
         "employeeId": 1
       },
       "companyId": "1",
-      "id": 8
+      "id": 8,
+      "accountId": 1
     }
   ]
 }

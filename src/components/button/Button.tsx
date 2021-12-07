@@ -1,12 +1,13 @@
-import React, { ReactNode } from "react";
+import React, {FC, ReactNode} from "react";
 import styles from "./Button.module.scss";
 import classNames from "classnames";
 
-interface PropsTypes {
+interface PropsType {
   alignItems?: "center";
   border?: "none" | "red";
   borderRadius?: string;
   color?: "primary" | "gray" | "white";
+  disabled?: boolean;
   fontSize?: string;
   icon?: ReactNode;
   onClick?: React.MouseEventHandler<HTMLParagraphElement> | undefined;
@@ -16,11 +17,13 @@ interface PropsTypes {
   style?: React.CSSProperties | undefined;
   width?: string;
 }
-const Button = ({
+
+const Button: FC<PropsType> = ({
   alignItems,
   borderRadius,
   border,
   color,
+  disabled,
   fontSize,
   icon,
   onClick,
@@ -28,7 +31,7 @@ const Button = ({
   text,
   type,
   width,
-}: PropsTypes) => {
+}) => {
   return (
     <button
       className={classNames(
@@ -37,7 +40,8 @@ const Button = ({
         { [styles.borderRed]: border === "red" },
         { [styles.gray]: color === "gray" },
         { [styles.primary]: color === "primary" },
-        { [styles.white]: color === "white" }
+        { [styles.white]: color === "white" },
+        { [styles.disabled]: disabled }
       )}
       style={{
         alignItems: alignItems,

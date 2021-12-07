@@ -1,33 +1,50 @@
 import React, {FC, useState} from "react";
 import styles from "./CompanyProfile.module.scss";
 import image from "../image/Ellipse2.png";
-
 import CircleButton from "../../components/circleButton/CircleButton";
 import {RecruitmentDataType} from "../../data/recruitment";
 import {Modal} from "antd";
 import 'antd/dist/antd.css';
 import Button from "../button/Button";
+import {HttpClient} from "../../utilities/axiosInstance";
+import {localHostURL} from "../../hooks/localHostURL";
+import { useCurrentAccount } from "../../hooks/useCurrentAccount";
+import {useParams} from "react-router-dom";
+import {useHistory} from "react-router";
 
 interface PropsType {
-  onClick: () => void;
+  onClick?: () => void;
   recruitment: RecruitmentDataType | undefined;
 }
 
 const CompanyProfile: FC<PropsType> = ({onClick, recruitment}) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const {account, setAccount} = useCurrentAccount()
+  const {id} = useParams<{ id: string }>();
+  const history = useHistory()
 
   const handleIsModalOpen = () => {
     setIsModalVisible(true)
   }
 
-  const handleOk = () => {
-    setIsModalVisible(false);
-    alert("応募しました！")
-  };
-
   const handleCancel = () => {
     setIsModalVisible(false);
   };
+
+  const addRecruitmentId = async() => {
+    const res = await HttpClient.request({
+      method: "PUT",
+      url: `${localHostURL}/recruitments/${id}`,
+      data: {
+        ...recruitment,
+        accountId: account?.id
+      }
+    })
+    setAccount(res.data)
+    setIsModalVisible(false);
+    alert("応募しました！")
+    history.push("/")
+  }
 
   return (
     <div className={styles.root}>
@@ -41,17 +58,20 @@ const CompanyProfile: FC<PropsType> = ({onClick, recruitment}) => {
         <p>{recruitment?.company.headOfficeLocation}</p>
         <a href="/">{recruitment?.company.hpUrl}</a>
       </div>
-      <CircleButton text={"応募する"} type={"button"} width={"100%"} onClick={handleIsModalOpen}/>
+      {recruitment?.id && recruitment?.accountId ?
+      <CircleButton text={"応募する"} type={"button"} width={"100%"} disabled/>
+      : <CircleButton text={"応募する"} type={"button"} width={"100%"} onClick={handleIsModalOpen}/>
+      }
 
       {isModalVisible ?
         <Modal visible={isModalVisible} onCancel={handleCancel} footer={null} closable={false} className={styles.modal}>
           <div className={styles.modalWrapper}>
             <p>
-              「3度の飯よりReact！フロントエンドのエキスパートになりたいエンジニア募集！」に応募しますか？
+              「{recruitment?.title}」に応募しますか？
             </p>
             <div className={styles.buttonContainer}>
               <Button border={"none"} text={"キャンセル"} color={"gray"} onClick={handleCancel}/>
-              <Button border={"none"} text={"応募する"} color={"primary"} onClick={handleOk}/>
+              <Button border={"none"} text={"応募する"} color={"primary"} onClick={addRecruitmentId}/>
             </div>
           </div>
         </Modal>

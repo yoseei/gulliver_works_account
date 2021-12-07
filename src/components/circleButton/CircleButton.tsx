@@ -1,16 +1,16 @@
-import React from "react";
+import React, {FC} from "react";
 import Button from "../../components/button/Button";
 import {Link} from "react-router-dom";
-import {log} from "util";
 import {useParams} from "react-router-dom";
 
 type PropsType = {
+  disabled?: boolean;
   onClick?: React.MouseEventHandler<HTMLParagraphElement> | undefined;
   text: "応募する" | "更新" | "作成" | "新規作成";
   type: "submit" | "button";
   width?: string;
 };
-const CircleButton = ({onClick, text, type, width}: PropsType) => {
+const CircleButton: FC<PropsType> = ({disabled, onClick, text, type, width}) => {
   const { id } = useParams<{ id: string }>();
   return (
     <>
@@ -28,6 +28,7 @@ const CircleButton = ({onClick, text, type, width}: PropsType) => {
           border={"none"}
           borderRadius={"30px"}
           color={"primary"}
+          disabled={disabled}
           fontSize={"1rem"}
           onClick={onClick}
           text={text}

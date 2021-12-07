@@ -1,5 +1,6 @@
 export type RecruitmentDataType = {
   id: string;
+  accountId: string;
   title: string;
   department: string;
   occupation: {

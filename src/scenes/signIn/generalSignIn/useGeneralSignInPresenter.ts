@@ -1,5 +1,5 @@
 import { useCurrentAccount } from "../../../hooks/useCurrentAccount";
-import { Account } from "../../../data/account/index";
+import { AccountType } from "../../../data/account/index";
 import { HttpClient } from "../../../utilities/axiosInstance";
 import { APIHost } from "../../../utilities/constants";
 
@@ -11,7 +11,7 @@ export type SignInParams = {
 };
 
 export type SignInPayload = {
-  account: Account;
+  account: AccountType;
   token: string;
 };
 

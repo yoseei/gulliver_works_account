@@ -42,7 +42,7 @@ const ApplecantRecruitmentDetail = () => {
             <JobDescription recruitment={recruitment} />
           </div>
           <div className={styles.rightSideContainer}>
-            <CompanyProfile recruitment={recruitment} onClick={()=> console.log("hoeg")}/>
+            <CompanyProfile recruitment={recruitment}/>
           </div>
         </div>
       </div>
