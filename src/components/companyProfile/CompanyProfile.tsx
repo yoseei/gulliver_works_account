@@ -37,7 +37,7 @@ const CompanyProfile: FC<PropsType> = ({onClick, recruitment}) => {
       url: `${localHostURL}/recruitments/${id}`,
       data: {
         ...recruitment,
-        accountId: account?.id
+        accountIds: [account?.id]
       }
     })
     setAccount(res.data)
@@ -58,7 +58,9 @@ const CompanyProfile: FC<PropsType> = ({onClick, recruitment}) => {
         <p>{recruitment?.company.headOfficeLocation}</p>
         <a href="/">{recruitment?.company.hpUrl}</a>
       </div>
-      {recruitment?.id && recruitment?.accountId ?
+      {recruitment?.id && recruitment?.accountIds?.filter(function(value) {
+        return value === account?.id
+      }) ?
       <CircleButton text={"応募する"} type={"button"} width={"100%"} disabled/>
       : <CircleButton text={"応募する"} type={"button"} width={"100%"} onClick={handleIsModalOpen}/>
       }

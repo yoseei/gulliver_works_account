@@ -124,7 +124,9 @@
       },
       "companyId": "1",
       "id": 6,
-      "accountId": 1
+      "accountIds": [
+        1
+      ]
     },
     {
       "title": "みんなで世界を救おう！",
@@ -155,7 +157,10 @@
         "id": 1
       },
       "companyId": "1",
-      "id": 7
+      "id": 7,
+      "accountIds": [
+        1
+      ]
     },
     {
       "title": "やる気のあるバックエンド募集！",
@@ -186,8 +191,7 @@
         "id": 1
       },
       "companyId": "1",
-      "id": 8,
-      "accountId": 1
+      "id": 8
     }
   ]
 }
