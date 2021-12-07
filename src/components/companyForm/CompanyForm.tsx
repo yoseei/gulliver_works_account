@@ -267,7 +267,7 @@ const CompanyInfoInputs = ({
         </div>
 
         <div className={styles.buttonContainer}>
-          <CircleButton text={buttonText} />
+          <CircleButton text={buttonText} type={"submit"}/>
         </div>
       </form>
     </div>

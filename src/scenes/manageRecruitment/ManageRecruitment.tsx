@@ -126,7 +126,7 @@ const ManageRecruitment = () => {
       <div className={styles.topContainer}>
         <h1>募集管理</h1>
 
-        <CircleButton text={"新規作成"} />
+        <CircleButton text={"新規作成"} type={"submit"}/>
       </div>
       <div className={styles.recruitingContainer}>
         <div className={styles.recruitingWrapper}>
