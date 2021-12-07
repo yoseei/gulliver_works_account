@@ -45,7 +45,6 @@ const CompanyProfile: FC<PropsType> = ({onClick, recruitment}) => {
     alert("応募しました！")
     history.push("/")
   }
-  console.log("hoge")
 
   return (
     <div className={styles.root}>
