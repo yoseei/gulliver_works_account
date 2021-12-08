@@ -6,7 +6,7 @@ import {useParams} from "react-router-dom";
 type PropsType = {
   disabled?: boolean;
   onClick?: React.MouseEventHandler<HTMLParagraphElement>;
-  linkTo?: ReturnType<any>;
+  linkTo?: string;
   text: string;
   type: "submit" | "button";
   width?: string;
@@ -17,13 +17,7 @@ const CircleButton: FC<PropsType> = ({disabled, onClick, linkTo, text, type, wid
     <>
       {linkTo ?
         <Link
-          to={
-            text === "新規作成"
-              ? "/create_recruitment"
-              : "" || text === "更新"
-                ? "/edit_recruitment"
-                : ""
-          }
+          to={linkTo}
         >
           <Button
             alignItems={"center"}

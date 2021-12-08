@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./CompanyDetail.module.scss";
-import { CompanyDataType } from "data/company";
-import { HttpClient } from "../../utilities/axiosInstance";
-import { notification } from "antd";
-import { localHostURL } from "../../hooks/localHostURL";
+import {CompanyDataType} from "data/company";
+import CircleButton from "../../components/circleButton/CircleButton";
+import {HttpClient} from "../../utilities/axiosInstance";
+import {localHostURL} from "../../hooks/localHostURL";
+import {notification} from "antd";
 
 const CompanyDetail = () => {
   const [company, setCompany] = useState<CompanyDataType | undefined>();
@@ -110,6 +111,9 @@ const CompanyDetail = () => {
               </p>
             </div>
           </div>
+        </div>
+        <div className={styles.buttonWrapper}>
+          <CircleButton text={"更新"} width={"200px"} linkTo={"/company_edit"} type={"button"}/>
         </div>
       </div>
     </div>

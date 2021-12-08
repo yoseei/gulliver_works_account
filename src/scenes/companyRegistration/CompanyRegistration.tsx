@@ -3,9 +3,9 @@ import styles from "./CompanyRegistration.module.scss";
 import CompanyForm from "../../components/companyForm/CompanyForm";
 import { CompanyDataType } from "../../data/company";
 import { HttpClient } from "../../utilities/axiosInstance";
+import { localHostURL } from "../../hooks/localHostURL";
 import { notification } from "antd";
 import { useForm } from "react-hook-form";
-import { localHostURL } from "../../hooks/localHostURL";
 
 const CompanyRegistration = () => {
   const { reset } = useForm();
@@ -31,6 +31,7 @@ const CompanyRegistration = () => {
       <CompanyForm
         buttonText={"作成"}
         handleFunction={handleCreateCompanyInfo}
+        linkTo={"manage_recruitment"}
         title={"企業登録"}
       />
     </div>
