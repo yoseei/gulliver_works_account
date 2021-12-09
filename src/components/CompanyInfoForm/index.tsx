@@ -7,7 +7,7 @@ import Input from "../input/Input";
 import Textarea from "../textarea/Textarea";
 import {useForm} from "react-hook-form";
 
-type CompanyInfoInputsPropsType = {
+type CompanyInfoFormPropsType = {
   buttonText: "作成" | "更新";
   company?: CompanyDataType;
   onSubmit: (data: CompanyDataType) => Promise<void>;
@@ -15,7 +15,7 @@ type CompanyInfoInputsPropsType = {
   title: "企業登録" | "企業更新";
 };
 
-const CompanyInfoForm: FC<CompanyInfoInputsPropsType> = ({
+const CompanyInfoForm: FC<CompanyInfoFormPropsType> = ({
                                                            buttonText,
                                                            onSubmit,
                                                            linkTo,
