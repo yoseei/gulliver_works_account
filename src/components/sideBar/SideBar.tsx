@@ -3,12 +3,12 @@ import styles from "./SideBar.module.scss";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 
-interface PropsTypes {
+type SideBarPropsType =  {
   textA: "募集一覧" | "企業詳細";
   textB: "マイページ" | "募集管理";
   textC?: "サインアウト";
 }
-const SideBar = ({ textA, textB, textC }: PropsTypes) => {
+const SideBar = ({ textA, textB, textC }: SideBarPropsType) => {
   const history = useHistory();
 
   const signOut = () => {

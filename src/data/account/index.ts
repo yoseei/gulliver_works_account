@@ -1,12 +1,12 @@
 import { Profile } from "../profile/index";
 
-export interface Account {
+export type Account = {
   id: string;
   email: string;
   profile?: Profile;
 }
 
-export interface AccountType {
+export type AccountType = {
   id: string;
   email: string;
   email_verification_status: string;

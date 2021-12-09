@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./CompanyEdit.module.scss";
 import { CompanyDataType } from "../../data/company";
-import CompanyForm from "../../components/companyForm/CompanyForm";
+import CompanyForm from "../../components/CompanyInfoForm";
 import { HttpClient } from "../../utilities/axiosInstance";
 import { notification } from "antd";
 import { localHostURL } from "../../hooks/localHostURL";
@@ -11,7 +11,7 @@ const CorporateEdit = () => {
   const {employee} = useCurrentEmployee();
   const company = employee?.companies[0]
 
-  const handleEditCompanyInfo = async (data: CompanyDataType) => {
+  const editCompanyInfo = async (data: CompanyDataType) => {
     try {
       await HttpClient.request({
         method: "PUT",
@@ -29,7 +29,7 @@ const CorporateEdit = () => {
     <div className={styles.root}>
       <CompanyForm
         buttonText={"更新"}
-        handleFunction={handleEditCompanyInfo}
+        onSubmit={editCompanyInfo}
         linkTo={"/manage_recruitment"}
         company={company}
         title={"企業更新"}

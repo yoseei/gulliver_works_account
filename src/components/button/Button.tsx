@@ -2,7 +2,7 @@ import React, {FC, ReactNode} from "react";
 import styles from "./Button.module.scss";
 import classNames from "classnames";
 
-interface PropsType {
+type ButtonPropsType = {
   alignItems?: "center";
   border?: "none" | "red";
   borderRadius?: string;
@@ -18,7 +18,7 @@ interface PropsType {
   width?: string;
 }
 
-const Button: FC<PropsType> = ({
+const Button: FC<ButtonPropsType> = ({
   alignItems,
   borderRadius,
   border,

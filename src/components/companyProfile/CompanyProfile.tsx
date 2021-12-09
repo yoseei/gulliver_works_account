@@ -12,22 +12,22 @@ import { useCurrentAccount } from "../../hooks/useCurrentAccount";
 import {useParams} from "react-router-dom";
 import {useHistory} from "react-router";
 
-interface PropsType {
+type CompanyProfilePropsType = {
   onClick?: () => void;
   recruitment: RecruitmentDataType | undefined;
 }
 
-const CompanyProfile: FC<PropsType> = ({onClick, recruitment}) => {
+const CompanyProfile: FC<CompanyProfilePropsType> = ({onClick, recruitment}) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const {account, setAccount} = useCurrentAccount()
   const {id} = useParams<{ id: string }>();
   const history = useHistory()
 
-  const handleIsModalOpen = () => {
+  const handleModalOpen = () => {
     setIsModalVisible(true)
   }
 
-  const handleCancel = () => {
+  const handleModalClose = () => {
     setIsModalVisible(false);
   };
 
@@ -62,17 +62,17 @@ const CompanyProfile: FC<PropsType> = ({onClick, recruitment}) => {
         return value === account?.id
       }) ?
       <CircleButton text={"応募する"} type={"button"} width={"100%"} disabled/>
-      : <CircleButton text={"応募する"} type={"button"} width={"100%"} onClick={handleIsModalOpen}/>
+      : <CircleButton text={"応募する"} type={"button"} width={"100%"} onClick={handleModalOpen}/>
       }
 
       {isModalVisible ?
-        <Modal visible={isModalVisible} onCancel={handleCancel} footer={null} closable={false} className={styles.modal}>
+        <Modal visible={isModalVisible} onCancel={handleModalClose} footer={null} closable={false} className={styles.modal}>
           <div className={styles.modalWrapper}>
             <p>
               「{recruitment?.title}」に応募しますか？
             </p>
             <div className={styles.buttonContainer}>
-              <Button border={"none"} text={"キャンセル"} color={"gray"} onClick={handleCancel}/>
+              <Button border={"none"} text={"キャンセル"} color={"gray"} onClick={handleModalClose}/>
               <Button border={"none"} text={"応募する"} color={"primary"} onClick={addRecruitmentId}/>
             </div>
           </div>

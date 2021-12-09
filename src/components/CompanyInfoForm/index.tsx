@@ -1,5 +1,5 @@
 import React, {FC} from "react";
-import styles from "./CompanyForm.module.scss";
+import styles from "./styles.module.scss";
 import CircleButton from "../circleButton/CircleButton";
 import {CompanyDataType} from "../../data/company";
 import {ErrorMessage} from "@hookform/error-message";
@@ -7,27 +7,27 @@ import Input from "../input/Input";
 import Textarea from "../textarea/Textarea";
 import {useForm} from "react-hook-form";
 
-type PropsType = {
+type CompanyInfoInputsPropsType = {
   buttonText: "作成" | "更新";
   company?: CompanyDataType;
-  handleFunction: (data: CompanyDataType) => Promise<void>;
+  onSubmit: (data: CompanyDataType) => Promise<void>;
   linkTo: string;
   title: "企業登録" | "企業更新";
 };
 
-const CompanyInfoInputs: FC<PropsType> = ({
-                                            buttonText,
-                                            handleFunction,
-                                            linkTo,
-                                            company,
-                                            title,
-                                          }) => {
+const CompanyInfoForm: FC<CompanyInfoInputsPropsType> = ({
+                                                           buttonText,
+                                                           onSubmit,
+                                                           linkTo,
+                                                           company,
+                                                           title,
+                                                         }) => {
   const {register, handleSubmit, errors} = useForm();
 
   return (
     <div className={styles.mainContainer}>
       <h1>{title}</h1>
-      <form onSubmit={handleSubmit(handleFunction)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <ErrorMessage
           as="p"
           className={styles.errorMessage}
@@ -292,4 +292,4 @@ const CompanyInfoInputs: FC<PropsType> = ({
   );
 };
 
-export default CompanyInfoInputs;
+export default CompanyInfoForm;
