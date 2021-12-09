@@ -1,5 +1,6 @@
 export type RecruitmentDataType = {
   id: string;
+  accountIds: string[];
   title: string;
   department: string;
   occupation: {
@@ -25,25 +26,25 @@ export type RecruitmentDataType = {
     name: string;
     nameKana: string;
     headOfficeLocation: string;
-    year_of_establishment: string;
-    hp_url: string;
+    yearOfEstablishment: string;
+    hpUrl: string;
     phone: string;
     capital: string;
-    is_listed: false;
+    isListed: false;
     representative: string;
-    representative_kana: string;
-    net_sales: number;
-    numbers_of_employees: number;
-    average_age: number;
-    business_summary: string;
-    corporate_pr: string;
+    representativeKana: string;
+    netSales: number;
+    numbersOfEmployees: number;
+    averageAge: number;
+    businessSummary: string;
+    corporatePr: string;
     industries: [
       {
         id: number;
         name: string;
       }
     ];
-    cover_image_url: string;
+    coverImageUrl: string;
   };
   status: string;
 };

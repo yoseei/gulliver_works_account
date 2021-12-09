@@ -1,6 +1,6 @@
 import { CompanyDataType } from "../../data/company";
 
-export interface Employee {
+export type Employee = {
   id: string | undefined;
   email: string;
   email_verification_status: string;
@@ -24,7 +24,7 @@ export interface Employee {
       representativeKanaFirst: string;
       netSales: string;
       numbersOfEmployees: string;
-      averageAge: number;
+      averageAge: string;
       businessSummary: string;
       corporatePr: string;
     }

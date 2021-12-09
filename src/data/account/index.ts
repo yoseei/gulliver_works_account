@@ -1,15 +1,16 @@
 import { Profile } from "../profile/index";
 
-export interface Account {
+export type Account = {
   id: string;
   email: string;
   profile?: Profile;
 }
 
-export interface AccountType {
-  id: 1;
-  email: "test@example.com";
-  email_verification_status: "unspecified";
-  email_verification_token: "43a05e8a-f327-4a60-97fd-cef1f4b78420";
-  last_notification_read_at: "2019-08-24";
+export type AccountType = {
+  id: string;
+  email: string;
+  email_verification_status: string;
+  email_verification_token: string;
+  last_notification_read_at: string,
+  appliedRecruitment: { id: string}
 }

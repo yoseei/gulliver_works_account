@@ -1,4 +1,4 @@
-export interface WorkHistoriesType {
+export type WorkHistoriesType = {
   id?: string;
   isEmployed?: string;
   occupation?: string;

@@ -72,22 +72,22 @@
   ],
   "companies": [
     {
-      "name": "株式会社ほげほげ",
-      "nameKana": "てすと",
+      "name": "株式会社ダミー",
+      "nameKana": "かぶしきがいしゃ",
       "headOfficeLocation": "sample1",
       "yearOfEstablishment": "1",
-      "hpUrl": "http://hoge",
-      "phone": "11111111111",
+      "hpUrl": "https://hoge",
+      "phone": "11111111111111111",
       "isListed": "上場",
-      "representativeLast": "ほげ",
-      "representativeFirst": "ほげ",
-      "representativeKanaLast": "ほげ",
-      "representativeKanaFirst": "ほげ",
-      "netSales": "11111111",
-      "numbersOfEmployees": "11111111",
-      "averageAge": "30",
-      "businessSummery": " ほげ",
-      "corporatePr": "ほげ",
+      "representativeLast": "日本",
+      "representativeFirst": "太郎",
+      "representativeKanaLast": "にほｎ",
+      "representativeKanaFirst": "たろう",
+      "netSales": "120億",
+      "numbersOfEmployees": "100人",
+      "averageAge": "23才",
+      "businessSummery": "IT事業",
+      "corporatePr": "楽しい職場です",
       "logoImage": {},
       "id": 1,
       "employeeId": 1
@@ -122,9 +122,13 @@
         "logoImage": {},
         "id": 1,
         "employeeId": 1
+
       },
       "companyId": "1",
-      "id": 6
+      "id": 6,
+      "accountIds": [
+        1
+      ]
     },
     {
       "title": "みんなで世界を救おう！",
@@ -154,9 +158,13 @@
         "logoImage": {},
         "id": 1,
         "employeeId": 1
+
       },
       "companyId": "1",
-      "id": 7
+      "id": 7,
+      "accountIds": [
+        1
+      ]
     },
     {
       "title": "やる気のあるバックエンド募集！",

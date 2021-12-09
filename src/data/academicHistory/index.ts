@@ -1,4 +1,4 @@
-export interface AcademicHistoryType {
+export type AcademicHistoryType = {
   id?: string;
   name: string;
   faculty: string;
