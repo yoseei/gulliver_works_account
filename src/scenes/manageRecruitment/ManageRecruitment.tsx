@@ -13,7 +13,7 @@ const ManageRecruitment = () => {
   const [recruitments, setRecruitments] = useState<RecruitmentDataType[]>();
   const [recruitmentType, setRecruitmentType] = useState<
     "active" | "inActive" | "draft"
-  >();
+  >("active");
 
   useEffect(() => {
     try {
